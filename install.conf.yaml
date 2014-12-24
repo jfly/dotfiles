@@ -1,7 +1,7 @@
 - clean: ['~']
 
 - link:
-    ~/.dotfiles: ''
+    ~/.dotfiles: ""
     ~/.gitconfig: gitconfig
     ~/.vim: vim/
     ~/.vimrc: vimrc
@@ -10,6 +10,9 @@
     ~/.xmonad/xmonad.hs:
         create: true
         path: xmonad.hs
+    ~/.Xmodmap: Xmodmap
+    ~/.xinitrc: xinitrc
+    ~/.conkyrc: conkyrc
 
 - shell:
   -
