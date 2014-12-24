@@ -1,0 +1,16 @@
+- clean: ['~']
+
+- link:
+    ~/.dotfiles: ''
+    ~/.gitconfig: gitconfig
+    ~/.vim: vim/
+    ~/.vimrc: vimrc
+    ~/.bashrc: bashrc
+    ~/.xmonad/xmonad.hs:
+        create: true
+        path: xmonad.hs
+
+- shell:
+  -
+    - git update-submodules
+    - Install/update submodules

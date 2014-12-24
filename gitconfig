@@ -1,0 +1,12 @@
+[alias]
+	update-submodules = submodule update --init --recursive
+	upgrade-submodules = submodule update --init --remote
+[user]
+        name = Jeremy Fleischman
+        email = jeremyfleischman@gmail.com
+[push]
+        default = simple
+
+# Allow local customizations in the .gitconfig_local file
+[include]
+	path = ~/.gitconfig_local
