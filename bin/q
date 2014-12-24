@@ -1,0 +1,2 @@
+#/bin/sh
+$* && play ~/wav/ootinee.wav &> /dev/null || play ~/wav/shit.wav &> /dev/null

@@ -15,6 +15,8 @@ END=">"
 
 export PS1="${MY_BODY}${END} "
 
+export PATH=$PATH:$HOME/bin
+
 # ctrl-shift-n for gnome-terminal
 source /etc/profile.d/vte.sh
 
