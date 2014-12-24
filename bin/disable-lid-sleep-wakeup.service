@@ -1,0 +1,10 @@
+[Unit]
+Description=Prevent opening the lid from waking from standby
+
+[Install]
+WantedBy=multi-user.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/home/jeremy/bin/disable-lid-sleep-wakeup.sh
