@@ -3,6 +3,7 @@
 - link:
     ~/.dotfiles: ""
     ~/.gitconfig: gitconfig
+    ~/.gitignore_global: gitignore_global
     ~/.vim: vim/
     ~/.vimrc: vimrc
     ~/.bashrc: bashrc
@@ -10,6 +11,7 @@
     ~/.xmonad/xmonad.hs:
         create: true
         path: xmonad.hs
+    ~/.xmobarrc: xmobarrc
     ~/.Xmodmap: Xmodmap
     ~/.xinitrc: xinitrc
     ~/.conkyrc: conkyrc
