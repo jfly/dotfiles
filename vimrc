@@ -21,6 +21,7 @@ set t_Co=256
 " or * or # was used to initiate a search (huge thanks to Justin Jaffray for
 " writing the scripts for this last trick!)
 set hlsearch
+set incsearch
 set smartcase
 set ignorecase
 nnoremap * :call feedkeys("/\\C\\<" . expand("<cword>") . "\\>\r")<cr>
