@@ -1,11 +1,10 @@
 # .bashrc
 
-# Source global definitions
-if [ -f /etc/bashrc ]; then
-	. /etc/bashrc
-fi
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
 
-# User specific aliases and functions
+source ~/.aliases
+
 export VISUAL=vim
 export EDITOR=vim
 
@@ -16,4 +15,10 @@ END=">"
 
 export PS1="${MY_BODY}${END} "
 
-alias bs="mosh bs336 -- bash -cli bs"
+# ctrl-shift-n for gnome-terminal
+source /etc/profile.d/vte.sh
+
+[[ -f ~/.bashrc_local ]] && source ~/.bashrc_local
+
+# startx at login
+[[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec ssh-agent startx

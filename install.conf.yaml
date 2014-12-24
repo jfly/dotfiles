@@ -6,6 +6,7 @@
     ~/.vim: vim/
     ~/.vimrc: vimrc
     ~/.bashrc: bashrc
+    ~/.aliases: aliases
     ~/.xmonad/xmonad.hs:
         create: true
         path: xmonad.hs

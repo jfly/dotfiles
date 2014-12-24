@@ -16,3 +16,9 @@
 [submodule "vim/bundle/vim-javascript"]
 	path = vim/bundle/vim-javascript
 	url = git@github.com:pangloss/vim-javascript.git
+[submodule "vim/bundle/vim-gradle"]
+	path = vim/bundle/vim-gradle
+	url = git@github.com:tfnico/vim-gradle.git
+[submodule "vim/bundle/vim-less"]
+	path = vim/bundle/vim-less
+	url = git@github.com:groenewege/vim-less.git
