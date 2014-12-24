@@ -1,120 +1,64 @@
-import XMonad
-import XMonad.Config.Gnome
-import XMonad.Layout.NoBorders
+import XMonad hiding ( (|||) ) -- don't use the normal ||| operator
+import XMonad.Layout.LayoutCombinators -- use the one from LayoutCombinators instead
+import XMonad.Util.EZConfig
+
+import XMonad.Hooks.DynamicLog
+import XMonad.Hooks.ManageDocks
+import XMonad.Util.Run(spawnPipe)
+import XMonad.Util.EZConfig(additionalKeys)
+import System.IO
+
 import qualified XMonad.StackSet as W
-import qualified Data.Map        as M
+-- http://xmonad.org/xmonad-docs/xmonad-contrib/XMonad-Layout-NoBorders.html
+import XMonad.Layout.NoBorders
+-- http://xmonad.org/xmonad-docs/xmonad-contrib/XMonad-Layout-LayoutCombinators.html
 
-------------------------------------------------------------------------
--- Key bindings. Add, modify or remove key bindings here.
---
-myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
+--- JFLY
+import XMonad.Hooks.ManageHelpers (isFullscreen, isDialog,  doFullFloat, doCenterFloat) 
 
-    -- launch a terminal
-    [ ((modm .|. shiftMask, xK_semicolon), spawn $ XMonad.terminal conf)
+-- Rebind Mod to the Windows key
+myModMask = mod4Mask
 
-    -- launch dmenu
-    , ((modm,               xK_p     ), spawn "dmenu_run")
+myTerminal = "gnome-terminal"
+tall = Tall 1 (3/100) (1/2)
+myLayout = avoidStruts $ smartBorders $ tall ||| Mirror tall ||| Full
 
-    -- launch gmrun
-    --, ((modm .|. shiftMask, xK_p     ), spawn "gmrun")
+myKeys =
+    [
+        -- http://xmonad.org/xmonad-docs/xmonad-contrib/XMonad-Hooks-ManageDocks.html
+        ((myModMask, xK_b), sendMessage ToggleStruts),
 
-    -- close focused window
-    , ((modm .|. shiftMask, xK_c     ), kill)
+        -- launch a terminal (changed from return to semicolon)
+        ((myModMask .|. shiftMask, xK_semicolon), spawn myTerminal),
 
-     -- Rotate through the available layout algorithms
-    , ((modm,               xK_space ), sendMessage NextLayout)
+        -- Swap the focused window and the master window
+        -- The default uses return, but semicolon is easier, and
+        -- doesn't conflict with browers =)
+        ((myModMask, xK_semicolon), windows W.swapMaster),
 
-    --  Reset the layouts on the current workspace to default
-    , ((modm .|. shiftMask, xK_space ), setLayout $ XMonad.layoutHook conf)
+        -- jump directly to the Full layout
+        ((myModMask, xK_m), sendMessage $ JumpToLayout "Full"),
+        ((myModMask, xK_t), sendMessage $ JumpToLayout "Tall"),
 
-    -- Resize viewed windows to the correct size
-    , ((modm,               xK_n     ), refresh)
-
-    -- Move focus to the next window
-    , ((modm,               xK_Tab   ), windows W.focusDown)
-
-    -- Move focus to the next window
-    , ((modm,               xK_j     ), windows W.focusDown)
-
-    -- Move focus to the previous window
-    , ((modm,               xK_k     ), windows W.focusUp  )
-
-    -- Move focus to the master window
-    , ((modm,               xK_m     ), windows W.focusMaster  )
-
-    -- Swap the focused window and the master window
-    , ((modm,               xK_semicolon), windows W.swapMaster)
-
-    -- Swap the focused window with the next window
-    , ((modm .|. shiftMask, xK_j     ), windows W.swapDown  )
-
-    -- Swap the focused window with the previous window
-    , ((modm .|. shiftMask, xK_k     ), windows W.swapUp    )
-
-    -- Shrink the master area
-    , ((modm,               xK_h     ), sendMessage Shrink)
-
-    -- Expand the master area
-    , ((modm,               xK_l     ), sendMessage Expand)
-
-    -- Push window back into tiling
-    , ((modm,               xK_t     ), withFocused $ windows . W.sink)
-
-    -- Increment the number of windows in the master area
-    , ((modm             , xK_comma ), sendMessage (IncMasterN 1))
-
-    -- Deincrement the number of windows in the master area
-    , ((modm             , xK_period), sendMessage (IncMasterN (-1)))
-
-    -- Toggle the status bar gap
-    -- Use this binding with avoidStruts from Hooks.ManageDocks.
-    -- See also the statusBar function from Hooks.DynamicLog.
-    --
-    -- , ((modm              , xK_b     ), sendMessage ToggleStruts)
-
-    -- Restart xmonad
-    , ((modm              , xK_q     ), spawn "xmonad --recompile; xmonad --restart")
-
-    -- Run xmessage with a summary of the default keybindings (useful for beginners)
-    -- , ((modMask .|. shiftMask, xK_slash ), spawn ("echo \"" ++ help ++ "\" | xmessage -file -"))
+        -- force window back to tiling mode
+        ((myModMask .|. shiftMask, xK_t), withFocused $ windows . W.sink)
     ]
-    ++
 
-    --
-    -- mod-[1..9], Switch to workspace N
-    -- mod-shift-[1..9], Move client to workspace N
-    --
-    [((m .|. modm, k), windows $ f i)
-        | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9]
-        , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]]
-    ++
+main = do
+    xmproc <- spawnPipe "xmobar"
+    xmonad $ defaultConfig {
+        -- Get real fullscreen to cover xmobar (like youtube videos)
+        -- https://bbs.archlinux.org/viewtopic.php?id=138910
+        -- http://www.vicfryzel.com/2011/02/26/xmonad-fullscreen-flash-video
+        manageHook = (isFullscreen --> doFullFloat) <+> manageHook defaultConfig <+> manageDocks,
+        --manageHook = (doF W.focusDown <+> doFullFloat) <+> manageHook defaultConfig <+> manageDocks,
+        --manageHook = manageDocks <+> manageHook defaultConfig,
+        layoutHook = myLayout,
+        logHook = dynamicLogWithPP xmobarPP {
+            ppOutput = hPutStrLn xmproc,
+            ppTitle = xmobarColor "green" "" . shorten 100
+        },
 
-    --
-    -- mod-{w,e,r}, Switch to physical/Xinerama screens 1, 2, or 3
-    -- mod-shift-{w,e,r}, Move client to screen 1, 2, or 3
-    --
-    [((m .|. modm, key), screenWorkspace sc >>= flip whenJust (windows . f))
-        | (key, sc) <- zip [xK_r, xK_e, xK_w] [0..]
-        , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
-
-------------------------------------------------------------------------
--- Startup hook
-
--- Perform an arbitrary action each time xmonad starts or is restarted
--- with mod-q.  Used by, e.g., XMonad.Layout.PerWorkspace to initialize
--- per-workspace layout choices.
---
--- By default, do nothing.
---myStartupHook = spawn "xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'&"
---myStartupHook = spawn "wmname LG3D"
-
--- myLayout = Tall 1 (3/100) (1/2) ||| ThreeColMid 1 (3/100) (1/3) ||| Full
-
-main = xmonad defaults
-
-defaults = gnomeConfig {
-      -- key bindings
-        keys               = myKeys,
-        modMask            = mod4Mask,
-        XMonad.terminal    = "gnome-terminal"
-    }
+        modMask = myModMask,
+        XMonad.terminal = myTerminal
+    } `additionalKeys` myKeys
