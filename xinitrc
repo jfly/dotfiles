@@ -7,7 +7,7 @@ export SSH_AUTH_SOCK
 #  https://wiki.archlinux.org/index.php/xmonad#Problems_with_Java_applications
 wmname LG3D
 
-feh --randomize --bg-fill $HOME/Screenshots/wallpaper/*
+feh --randomize --bg-fill $HOME/Dropbox/Camera\ Uploads/wallpaper/*
 xmodmap $HOME/.Xmodmap
 
 # Set up an icon tray
