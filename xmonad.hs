@@ -24,7 +24,8 @@ tall = Tall 1 (3/100) (1/2)
 myLayout = avoidStruts $ smartBorders $ tall ||| Mirror tall ||| Full
 
 -- https://github.com/hcchu/dotfiles/blob/master/.xmonad/xmonad.hs
-showVolume = spawn "sleep 0.1; show-volume.sh"
+showVolume = "amixer set Master toggle; asleep 0.1; show-volume.sh"
+changeVolume s = "amixer set Master " ++ s ++ "; show-volume.sh"
 
 myKeys =
     [
@@ -46,11 +47,9 @@ myKeys =
         -- force window back to tiling mode
         ((myModMask .|. shiftMask, xK_t), withFocused $ windows . W.sink),
 
-        ((0, xF86XK_AudioMute), showVolume),
-        ((0, xF86XK_AudioRaiseVolume), showVolume),
-        ((0, xF86XK_AudioLowerVolume), showVolume),
-        -- TODO - closing lid still doesn't turn off screen on my t410 =(
-        ((0, xF86XK_Display), spawn "xset dpms force off")
+        ((0, xF86XK_AudioMute), spawn showVolume),
+        ((0, xF86XK_AudioRaiseVolume), spawn $ changeVolume "5%+"),
+        ((0, xF86XK_AudioLowerVolume), spawn $ changeVolume "5%-")
     ]
 
 main = do
