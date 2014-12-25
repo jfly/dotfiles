@@ -1,5 +1,5 @@
 [roxterm profile]
-colour_scheme=solatarized-dark
+colour_scheme=solarized-dark
 font=Ubuntu Mono 13
 hide_menubar=1
 always_show_tabs=0
