@@ -11,8 +11,14 @@ trayer --edge top --align right --SetDockType true --SetPartialStrut true --expa
 # volnoti is a volume notification daemon
 volnoti -t 1
 
+# start dropbox if it's installed (we do it here rather than via systemd
+# because the icon won't show up otherwise)
+if [ -x /usr/bin/dropboxd ]; then
+    /usr/bin/dropboxd &
+fi
+
 if [ -x /usr/bin/nm-applet ] ; then
-   nm-applet &
+    nm-applet &
 fi
 
 # xmonad doesn't set a cursor
