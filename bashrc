@@ -24,6 +24,10 @@ source /etc/profile.d/vte.sh
 # http://archlinux.me/w0ng/2012/04/21/better-dircolors-with-solarized/
 eval $(dircolors ~/.dir_colors)
 
+# Lower probability of weird line wrapping issues
+# https://wiki.archlinux.org/index.php/bash#Line_wrap_on_window_resize
+shopt -s checkwinsize
+
 [[ -f ~/.bashrc_local ]] && source ~/.bashrc_local
 
 # startx at login
