@@ -44,6 +44,7 @@ manage everything. Just git checkout, and run the `./install` script!
     - Configure Git to use GNOME-keyring: https://wiki.archlinux.org/index.php/GNOME_Keyring#GNOME_Keyring_and_Git
 
 ## Misc
+- `timedatectl set-ntp true` - enable time sync
 - Install [google-chrome](https://aur.archlinux.org/packages/go/google-chrome/google-chrome.tar.gz) from the AUR.
 
 ## Lenovo specific
