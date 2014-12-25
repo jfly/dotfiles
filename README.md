@@ -20,7 +20,15 @@ manage everything. Just git checkout, and run the `./install` script!
 # Setting up x11 and xmonad
 - `pacman -S xorg-server xorg-xinit xorg-xsetroot xorg-xmodmap xmonad xmonad-contrib feh roxterm dmenu wmname trayer network-manager-applet openssh`
 
-# TODO - <<<volnoti & ubuntu font >>>
+# AUR utils
+- `pacman -S wget base-devel`
+
+# Install volnoti
+- Install [volnoti](https://aur.archlinux.org/packages/volnoti) from the AUR
+
+# Fonts
+- `pacman -S ttf-liberation`
+- Install [ttf-google-fonts-git](https://aur.archlinux.org/packages/ttf-google-fonts-git/) from the AUR
 
 # Setting up wireless with network manager
 - `pacman -S networkmanager network-manager-applet gnome-keyring`
