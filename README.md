@@ -38,3 +38,9 @@ manage everything. Just git checkout, and run the `./install` script!
 
 ## Misc
 - Install [google-chrome](https://aur.archlinux.org/packages/go/google-chrome/google-chrome.tar.gz) from the AUR.
+
+## Lenovo specific
+- Fix trackpoint middle button scroll by creating a `/etc/X11/xorg.conf.d/20-trackpoint.conf` as per https://wiki.archlinux.org/index.php/Lenovo_ThinkPad_T410.
+- Enable [synaptics touchpad](https://wiki.archlinux.org/index.php/Touchpad_Synaptics)
+    - `pacman -S xf86-input-synaptics`
+    - Create /etc/X11/xorg.conf.d/50-synaptics.conf file as described on the wiki
