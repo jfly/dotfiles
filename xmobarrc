@@ -1,4 +1,7 @@
-Config { font = "-*-Fixed-Bold-R-Normal-*-13-*-*-*-*-*-*-*"
+Config {
+       --  font = "-*-Fixed-Bold-R-Normal-*-13-*-*-*-*-*-*-*"
+       --  font = "xft:Bitstream Vera Sans Mono:size=9:bold:antialias=true"
+         font = "xft:Ubuntu Mono Regular:size=9:bold:antialias=true"
        , bgColor = "black"
        , fgColor = "grey"
        , position = TopW L 90
@@ -7,7 +10,7 @@ Config { font = "-*-Fixed-Bold-R-Normal-*-13-*-*-*-*-*-*-*"
                     , Run Swap [] 10
                     , Run Date "%a %b %_d %l:%M" "date" 10
 
-                    , Run Com "/home/jeremy/bin/get-volume.sh" [] "myvolume" 10
+                    , Run Com "get-volume.sh" [] "myvolume" 10
                     -- battery monitor
                     , Run Battery        [ "--template" , "Batt: <acstatus>"
                                          , "--Low"      , "10"        -- units: %
