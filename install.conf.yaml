@@ -20,6 +20,9 @@
         create: true
         path: roxterm.sourceforge.net
     ~/.dir_colors: dir_colors
+    /etc/systemd/logind.conf.d/no-suspend-on-lidswitch.conf:
+        create: true
+        path: no-suspend-on-lidswitch.conf
 
 - shell:
   -
