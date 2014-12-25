@@ -5,6 +5,7 @@ import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Util.Run(spawnPipe)
 import XMonad.Util.EZConfig(additionalKeys)
+import Graphics.X11.ExtraTypes.XF86
 import System.IO
 
 import qualified XMonad.StackSet as W
@@ -21,6 +22,9 @@ myModMask = mod4Mask
 myTerminal = "sakura"
 tall = Tall 1 (3/100) (1/2)
 myLayout = avoidStruts $ smartBorders $ tall ||| Mirror tall ||| Full
+
+-- https://github.com/hcchu/dotfiles/blob/master/.xmonad/xmonad.hs
+showVolume = spawn "sleep 0.1; show-volume.sh"
 
 myKeys =
     [
@@ -40,7 +44,13 @@ myKeys =
         ((myModMask, xK_t), sendMessage $ JumpToLayout "Tall"),
 
         -- force window back to tiling mode
-        ((myModMask .|. shiftMask, xK_t), withFocused $ windows . W.sink)
+        ((myModMask .|. shiftMask, xK_t), withFocused $ windows . W.sink),
+
+        ((0, xF86XK_AudioMute), showVolume),
+        ((0, xF86XK_AudioRaiseVolume), showVolume),
+        ((0, xF86XK_AudioLowerVolume), showVolume),
+        -- TODO - closing lid still doesn't turn off screen on my t410 =(
+        ((0, xF86XK_Display), spawn "xset dpms force off")
     ]
 
 main = do

@@ -3,11 +3,13 @@
 wmname LG3D
 
 feh --randomize --bg-fill $HOME/Screenshots/wallpaper/*
-#<<<conky | while read -r; do xsetroot -name "$REPLY"; done &
 xmodmap $HOME/.Xmodmap
 
 # Set up an icon tray
 trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 10 --height 17 --transparent true --alpha 0 --tint 0 &
+
+# volnoti is a volume notification daemon
+volnoti -t 1
 
 if [ -x /usr/bin/nm-applet ] ; then
    nm-applet &
