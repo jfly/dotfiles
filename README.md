@@ -19,7 +19,7 @@ manage everything. Just git checkout, and run the `./install` script!
 
 
 ## Setting up x11 and xmonad
-- `pacman -S xorg-server xorg-xinit xorg-xsetroot xorg-xmodmap xmonad xmonad-contrib feh roxterm dmenu wmname trayer network-manager-applet openssh alsa-utils`
+- `pacman -S xorg-server xorg-xinit xorg-xsetroot xorg-xmodmap xorg-xmessage xmonad xmonad-contrib feh roxterm dmenu wmname trayer network-manager-applet openssh alsa-utils`
 
 ## AUR utils
 - `pacman -S wget base-devel`

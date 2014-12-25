@@ -13,9 +13,6 @@ import qualified XMonad.StackSet as W
 import XMonad.Layout.NoBorders
 -- http://xmonad.org/xmonad-docs/xmonad-contrib/XMonad-Layout-LayoutCombinators.html
 
---- JFLY
-import XMonad.Hooks.ManageHelpers (isFullscreen, isDialog, doFullFloat, doCenterFloat)
-
 -- Rebind Mod to the Windows key
 myModMask = mod4Mask
 
@@ -44,6 +41,12 @@ myKeys =
         ((myModMask, xK_m), sendMessage $ JumpToLayout "Full"),
         ((myModMask, xK_t), sendMessage $ JumpToLayout "Tall"),
 
+        -- We stole this shortcut above (to emulate DWM's monocle shortcut)
+        -- Lets add a shift modifier.
+        -- Move focus to the master window
+        ((myModMask .|. shiftMask, xK_m), windows W.focusMaster),
+
+
         -- force window back to tiling mode
         ((myModMask .|. shiftMask, xK_t), withFocused $ windows . W.sink),
 
@@ -55,12 +58,7 @@ myKeys =
 main = do
     xmproc <- spawnPipe "xmobar"
     xmonad $ defaultConfig {
-        -- Get real fullscreen to cover xmobar (like youtube videos)
-        -- https://bbs.archlinux.org/viewtopic.php?id=138910
-        -- http://www.vicfryzel.com/2011/02/26/xmonad-fullscreen-flash-video
-        manageHook = (isFullscreen --> doFullFloat) <+> manageHook defaultConfig <+> manageDocks,
-        --manageHook = (doF W.focusDown <+> doFullFloat) <+> manageHook defaultConfig <+> manageDocks,
-        --manageHook = manageDocks <+> manageHook defaultConfig,
+        manageHook = manageDocks <+> manageHook defaultConfig,
         layoutHook = myLayout,
         logHook = dynamicLogWithPP xmobarPP {
             ppOutput = hPutStrLn xmproc,
