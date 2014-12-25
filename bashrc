@@ -20,6 +20,10 @@ export PATH=$PATH:$HOME/bin
 # ctrl-shift-n for vte
 source /etc/profile.d/vte.sh
 
+# Better dircolors for solarized
+# http://archlinux.me/w0ng/2012/04/21/better-dircolors-with-solarized/
+eval $(dircolors ~/.dir_colors)
+
 [[ -f ~/.bashrc_local ]] && source ~/.bashrc_local
 
 # startx at login

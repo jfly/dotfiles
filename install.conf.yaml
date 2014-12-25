@@ -19,6 +19,7 @@
     ~/.config/roxterm.sourceforge.net:
         create: true
         path: roxterm.sourceforge.net
+    ~/.dir_colors: dir_colors
 
 - shell:
   -
