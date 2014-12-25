@@ -19,7 +19,7 @@ import XMonad.Hooks.ManageHelpers (isFullscreen, isDialog, doFullFloat, doCenter
 -- Rebind Mod to the Windows key
 myModMask = mod4Mask
 
-myTerminal = "sakura"
+myTerminal = "roxterm"
 tall = Tall 1 (3/100) (1/2)
 myLayout = avoidStruts $ smartBorders $ tall ||| Mirror tall ||| Full
 

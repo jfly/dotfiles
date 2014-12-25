@@ -16,9 +16,9 @@
     ~/.xinitrc: xinitrc
     ~/.conkyrc: conkyrc
     ~/bin: bin
-    ~/.config/sakura/sakura.conf:
+    ~/.config/roxterm.sourceforge.net:
         create: true
-        path: sakura.conf
+        path: roxterm.sourceforge.net
 
 - shell:
   -

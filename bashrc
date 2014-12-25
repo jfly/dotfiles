@@ -17,7 +17,7 @@ export PS1="${MY_BODY}${END} "
 
 export PATH=$PATH:$HOME/bin
 
-# ctrl-shift-n for gnome-terminal
+# ctrl-shift-n for vte
 source /etc/profile.d/vte.sh
 
 [[ -f ~/.bashrc_local ]] && source ~/.bashrc_local

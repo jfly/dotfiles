@@ -1,0 +1,11 @@
+[roxterm profile]
+colour_scheme=
+font=Ubuntu Mono 13
+hide_menubar=1
+always_show_tabs=0
+full_screen=0
+maximise=0
+allow_bold=1
+scrollbar_pos=0
+browser_spawn_type=0
+browser=google-chrome-stable
