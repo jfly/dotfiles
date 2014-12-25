@@ -25,3 +25,6 @@ manage everything. Just git checkout, and run the `./install` script!
 # Setting up wireless with network manager
 - `pacman -S networkmanager network-manager-applet gnome-keyring`
 - `systemctl enable NetworkManager.service && systemctl start NetworkManager.service`
+
+# Misc
+- Install [google-chrome](https://aur.archlinux.org/packages/go/google-chrome/google-chrome.tar.gz) from the AUR.
