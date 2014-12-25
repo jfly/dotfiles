@@ -27,7 +27,7 @@ manage everything. Just git checkout, and run the `./install` script!
 - Install [volnoti](https://aur.archlinux.org/packages/volnoti) from the AUR
 
 # Fonts
-- `pacman -S ttf-liberation`
+- `pacman -S ttf-liberation ttf-bitstream-vera`
 - Install [ttf-google-fonts-git](https://aur.archlinux.org/packages/ttf-google-fonts-git/) from the AUR
 
 # Setting up wireless with network manager
