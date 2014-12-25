@@ -3,25 +3,25 @@
 	url = https://github.com/anishathalye/dotbot
 [submodule "vim/bundle/ctrlp.vim"]
 	path = vim/bundle/ctrlp.vim
-	url = git@github.com:kien/ctrlp.vim.git
+	url = https://github.com/kien/ctrlp.vim.git
 [submodule "vim/bundle/vim-airline"]
 	path = vim/bundle/vim-airline
-	url = git@github.com:bling/vim-airline.git
+	url = https://github.com/bling/vim-airline.git
 [submodule "vim/bundle/vim-jsx"]
 	path = vim/bundle/vim-jsx
-	url = git@github.com:mxw/vim-jsx.git
+	url = https://github.com/mxw/vim-jsx.git
 [submodule "vim/bundle/vim-localvimrc"]
 	path = vim/bundle/vim-localvimrc
-	url = git@github.com:embear/vim-localvimrc.git
+	url = https://github.com/embear/vim-localvimrc.git
 [submodule "vim/bundle/vim-javascript"]
 	path = vim/bundle/vim-javascript
-	url = git@github.com:pangloss/vim-javascript.git
+	url = https://github.com/pangloss/vim-javascript.git
 [submodule "vim/bundle/vim-gradle"]
 	path = vim/bundle/vim-gradle
-	url = git@github.com:tfnico/vim-gradle.git
+	url = https://github.com/tfnico/vim-gradle.git
 [submodule "vim/bundle/vim-less"]
 	path = vim/bundle/vim-less
-	url = git@github.com:groenewege/vim-less.git
+	url = https://github.com/groenewege/vim-less.git
 [submodule "vim/bundle/yaml-vim"]
 	path = vim/bundle/yaml-vim
-	url = git@github.com:ingydotnet/yaml-vim.git
+	url = https://github.com/ingydotnet/yaml-vim.git
