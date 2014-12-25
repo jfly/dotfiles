@@ -1,5 +1,10 @@
+# Start gnome-keyring-daemon
+#  https://wiki.archlinux.org/index.php/GNOME_Keyring
+eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
+export SSH_AUTH_SOCK
+
 # Hack to fix Java swing applications from http://tools.suckless.org/wmname
-# https://wiki.archlinux.org/index.php/xmonad#Problems_with_Java_applications
+#  https://wiki.archlinux.org/index.php/xmonad#Problems_with_Java_applications
 wmname LG3D
 
 feh --randomize --bg-fill $HOME/Screenshots/wallpaper/*

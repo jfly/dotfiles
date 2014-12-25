@@ -12,3 +12,5 @@
 	path = ~/.gitconfig_local
 [core]
 	excludesfile = /home/jeremy/.gitignore_global
+[credential]
+	helper = /usr/share/git/credential/gnome-keyring/git-credential-gnome-keyring

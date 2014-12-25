@@ -36,6 +36,13 @@ manage everything. Just git checkout, and run the `./install` script!
 - `pacman -S networkmanager network-manager-applet gnome-keyring`
 - `systemctl enable NetworkManager.service && systemctl start NetworkManager.service`
 
+## Setup GNOME keyring and ssh keys
+- `pacman -S gnome-keyring seahorse`
+- [Generate ssh keys](https://help.github.com/articles/generating-ssh-keys/)
+- Setup for Git
+    - Add ssh key to github: https://github.com/settings/ssh
+    - Configure Git to use GNOME-keyring: https://wiki.archlinux.org/index.php/GNOME_Keyring#GNOME_Keyring_and_Git
+
 ## Misc
 - Install [google-chrome](https://aur.archlinux.org/packages/go/google-chrome/google-chrome.tar.gz) from the AUR.
 

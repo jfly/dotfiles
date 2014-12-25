@@ -23,6 +23,7 @@
     /etc/systemd/logind.conf.d/no-suspend-on-lidswitch.conf:
         create: true
         path: no-suspend-on-lidswitch.conf
+    ~/.ssh/config: ssh_config
 
 - shell:
   -
