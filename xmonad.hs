@@ -1,6 +1,5 @@
 import XMonad hiding ( (|||) ) -- don't use the normal ||| operator
 import XMonad.Layout.LayoutCombinators -- use the one from LayoutCombinators instead
-import XMonad.Util.EZConfig
 
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
@@ -14,12 +13,12 @@ import XMonad.Layout.NoBorders
 -- http://xmonad.org/xmonad-docs/xmonad-contrib/XMonad-Layout-LayoutCombinators.html
 
 --- JFLY
-import XMonad.Hooks.ManageHelpers (isFullscreen, isDialog,  doFullFloat, doCenterFloat) 
+import XMonad.Hooks.ManageHelpers (isFullscreen, isDialog, doFullFloat, doCenterFloat)
 
 -- Rebind Mod to the Windows key
 myModMask = mod4Mask
 
-myTerminal = "gnome-terminal"
+myTerminal = "sakura"
 tall = Tall 1 (3/100) (1/2)
 myLayout = avoidStruts $ smartBorders $ tall ||| Mirror tall ||| Full
 

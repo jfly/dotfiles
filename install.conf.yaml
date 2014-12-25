@@ -16,6 +16,9 @@
     ~/.xinitrc: xinitrc
     ~/.conkyrc: conkyrc
     ~/bin: bin
+    ~/.config/sakura/sakura.conf:
+        create: true
+        path: sakura.conf
 
 - shell:
   -
