@@ -8,6 +8,7 @@ manage everything. Just git checkout, and run the `./install` script!
 
 ## Directions for fresh arch install
 
+- `echo "blacklist pcspkr" > /etc/modprobe.d/nobeep.conf` - disable system beep
 - `pacman -S sudo && visudo` - install and configure sudo
 - `useradd -m -G wheel -s /bin/bash jeremy && passwd jeremy` - create user and set their password
 
@@ -18,7 +19,7 @@ manage everything. Just git checkout, and run the `./install` script!
 
 
 # Setting up x11 and xmonad
-- `pacman -S xorg-server xorg-xinit xorg-xsetroot xorg-xmodmap xmonad xmonad-contrib feh roxterm dmenu wmname trayer network-manager-applet openssh`
+- `pacman -S xorg-server xorg-xinit xorg-xsetroot xorg-xmodmap xmonad xmonad-contrib feh roxterm dmenu wmname trayer network-manager-applet openssh alsa-utils`
 
 # AUR utils
 - `pacman -S wget base-devel`
