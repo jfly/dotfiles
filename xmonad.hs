@@ -24,6 +24,7 @@ myLayout = avoidStruts $ smartBorders $ tall ||| Mirror tall ||| Full
 showVolume = "toggle-mute.sh; show-volume.sh"
 changeVolume s = "amixer set Master " ++ s ++ "; show-volume.sh"
 
+altMask = mod1Mask
 myKeys =
     [
         -- http://xmonad.org/xmonad-docs/xmonad-contrib/XMonad-Hooks-ManageDocks.html
@@ -59,7 +60,12 @@ myKeys =
         --  https://code.google.com/p/xmonad/issues/detail?id=476
         ((0, xK_Print), spawn "sleep 0.2; jscrot --select"),
         ((controlMask, xK_Print), spawn "jscrot --focused"),
-        ((shiftMask, xK_Print), spawn "jscrot")
+        ((shiftMask, xK_Print), spawn "jscrot"),
+
+        ((controlMask .|. altMask, xK_Left), spawn "xrandr -o right"),
+        ((controlMask .|. altMask, xK_Right), spawn "xrandr -o left"),
+        ((controlMask .|. altMask, xK_Down), spawn "xrandr -o normal"),
+        ((controlMask .|. altMask, xK_Up), spawn "xrandr -o inverted")
     ]
 
 main = do
