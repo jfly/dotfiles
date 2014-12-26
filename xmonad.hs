@@ -21,7 +21,7 @@ tall = Tall 1 (3/100) (1/2)
 myLayout = avoidStruts $ smartBorders $ tall ||| Mirror tall ||| Full
 
 -- https://github.com/hcchu/dotfiles/blob/master/.xmonad/xmonad.hs
-showVolume = "amixer set Master toggle; asleep 0.1; show-volume.sh"
+showVolume = "toggle-mute.sh; show-volume.sh"
 changeVolume s = "amixer set Master " ++ s ++ "; show-volume.sh"
 
 myKeys =
