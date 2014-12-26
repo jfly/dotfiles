@@ -52,7 +52,14 @@ myKeys =
 
         ((0, xF86XK_AudioMute), spawn showVolume),
         ((0, xF86XK_AudioRaiseVolume), spawn $ changeVolume "5%+"),
-        ((0, xF86XK_AudioLowerVolume), spawn $ changeVolume "5%-")
+        ((0, xF86XK_AudioLowerVolume), spawn $ changeVolume "5%-"),
+
+        -- prompt the user for an area of the screen
+        -- note the sleep 0.2 as a workaround for the ancient:
+        --  https://code.google.com/p/xmonad/issues/detail?id=476
+        ((0, xK_Print), spawn "sleep 0.2; jscrot --select"),
+        ((controlMask, xK_Print), spawn "jscrot --focused"),
+        ((shiftMask, xK_Print), spawn "jscrot")
     ]
 
 main = do
