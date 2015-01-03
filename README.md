@@ -9,7 +9,7 @@ manage everything. Just git checkout, and run the `./install` script!
 # Directions for fresh Arch install
 
 - `echo "blacklist pcspkr" > /etc/modprobe.d/nobeep.conf` - disable system beep
-- `pacman -S vim && mv /usr/bin/vi /usr/bin/vi.bak && && ln -s /usr/bin/vim /usr/bin/vi` - install and set up vim as default
+- `pacman -S vim && mv /usr/bin/vi /usr/bin/vi.bak && ln -s /usr/bin/vim /usr/bin/vi` - install and set up vim as default
 
 - `pacman -S sudo && visudo` - install and configure sudo
 - `useradd -m -G wheel -s /bin/bash jeremy && passwd jeremy` - create user and set their password
