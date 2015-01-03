@@ -4,7 +4,7 @@ jfly/dotfiles
 I bought a new laptop, so it felt like it's finally time to do this.
 
 I'm using the excellent [dotbot](https://github.com/anishathalye/dotbot) to
-manage everything. Just git checkout, and run the `./install` script!
+manage everything. Just git clone, and run the `./install` script!
 
 # Directions for fresh Arch install
 
@@ -15,7 +15,7 @@ manage everything. Just git checkout, and run the `./install` script!
 - `useradd -m -G wheel -s /bin/bash jeremy && passwd jeremy` - create user and set their password
 
 - `pacman -S git python` - install dependencies to install jfly/dotfiles
-- `git checkout https://github.com/jfly/dotfiles.git && cd dotfiles && ./install` - you probably want to `rm ~/.bashrc` first, as dotbot will not clobber it for you.
+- `git clone https://github.com/jfly/dotfiles.git && cd dotfiles && ./install` - you probably want to `rm ~/.bashrc` first, as dotbot will not clobber it for you.
 
 
 ## Setting up x11 and xmonad
