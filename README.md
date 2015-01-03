@@ -20,6 +20,7 @@ manage everything. Just git clone, and run the `./install` script!
 
 ## Setting up x11 and xmonad
 - `pacman -S xorg-server xorg-xinit xorg-xsetroot xorg-xmodmap xorg-xmessage xmonad xmonad-contrib feh roxterm dmenu wmname trayer network-manager-applet openssh alsa-utils scrot`
+- Install the appropriate [video card driver](https://wiki.archlinux.org/index.php/xorg#Driver_installation)
 
 ## AUR utils
 - `pacman -S wget base-devel`
