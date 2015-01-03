@@ -26,7 +26,6 @@ manage everything. Just git clone, and run the `./install` script!
 
 ## Install volnoti
 - Install [volnoti](https://aur.archlinux.org/packages/volnoti) from the AUR
-    - Has a missing dependency on librsvg.
 
 ## Fonts
 - `pacman -S ttf-liberation ttf-bitstream-vera`
