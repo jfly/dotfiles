@@ -11,7 +11,11 @@ feh --randomize --bg-fill $HOME/Dropbox/Camera\ Uploads/wallpaper/*
 xmodmap $HOME/.Xmodmap
 
 # Set up an icon tray
-trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 10 --height 18 --transparent true --alpha 0 --tint 0 &
+#<<<trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 10 --height 18 --transparent true --alpha 0 --tint 0 &
+trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 10 --height 38 --transparent true --alpha 0 --tint 0 &
+
+# Disable tapping and scrolling when typing
+syndaemon -t -k -i 0.2 &
 
 # volnoti is a volume notification daemon
 volnoti -t 1
@@ -25,6 +29,9 @@ fi
 if [ -x /usr/bin/nm-applet ] ; then
     nm-applet &
 fi
+
+# https://wiki.archlinux.org/index.php/HiDPI
+xrdb -merge ~/.Xresources
 
 # xmonad doesn't set a cursor
 xsetroot -cursor_name left_ptr

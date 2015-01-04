@@ -13,6 +13,7 @@
         path: xmonad.hs
     ~/.xmobarrc: xmobarrc
     ~/.Xmodmap: Xmodmap
+    ~/.Xresources: Xresources
     ~/.xinitrc: xinitrc
     ~/.conkyrc: conkyrc
     ~/bin: bin
@@ -20,10 +21,18 @@
         create: true
         path: roxterm.sourceforge.net
     ~/.dir_colors: dir_colors
+    ~/.ssh/config:
+        create: true
+        path: ssh_config
     /etc/systemd/logind.conf.d/no-suspend-on-lidswitch.conf:
         create: true
         path: no-suspend-on-lidswitch.conf
-    ~/.ssh/config: ssh_config
+    /etc/X11/xorg.conf.d/50-yogart-synaptics.conf:
+        create: true
+        path: 50-yogart-synaptics.conf
+    /etc/X11/xorg.conf.d/20-yogart-intel.conf:
+        create: true
+        path: 20-yogart-intel.conf
 
 - shell:
   -

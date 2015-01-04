@@ -11,6 +11,7 @@ syntax on
 " http://stackoverflow.com/a/234578
 set smartindent
 set tabstop=4
+set softtabstop=4
 set shiftwidth=4
 set expandtab
 

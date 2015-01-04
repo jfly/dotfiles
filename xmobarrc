@@ -1,7 +1,7 @@
 Config {
-       --  font = "-*-Fixed-Bold-R-Normal-*-13-*-*-*-*-*-*-*"
-       --  font = "xft:Bitstream Vera Sans Mono:size=9:bold:antialias=true"
-         font = "xft:Ubuntu Mono Regular:size=9:bold:antialias=true"
+       -- font = "-*-Fixed-Bold-R-Normal-*-13-*-*-*-*-*-*-*"
+       -- font = "xft:Bitstream Vera Sans Mono:size=9:bold:antialias=true"
+       font = "xft:Ubuntu Mono Regular:size=9:bold:antialias=true"
        , bgColor = "black"
        , fgColor = "grey"
        , position = TopW L 90
