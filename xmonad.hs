@@ -20,9 +20,12 @@ myTerminal = "roxterm"
 tall = Tall 1 (3/100) (1/2)
 myLayout = avoidStruts $ smartBorders $ tall ||| Mirror tall ||| Full
 
+myBorderWidth = 2
+
 -- https://github.com/hcchu/dotfiles/blob/master/.xmonad/xmonad.hs
 showVolume = "toggle-mute.sh; show-volume.sh"
 changeVolume s = "amixer set Master " ++ s ++ "; show-volume.sh"
+changeBrightness s = "sudo change-brightness.py " ++ s ++ "; show-brightness.sh"
 
 altMask = mod1Mask
 myKeys =
@@ -30,7 +33,7 @@ myKeys =
         -- http://xmonad.org/xmonad-docs/xmonad-contrib/XMonad-Hooks-ManageDocks.html
         ((myModMask, xK_b), sendMessage ToggleStruts),
 
-        -- launch a terminal (changed from return to semicolon)
+        -- Launch a terminal (changed from return to semicolon)
         ((myModMask .|. shiftMask, xK_semicolon), spawn myTerminal),
 
         -- Swap the focused window and the master window
@@ -38,7 +41,7 @@ myKeys =
         -- doesn't conflict with browers =)
         ((myModMask, xK_semicolon), windows W.swapMaster),
 
-        -- jump directly to the Full layout
+        -- Jump directly to the Full layout
         ((myModMask, xK_m), sendMessage $ JumpToLayout "Full"),
         ((myModMask, xK_t), sendMessage $ JumpToLayout "Tall"),
 
@@ -47,15 +50,20 @@ myKeys =
         -- Move focus to the master window
         ((myModMask .|. shiftMask, xK_m), windows W.focusMaster),
 
-
-        -- force window back to tiling mode
+        -- Force window back to tiling mode
         ((myModMask .|. shiftMask, xK_t), withFocused $ windows . W.sink),
+
+        -- Run demenu2 with custom font
+        ((myModMask, xK_p), spawn "dmenu_run -fn 'Ubuntu Mono Regular:size=9:bold:antialias=true'"),
 
         ((0, xF86XK_AudioMute), spawn showVolume),
         ((0, xF86XK_AudioRaiseVolume), spawn $ changeVolume "5%+"),
         ((0, xF86XK_AudioLowerVolume), spawn $ changeVolume "5%-"),
 
-        -- prompt the user for an area of the screen
+        ((0, xF86XK_MonBrightnessUp), spawn $ changeBrightness "5%+"),
+        ((0, xF86XK_MonBrightnessDown), spawn $ changeBrightness "5%-"),
+
+        -- Prompt the user for an area of the screen
         -- note the sleep 0.2 as a workaround for the ancient:
         --  https://code.google.com/p/xmonad/issues/detail?id=476
         ((0, xK_Print), spawn "sleep 0.2; jscrot --select"),
@@ -79,5 +87,6 @@ main = do
         },
 
         modMask = myModMask,
-        XMonad.terminal = myTerminal
+        XMonad.terminal = myTerminal,
+        XMonad.borderWidth = myBorderWidth
     } `additionalKeys` myKeys
