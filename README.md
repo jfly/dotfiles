@@ -50,6 +50,7 @@ manage everything. Just git clone, and run the `./install` script!
 - `timedatectl set-ntp true` - enable time sync
 - Install [google-chrome](https://aur.archlinux.org/packages/go/google-chrome/google-chrome.tar.gz) from the AUR.
     - For yoga's hidpi display, build [chromium-dev](https://aur.archlinux.org/packages/chromium-dev/) with `-Denable_hidpi=1` as per https://wiki.archlinux.org/index.php/HiDPI#Chromium_.2F_Google_Chrome.
+        - If you do this, don't forget to install [chromium-pepper-flash](https://aur.archlinux.org/packages/chromium-pepper-flash/) from the AUR
 
 ## Lenovo specific
 - Fix trackpoint middle button scroll by creating a `/etc/X11/xorg.conf.d/20-trackpoint.conf` as per https://wiki.archlinux.org/index.php/Lenovo_ThinkPad_T410.

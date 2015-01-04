@@ -27,6 +27,9 @@
     /etc/systemd/logind.conf.d/no-suspend-on-lidswitch.conf:
         create: true
         path: no-suspend-on-lidswitch.conf
+    /etc/systemd/logind.conf.d/suspend-on-powerbutton.conf:
+        create: true
+        path: suspend-on-powerbutton.conf
     /etc/X11/xorg.conf.d/50-yogart-synaptics.conf:
         create: true
         path: 50-yogart-synaptics.conf
