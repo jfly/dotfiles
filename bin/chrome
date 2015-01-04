@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+# Dirty hack to get chrome to start up all pretty like. It double scales if
+# Xft.dpi is set correctly, so first clear it out, and then set it back later.
+
+set -o monitor
+
+xrdb - <<< ""
+
+chromium-dev $@ &
+
+# let chrome actually start up and read the dpi before we set it back
+# this is racy and gross, but whatever, this whole thing is a dirty hack.
+sleep 5
+xrdb -merge ~/.Xresources
+
+fg
