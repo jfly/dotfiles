@@ -11,8 +11,11 @@ feh --randomize --bg-fill $HOME/Dropbox/Camera\ Uploads/wallpaper/*
 xmodmap $HOME/.Xmodmap
 
 # Set up an icon tray
-#<<<trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 10 --height 18 --transparent true --alpha 0 --tint 0 &
-trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 10 --height 38 --transparent true --alpha 0 --tint 0 &
+if [ "`hostname`" == "yogart" ]; then
+    trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 10 --height 38 --transparent true --alpha 0 --tint 0 &
+else
+    trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 10 --height 18 --transparent true --alpha 0 --tint 0 &
+fi
 
 # Disable tapping and scrolling when typing
 syndaemon -t -k -i 0.2 &
