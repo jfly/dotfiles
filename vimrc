@@ -70,3 +70,6 @@ map <leader>b :CtrlPBuffer<CR>
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 """"""
+
+" http://unix.stackexchange.com/a/30757
+set tabpagemax=100
