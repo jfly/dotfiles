@@ -19,7 +19,8 @@ manage everything. Just git clone, and run the `./install` script!
 
 
 ## Setting up x11 and xmonad
-- `pacman -S xorg-server xorg-xinit xorg-xsetroot xorg-xmodmap xorg-xmessage xorg-xrandr xorg-xrdb xmonad xmonad-contrib xmobar feh roxterm mname trayer network-manager-applet openssh alsa-utils scrot`
+- `pacman -S xorg-server xorg-xinit xorg-xsetroot xorg-xmodmap xorg-xmessage xorg-xrandr xorg-xrdb xmonad xmonad-contrib xmobar feh roxterm mname network-manager-applet openssh alsa-utils scrot`
+- [trayer-srg](https://aur.archlinux.org/packages/trayer-srg-git/)
 - Install the appropriate [video card driver](https://wiki.archlinux.org/index.php/xorg#Driver_installation)
 - [dmenu2](https://aur.archlinux.org/packages/dmenu2/)
 
@@ -51,6 +52,7 @@ manage everything. Just git clone, and run the `./install` script!
 - `pacman -S mosh networkmanager-vpnc`
 
 ## Misc
+- `pacman -S ctags && sudo npm install -g git://github.com/ramitos/jsctags.git` - for vim tagbar plugin
 - `timedatectl set-ntp true` - enable time sync
 - Install [google-chrome](https://aur.archlinux.org/packages/go/google-chrome/google-chrome.tar.gz) from the AUR.
     - For yoga's hidpi display, build [chromium-dev](https://aur.archlinux.org/packages/chromium-dev/) with `-Denable_hidpi=1` as per https://wiki.archlinux.org/index.php/HiDPI#Chromium_.2F_Google_Chrome.

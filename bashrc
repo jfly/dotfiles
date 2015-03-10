@@ -17,6 +17,9 @@ export PS1="${MY_BODY}${END} "
 
 export PATH=$PATH:$HOME/bin
 
+export ANDROID_HOME=$HOME/Android/Sdk
+export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
+
 # ctrl-shift-n for vte
 [[ -f /etc/profile.d/vte.sh ]] && source /etc/profile.d/vte.sh
 
