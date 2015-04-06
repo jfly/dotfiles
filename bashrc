@@ -20,6 +20,8 @@ export PATH=$PATH:$HOME/bin
 export ANDROID_HOME=$HOME/Android/Sdk
 export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
 
+export PATH=$PATH:$HOME/.gem/ruby/2.2.0/bin
+
 # ctrl-shift-n for vte
 [[ -f /etc/profile.d/vte.sh ]] && source /etc/profile.d/vte.sh
 

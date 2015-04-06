@@ -11,8 +11,8 @@ feh --randomize --bg-fill $HOME/Dropbox/Camera\ Uploads/wallpaper/*
 xmodmap $HOME/.Xmodmap
 
 # Set up an icon tray
-if [ "`hostname`" == "yogart" ]; then
-    trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 10 --height 38 --transparent true --alpha 0 --tint 0 &
+if [ "`hostname`" == "kaladin" ]; then
+    trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 10 --height 27 --transparent true --alpha 0 --tint 0 &
 else
     trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 10 --height 18 --transparent true --alpha 0 --tint 0 &
 fi
@@ -35,6 +35,16 @@ fi
 
 # https://wiki.archlinux.org/index.php/HiDPI
 xrdb -merge ~/.Xresources
+
+# https://wiki.archlinux.org/index.php/Mouse_acceleration
+xset m 2.5 0
+
+# https://wiki.archlinux.org/index.php/TrackPoint#Middle_button_scroll
+#<<<xinput set-prop "PS/2 Synaptics TouchPad" "Evdev Wheel Emulation" 1
+#<<<xinput set-prop "PS/2 Synaptics TouchPad" "Evdev Wheel Emulation Button" 2
+#<<<xinput set-prop "PS/2 Synaptics TouchPad" "Evdev Wheel Emulation Timeout" 200
+#<<<xinput set-prop "PS/2 Synaptics TouchPad" "Evdev Wheel Emulation Axes" 6 7 4 5
+#<<<xinput set-prop "PS/2 Synaptics TouchPad" "Device Accel Constant Deceleration" 0.75
 
 # xmonad doesn't set a cursor
 xsetroot -cursor_name left_ptr

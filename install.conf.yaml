@@ -30,12 +30,12 @@
     /etc/systemd/logind.conf.d/suspend-on-powerbutton.conf:
         create: true
         path: suspend-on-powerbutton.conf
-    /etc/X11/xorg.conf.d/50-yogart-synaptics.conf:
-        create: true
-        path: 50-yogart-synaptics.conf
     /etc/X11/xorg.conf.d/20-yogart-intel.conf:
         create: true
         path: 20-yogart-intel.conf
+    /etc/X11/xorg.conf.d/20-trackpoint.conf:
+        create: true
+        path: 20-trackpoint.conf
 
 - shell:
   -

@@ -17,6 +17,29 @@ manage everything. Just git clone, and run the `./install` script!
 - `pacman -S git python` - install dependencies to install jfly/dotfiles
 - `git clone https://github.com/jfly/dotfiles.git && cd dotfiles && ./install` - you probably want to `rm ~/.bashrc` first, as dotbot will not clobber it for you.
 
+## Audio
+- https://aur.archlinux.org/packages/asoundconf - http://unix.stackexchange.com/a/146297
+
+## kaladin specific
+
+- `echo "options psmouse proto=imps" > /etc/modprobe.d/psmouse.conf` - http://natalian.org/archives/2015/02/18/Archlinux_on_a_Lenovo_X1C3/
+- https://bbs.archlinux.org/viewtopic.php?pid=1492564#p1492564
+~/thirdrepos/downgrader @kaladin> cat /proc/sys/net/core/wmem_max
+212992
+~/thirdrepos/downgrader @kaladin> echo 83886080 > /proc/sys/net/core/wmem_max
+bash: /proc/sys/net/core/wmem_max: Permission denied
+~/thirdrepos/downgrader @kaladin> sudo bash -c "echo 83886080 > /proc/sys/net/core/wmem_max"
+~/thirdrepos/downgrader @kaladin> # http://www.linuxquestions.org/questions/linux-networking-3/sendmsg-no-buffer-space-available-334631/
+~/thirdrepos/downgrader @kaladin> cat /proc/sys/net/core/wmem_max83886080
+~/thirdrepos/downgrader @kaladin> 
+
+
+## Power stuff
+- Install from AUR: `https://aur.archlinux.org/packages/laptop-mode-tools/`
+- `pacman -S acpi acpid ethtool wireless_tools`
+- `systemctl enable laptop-mode`
+- Edit /etc/laptop-mode/laptop-mode.conf accordingly (ttps://push.cx/2015/dual-booting-arch-linux-on-lenovo-x1-carbon-3rd-gen suggests changing LM_BATT_MAX_LOST_WORK_SECONDS)
+
 
 ## Setting up x11 and xmonad
 - `pacman -S xorg-server xorg-xinit xorg-xsetroot xorg-xmodmap xorg-xmessage xorg-xrandr xorg-xrdb xmonad xmonad-contrib xmobar feh roxterm wmname network-manager-applet openssh alsa-utils scrot`
@@ -55,12 +78,8 @@ manage everything. Just git clone, and run the `./install` script!
 - `pacman -S ctags && sudo npm install -g git://github.com/ramitos/jsctags.git` - for vim tagbar plugin
 - `timedatectl set-ntp true` - enable time sync
 - Install [google-chrome](https://aur.archlinux.org/packages/go/google-chrome/google-chrome.tar.gz) from the AUR.
-    - For yoga's hidpi display, build [chromium-dev](https://aur.archlinux.org/packages/chromium-dev/) with `-Denable_hidpi=1` as per https://wiki.archlinux.org/index.php/HiDPI#Chromium_.2F_Google_Chrome.
-        - If you do this, don't forget to install [chromium-pepper-flash](https://aur.archlinux.org/packages/chromium-pepper-flash/) from the AUR
 
 ## Lenovo specific
 - Fix trackpoint middle button scroll by creating a `/etc/X11/xorg.conf.d/20-trackpoint.conf` as per https://wiki.archlinux.org/index.php/Lenovo_ThinkPad_T410.
 - Enable [synaptics touchpad](https://wiki.archlinux.org/index.php/Touchpad_Synaptics)
     - `pacman -S xf86-input-synaptics`
-    - Create /etc/X11/xorg.conf.d/50-synaptics.conf file as described on the wiki
-- Install [xf86-input-mtrack](https://aur.archlinux.org/packages/xf/xf86-input-mtrack/xf86-input-mtrack.tar.gz) from the AUR.

@@ -13,4 +13,4 @@
 [core]
 	excludesfile = /home/jeremy/.gitignore_global
 [credential]
-	helper = /usr/share/git/credential/gnome-keyring/git-credential-gnome-keyring
+	helper = /usr/lib/git-core/git-credential-gnome-keyring

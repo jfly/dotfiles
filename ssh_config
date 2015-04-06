@@ -4,6 +4,12 @@ User clark
 Host kent
 HostName kent.jflei.com
 User kent
-Host ccm
-HostName live.jflei.com
+Host ccm-old
+HostName 130.211.148.16
 User gjcomps
+Host ccm
+HostName 54.148.223.17
+User gjcomps
+Host wca
+HostName worldcubeassociation.org
+User jflei
