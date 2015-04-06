@@ -52,10 +52,7 @@ bash: /proc/sys/net/core/wmem_max: Permission denied
 
 ## Install volnoti
 - Install [hcchu/volnoti](https://github.com/hcchu/volnoti#new-options-in-this-fork) from github. [volnoti](https://aur.archlinux.org/packages/volnoti) doesn't have the features needed for volnoti-brightness.
-- Install [volnoti-brightness](https://aur.archlinux.org/packages/volnoti-brightness-git/) from the AUR
-    - This has a missing dependency on [bs](https://www.archlinux.org/packages/extra/i686/bc/)
-    - This has a missing dependency on bc.
-
+- Install bc.
 
 ## Fonts
 - `pacman -S ttf-liberation ttf-bitstream-vera`
