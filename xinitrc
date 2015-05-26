@@ -8,7 +8,6 @@ export SSH_AUTH_SOCK
 wmname LG3D
 
 feh --randomize --bg-fill $HOME/Dropbox/Camera\ Uploads/wallpaper/*
-xmodmap $HOME/.Xmodmap
 
 # Set up an icon tray
 if [ "`hostname`" == "kaladin" ]; then
@@ -38,6 +37,8 @@ xrdb -merge ~/.Xresources
 
 # https://wiki.archlinux.org/index.php/Mouse_acceleration
 xset m 2.5 0
+
+xmodmap $HOME/.Xmodmap
 
 # https://wiki.archlinux.org/index.php/TrackPoint#Middle_button_scroll
 #<<<xinput set-prop "PS/2 Synaptics TouchPad" "Evdev Wheel Emulation" 1

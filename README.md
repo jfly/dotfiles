@@ -42,7 +42,7 @@ bash: /proc/sys/net/core/wmem_max: Permission denied
 
 
 ## Setting up x11 and xmonad
-- `pacman -S xorg-server xorg-xinit xorg-xsetroot xorg-xmodmap xorg-xmessage xorg-xrandr xorg-xrdb xmonad xmonad-contrib xmobar feh roxterm wmname network-manager-applet openssh alsa-utils scrot`
+- `pacman -S xorg-server xorg-xinit xorg-xsetroot xorg-xmodmap xorg-xmessage xorg-xrandr xorg-xrdb xmonad xmonad-contrib xmobar feh roxterm wmname network-manager-applet openssh alsa-utils scrot xclip`
 - [trayer-srg](https://aur.archlinux.org/packages/trayer-srg-git/)
 - Install the appropriate [video card driver](https://wiki.archlinux.org/index.php/xorg#Driver_installation)
 - [dmenu2](https://aur.archlinux.org/packages/dmenu2/)

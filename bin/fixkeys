@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# Copied some stuff from .xinitrc
+
+# https://wiki.archlinux.org/index.php/Mouse_acceleration
+xset m 2.5 0
+
+xmodmap ~/.Xmodmap

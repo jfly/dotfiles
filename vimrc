@@ -45,6 +45,7 @@ set wildcharm=<C-Z>
 
 """""" filetypes
 au BufRead,BufNewFile *.md set filetype=markdown
+au BufRead,BufNewFile Vagrantfile setfiletype ruby
 """"""
 
 """""" ctrlp configuration

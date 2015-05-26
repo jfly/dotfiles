@@ -1,0 +1,2 @@
+#!/bin/bash
+sudo bash -c "rmmod iwlmvm && rmmod iwlwifi && sleep 1 && modprobe iwlwifi"
