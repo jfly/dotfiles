@@ -1,4 +1,5 @@
 import XMonad hiding ( (|||) ) -- don't use the normal ||| operator
+import XMonad.Config.Desktop
 import XMonad.Layout.LayoutCombinators -- use the one from LayoutCombinators instead
 
 import XMonad.Hooks.DynamicLog
@@ -82,10 +83,10 @@ myKeys =
 
 main = do
     xmproc <- spawnPipe "xmobar"
-    xmonad $ defaultConfig {
-        manageHook = manageDocks <+> manageHook defaultConfig,
+    xmonad $ desktopConfig {
+        manageHook = manageDocks <+> manageHook desktopConfig,
         layoutHook = myLayout,
-        logHook = dynamicLogWithPP xmobarPP {
+        logHook = logHook desktopConfig <+> dynamicLogWithPP xmobarPP {
             ppOutput = hPutStrLn xmproc,
             ppTitle = xmobarColor "green" "" . shorten 100
         },
