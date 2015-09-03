@@ -1,7 +1,7 @@
 import XMonad hiding ( (|||) ) -- don't use the normal ||| operator
 import XMonad.Config.Desktop
 import XMonad.Layout.LayoutCombinators -- use the one from LayoutCombinators instead
-
+import XMonad.Actions.SpawnOn
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Util.Run(spawnPipe)
@@ -84,7 +84,7 @@ myKeys =
 main = do
     xmproc <- spawnPipe "xmobar"
     xmonad $ desktopConfig {
-        manageHook = manageDocks <+> manageHook desktopConfig,
+        manageHook = manageDocks <+> manageSpawn <+> manageHook desktopConfig,
         layoutHook = myLayout,
         logHook = logHook desktopConfig <+> dynamicLogWithPP xmobarPP {
             ppOutput = hPutStrLn xmproc,
@@ -93,5 +93,10 @@ main = do
 
         modMask = myModMask,
         XMonad.terminal = myTerminal,
-        XMonad.borderWidth = myBorderWidth
+        XMonad.borderWidth = myBorderWidth,
+        workspaces = ["wca", "wrk", "play", "web", "5", "6", "7", "8", "9"],
+        startupHook = do
+            spawnOn "web" "google-chrome-stable"
+            -- spawnOn "play" "roxterm -e \"bash -c '(cd gitting; bash)'\""
     } `additionalKeys` myKeys
+            -- spawnOn "wca" "google-chrome-stable --profile-directory='Profile 1'"

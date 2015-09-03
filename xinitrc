@@ -22,6 +22,9 @@ syndaemon -t -k -i 0.2 &
 # volnoti is a volume notification daemon
 volnoti -t 1
 
+# Enable numlock on boot (thanks james!)
+numlockx on
+
 # start dropbox if it's installed (we do it here rather than via systemd
 # because the icon won't show up otherwise)
 if [ -x /usr/bin/dropboxd ]; then

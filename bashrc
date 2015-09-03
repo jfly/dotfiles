@@ -8,6 +8,12 @@ source ~/.aliases
 export VISUAL=vim
 export EDITOR=vim
 
+if [ -n "$DISPLAY" ]; then
+  export BROWSER=google-chrome-stable
+else
+  export BROWSER=elinks
+fi
+
 if tty -s; then
   green=$(tput setaf 2)
   reset=$(tput sgr0)

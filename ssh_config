@@ -1,3 +1,5 @@
+ServerAliveInterval 120
+
 Host clark
 HostName clark.jflei.com
 User clark
