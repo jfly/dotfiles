@@ -63,10 +63,8 @@ myKeys =
 
         ((0, xF86XK_MonBrightnessUp), spawn $ changeBrightness "5%+"),
         ((0, xF86XK_MonBrightnessDown), spawn $ changeBrightness "5%-"),
-        -- https://wiki.archlinux.org/index.php/Lenovo_ThinkPad_X1_Carbon_(Gen_3)
-        -- "Brightness controls are due only in Linux 4.1"
-        ((0, xK_F6), spawn $ changeBrightness "5%+"),
-        ((0, xK_F5), spawn $ changeBrightness "5%-"),
+        ((shiftMask, xK_F5), spawn "colorscheme dark"),
+        ((shiftMask, xK_F6), spawn "colorscheme light"),
 
         -- Prompt the user for an area of the screen
         -- note the sleep 0.2 as a workaround for the ancient:

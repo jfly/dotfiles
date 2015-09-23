@@ -8,6 +8,14 @@ map <leader>r :source ~/.vimrc<cr>
 filetype plugin indent on
 syntax on
 
+" http://ethanschoonover.com/solarized/vim-colors-solarized
+syntax enable
+set background=dark
+colorscheme solarized
+" Shortcuts to change our colorscheme
+map <c-F5> :set background=dark<CR>
+map <c-F6> :set background=light<CR>
+
 " http://stackoverflow.com/a/234578
 set smartindent
 set tabstop=4
@@ -30,7 +38,6 @@ nnoremap # :call feedkeys("?\\C\\<" . expand("<cword>") . "\\>\r")<cr>
 
 " http://usevim.com/2012/10/19/vim101-set-hidden/
 set hidden
-
 
 " Always show status line
 set laststatus=2
