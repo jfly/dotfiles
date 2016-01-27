@@ -19,6 +19,7 @@ manage everything. Just git clone, and run the `./install` script!
 
 ## Audio
 - https://aur.archlinux.org/packages/asoundconf - http://unix.stackexchange.com/a/146297
+- Headphone noise is due to power_save mode - https://bbs.archlinux.org/viewtopic.php?pid=1554497#p1554497
 
 ## kaladin specific
 
@@ -59,20 +60,14 @@ bash: /proc/sys/net/core/wmem_max: Permission denied
 - Install [ttf-google-fonts-git](https://aur.archlinux.org/packages/ttf-google-fonts-git/) from the AUR
 
 ## Setting up wireless with network manager
-- `pacman -S networkmanager network-manager-applet gnome-keyring`
+- `pacman -S networkmanager network-manager-applet`
 - `systemctl enable NetworkManager.service && systemctl start NetworkManager.service`
-
-## Setup GNOME keyring and ssh keys
-- `pacman -S gnome-keyring seahorse`
-- [Generate ssh keys](https://help.github.com/articles/generating-ssh-keys/)
-- Setup for Git
-    - Add ssh key to github: https://github.com/settings/ssh
-    - Configure Git to use GNOME-keyring: https://wiki.archlinux.org/index.php/GNOME_Keyring#GNOME_Keyring_and_Git
 
 ## wrk
 - `pacman -S mosh networkmanager-vpnc`
 
 ## Misc
+- [Generate ssh keys](https://help.github.com/articles/generating-ssh-keys/)
 - `pacman -S ctags && sudo npm install -g git://github.com/ramitos/jsctags.git` - for vim tagbar plugin
 - `timedatectl set-ntp true` - enable time sync
 - Install [google-chrome](https://aur.archlinux.org/packages/go/google-chrome/google-chrome.tar.gz) from the AUR.

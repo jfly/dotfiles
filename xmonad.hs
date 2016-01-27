@@ -61,8 +61,10 @@ myKeys =
         ((0, xF86XK_AudioRaiseVolume), spawn $ changeVolume "5%+"),
         ((0, xF86XK_AudioLowerVolume), spawn $ changeVolume "5%-"),
 
-        ((0, xF86XK_MonBrightnessUp), spawn $ changeBrightness "5%+"),
         ((0, xF86XK_MonBrightnessDown), spawn $ changeBrightness "5%-"),
+        ((0, xF86XK_MonBrightnessUp), spawn $ changeBrightness "5%+"),
+        ((0, xF86XK_HomePage), spawn $ changeBrightness "5%-"),
+        ((0, xF86XK_Search), spawn $ changeBrightness "5%+"),
         ((shiftMask, xK_F5), spawn "colorscheme dark"),
         ((shiftMask, xK_F6), spawn "colorscheme light"),
 
@@ -94,7 +96,7 @@ main = do
         XMonad.borderWidth = myBorderWidth,
         workspaces = ["wca", "wrk", "play", "web", "5", "6", "7", "8", "9"],
         startupHook = do
-            spawnOn "web" "google-chrome-stable"
+            spawnOn "web" "chromium"
             -- spawnOn "play" "roxterm -e \"bash -c '(cd gitting; bash)'\""
     } `additionalKeys` myKeys
-            -- spawnOn "wca" "google-chrome-stable --profile-directory='Profile 1'"
+            -- spawnOn "wca" "chromium --profile-directory='Profile 1'"

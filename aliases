@@ -1,2 +1,3 @@
 alias bs="mosh bs336 -- bash -cli bs"
 alias ls='ls --color=auto'
+alias o=xdg-open

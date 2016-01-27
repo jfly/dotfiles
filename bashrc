@@ -9,7 +9,7 @@ export VISUAL=vim
 export EDITOR=vim
 
 if [ -n "$DISPLAY" ]; then
-  export BROWSER=google-chrome-stable
+  export BROWSER=chromium
 else
   export BROWSER=elinks
 fi
@@ -23,11 +23,12 @@ END=">"
 export PS1="${MY_BODY}${END} "
 
 export PATH=$PATH:$HOME/bin
+export PATH=$PATH:$HOME/bin/packer
 
 export ANDROID_HOME=$HOME/Android/Sdk
 export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
 
-export PATH=$PATH:$HOME/.gem/ruby/2.2.0/bin
+export PATH=$PATH:$HOME/.gem/ruby/2.3.0/bin
 export PATH=$PATH:/usr/local/heroku/bin
 
 # ctrl-shift-n for vte
@@ -42,6 +43,15 @@ eval $(dircolors ~/.dir_colors)
 shopt -s checkwinsize
 
 [[ -f ~/.bashrc_local ]] && source ~/.bashrc_local
+
+# From https://wiki.archlinux.org/index.php/SSH_keys#ssh-agent
+if ! pgrep -u $USER ssh-agent > /dev/null; then
+  ssh-agent > ~/.ssh-agent-thing
+fi
+if [[ "$SSH_AGENT_PID" == "" ]]; then
+  eval $(<~/.ssh-agent-thing)
+fi
+ssh-add -l >/dev/null || alias ssh='ssh-add -l >/dev/null || ssh-add && unalias ssh; ssh'
 
 # startx at login
 [[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx

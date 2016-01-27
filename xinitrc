@@ -1,7 +1,8 @@
 # Start gnome-keyring-daemon
 #  https://wiki.archlinux.org/index.php/GNOME_Keyring
-eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
-export SSH_AUTH_SOCK
+#<<<eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
+#<<<export SSH_AUTH_SOCK
+#<<<eval $(ssh-agent)
 
 # Hack to fix Java swing applications from http://tools.suckless.org/wmname
 #  https://wiki.archlinux.org/index.php/xmonad#Problems_with_Java_applications
@@ -16,14 +17,21 @@ else
     trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 10 --height 18 --transparent true --alpha 0 --tint 0 &
 fi
 
+# Disable touchpad
+#<<<xinput set-prop 11 "Device Enabled" 0
+
 # Disable tapping and scrolling when typing
 syndaemon -t -k -i 0.2 &
 
 # volnoti is a volume notification daemon
 volnoti -t 1
 
-# Enable numlock on boot (thanks james!)
+# Enable numlock on boot (thanks James!)
 numlockx on
+
+# Gross hack to disable audio powersave, which causes awful noise
+# (https://bbs.archlinux.org/viewtopic.php?pid=1554497#p1554497)
+sudo rmmod -f snd_hda_intel && sudo modprobe snd_hda_intel power_save=0
 
 # start dropbox if it's installed (we do it here rather than via systemd
 # because the icon won't show up otherwise)

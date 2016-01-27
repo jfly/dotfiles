@@ -1,16 +1,17 @@
 [alias]
-	update-submodules = submodule update --init --recursive
-	upgrade-submodules = submodule update --init --remote
+    update-submodules = submodule update --init --recursive
+    upgrade-submodules = submodule update --init --remote
+    lg = log --graph --all --decorate
 [user]
-        name = Jeremy Fleischman
-        email = jeremyfleischman@gmail.com
+    name = Jeremy Fleischman
+    email = jeremyfleischman@gmail.com
 [push]
-        default = simple
+    default = simple
 
 # Allow local customizations in the .gitconfig_local file
 [include]
-	path = ~/.gitconfig_local
+    path = ~/.gitconfig_local
 [core]
-	excludesfile = /home/jeremy/.gitignore_global
+    excludesfile = /home/jeremy/.gitignore_global
 [credential]
-	helper = /usr/lib/git-core/git-credential-gnome-keyring
+    helper = cache --timeout=3600

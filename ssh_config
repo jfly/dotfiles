@@ -18,3 +18,11 @@ User gjcomps
 Host wca
 HostName worldcubeassociation.org
 User cubing
+
+Host staging.wca
+HostName staging.worldcubeassociation.org
+User cubing
+
+Host cusa
+HostName cubingusa.com
+User koii
