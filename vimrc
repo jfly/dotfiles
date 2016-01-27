@@ -10,11 +10,22 @@ syntax on
 
 " http://ethanschoonover.com/solarized/vim-colors-solarized
 syntax enable
+
+" Tweak because I (jfly) changed the solarized terminal pallete a bit, but
+" still want to use the default terminal background color...
+let g:solarized_termtrans=1
+
 set background=dark
 colorscheme solarized
 " Shortcuts to change our colorscheme
-map <c-F5> :set background=dark<CR>
-map <c-F6> :set background=light<CR>
+noremap <c-F5> :set background=dark<CR>
+noremap <c-F6> :set background=light<CR>
+
+" Experimenting with cross file search
+" See: http://stackoverflow.com/a/25879734
+noremap <leader>f :exec "cope \| :silent Ggrep ".input(">>> ")." \| redraw!"<CR>
+noremap ]q :cnext<CR>
+noremap [q :cprevious<CR>
 
 " http://stackoverflow.com/a/234578
 set smartindent
@@ -33,8 +44,8 @@ set hlsearch
 set incsearch
 set smartcase
 set ignorecase
-nnoremap * :call feedkeys("/\\C\\<" . expand("<cword>") . "\\>\r")<cr>
-nnoremap # :call feedkeys("?\\C\\<" . expand("<cword>") . "\\>\r")<cr>
+nnoremap * :call feedkeys("/\\C\\<" . expand("<cword>") . "\\>\r")<CR>
+nnoremap # :call feedkeys("?\\C\\<" . expand("<cword>") . "\\>\r")<CR>
 
 " http://usevim.com/2012/10/19/vim101-set-hidden/
 set hidden
