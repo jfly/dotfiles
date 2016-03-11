@@ -8,14 +8,10 @@
 #  https://wiki.archlinux.org/index.php/xmonad#Problems_with_Java_applications
 wmname LG3D
 
-feh --randomize --bg-fill $HOME/Dropbox/Camera\ Uploads/wallpaper/*
+feh --randomize --bg-fill $HOME/Dropbox/Downloaded/Wallpaper/*
 
 # Set up an icon tray
-if [ "`hostname`" == "kaladin" ]; then
-    trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 10 --height 27 --transparent true --alpha 0 --tint 0 &
-else
-    trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 10 --height 18 --transparent true --alpha 0 --tint 0 &
-fi
+trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 10 --height 27 --transparent true --alpha 0 --tint 0 &
 
 # Disable touchpad
 #<<<xinput set-prop 11 "Device Enabled" 0

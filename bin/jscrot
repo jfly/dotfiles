@@ -1,2 +1,8 @@
 #!/usr/bin/env bash
-scrot "%Y-%m-%d_%H:%M:%S_\$wx\$h_${HOSTNAME}.png" -e "mv \$f \"$HOME/Dropbox/Camera\\ Uploads/Screenshots/\"" "$@"
+SCREENSHOTS_DIR=$HOME/screenshots
+scrot "%Y-%m-%d_%H:%M:%S_\$wx\$h_${HOSTNAME}.png" -e "mv \$f \"$SCREENSHOTS_DIR\"" "$@"
+
+# Find the newest file in $SCREENSHOTS_DIR
+f=`ls -t $SCREENSHOTS_DIR | head -1`
+# Copy that file (we assume it's a png) to the clipboard.
+xclip -selection clipboard -t "image/png" $SCREENSHOTS_DIR/$f
