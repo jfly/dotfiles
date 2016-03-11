@@ -30,9 +30,9 @@
     /etc/systemd/logind.conf.d/suspend-on-powerbutton.conf:
         create: true
         path: suspend-on-powerbutton.conf
-    /etc/X11/xorg.conf.d/20-yogart-intel.conf:
+    /etc/X11/xorg.conf.d/20-kaladin-intel.conf:
         create: true
-        path: 20-yogart-intel.conf
+        path: 20-kaladin-intel.conf
     /etc/X11/xorg.conf.d/20-trackpoint.conf:
         create: true
         path: 20-trackpoint.conf
