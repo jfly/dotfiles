@@ -24,6 +24,7 @@ manage everything. Just git clone, and run the `./install` script!
 ## kaladin specific
 
 - `echo "options psmouse proto=imps" > /etc/modprobe.d/psmouse.conf` - http://natalian.org/archives/2015/02/18/Archlinux_on_a_Lenovo_X1C3/
+  - Note: not needed with newer kernels.
 - https://bbs.archlinux.org/viewtopic.php?pid=1492564#p1492564
 ~/thirdrepos/downgrader @kaladin> cat /proc/sys/net/core/wmem_max
 212992

@@ -14,10 +14,7 @@ feh --randomize --bg-fill $HOME/Dropbox/Downloaded/Wallpaper/*
 trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 10 --height 27 --transparent true --alpha 0 --tint 0 &
 
 # Disable touchpad
-#<<<xinput set-prop 11 "Device Enabled" 0
-
-# Disable tapping and scrolling when typing
-syndaemon -t -k -i 0.2 &
+xinput set-prop 11 "Device Enabled" 0
 
 # volnoti is a volume notification daemon
 volnoti -t 1
