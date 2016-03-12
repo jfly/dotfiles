@@ -17,7 +17,7 @@ trayer --edge top --align right --SetDockType true --SetPartialStrut true --expa
 syndaemon -t -k -i 0.2 &
 
 # Disable touchpad
-xinput set-prop 11 "Device Enabled" 0
+xinput set-prop "SynPS/2 Synaptics TouchPad" "Device Enabled" 0
 
 # volnoti is a volume notification daemon
 volnoti -t 1
