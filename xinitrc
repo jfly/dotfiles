@@ -13,6 +13,9 @@ feh --randomize --bg-fill $HOME/Dropbox/Downloaded/Wallpaper/*
 # Set up an icon tray
 trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 10 --height 27 --transparent true --alpha 0 --tint 0 &
 
+# Disable tapping and scrolling when typing
+syndaemon -t -k -i 0.2 &
+
 # Disable touchpad
 xinput set-prop 11 "Device Enabled" 0
 
