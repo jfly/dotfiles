@@ -31,6 +31,8 @@ export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
 export PATH=$PATH:$HOME/.gem/ruby/2.3.0/bin
 export PATH=$PATH:/usr/local/heroku/bin
 
+export HISTCONTROL=ignorespace
+
 # ctrl-shift-n for vte
 [[ -f /etc/profile.d/vte.sh ]] && source /etc/profile.d/vte.sh
 

@@ -4,6 +4,7 @@ import XMonad.Layout.LayoutCombinators -- use the one from LayoutCombinators ins
 import XMonad.Actions.SpawnOn
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
+import XMonad.Hooks.EwmhDesktops
 import XMonad.Util.Run(spawnPipe)
 import XMonad.Util.EZConfig(additionalKeys)
 import Graphics.X11.ExtraTypes.XF86
@@ -83,7 +84,7 @@ myKeys =
 
 main = do
     xmproc <- spawnPipe "xmobar"
-    xmonad $ desktopConfig {
+    xmonad $ ewmh desktopConfig {
         manageHook = manageDocks <+> manageSpawn <+> manageHook desktopConfig,
         layoutHook = myLayout,
         logHook = logHook desktopConfig <+> dynamicLogWithPP xmobarPP {
