@@ -63,7 +63,8 @@ set wildcharm=<C-Z>
 
 """""" filetypes
 au BufRead,BufNewFile *.md set filetype=markdown
-au BufRead,BufNewFile Vagrantfile setfiletype ruby
+au BufRead,BufNewFile Vagrantfile set filetype=ruby
+au BufRead,BufNewFile *.jy set filetype=python
 """"""
 
 """""" ctrlp configuration
