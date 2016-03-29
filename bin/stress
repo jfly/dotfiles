@@ -1,0 +1,10 @@
+#!/bin/sh
+
+count=1;
+
+while $@; do
+    echo "Successes: $count"
+    (( count++ ))
+done
+
+echo "Failed after $count runs"
