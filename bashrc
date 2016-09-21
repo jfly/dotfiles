@@ -5,6 +5,12 @@
 
 source ~/.aliases
 
+function de {
+    CMD="docker exec -it --detach-keys='ctrl-^,q' $1 env TERM=xterm bash"
+    echo $CMD
+    $CMD
+}
+
 export VISUAL=vim
 export EDITOR=vim
 

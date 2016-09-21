@@ -42,3 +42,4 @@
   -
     - git update-submodules
     - Install/update submodules
+  - (cd ~/.vim/bundle/command-t/ruby/command-t; ruby extconf.rb; make)

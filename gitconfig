@@ -2,6 +2,7 @@
     update-submodules = submodule update --init --recursive
     upgrade-submodules = submodule update --init --remote
     lg = log --graph --all --decorate
+    lol = log --graph --pretty='%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 [user]
     name = Jeremy Fleischman
     email = jeremyfleischman@gmail.com

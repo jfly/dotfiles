@@ -70,6 +70,7 @@ bash: /proc/sys/net/core/wmem_max: Permission denied
 ## Misc
 - [Generate ssh keys](https://help.github.com/articles/generating-ssh-keys/)
 - `pacman -S ctags && sudo npm install -g git://github.com/ramitos/jsctags.git` - for vim tagbar plugin
+- `pacman -S the_silver_searcher` - for faster ctrl+p in vim
 - `timedatectl set-ntp true` - enable time sync
 - Install [google-chrome](https://aur.archlinux.org/packages/go/google-chrome/google-chrome.tar.gz) from the AUR.
 - Prevent autosuspend of usb mouse: https://fitzcarraldoblog.wordpress.com/2013/02/26/how-to-prevent-a-usb-mouse-auto-suspending-in-linux-when-a-laptops-power-supply-is-disconnected/
@@ -82,6 +83,7 @@ bash: /proc/sys/net/core/wmem_max: Permission denied
   - ~ @kaladin> xdg-settings set default-web-browser chromium.desktop
   - ~ @kaladin> xdg-mime query default text/html
     chromium.desktop
+- Add `"detachKeys": "ctrl-^,q"` to `~/.docker/config.json`
 
 
 ## Lenovo specific

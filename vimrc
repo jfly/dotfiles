@@ -70,6 +70,9 @@ au BufRead,BufNewFile *.jy set filetype=python
 """""" ctrlp configuration
 " http://stackoverflow.com/a/22784889
 if executable('ag')
+  " Use ag over grep
+  set grepprg=ag\ --nogroup\ --nocolor
+
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 endif
 let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
