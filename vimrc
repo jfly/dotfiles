@@ -96,3 +96,4 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 
 " http://unix.stackexchange.com/a/30757
 set tabpagemax=100
+set colorcolumn=80,120
