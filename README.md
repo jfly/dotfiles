@@ -15,7 +15,7 @@ manage everything. Just git clone, and run the `./install` script!
 - `useradd -m -G wheel -s /bin/bash jeremy && passwd jeremy` - create user and set their password
 
 - `pacman -S git python` - install dependencies to install jfly/dotfiles
-- `git clone https://github.com/jfly/dotfiles.git && cd dotfiles && ./install` - you probably want to `rm ~/.bashrc` first, as dotbot will not clobber it for you.
+- `git clone https://github.com/jfly/dotfiles.git && cd dotfiles && ./install`
 
 ## Audio
 - https://aur.archlinux.org/packages/asoundconf - http://unix.stackexchange.com/a/146297
