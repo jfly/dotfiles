@@ -6,7 +6,9 @@
     ~/.gitignore_global: gitignore_global
     ~/.vim: vim/
     ~/.vimrc: vimrc
-    ~/.bashrc: bashrc
+    ~/.bashrc:
+        force: true
+        path: bashrc
     ~/.bash_profile: bash_profile
     ~/.aliases: aliases
     ~/.xmonad/xmonad.hs:
