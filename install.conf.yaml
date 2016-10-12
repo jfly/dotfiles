@@ -20,6 +20,9 @@
     ~/.xinitrc: xinitrc
     ~/.conkyrc: conkyrc
     ~/bin: bin
+    ~/.config/autorandr:
+        create: true
+        path: autorandr
     ~/.config/roxterm.sourceforge.net:
         create: true
         path: roxterm.sourceforge.net
@@ -27,6 +30,7 @@
     ~/.ssh/config:
         create: true
         path: ssh_config
+
     /etc/systemd/logind.conf.d/no-suspend-on-lidswitch.conf:
         create: true
         path: no-suspend-on-lidswitch.conf
@@ -60,9 +64,13 @@
         create: true
         path: units/monitors.service
 
+    /usr/lib/systemd/system/trayer.service:
+        create: true
+        path: units/trayer.service
+
 - shell:
   -
     - git update-submodules
     - Install/update submodules
-  - systemctl enable fixkeys.path
-  - systemctl enable fixmouse.path
+  - sudo systemctl enable fixkeys.path
+  - sudo systemctl enable fixmouse.path
