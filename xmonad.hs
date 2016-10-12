@@ -95,7 +95,7 @@ main = do
         modMask = myModMask,
         XMonad.terminal = myTerminal,
         XMonad.borderWidth = myBorderWidth,
-        workspaces = ["wca", "wrk", "play", "web", "5", "6", "7", "8", "9"],
+        workspaces = ["web", "play", "wrk", "test", "5", "6", "7", "8", "9"],
         startupHook = do
             spawnOn "web" "chromium"
             -- spawnOn "play" "roxterm -e \"bash -c '(cd gitting; bash)'\""
