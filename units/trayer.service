@@ -4,4 +4,4 @@ Description=Run trayer alongside xmobar
 [Service]
 Environment=DISPLAY=:0
 Environment=XAUTHORITY=/home/jeremy/.Xauthority
-ExecStart=/usr/bin/trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 10 --height 27 --transparent true --alpha 0 --tint 0
+ExecStart=/usr/bin/trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 10 --height 25 --transparent true --alpha 0 --tint 0

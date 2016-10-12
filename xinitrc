@@ -2,11 +2,6 @@
 #  https://wiki.archlinux.org/index.php/xmonad#Problems_with_Java_applications
 wmname LG3D
 
-feh --randomize --bg-fill $HOME/Dropbox/Downloaded/Wallpaper/*
-
-# Set up an icon tray
-systemctl start trayer.service
-
 # Disable tapping and scrolling when typing
 syndaemon -t -k -i 0.2 &
 
@@ -36,8 +31,10 @@ fi
 # https://wiki.archlinux.org/index.php/HiDPI
 xrdb -merge ~/.Xresources
 
-fixkeys
-fixmouse
+autorandr --change
+
+sudo systemctl start fixkeys.path
+sudo systemctl start fixmouse.path
 
 # xmonad doesn't set a cursor
 xsetroot -cursor_name left_ptr

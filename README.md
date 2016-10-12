@@ -98,5 +98,5 @@ bash: /proc/sys/net/core/wmem_max: Permission denied
     - http://unix.stackexchange.com/questions/12613/is-there-a-way-to-find-all-x-resources-an-application-uses
     - backup plan: chrome://settings/search#zoom
   + Fix trayer on screen resolution change
-  - Update background image
+  + Update background image
   + https://github.com/wertarbyte/autorandr

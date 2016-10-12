@@ -72,5 +72,3 @@
   -
     - git update-submodules
     - Install/update submodules
-  - sudo systemctl enable fixkeys.path
-  - sudo systemctl enable fixmouse.path
