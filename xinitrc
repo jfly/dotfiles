@@ -33,6 +33,7 @@ xrdb -merge ~/.Xresources
 
 autorandr --change
 
+sudo systemctl start trayer.service
 sudo systemctl start fixkeys.path
 sudo systemctl start fixmouse.path
 

@@ -92,11 +92,6 @@ bash: /proc/sys/net/core/wmem_max: Permission denied
     - `pacman -S xf86-input-synaptics`
 
 ## TODO
-+ Autorun fixkeys
-+ Autorun appropriate screenlayout script
-  - Change DPI and update running applications
-    - http://unix.stackexchange.com/questions/12613/is-there-a-way-to-find-all-x-resources-an-application-uses
-    - backup plan: chrome://settings/search#zoom
-  + Fix trayer on screen resolution change
-  + Update background image
-  + https://github.com/wertarbyte/autorandr
+- When switching monitors, change DPI and update running applications
+  - http://unix.stackexchange.com/questions/12613/is-there-a-way-to-find-all-x-resources-an-application-uses
+  - backup plan: chrome://settings/search#zoom
