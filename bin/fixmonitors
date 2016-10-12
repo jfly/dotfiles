@@ -1,0 +1,4 @@
+#!/bin/bash
+
+echo "Running autorandr --change"
+/home/jeremy/bin/autorandr --change

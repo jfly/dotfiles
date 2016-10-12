@@ -7,4 +7,5 @@ export DISPLAY=:0
 # https://bugs.launchpad.net/ubuntu/+source/xserver-xorg-video-intel/+bug/660901/comments/3
 export XAUTHORITY=/home/jeremy/.Xauthority
 
-xmodmap ~/.Xmodmap
+# https://wiki.archlinux.org/index.php/Mouse_acceleration
+xset m 2.5 0

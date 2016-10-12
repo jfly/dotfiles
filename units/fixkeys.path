@@ -1,0 +1,10 @@
+# Inspired by http://jasonwryan.com/blog/2014/01/20/udev/
+# and http://www.ocsmag.com/2015/09/02/monitoring-file-access-for-dummies/
+[Unit]
+Description=Triggers the service that sets up external keyboard
+
+[Path]
+PathExists=/dev/input/by-id/usb-Microsoft_Comfort_Curve_Keyboard_2000-event-kbd
+
+[Install]
+WantedBy=multi-user.target

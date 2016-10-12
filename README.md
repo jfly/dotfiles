@@ -91,27 +91,12 @@ bash: /proc/sys/net/core/wmem_max: Permission denied
 - Enable [synaptics touchpad](https://wiki.archlinux.org/index.php/Touchpad_Synaptics)
     - `pacman -S xf86-input-synaptics`
 
--- James:  move and follow = super sexy
--- Sent at 10:15 AM on Friday
--- me:  did you get it working??
--- James:  Yeah
--- me:  omg share your hacks
--- James:  I thought I told you that awhile ago :P
--- me:  i don't think so!
--- is that your default behavior for mod+shift+# now?
--- James:  well, mod shift w/e/r
--- me:  ohh, i see
-when changing screens
--- James:  [((m .|. myModMask, key), screenWorkspace sc >>= flip whenJust (windows . f))
--- | (key, sc) <- zip [xK_w, xK_e, xK_r] [0..]
--- , (f, m) <- [(W.view, 0), ((\t -> W.view t . W.shift t), shiftMask)]]
--- me:  but not when changing virtual desktops?
--- James:  You could easily put that in the virtual desktops block instead.
--- me:  gotcha!
--- James:   ++
--- -- mod-[1..9] %! Switch to workspace N
--- -- mod-shift-[1..9] %! Move client to workspace N
--- [((m .|. modMask, k), windows $ f i)
--- | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9]
--- , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]]
--- -- That's for the virtual desktops
+## TODO
++ Autorun fixkeys
++ Autorun appropriate screenlayout script
+  - Change DPI and update running applications
+    - http://unix.stackexchange.com/questions/12613/is-there-a-way-to-find-all-x-resources-an-application-uses
+    - backup plan: chrome://settings/search#zoom
+  - Fix xmobar on screen resolution change
+  - Update background image
+  + https://github.com/wertarbyte/autorandr

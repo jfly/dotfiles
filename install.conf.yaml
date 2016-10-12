@@ -40,8 +40,29 @@
         create: true
         path: 20-trackpoint.conf
 
+    /usr/lib/systemd/system/fixkeys.path:
+        create: true
+        path: units/fixkeys.path
+    /usr/lib/systemd/system/fixkeys.service:
+        create: true
+        path: units/fixkeys.service
+    /usr/lib/systemd/system/fixmouse.path:
+        create: true
+        path: units/fixkeys.path
+    /usr/lib/systemd/system/fixmouse.service:
+        create: true
+        path: units/fixkeys.service
+
+    /etc/udev/rules.d/10-local.rules:
+        create: true
+        path: udev/10-local.rules
+    /usr/lib/systemd/system/monitors.service:
+        create: true
+        path: units/monitors.service
+
 - shell:
   -
     - git update-submodules
     - Install/update submodules
-  - (cd ~/.vim/bundle/command-t/ruby/command-t; ruby extconf.rb; make)
+  - systemctl enable fixkeys.path
+  - systemctl enable fixmouse.path
