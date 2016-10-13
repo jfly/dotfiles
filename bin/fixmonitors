@@ -8,9 +8,7 @@ else
     /home/jeremy/.screenlayout/mobile.sh
 fi
 
-# Force trayer to reposition itself. Workaround for
-#  https://github.com/sargon/trayer-srg/issues/26.
-python2 -c 'import gtk; gtk.StatusIcon()'
+/home/jeremy/bin/fixtrayer
 
 feh --randomize --bg-fill $HOME/Dropbox/Downloaded/Wallpaper/*
 

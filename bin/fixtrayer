@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# Force trayer to reposition itself. Workaround for
+#  https://github.com/sargon/trayer-srg/issues/26.
+python2 -c 'import gtk; gtk.StatusIcon()'
