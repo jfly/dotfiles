@@ -1,4 +1,13 @@
 #!/bin/bash
 
-echo "Running autorandr --change"
-/home/jeremy/bin/autorandr --change
+if [ -e "/sys/class/drm/card0-DP-3/status" ]; then
+    echo "Dock is connected!"
+    /home/jeremy/.screenlayout/sf-desk.sh
+else
+    echo "Dock is not connected!"
+    /home/jeremy/.screenlayout/mobile.sh
+fi
+
+# For some reason, autorandr seems to be bugging out with the onelink dock
+#echo "Running autorandr --change"
+#/home/jeremy/bin/autorandr --change
