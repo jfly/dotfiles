@@ -8,6 +8,13 @@ else
     /home/jeremy/.screenlayout/mobile.sh
 fi
 
+# Force trayer to reposition itself. Workaround for
+#  https://github.com/sargon/trayer-srg/issues/26.
+python2 -c 'import gtk; gtk.StatusIcon()'
+
+feh --randomize --bg-fill $HOME/Dropbox/Downloaded/Wallpaper/*
+
+
 # For some reason, autorandr seems to be bugging out with the onelink dock
 #echo "Running autorandr --change"
 #/home/jeremy/bin/autorandr --change

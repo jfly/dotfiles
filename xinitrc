@@ -24,14 +24,18 @@ if [ -x /usr/bin/dropboxd ]; then
     /usr/bin/dropboxd &
 fi
 
-if [ -x /usr/bin/nm-applet ] ; then
+if [ -x /usr/bin/pasystray ]; then
+    pasystray &
+fi
+
+if [ -x /usr/bin/nm-applet ]; then
     nm-applet &
 fi
 
 # https://wiki.archlinux.org/index.php/HiDPI
 xrdb -merge ~/.Xresources
 
-autorandr --change
+fixmonitors
 
 sudo systemctl start trayer.service
 sudo systemctl start fixkeys.path
