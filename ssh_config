@@ -27,10 +27,9 @@ Host cusa
 HostName cubingusa.com
 User ubuntu
 
-Host cusa-old
-#HostName cubingusa.com
-HostName 69.163.224.168
-User unioncube
+Host cusa-new
+HostName ec2-54-200-145-122.us-west-2.compute.amazonaws.com
+User ubuntu
 
 Host hadronlabs
 HostName www.hadronlabs.com
