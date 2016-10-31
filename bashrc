@@ -59,7 +59,6 @@ fi
 if [[ "$SSH_AGENT_PID" == "" ]]; then
   eval $(<~/.ssh-agent-thing)
 fi
-ssh-add -l >/dev/null || alias ssh='ssh-add -l >/dev/null || ssh-add && unalias ssh; ssh'
 
 # startx at login
 [[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx

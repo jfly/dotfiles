@@ -3,10 +3,14 @@
 if [ -e "/sys/class/drm/card0-DP-3/status" ]; then
     echo "Dock is connected!"
     /home/jeremy/.screenlayout/sf-desk.sh
+    NEW_DPI=96
 else
     echo "Dock is not connected!"
     /home/jeremy/.screenlayout/mobile.sh
+    NEW_DPI=144
 fi
+
+sed "s/Xft.dpi.*/Xft.dpi: $NEW_DPI/" -i ~/.Xresources
 
 /home/jeremy/bin/fixtrayer
 

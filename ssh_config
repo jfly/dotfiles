@@ -1,4 +1,5 @@
 ServerAliveInterval 120
+AddKeysToAgent yes
 
 Host clark
 HostName clark.jflei.com
@@ -24,11 +25,11 @@ HostName staging.worldcubeassociation.org
 User cubing
 
 Host cusa
-HostName cubingusa.com
+HostName 54.191.126.138
 User ubuntu
 
-Host cusa-new
-HostName ec2-54-200-145-122.us-west-2.compute.amazonaws.com
+Host cusa-old
+HostName 54.149.170.248
 User ubuntu
 
 Host hadronlabs

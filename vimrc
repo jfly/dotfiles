@@ -76,7 +76,7 @@ if executable('ag')
 endif
 let g:ctrlp_user_command = {
   \ 'types': {
-    \ 1: ['.git', 'cd %s && git ls-files'],
+    \ 1: ['.git', 'ag %s -l --nocolor -g ""'],
     \ 2: ['.hg', 'hg --cwd %s locate -I .'],
     \ },
   \ 'fallback': 'ag %s -l --nocolor -g ""'
@@ -104,4 +104,4 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 
 " http://unix.stackexchange.com/a/30757
 set tabpagemax=100
-set colorcolumn=80,120
+"<<< does not look good in light mode set colorcolumn=80,120

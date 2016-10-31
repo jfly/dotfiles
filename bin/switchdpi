@@ -1,0 +1,3 @@
+#!/usr/bin/bash
+
+sed 's/Xft.dpi/#Xft.dpi/; s/##Xft.dpi/Xft.dpi/;' -i ~/.Xresources
