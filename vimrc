@@ -18,8 +18,8 @@ let g:solarized_termtrans=1
 set background=dark
 colorscheme solarized
 " Shortcuts to change our colorscheme
-noremap <c-F5> :set background=dark<CR>
-noremap <c-F6> :set background=light<CR>
+noremap d<Backspace> :set background=dark<CR>
+noremap l<Backspace> :set background=light<CR>
 
 " Experimenting with cross file search
 " See: http://stackoverflow.com/a/25879734

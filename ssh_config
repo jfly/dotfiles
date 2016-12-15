@@ -35,3 +35,11 @@ User ubuntu
 Host hadronlabs
 HostName www.hadronlabs.com
 User ec2-user
+
+Host scottpi
+HostName raspberrypi.local
+User pi
+
+Host ocf
+HostName ssh.ocf.berkeley.edu
+User jfly
