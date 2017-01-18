@@ -1,3 +1,3 @@
 #!/usr/bin/bash
 
-sshfs -o reconnect kent@kent:/media/daily_planet ~/media/kent/
+sshfs -o reconnect kent@kent:/home/media ~/media/kent/

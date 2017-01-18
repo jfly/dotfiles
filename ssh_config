@@ -4,9 +4,15 @@ AddKeysToAgent yes
 Host clark
 HostName clark.jflei.com
 User clark
+ForwardAgent yes
+### For pressplay docker development
+LocalForward 4040 10.5.0.1:80
+LocalForward 4141 10.5.1.1:80
+###
 
 Host kent
-HostName kent.jflei.com
+#HostName kent.jflei.com
+HostName kent
 User kent
 
 Host ccm
@@ -32,10 +38,6 @@ Host cusa-old
 HostName 54.149.170.248
 User ubuntu
 
-Host hadronlabs
-HostName www.hadronlabs.com
-User ec2-user
-
 Host scottpi
 HostName raspberrypi.local
 User pi
@@ -43,3 +45,18 @@ User pi
 Host ocf
 HostName ssh.ocf.berkeley.edu
 User jfly
+
+### Hadron Labs stuff
+Host hadronlabs
+HostName www.hadronlabs.com
+User ec2-user
+
+# WeChat official account name: PressPlayCN
+Host ppgapi.cn-1
+HostName 121.40.203.30
+User root
+
+Host ppgapi.cn-2
+HostName 121.40.195.151
+User root
+### End Hadron Labs stuff
