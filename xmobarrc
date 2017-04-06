@@ -9,7 +9,7 @@ Config {
                     , Run Memory ["-t","Mem: <usedratio>%"] 10
                     , Run Date "%a %b %_d %l:%M" "date" 10
 
-                    , Run Com "get-volume" [] "myvolume" 10
+                    , Run Com "get_volume.py" [] "myvolume" 10
                     -- battery monitor
                     , Run Battery        [ "--template" , "Batt: <acstatus>"
                                          , "--Low"      , "10"        -- units: %

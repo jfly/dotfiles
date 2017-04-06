@@ -25,8 +25,8 @@ myLayout = avoidStruts $ smartBorders $ tall ||| Mirror tall ||| Full
 myBorderWidth = 2
 
 -- https://github.com/hcchu/dotfiles/blob/master/.xmonad/xmonad.hs
-showVolume = "toggle-mute.sh; show-volume.sh"
-changeVolume s = "amixer set Master " ++ s ++ "; show-volume.sh"
+muteAndShowVolume = "set_volume.py toggle-mute; show-volume.sh"
+changeVolume s = "set_volume.py " ++ s ++ "; show-volume.sh"
 changeBrightness s = "sudo change-brightness.py " ++ s ++ "; show-brightness.sh"
 
 altMask = mod1Mask
@@ -58,9 +58,9 @@ myKeys =
         -- Run demenu2 with custom font
         ((myModMask, xK_p), spawn "dmenu_run -fn 'Ubuntu Mono Regular:size=9:bold:antialias=true'"),
 
-        ((0, xF86XK_AudioMute), spawn showVolume),
-        ((0, xF86XK_AudioRaiseVolume), spawn $ changeVolume "5%+"),
-        ((0, xF86XK_AudioLowerVolume), spawn $ changeVolume "5%-"),
+        ((0, xF86XK_AudioMute), spawn muteAndShowVolume),
+        ((0, xF86XK_AudioRaiseVolume), spawn $ changeVolume "5+"),
+        ((0, xF86XK_AudioLowerVolume), spawn $ changeVolume "5-"),
 
         ((0, xF86XK_MonBrightnessDown), spawn $ changeBrightness "5%-"),
         ((0, xF86XK_MonBrightnessUp), spawn $ changeBrightness "5%+"),

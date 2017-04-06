@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-
-if amixer get Master | grep '\[on'; then
-    volnoti-show `amixer get Master | grep '[0-9]*%' -o | head -n 1`
-else
+volume=`get_volume.py`
+if echo "$volume" | grep Mute; then
     volnoti-show -m
+else
+    volnoti-show $volume
 fi

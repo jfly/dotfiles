@@ -22,6 +22,7 @@ manage everything. Just git clone, and run the `./install` script!
 - Headphone noise is due to power_save mode - https://bbs.archlinux.org/viewtopic.php?pid=1554497#p1554497
 - TODO: use pulseaudio instead of just alsa
 - Install [pasystray](https://aur.archlinux.org/cgit/aur.git/snapshot/pasystray.tar.gz)
+- `pacman -S pamixer`
 
 ## kaladin specific
 

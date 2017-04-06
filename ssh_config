@@ -19,11 +19,16 @@ Host ccm
 HostName 54.148.223.17
 User gjcomps
 
-Host staging.worldcubeassociation.org
-User gjcomps
-
 Host wca
 HostName worldcubeassociation.org
+User cubing
+
+Host wca-new
+HostName 54.200.244.83
+User cubing
+
+Host wca-old
+HostName 54.187.65.70
 User cubing
 
 Host staging.wca
@@ -31,11 +36,7 @@ HostName staging.worldcubeassociation.org
 User cubing
 
 Host cusa
-HostName 54.191.126.138
-User ubuntu
-
-Host cusa-old
-HostName 54.149.170.248
+HostName cubingusa.com
 User ubuntu
 
 Host scottpi

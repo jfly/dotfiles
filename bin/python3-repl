@@ -1,0 +1,4 @@
+#!/usr/bin/env python3
+
+import code, readline
+code.InteractiveConsole(locals=globals()).interact()
