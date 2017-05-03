@@ -5,10 +5,6 @@ Host clark
 HostName clark.jflei.com
 User clark
 ForwardAgent yes
-### For pressplay docker development
-LocalForward 4040 10.5.0.1:80
-LocalForward 4141 10.5.1.1:80
-###
 
 Host kent
 #HostName kent.jflei.com
@@ -24,11 +20,11 @@ HostName worldcubeassociation.org
 User cubing
 
 Host wca-new
-HostName 54.200.244.83
+HostName 34.208.140.116
 User cubing
 
 Host wca-old
-HostName 54.187.65.70
+HostName 34.208.140.116
 User cubing
 
 Host staging.wca
@@ -51,13 +47,4 @@ User jfly
 Host hadronlabs
 HostName www.hadronlabs.com
 User ec2-user
-
-# WeChat official account name: PressPlayCN
-Host ppgapi.cn-1
-HostName 121.40.203.30
-User root
-
-Host ppgapi.cn-2
-HostName 121.40.195.151
-User root
 ### End Hadron Labs stuff

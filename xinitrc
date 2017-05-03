@@ -13,7 +13,10 @@ wmname LG3D
 syndaemon -t -k -i 0.2 &
 
 # Disable touchpad
-xinput set-prop "SynPS/2 Synaptics TouchPad" "Device Enabled" 0
+disable-touchpad
+
+# Set speed and sensitivity of trackpoint.
+sudo trackpoint_configuration.sh
 
 # volnoti is a volume notification daemon
 volnoti -t 1
