@@ -64,10 +64,6 @@
         create: true
         path: units/monitors.service
 
-    /usr/lib/systemd/system/trayer.service:
-        create: true
-        path: units/trayer.service
-
 - shell:
   -
     - git update-submodules

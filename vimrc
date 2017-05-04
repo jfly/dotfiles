@@ -76,7 +76,7 @@ if executable('ag')
 endif
 let g:ctrlp_user_command = {
   \ 'types': {
-    \ 1: ['.git', 'ag %s -l --nocolor -g ""'],
+    \ 1: ['.git', 'cd %s && git ls-files'],
     \ 2: ['.hg', 'hg --cwd %s locate -I .'],
     \ },
   \ 'fallback': 'ag %s -l --nocolor -g ""'
@@ -105,3 +105,10 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 " http://unix.stackexchange.com/a/30757
 set tabpagemax=100
 "<<< does not look good in light mode set colorcolumn=80,120
+
+" https://webpack.github.io/docs/webpack-dev-server.html#working-with-editors-ides-supporting-safe-write
+set backupcopy=yes
+
+" https://github.com/mxw/vim-jsx
+" By default, JSX syntax highlighting and indenting will be enabled only for files with the .jsx extension. If you would like JSX in .js files, add
+let g:jsx_ext_required = 0
