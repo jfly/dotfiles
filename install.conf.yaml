@@ -26,6 +26,9 @@
     ~/.config/roxterm.sourceforge.net:
         create: true
         path: roxterm.sourceforge.net
+    ~/.config/termite:
+        create: true
+        path: termite
     ~/.dir_colors: dir_colors
     ~/.ssh/config:
         create: true
