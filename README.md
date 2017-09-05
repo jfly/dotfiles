@@ -60,7 +60,7 @@ bash: /proc/sys/net/core/wmem_max: Permission denied
 - Install bc.
 
 ## Fonts
-- `pacman -S ttf-liberation ttf-bitstream-vera`
+- `pacman -S ttf-liberation ttf-bitstream-vera noto-fonts-emoji`
 - Install [ttf-google-fonts-git](https://aur.archlinux.org/packages/ttf-google-fonts-git/) from the AUR
 
 ## Setting up wireless with network manager
