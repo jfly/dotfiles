@@ -7,8 +7,8 @@ User clark
 ForwardAgent yes
 
 Host kent
-#HostName kent.jflei.com
-HostName kent
+HostName kent.jflei.com
+#HostName kent
 User kent
 
 Host ccm
@@ -35,13 +35,15 @@ Host cusa
 HostName cubingusa.com
 User ubuntu
 
-Host scottpi
-HostName raspberrypi.local
-User pi
-
 Host ocf
 HostName ssh.ocf.berkeley.edu
 User jfly
+
+Host scottpi
+#HostName raspberrypi.orc
+HostName 0.tcp.ngrok.io
+Port 10464
+User pi
 
 ### Hadron Labs stuff
 Host hadronlabs
