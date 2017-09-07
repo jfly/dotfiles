@@ -18,12 +18,12 @@ function reload_termite_config() {
 }
 
 function dark() {
-  set_termite_colorscheme_file "base16-solarized-dark.config"
+  set_termite_colorscheme_file "solarized-dark"
   reload_termite_config
 }
 
 function light() {
-  set_termite_colorscheme_file "base16-solarized-light.config"
+  set_termite_colorscheme_file "solarized-light"
   reload_termite_config
 }
 
