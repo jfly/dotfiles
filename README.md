@@ -9,6 +9,7 @@ manage everything. Just git clone, and run the `./install` script!
 # Directions for fresh Arch install
 
 - `echo "blacklist pcspkr" > /etc/modprobe.d/nobeep.conf` - disable system beep
+  - i also found "options snd_hda_intel model=auto power_save=0" in /etc/modprobe.d/modprobe.conf, what's that for?
 - `pacman -S vim && mv /usr/bin/vi /usr/bin/vi.bak && ln -s /usr/bin/vim /usr/bin/vi` - install and set up vim as default
 
 - `pacman -S sudo && visudo` - install and configure sudo
@@ -31,12 +32,10 @@ manage everything. Just git clone, and run the `./install` script!
 - https://bbs.archlinux.org/viewtopic.php?pid=1492564#p1492564
 ~/thirdrepos/downgrader @kaladin> cat /proc/sys/net/core/wmem_max
 212992
-~/thirdrepos/downgrader @kaladin> echo 83886080 > /proc/sys/net/core/wmem_max
-bash: /proc/sys/net/core/wmem_max: Permission denied
 ~/thirdrepos/downgrader @kaladin> sudo bash -c "echo 83886080 > /proc/sys/net/core/wmem_max"
 ~/thirdrepos/downgrader @kaladin> # http://www.linuxquestions.org/questions/linux-networking-3/sendmsg-no-buffer-space-available-334631/
 ~/thirdrepos/downgrader @kaladin> cat /proc/sys/net/core/wmem_max83886080
-~/thirdrepos/downgrader @kaladin> 
+~/thirdrepos/downgrader @kaladin>
 
 
 ## Power stuff
@@ -88,6 +87,9 @@ bash: /proc/sys/net/core/wmem_max: Permission denied
     chromium.desktop
 - Add `"detachKeys": "ctrl-^,q"` to `~/.docker/config.json`
 
+## Dropbox
+- https://aur.archlinux.org/packages/dropbox/
+- lolcommits (`ln -s Dropbox/pics/lolcommits .lolcommits`)
 
 ## Lenovo specific
 - Fix trackpoint middle button scroll by creating a `/etc/X11/xorg.conf.d/20-trackpoint.conf` as per https://wiki.archlinux.org/index.php/Lenovo_ThinkPad_T410.

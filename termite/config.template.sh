@@ -44,7 +44,7 @@ cursor_blink = system
 cursor_shape = block
 
 # \$BROWSER is used by default if set, with xdg-open as a fallback
-#browser = xdg-open
+browser = xdg-open
 
 # set size hints for the window
 #size_hints = false

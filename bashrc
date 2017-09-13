@@ -62,6 +62,9 @@ export PATH=$PATH:/usr/local/heroku/bin
 
 export HISTCONTROL=ignorespace
 
+# Urg, termite sets this to xterm-termite, which causes ssh to freak out when running tput.
+export TERM=xterm
+
 # ctrl-shift-n for vte
 [[ -f /etc/profile.d/vte.sh ]] && source /etc/profile.d/vte.sh
 
