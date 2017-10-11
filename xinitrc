@@ -9,14 +9,8 @@ xrdb -merge ~/.Xresources
 #  https://wiki.archlinux.org/index.php/xmonad#Problems_with_Java_applications
 wmname LG3D
 
-# Disable tapping and scrolling when typing
-syndaemon -t -k -i 0.2 &
-
 # Disable touchpad
 disable-touchpad
-
-# Set speed and sensitivity of trackpoint.
-sudo trackpoint_configuration.sh
 
 # volnoti is a volume notification daemon
 volnoti -t 1
