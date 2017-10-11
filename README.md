@@ -20,7 +20,7 @@ manage everything. Just git clone, and run the `./install` script!
 - `git clone https://github.com/jfly/dotfiles.git && cd dotfiles && ./install`
 
 ## Setting up x11 and xmonad
-- `pacman -S xorg-server xorg-xinit xorg-xsetroot xorg-xmodmap xorg-xmessage xorg-xrandr xorg-xrdb xmonad xmonad-contrib xmobar feh roxterm termite wmname network-manager-applet openssh alsa-utils scrot xclip numlockx xvkbd xsel`
+- `pacman -S xorg-server xorg-xinit xorg-xsetroot xorg-xmodmap xorg-xmessage xorg-xrandr xorg-xrdb xmonad xmonad-contrib xmobar feh roxterm termite wmname network-manager-applet openssh alsa-utils scrot xclip numlockx xvkbd xsel xdotool`
 - Fonts
   - `pacman -S ttf-liberation ttf-bitstream-vera noto-fonts-emoji ttf-ubuntu-font-family`
   - Install [ttf-google-fonts-git](https://aur.archlinux.org/packages/ttf-google-fonts-git/) from the AUR
