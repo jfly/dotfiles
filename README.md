@@ -20,15 +20,14 @@ manage everything. Just git clone, and run the `./install` script!
 - `git clone https://github.com/jfly/dotfiles.git && cd dotfiles && ./install`
 
 ## Setting up x11 and xmonad
-- `pacman -S xorg-server xorg-xinit xorg-xsetroot xorg-xmodmap xorg-xmessage xorg-xrandr xorg-xrdb xmonad xmonad-contrib xmobar feh roxterm termite wmname network-manager-applet openssh alsa-utils scrot xclip numlockx xvkbd xsel xdotool`
+- Install the appropriate [video card driver](https://wiki.archlinux.org/index.php/xorg#Driver_installation)
+- `pacman -S xorg-server xorg-xinit xorg-xsetroot xorg-xmodmap xorg-xmessage xorg-xrandr xorg-xrdb xmonad xmonad-contrib xmobar feh wmname network-manager-applet openssh alsa-utils scrot xclip numlockx xvkbd xsel xdotool`
+- [trayer-srg](https://aur.archlinux.org/packages/trayer-srg-git/)
+- [dmenu2](https://aur.archlinux.org/packages/dmenu2/)
+- `pacman -S roxterm termite chromium`
 - Fonts
   - `pacman -S ttf-liberation ttf-bitstream-vera noto-fonts-emoji ttf-ubuntu-font-family`
   - Install [ttf-google-fonts-git](https://aur.archlinux.org/packages/ttf-google-fonts-git/) from the AUR
-- [trayer-srg](https://aur.archlinux.org/packages/trayer-srg-git/)
-- [dmenu2](https://aur.archlinux.org/packages/dmenu2/)
-- Install the appropriate [video card driver](https://wiki.archlinux.org/index.php/xorg#Driver_installation)
-- Install [google-chrome](https://aur.archlinux.org/packages/go/google-chrome/google-chrome.tar.gz) from the AUR.
-  - NOTE: Jeremy installed chromium the second time around.
 
 ## Setting up wireless with network manager
 - `pacman -S networkmanager network-manager-applet networkmanager-vpnc`
@@ -60,6 +59,8 @@ manage everything. Just git clone, and run the `./install` script!
   - `chmod 600 ~/.ssh/id_rsa ~/.ssh/*.pem`
 
 ## TODO
+- Wifi not yet working
+
 - When switching monitors, change DPI and update running applications
   - http://unix.stackexchange.com/questions/12613/is-there-a-way-to-find-all-x-resources-an-application-uses
   - backup plan: chrome://settings/search#zoom
