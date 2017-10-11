@@ -44,7 +44,7 @@ manage everything. Just git clone, and run the `./install` script!
 - Install from AUR: `https://aur.archlinux.org/packages/laptop-mode-tools/`
 - `pacman -S acpi acpid ethtool wireless_tools`
 - `systemctl enable laptop-mode`
-- Edit /etc/laptop-mode/laptop-mode.conf accordingly (ttps://push.cx/2015/dual-booting-arch-linux-on-lenovo-x1-carbon-3rd-gen suggests changing LM_BATT_MAX_LOST_WORK_SECONDS)
+- Edit `/etc/laptop-mode/laptop-mode.conf` accordingly (https://push.cx/2015/dual-booting-arch-linux-on-lenovo-x1-carbon-3rd-gen suggests changing LM_BATT_MAX_LOST_WORK_SECONDS)
 
 ## Misc
 - `pacman -S mosh`
