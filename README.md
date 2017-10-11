@@ -15,7 +15,7 @@ manage everything. Just git clone, and run the `./install` script!
 - `pacman -S sudo && visudo` - install and configure sudo
 - `useradd -m -G wheel -s /bin/bash jeremy && passwd jeremy` - create user and set their password
 
-- `pacman -S git python` - install dependencies to install jfly/dotfiles
+- `pacman -S git python openssh` - install dependencies to install jfly/dotfiles
 - `git clone https://github.com/jfly/dotfiles.git && cd dotfiles && ./install`
 
 ## Audio
