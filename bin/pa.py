@@ -16,8 +16,8 @@ def _pamixer_with_sink(args):
 
 def _sink():
     sinks_precedence = [
-        'alsa_output.usb-C-Media_Electronics_Inc._ThinkPad_OneLink_Pro_Dock_Audio-00.analog-stereo',
-        'alsa_output.pci-0000_00_1b.0.analog-stereo',
+        # This is for kaladin 'alsa_output.usb-C-Media_Electronics_Inc._ThinkPad_OneLink_Pro_Dock_Audio-00.analog-stereo',
+        'alsa_output.pci-0000_00_1f.3.analog-stereo',
     ]
     sinks_list = _pamixer(['--list-sinks'])
     for potential_sink in sinks_precedence:
