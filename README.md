@@ -7,25 +7,84 @@ I'm using the excellent [dotbot](https://github.com/anishathalye/dotbot) to
 manage everything. Just git clone, and run the `./install` script!
 
 # Directions for fresh Arch install
-
-- `echo "blacklist pcspkr" > /etc/modprobe.d/nobeep.conf` - disable system beep
-  - i also found "options snd_hda_intel model=auto power_save=0" in /etc/modprobe.d/modprobe.conf, what's that for?
 - `pacman -S vim && mv /usr/bin/vi /usr/bin/vi.bak && ln -s /usr/bin/vim /usr/bin/vi` - install and set up vim as default
-
 - `pacman -S sudo && visudo` - install and configure sudo
 - `useradd -m -G wheel -s /bin/bash jeremy && passwd jeremy` - create user and set their password
 
 - `pacman -S git python openssh` - install dependencies to install jfly/dotfiles
+- `pacman -S wget base-devel` - needed to install stuff from the AUR
 - `git clone https://github.com/jfly/dotfiles.git && cd dotfiles && ./install`
 
-## Audio
-- https://aur.archlinux.org/packages/asoundconf - http://unix.stackexchange.com/a/146297
-- Headphone noise is due to power_save mode - https://bbs.archlinux.org/viewtopic.php?pid=1554497#p1554497
-- TODO: use pulseaudio instead of just alsa
-- Install [pasystray](https://aur.archlinux.org/cgit/aur.git/snapshot/pasystray.tar.gz)
-- `pacman -S pamixer`
+## Setting up x11 and xmonad
+- `pacman -S xorg-server xorg-xinit xorg-xsetroot xorg-xmodmap xorg-xmessage xorg-xrandr xorg-xrdb xmonad xmonad-contrib xmobar feh roxterm termite wmname network-manager-applet openssh alsa-utils scrot xclip numlockx xvkbd xsel`
+- Fonts
+  - `pacman -S ttf-liberation ttf-bitstream-vera noto-fonts-emoji ttf-ubuntu-font-family`
+  - Install [ttf-google-fonts-git](https://aur.archlinux.org/packages/ttf-google-fonts-git/) from the AUR
+- [trayer-srg](https://aur.archlinux.org/packages/trayer-srg-git/)
+- [dmenu2](https://aur.archlinux.org/packages/dmenu2/)
+- Install the appropriate [video card driver](https://wiki.archlinux.org/index.php/xorg#Driver_installation)
+- Install [google-chrome](https://aur.archlinux.org/packages/go/google-chrome/google-chrome.tar.gz) from the AUR.
+  - NOTE: Jeremy installed chromium the second time around.
 
-## kaladin specific
+## Setting up wireless with network manager
+- `pacman -S networkmanager network-manager-applet networkmanager-vpnc`
+- `systemctl enable NetworkManager.service && systemctl start NetworkManager.service`
+
+## Audio
+- `pacman -S pulseaudio pamixer bc`
+- Install [pasystray](https://aur.archlinux.org/cgit/aur.git/snapshot/pasystray.tar.gz)
+- Install [hcchu/volnoti](https://github.com/hcchu/volnoti#new-options-in-this-fork) from github. [volnoti](https://aur.archlinux.org/packages/volnoti) doesn't have the features needed for volnoti-brightness.
+
+## Power stuff
+- Install from AUR: `https://aur.archlinux.org/packages/laptop-mode-tools/`
+- `pacman -S acpi acpid ethtool wireless_tools`
+- `systemctl enable laptop-mode`
+- Edit /etc/laptop-mode/laptop-mode.conf accordingly (ttps://push.cx/2015/dual-booting-arch-linux-on-lenovo-x1-carbon-3rd-gen suggests changing LM_BATT_MAX_LOST_WORK_SECONDS)
+
+## Misc
+- `pacman -S mosh`
+- `pacman -S ctags && sudo npm install -g git://github.com/ramitos/jsctags.git` - for vim tagbar plugin
+- `pacman -S the_silver_searcher` - for faster ctrl+p in vim
+- [byzanz](https://aur.archlinux.org/packages/byzanz/)
+  - [xrectsel](https://aur.archlinux.org/packages/xrectsel/)
+- Set default browser:
+  - ~ @kaladin> xdg-settings set default-web-browser chromium.desktop
+    xdg-settings: $BROWSER is set and can't be changed with xdg-settings
+  - ~ @kaladin> unset BROWSER
+  - ~ @kaladin> xdg-settings set default-web-browser chromium.desktop
+  - ~ @kaladin> xdg-mime query default text/html
+    chromium.desktop
+
+## Dropbox
+- https://aur.archlinux.org/packages/dropbox/
+- `ln -s Dropbox/pics/lolcommits .lolcommits` - set up lolcommits
+- ssh keys (or if you want to, you can [generate new ssh keys](https://help.github.com/articles/generating-ssh-keys/))
+  - `rm -r .ssh && ln -s Dropbox/kaladin-ssh/ .ssh`
+  - `chmod 600 ~/.ssh/id_rsa ~/.ssh/*.pem`
+
+## TODO
+- Chromium showing a "set as default" message every time
+- After boot, there's some message about kvm?
+- When switching monitors, change DPI and update running applications
+  - http://unix.stackexchange.com/questions/12613/is-there-a-way-to-find-all-x-resources-an-application-uses
+  - backup plan: chrome://settings/search#zoom
+
+## breq specific
+
+- I ran into an issue where the trackpoint was very jumpy (unusably so). Rebooting without my (third party) charging cable seems to make the problem go away. See https://forums.lenovo.com/t5/ThinkPad-X-Series-Laptops/X220-Touchpad-jumpy-response-when-used-with-90w-slim-AC-adapter/ta-p/766543 for something possibly related.
+  - Update: after more reboots, the problem seems to appear sometimes even without a charging cabled plugged in =(
+
+## Skipped on breq
+- Add `"detachKeys": "ctrl-^,q"` to `~/.docker/config.json`
+- Prevent autosuspend of usb mouse: https://fitzcarraldoblog.wordpress.com/2013/02/26/how-to-prevent-a-usb-mouse-auto-suspending-in-linux-when-a-laptops-power-supply-is-disconnected/
+- Headphone noise is due to power_save mode - https://bbs.archlinux.org/viewtopic.php?pid=1554497#p1554497
+- https://aur.archlinux.org/packages/asoundconf - http://unix.stackexchange.com/a/146297
+- `echo "blacklist pcspkr" > /etc/modprobe.d/nobeep.conf` - disable system beep
+  - i also found "options snd_hda_intel model=auto power_save=0" in /etc/modprobe.d/modprobe.conf, what's that for?
+- Enable [synaptics touchpad](https://wiki.archlinux.org/index.php/Touchpad_Synaptics)
+    - `pacman -S xf86-input-synaptics`
+
+### kaladin specific
 
 - `echo "options psmouse proto=imps" > /etc/modprobe.d/psmouse.conf` - http://natalian.org/archives/2015/02/18/Archlinux_on_a_Lenovo_X1C3/
   - Note: not needed with newer kernels.
@@ -36,67 +95,3 @@ manage everything. Just git clone, and run the `./install` script!
 ~/thirdrepos/downgrader @kaladin> # http://www.linuxquestions.org/questions/linux-networking-3/sendmsg-no-buffer-space-available-334631/
 ~/thirdrepos/downgrader @kaladin> cat /proc/sys/net/core/wmem_max83886080
 ~/thirdrepos/downgrader @kaladin>
-
-
-## Power stuff
-- Install from AUR: `https://aur.archlinux.org/packages/laptop-mode-tools/`
-- `pacman -S acpi acpid ethtool wireless_tools`
-- `systemctl enable laptop-mode`
-- Edit /etc/laptop-mode/laptop-mode.conf accordingly (ttps://push.cx/2015/dual-booting-arch-linux-on-lenovo-x1-carbon-3rd-gen suggests changing LM_BATT_MAX_LOST_WORK_SECONDS)
-
-
-## Setting up x11 and xmonad
-- `pacman -S xorg-server xorg-xinit xorg-xsetroot xorg-xmodmap xorg-xmessage xorg-xrandr xorg-xrdb xmonad xmonad-contrib xmobar feh roxterm wmname network-manager-applet openssh alsa-utils scrot xclip numlockx xvkbd xsel`
-- [trayer-srg](https://aur.archlinux.org/packages/trayer-srg-git/)
-- Install the appropriate [video card driver](https://wiki.archlinux.org/index.php/xorg#Driver_installation)
-- [dmenu2](https://aur.archlinux.org/packages/dmenu2/)
-
-## AUR utils
-- `pacman -S wget base-devel`
-
-## Install volnoti
-- Install [hcchu/volnoti](https://github.com/hcchu/volnoti#new-options-in-this-fork) from github. [volnoti](https://aur.archlinux.org/packages/volnoti) doesn't have the features needed for volnoti-brightness.
-- Install bc.
-
-## Fonts
-- `pacman -S ttf-liberation ttf-bitstream-vera noto-fonts-emoji`
-- Install [ttf-google-fonts-git](https://aur.archlinux.org/packages/ttf-google-fonts-git/) from the AUR
-
-## Setting up wireless with network manager
-- `pacman -S networkmanager network-manager-applet`
-- `systemctl enable NetworkManager.service && systemctl start NetworkManager.service`
-
-## wrk
-- `pacman -S mosh networkmanager-vpnc`
-
-## Misc
-- [Generate ssh keys](https://help.github.com/articles/generating-ssh-keys/)
-- `pacman -S ctags && sudo npm install -g git://github.com/ramitos/jsctags.git` - for vim tagbar plugin
-- `pacman -S the_silver_searcher` - for faster ctrl+p in vim
-- `timedatectl set-ntp true` - enable time sync
-- Install [google-chrome](https://aur.archlinux.org/packages/go/google-chrome/google-chrome.tar.gz) from the AUR.
-- Prevent autosuspend of usb mouse: https://fitzcarraldoblog.wordpress.com/2013/02/26/how-to-prevent-a-usb-mouse-auto-suspending-in-linux-when-a-laptops-power-supply-is-disconnected/
-- [byzanz](https://aur.archlinux.org/packages/byzanz/)
-  - [xrectsel](https://aur.archlinux.org/packages/xrectsel/)
-- Set default browser:
-  - ~ @kaladin> xdg-settings set default-web-browser chromium.desktop
-    xdg-settings: $BROWSER is set and can't be changed with xdg-settings
-  - ~ @kaladin> unset BROWSER
-  - ~ @kaladin> xdg-settings set default-web-browser chromium.desktop
-  - ~ @kaladin> xdg-mime query default text/html
-    chromium.desktop
-- Add `"detachKeys": "ctrl-^,q"` to `~/.docker/config.json`
-
-## Dropbox
-- https://aur.archlinux.org/packages/dropbox/
-- lolcommits (`ln -s Dropbox/pics/lolcommits .lolcommits`)
-
-## Lenovo specific
-- Fix trackpoint middle button scroll by creating a `/etc/X11/xorg.conf.d/20-trackpoint.conf` as per https://wiki.archlinux.org/index.php/Lenovo_ThinkPad_T410.
-- Enable [synaptics touchpad](https://wiki.archlinux.org/index.php/Touchpad_Synaptics)
-    - `pacman -S xf86-input-synaptics`
-
-## TODO
-- When switching monitors, change DPI and update running applications
-  - http://unix.stackexchange.com/questions/12613/is-there-a-way-to-find-all-x-resources-an-application-uses
-  - backup plan: chrome://settings/search#zoom

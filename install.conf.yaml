@@ -43,6 +43,7 @@
     /etc/X11/xorg.conf.d/20-kaladin-intel.conf:
         create: true
         path: 20-kaladin-intel.conf
+    # Fix trackpoint middle button scroll by creating a `/etc/X11/xorg.conf.d/20-trackpoint.conf` as per https://wiki.archlinux.org/index.php/Lenovo_ThinkPad_T410.
     /etc/X11/xorg.conf.d/20-trackpoint.conf:
         create: true
         path: 20-trackpoint.conf
