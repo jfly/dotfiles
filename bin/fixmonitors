@@ -14,7 +14,7 @@ sed "s/Xft.dpi.*/Xft.dpi: $NEW_DPI/" -i ~/.Xresources
 
 /home/jeremy/bin/fixtrayer
 
-feh --randomize --bg-fill $HOME/Dropbox/Downloaded/Wallpaper/*
+feh --randomize --bg-fill $HOME/Dropbox/pics/Wallpaper/*
 
 
 # For some reason, autorandr seems to be bugging out with the onelink dock
