@@ -7,6 +7,10 @@ I'm using the excellent [dotbot](https://github.com/anishathalye/dotbot) to
 manage everything. Just git clone, and run the `./install` script!
 
 # Directions for fresh Arch install
+- Pre-install
+  - Disable hibernation in Windows, resize Windows partition
+  - Disable Secure Boot in BIOS
+  - Enable virtualization in BIOS (otherwise you will see a message "kvm:disabled by bios")
 - `pacman -S vim && mv /usr/bin/vi /usr/bin/vi.bak && ln -s /usr/bin/vim /usr/bin/vi` - install and set up vim as default
 - `pacman -S sudo && visudo` - install and configure sudo
 - `useradd -m -G wheel -s /bin/bash jeremy && passwd jeremy` - create user and set their password
@@ -56,7 +60,6 @@ manage everything. Just git clone, and run the `./install` script!
   - `chmod 600 ~/.ssh/id_rsa ~/.ssh/*.pem`
 
 ## TODO
-- After boot, there's some message about kvm?
 - When switching monitors, change DPI and update running applications
   - http://unix.stackexchange.com/questions/12613/is-there-a-way-to-find-all-x-resources-an-application-uses
   - backup plan: chrome://settings/search#zoom
