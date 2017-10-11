@@ -31,7 +31,8 @@ manage everything. Just git clone, and run the `./install` script!
   - Install [ttf-google-fonts-git](https://aur.archlinux.org/packages/ttf-google-fonts-git/) from the AUR
 
 ## Setting up wireless with network manager
-- `pacman -S networkmanager network-manager-applet networkmanager-vpnc`
+- `pacman -S networkmanager network-manager-applet networkmanager-vpnc gnome-keyring`
+  - TODO: Look into [networkmanager-dmenu](https://github.com/firecat53/networkmanager-dmenu)?
 - `systemctl enable NetworkManager.service && systemctl start NetworkManager.service`
 
 ## Audio
@@ -60,7 +61,6 @@ manage everything. Just git clone, and run the `./install` script!
   - `chmod 600 ~/.ssh/id_rsa ~/.ssh/*.pem`
 
 ## TODO
-- Wifi not yet working
 - Increase trackpoint speed
 
 - When switching monitors, change DPI and update running applications
