@@ -46,6 +46,9 @@
     /etc/X11/xorg.conf.d/20-trackpoint.conf:
         create: true
         path: 20-trackpoint.conf
+    /etc/vconsole.conf:
+        create: true
+        path: vconsole.conf
 
     /usr/lib/systemd/system/fixkeys.path:
         create: true
