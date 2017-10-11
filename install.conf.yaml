@@ -29,6 +29,9 @@
     ~/.config/termite:
         create: true
         path: termite
+    ~/.config/dunst:
+        create: true
+        path: dunst
     ~/.dir_colors: dir_colors
     ~/.ssh/config:
         create: true

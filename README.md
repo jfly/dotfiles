@@ -61,6 +61,7 @@ manage everything. Just git clone, and run the `./install` script!
 
 ## TODO
 - Wifi not yet working
+- Increase trackpoint speed
 
 - When switching monitors, change DPI and update running applications
   - http://unix.stackexchange.com/questions/12613/is-there-a-way-to-find-all-x-resources-an-application-uses

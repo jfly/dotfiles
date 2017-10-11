@@ -42,6 +42,10 @@ if [ -x /usr/bin/nm-applet ]; then
     nm-applet &
 fi
 
+if [ -x /usr/bin/dunst ]; then
+    dunst &
+fi
+
 dpi=`xrdb -query Xft.dpi | grep "Xft.dpi" | grep -oE "[0-9]+$"`
 
 if [ "$dpi" == "144" ]; then
