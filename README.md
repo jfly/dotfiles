@@ -61,6 +61,7 @@ manage everything. Just git clone, and run the `./install` script!
   - `chmod 600 ~/.ssh/id_rsa ~/.ssh/*.pem`
 
 ## TODO
+- xmobar is periodically crashing. See one potential workaround here: https://github.com/jaor/xmobar/issues/310#issuecomment-335212681.
 - When switching monitors, change DPI and update running applications
   - http://unix.stackexchange.com/questions/12613/is-there-a-way-to-find-all-x-resources-an-application-uses
   - backup plan: chrome://settings/search#zoom
