@@ -47,13 +47,6 @@ manage everything. Just git clone, and run the `./install` script!
 - `pacman -S the_silver_searcher` - for faster ctrl+p in vim
 - [byzanz](https://aur.archlinux.org/packages/byzanz/)
   - [xrectsel](https://aur.archlinux.org/packages/xrectsel/)
-- Set default browser:
-  - ~ @kaladin> xdg-settings set default-web-browser chromium.desktop
-    xdg-settings: $BROWSER is set and can't be changed with xdg-settings
-  - ~ @kaladin> unset BROWSER
-  - ~ @kaladin> xdg-settings set default-web-browser chromium.desktop
-  - ~ @kaladin> xdg-mime query default text/html
-    chromium.desktop
 
 ## Dropbox
 - https://aur.archlinux.org/packages/dropbox/
@@ -63,7 +56,6 @@ manage everything. Just git clone, and run the `./install` script!
   - `chmod 600 ~/.ssh/id_rsa ~/.ssh/*.pem`
 
 ## TODO
-- Chromium showing a "set as default" message every time
 - After boot, there's some message about kvm?
 - When switching monitors, change DPI and update running applications
   - http://unix.stackexchange.com/questions/12613/is-there-a-way-to-find-all-x-resources-an-application-uses

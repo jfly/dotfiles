@@ -36,12 +36,7 @@ function start_screen {
 
 export VISUAL=vim
 export EDITOR=vim
-
-if [ -n "$DISPLAY" ]; then
-  export BROWSER=chromium
-else
-  export BROWSER=elinks
-fi
+export BROWSER=chromium
 
 if tty -s; then
   green=$(tput setaf 2)
