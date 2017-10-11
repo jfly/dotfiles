@@ -36,7 +36,7 @@ manage everything. Just git clone, and run the `./install` script!
 - `systemctl enable NetworkManager.service && systemctl start NetworkManager.service`
 
 ## Audio
-- `pacman -S pulseaudio pamixer bc`
+- `pacman -S pulseaudio pamixer pavucontrol bc`
 - Install [pasystray](https://aur.archlinux.org/cgit/aur.git/snapshot/pasystray.tar.gz)
 - Install [hcchu/volnoti](https://github.com/hcchu/volnoti#new-options-in-this-fork) from github. [volnoti](https://aur.archlinux.org/packages/volnoti) doesn't have the features needed for volnoti-brightness.
 
