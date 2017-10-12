@@ -9,9 +9,6 @@ xrdb -merge ~/.Xresources
 #  https://wiki.archlinux.org/index.php/xmonad#Problems_with_Java_applications
 wmname LG3D
 
-# Disable touchpad
-disable-touchpad
-
 # volnoti is a volume notification daemon
 volnoti -t 1
 
