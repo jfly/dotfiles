@@ -73,6 +73,9 @@
     /usr/lib/systemd/system/monitors.service:
         create: true
         path: units/monitors.service
+    /etc/modprobe.d/nobeep.conf:
+        create: true
+        path: nobeep.conf
 
 - shell:
   -
