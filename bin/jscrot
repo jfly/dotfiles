@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 SCREENSHOTS_DIR=$HOME/screenshots
+mkdir -p $SCREENSHOTS_DIR
 scrot "%Y-%m-%d_%H:%M:%S_\$wx\$h_${HOSTNAME}.png" -e "mv \$f \"$SCREENSHOTS_DIR\"" "$@"
 
 # Find the newest file in $SCREENSHOTS_DIR
