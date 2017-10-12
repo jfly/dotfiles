@@ -75,7 +75,6 @@ manage everything. Just git clone, and run the `./install` script!
 - Add `"detachKeys": "ctrl-^,q"` to `~/.docker/config.json`
 - Prevent autosuspend of usb mouse: https://fitzcarraldoblog.wordpress.com/2013/02/26/how-to-prevent-a-usb-mouse-auto-suspending-in-linux-when-a-laptops-power-supply-is-disconnected/
 - Headphone noise is due to power_save mode - https://bbs.archlinux.org/viewtopic.php?pid=1554497#p1554497
-- https://aur.archlinux.org/packages/asoundconf - http://unix.stackexchange.com/a/146297
 
 ### kaladin specific
 
