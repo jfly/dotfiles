@@ -98,9 +98,9 @@ main = do
         modMask = myModMask,
         XMonad.terminal = myTerminal,
         XMonad.borderWidth = myBorderWidth,
-        workspaces = ["web", "play", "wrk", "test", "video", "todo", "7", "8", "9"],
-        startupHook = do
-            spawnOn "web" "chromium"
+        workspaces = ["web", "play", "wrk", "test", "video", "todo", "7", "8", "9"]
+        -- startupHook = do
+            -- spawnOn "web" "chromium"
             -- spawnOn "play" "roxterm -e \"bash -c '(cd gitting; bash)'\""
             -- spawnOn "wca" "chromium --profile-directory='Profile 1'"
     } `additionalKeys` myKeys

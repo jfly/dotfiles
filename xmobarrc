@@ -10,25 +10,9 @@ Config {
                     , Run Date "%a %b %_d %l:%M" "date" 10
 
                     , Run Com "get_volume.py" [] "myvolume" 10
-                    -- battery monitor
-                    , Run Battery        [ "--template" , "Batt: <acstatus>"
-                                         , "--Low"      , "10"        -- units: %
-                                         , "--High"     , "80"        -- units: %
-                                         , "--low"      , "darkred"
-                                         , "--normal"   , "darkorange"
-                                         , "--high"     , "darkgreen"
-
-                                         , "--" -- battery specific options
-                                                   -- discharging status
-                                                   , "-o"   , "<left>% (<timeleft>)"
-                                                   -- AC "on" status
-                                                   , "-O"   , "<fc=#dAA520>Charging</fc>"
-                                                   -- charged status
-                                                   , "-i"   , "<fc=#006000>Charged</fc>"
-                                         ] 50
                     , Run StdinReader
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% }{ Vol: %myvolume% | %battery% | %cpu% | %memory% <fc=#ee9a00>%date%</fc>"
+       , template = "%StdinReader% }{ Vol: %myvolume% | %cpu% | %memory% <fc=#ee9a00>%date%</fc>"
        }

@@ -2,9 +2,9 @@
 
 set -e
 
-export DISPLAY=:0
+#<<<export DISPLAY=:0
 
 # https://bugs.launchpad.net/ubuntu/+source/xserver-xorg-video-intel/+bug/660901/comments/3
-export XAUTHORITY=/home/jeremy/.Xauthority
+#<<<export XAUTHORITY=/home/jeremy/.Xauthority
 
 xmodmap ~/.Xmodmap
