@@ -51,6 +51,7 @@ manage everything. Just git clone, and run the `./install` script!
 - `pacman -S mosh`
 - `pacman -S ctags && sudo npm install -g git://github.com/ramitos/jsctags.git` - for vim tagbar plugin
 - `pacman -S the_silver_searcher` - for faster ctrl+p in vim
+- [keynav-enhanced](https://aur.archlinux.org/packages/keynav-enhanced/)
 - [byzanz](https://aur.archlinux.org/packages/byzanz/)
   - [xrectsel](https://aur.archlinux.org/packages/xrectsel/)
 

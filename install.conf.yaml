@@ -70,6 +70,9 @@
         path: ssh_config
         create: true
         force: true
+    ~/.keynavrc:
+        path: keynavrc
+        force: true
 
     /etc/systemd/logind.conf.d/no-suspend-on-lidswitch.conf:
         path: no-suspend-on-lidswitch.conf
