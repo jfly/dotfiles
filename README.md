@@ -28,9 +28,8 @@ manage everything. Just git clone, and run the `./install` script!
 - [dmenu2](https://aur.archlinux.org/packages/dmenu2/)
 - `pacman -S roxterm termite chromium`
 - Fonts
-  - `pacman -S ttf-liberation ttf-bitstream-vera noto-fonts-emoji ttf-ubuntu-font-family`
+  - `pacman -S ttf-liberation ttf-bitstream-vera noto-fonts noto-fonts-emoji`
   - Install [ttf-google-fonts-git](https://aur.archlinux.org/packages/ttf-google-fonts-git/) from the AUR
-    - NOTE: ttf-google-fonts-git and ttf-ubuntu-font-family are in conflict. Remove ttf-ubuntu-font-family? [y/N] n
 
 ## Setting up wireless with network manager
 - `pacman -S networkmanager network-manager-applet networkmanager-vpnc gnome-keyring`
