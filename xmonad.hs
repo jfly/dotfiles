@@ -27,6 +27,7 @@ myBorderWidth = 2
 -- https://github.com/hcchu/dotfiles/blob/master/.xmonad/xmonad.hs
 muteAndShowVolume = "set_volume.py toggle-mute; show-volume.sh"
 changeVolume s = "set_volume.py " ++ s ++ "; show-volume.sh"
+toggleMicMute = "pactl set-source-mute 1 toggle"
 changeBrightness s = "sudo change-brightness.py " ++ s ++ "; show-brightness.sh"
 
 altMask = mod1Mask
@@ -61,6 +62,7 @@ myKeys =
         ((0, xF86XK_AudioMute), spawn muteAndShowVolume),
         ((0, xF86XK_AudioRaiseVolume), spawn $ changeVolume "5+"),
         ((0, xF86XK_AudioLowerVolume), spawn $ changeVolume "5-"),
+        ((0, xF86XK_AudioMicMute), spawn toggleMicMute),
 
         ((0, xF86XK_MonBrightnessDown), spawn $ changeBrightness "5%-"),
         ((0, xF86XK_MonBrightnessUp), spawn $ changeBrightness "5%+"),
