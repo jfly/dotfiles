@@ -82,4 +82,4 @@ if [[ "$SSH_AGENT_PID" == "" ]]; then
 fi
 
 # startx at login
-[[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx
+[[ -z $DISPLAY && $XDG_VTNR -eq 1 && -z $TMUX ]] && exec startx
