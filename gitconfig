@@ -3,6 +3,7 @@
     upgrade-submodules = submodule update --init --remote
     lg = log --graph --all --decorate
     lol = log --graph --pretty='%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    web = "!xdg-open `git ls-remote --get-url origin | sed 's_.*[/:]\\(.\\+/.\\+\\)\\.git$_https://github.com/\\1_'`"
 [user]
     name = Jeremy Fleischman
     email = jeremyfleischman@gmail.com
