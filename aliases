@@ -8,3 +8,5 @@ alias wcadeploy="ssh -A cubing@worldcubeassociation.org worldcubeassociation.org
 
 # Rails Reset Test DB
 alias rrtdb="bin/rails db:environment:set RAILS_ENV=test && bin/rake db:reset RACK_ENV=test"
+
+alias ssh="light_dark_ssh"
