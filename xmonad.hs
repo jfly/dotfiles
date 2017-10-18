@@ -1,3 +1,4 @@
+import Data.List
 import XMonad hiding ( (|||) ) -- don't use the normal ||| operator
 import XMonad.Config.Desktop
 import XMonad.Layout.LayoutCombinators -- use the one from LayoutCombinators instead
@@ -23,6 +24,16 @@ tall = Tall 1 (3/100) (1/2)
 myLayout = avoidStruts $ smartBorders $ tall ||| Mirror tall ||| Full
 
 myBorderWidth = 2
+
+windowPlacement = composeAll [
+        -- use `xprop` to get window information
+
+        -- Shift Hangouts video calls to the "videos" desktop.
+        className =? "Chromium" <&&> role =? "pop-up" <&&> fmap (isInfixOf "Untitled") title --> doShift "video",
+
+        -- Fix for GIMP windows
+        className =? "Gimp" --> doFloat
+    ] where role = stringProperty "WM_WINDOW_ROLE"
 
 -- https://github.com/hcchu/dotfiles/blob/master/.xmonad/xmonad.hs
 muteAndShowVolume = "set_volume.py toggle-mute; show-volume.sh"
@@ -90,7 +101,7 @@ myKeys =
 main = do
     xmproc <- spawnPipe "xmobar"
     xmonad $ ewmh desktopConfig {
-        manageHook = manageDocks <+> manageSpawn <+> manageHook desktopConfig,
+        manageHook = manageDocks <+> manageSpawn <+> windowPlacement <+> manageHook desktopConfig,
         layoutHook = myLayout,
         logHook = logHook desktopConfig <+> dynamicLogWithPP xmobarPP {
             ppOutput = hPutStrLn xmproc,
@@ -100,9 +111,9 @@ main = do
         modMask = myModMask,
         XMonad.terminal = myTerminal,
         XMonad.borderWidth = myBorderWidth,
-        workspaces = ["web", "play", "wrk", "test", "video", "todo", "7", "8", "9"],
-        startupHook = do
-            spawnOn "web" "chromium"
+        workspaces = ["web", "play", "wrk", "test", "video", "todo", "7", "8", "9"]
+        -- startupHook = do
+            -- spawnOn "web" "chromium"
             -- spawnOn "play" "roxterm -e \"bash -c '(cd gitting; bash)'\""
             -- spawnOn "wca" "chromium --profile-directory='Profile 1'"
     } `additionalKeys` myKeys
