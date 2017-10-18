@@ -23,6 +23,11 @@ manage everything. Just git clone, and run the `./install` script!
 
 ## Setting up x11 and xmonad
 - Install the appropriate [video card driver](https://wiki.archlinux.org/index.php/xorg#Driver_installation)
+  - Tearing
+    - https://www.reddit.com/r/thinkpad/comments/63kxkz/x1_carbon_5th_screen_tearing_with_i3wm/
+    - https://wiki.archlinux.org/index.php/intel_graphics#Tear-free_video
+    - https://www.youtube.com/watch?v=0RvIbVmCOxg
+    - https://www.google.com/search?q=linux+Intel+hd620+tearing&oq=linux+Intel+hd620+tearing&gs_l=psy-ab.3...7537.8213.0.8515.5.5.0.0.0.0.111.432.4j1.5.0....0...1.1.64.psy-ab..1.2.152...0i7i30k1j0i8i7i30k1j0i30k1j0i8i30k1.0.4H4BfKt1e7c
 - `pacman -S xorg-server xorg-xinit xorg-xsetroot xorg-xmodmap xorg-xmessage xorg-xrandr xorg-xrdb xmonad xmonad-contrib xmobar feh wmname network-manager-applet openssh alsa-utils scrot xclip numlockx xvkbd xsel xdotool`
 - [trayer-srg](https://aur.archlinux.org/packages/trayer-srg-git/)
 - [dmenu2](https://aur.archlinux.org/packages/dmenu2/)
