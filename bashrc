@@ -47,13 +47,12 @@ END=">"
 export PS1="${MY_BODY}${END} "
 
 export PATH=$PATH:$HOME/bin
-export PATH=$PATH:$HOME/bin/packer
+export PATH=$PATH:$HOME/.screenlayout
 
 export ANDROID_HOME=$HOME/Android/Sdk
 export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
 
 export PATH=$PATH:$HOME/.gem/ruby/2.4.0/bin
-export PATH=$PATH:/usr/local/heroku/bin
 
 export HISTCONTROL=ignorespace
 

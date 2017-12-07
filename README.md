@@ -37,6 +37,12 @@ manage everything. Just git clone, and run the `./install` script!
   - TODO: Look into [networkmanager-dmenu](https://github.com/firecat53/networkmanager-dmenu)?
 - `systemctl enable NetworkManager.service && systemctl start NetworkManager.service`
 
+## Bluetooth
+See <https://wiki.archlinux.org/index.php/Bluetooth_keyboard>.
+
+- `pacman -S bluez bluez-utils gnome-bluetooth blueberry`
+- `systemctl enable bluetooth.service && systemctl start bluetooth.service`
+
 ## Audio
 - `pacman -S pulseaudio pamixer pavucontrol bc`
 - Install [pasystray](https://aur.archlinux.org/cgit/aur.git/snapshot/pasystray.tar.gz)
