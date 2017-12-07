@@ -47,7 +47,7 @@ END=">"
 export PS1="${MY_BODY}${END} "
 
 export PATH=$PATH:$HOME/bin
-export PATH=$PATH:$HOME/.screenlayout
+export PATH=$PATH:$HOME/bin/layouts
 
 export ANDROID_HOME=$HOME/Android/Sdk
 export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools

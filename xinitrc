@@ -1,6 +1,6 @@
 fixkeys
 fixmouse
-fixmonitors
+automon
 
 # https://wiki.archlinux.org/index.php/HiDPI
 xrdb -merge ~/.Xresources
@@ -42,7 +42,7 @@ dpi=`xrdb -query Xft.dpi | grep "Xft.dpi" | grep -oE "[0-9]+$"`
 if [ "$dpi" == "144" ]; then
     TRAYER_HEIGHT=25
 else
-    TRAYER_HEIGHT=18
+    TRAYER_HEIGHT=19
 fi
 trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 10 --height $TRAYER_HEIGHT --transparent true --alpha 0 --tint 0 &
 

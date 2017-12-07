@@ -1,5 +1,7 @@
-#!/bin/bash
+#!/usr/bin/sh
 
 # Force trayer to reposition itself. Workaround for
 #  https://github.com/sargon/trayer-srg/issues/26.
 python2 -c 'import gtk; gtk.StatusIcon()'
+
+feh --randomize --bg-fill $HOME/Dropbox/pics/Wallpaper/*

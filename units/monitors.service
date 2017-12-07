@@ -6,7 +6,7 @@ Type=simple
 # https://bugs.launchpad.net/ubuntu/+source/xserver-xorg-video-intel/+bug/660901/comments/3
 Environment=XAUTHORITY=/home/jeremy/.Xauthority
 Environment=DISPLAY=:0
-ExecStart=/usr/bin/su jeremy -c /home/jeremy/bin/fixmonitors
+ExecStart=/usr/bin/su jeremy -c /home/jeremy/bin/automon
 
 [Install]
 WantedBy=multi-user.target

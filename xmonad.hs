@@ -94,8 +94,9 @@ myKeys =
         ((controlMask .|. altMask, xK_Down), spawn "xrandr -o normal"),
         ((controlMask .|. altMask, xK_Up), spawn "xrandr -o inverted"),
 
-        ((myModMask, xK_a), spawn "/home/jeremy/.screenlayout/mobile.sh && /home/jeremy/gitting/dotfiles/autorandr/postswitch"),
-        ((myModMask .|. shiftMask, xK_a), spawn "/home/jeremy/.screenlayout/sf-desk.sh && /home/jeremy/gitting/dotfiles/autorandr/postswitch")
+        ((myModMask, xK_a), spawn "automon"),
+        ((myModMask .|. shiftMask, xK_a), spawn "mobile.sh")
+        -- ((myModMask .|. shiftMask, xK_a), spawn "mission-desk.sh")
     ]
 
 main = do

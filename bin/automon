@@ -1,0 +1,19 @@
+#!/bin/bash
+
+if [ `cat /sys/class/drm/card0-HDMI-A-1/status` == "connected" ]; then
+    echo "HDMI is connected!"
+    LAYOUT_SCRIPT=mission-desk.sh
+    NEW_DPI=96
+else
+    echo "Looks like nothing is connected, going mobile"
+    LAYOUT_SCRIPT=mobile.sh
+    NEW_DPI=144
+fi
+
+sed "s/Xft.dpi.*/Xft.dpi: $NEW_DPI/" -i ~/.Xresources
+
+$LAYOUT_SCRIPT
+
+# For some reason, autorandr seems to be bugging out with the onelink dock
+#echo "Running autorandr --change"
+#/home/jeremy/bin/autorandr --change
