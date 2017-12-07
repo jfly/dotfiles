@@ -94,6 +94,11 @@ myKeys =
         ((controlMask .|. altMask, xK_Down), spawn "xrandr -o normal"),
         ((controlMask .|. altMask, xK_Up), spawn "xrandr -o inverted"),
 
+        -- Create our own play/pause button.
+        ((myModMask, xK_s), spawn "sleep 0.1 && xdotool key --clearmodifiers XF86AudioPlay"),
+        ((myModMask, xK_d), spawn "sleep 0.1 && xdotool key --clearmodifiers XF86AudioNext"),
+        ((myModMask .|. shiftMask, xK_d), spawn "sleep 0.1 && xdotool key --clearmodifiers XF86AudioPrev"),
+
         ((myModMask, xK_a), spawn "automon"),
         ((myModMask .|. shiftMask, xK_a), spawn "mobile.sh")
         -- ((myModMask .|. shiftMask, xK_a), spawn "mission-desk.sh")
