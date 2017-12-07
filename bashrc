@@ -36,7 +36,11 @@ function start_screen {
 
 export VISUAL=vim
 export EDITOR=vim
-export BROWSER=chromium
+
+# Don't set BROWSER because if you do, then xdg-settings get default-web-browser` returns
+# something other than "chromium.desktop", which then causes chromium to complain when starting
+# up that it's not the default browser.
+#export BROWSER=chromium
 
 if tty -s; then
   green=$(tput setaf 2)
