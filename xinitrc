@@ -2,6 +2,9 @@ fixkeys
 fixmouse
 automon
 
+# Speed up keyrepeat
+xset r rate 200 30
+
 # https://wiki.archlinux.org/index.php/HiDPI
 xrdb -merge ~/.Xresources
 
