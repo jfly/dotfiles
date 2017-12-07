@@ -1,6 +1,10 @@
 #!/bin/bash
 
-if [ `cat /sys/class/drm/card0-HDMI-A-1/status` == "connected" ]; then
+HDMI_STATUS=$(</sys/class/drm/card0/*HDMI*/status)
+
+# TODO - look into automating this via udev, see https://wiki.archlinux.org/index.php/PulseAudio/Examples#Automatically_switch_audio_to_HDMI
+
+if [ $HDMI_STATUS == "connected" ]; then
     echo "HDMI is connected!"
     LAYOUT_SCRIPT=mission-desk.sh
     NEW_DPI=96

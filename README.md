@@ -44,9 +44,10 @@ See <https://wiki.archlinux.org/index.php/Bluetooth_keyboard>.
 - `systemctl enable bluetooth.service && systemctl start bluetooth.service`
 
 ## Audio
-- `pacman -S pulseaudio pamixer pavucontrol bc`
+- `pacman -S pulseaudio pamixer pavucontrol paprefs bc`
 - Install [pasystray](https://aur.archlinux.org/cgit/aur.git/snapshot/pasystray.tar.gz)
 - Install [hcchu/volnoti](https://github.com/hcchu/volnoti#new-options-in-this-fork) from github. [volnoti](https://aur.archlinux.org/packages/volnoti) doesn't have the features needed for volnoti-brightness.
+- NOTE: Confusingly enough, I had to change the Profile setting under "Configuration" to get HDMI output working.
 
 ## Power stuff
 - Install from AUR: `https://aur.archlinux.org/packages/laptop-mode-tools/`
