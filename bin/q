@@ -1,3 +1,5 @@
 #/bin/sh
 
-$* && play wav/ootinee.wav &> /dev/null || play wav/doh.wav &> /dev/null
+WAV_FOLDER=$(dirname "$0")/wav
+
+$* && ( play $WAV_FOLDER/ootinee.wav &> /dev/null & ) || ( play $WAV_FOLDER/doh.wav &> /dev/null & )
