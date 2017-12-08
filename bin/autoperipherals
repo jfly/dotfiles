@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# TODO - look into running whenever power is added/removed
+# "on" or "off": POWER_STATUS=$(acpi -a | cut -d' ' -f3 | cut -d- -f1)
+
 HDMI_STATUS=$(</sys/class/drm/card0/*HDMI*/status)
 
 # TODO - look into automating this via udev, see https://wiki.archlinux.org/index.php/PulseAudio/Examples#Automatically_switch_audio_to_HDMI
@@ -19,6 +22,7 @@ $LAYOUT_SCRIPT
 
 fixmouse
 
+# TODO - look into running this whenever a new keyboard appears
 # Note, we intentionally run fixkeys last, because xmodmap blocks if you're holding any keys down.
 # See: https://forums.fedoraforum.org/showthread.php?296298-xmodmap-please-release-the-following-keys-within-2-seconds
 fixkeys

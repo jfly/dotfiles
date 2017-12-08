@@ -41,12 +41,18 @@ changeVolume s = "set_volume.py " ++ s ++ "; show-volume.sh"
 toggleMicMute = "pactl set-source-mute 1 toggle"
 changeBrightness s = "sudo change-brightness.py " ++ s ++ "; show-brightness.sh"
 
+fullscreenChrome :: X ()
+fullscreenChrome = do
+    sendMessage ToggleStruts
+    spawn "sleep 0.1 && xdotool key --clearmodifiers F11"
+    return ()
+
 altMask = mod1Mask
 myKeys =
     [
         -- http://xmonad.org/xmonad-docs/xmonad-contrib/XMonad-Hooks-ManageDocks.html
         ((myModMask, xK_b), sendMessage ToggleStruts),
-        ((0, xK_F11), sendMessage ToggleStruts),
+        ((myModMask, xK_F11), fullscreenChrome),
 
         -- Launch a terminal (changed from return to semicolon)
         ((myModMask .|. shiftMask, xK_semicolon), spawn myTerminal),
