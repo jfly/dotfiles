@@ -8,3 +8,6 @@ export DISPLAY=:0
 export XAUTHORITY=/home/jeremy/.Xauthority
 
 xmodmap ~/.Xmodmap
+
+# Speed up keyrepeat
+xset r rate 200 30

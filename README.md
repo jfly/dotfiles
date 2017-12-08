@@ -1,12 +1,11 @@
-jfly/dotfiles
-=============
+# jfly/dotfiles
 
 I bought a new laptop, so it felt like it's finally time to do this.
 
 I'm using the excellent [dotbot](https://github.com/anishathalye/dotbot) to
 manage everything. Just git clone, and run the `./install` script!
 
-# Directions for fresh Arch install
+## Directions for fresh Arch install
 - Pre-install
   - Disable hibernation in Windows, resize Windows partition
   - Set Windows to use UTC hardware clock time ([instructions from here](https://wiki.archlinux.org/index.php/time#UTC_in_Windows)): `reg add "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\TimeZoneInformation" /v RealTimeIsUniversal /d 1 /t REG_QWORD /f`
@@ -44,7 +43,7 @@ See <https://wiki.archlinux.org/index.php/Bluetooth_keyboard>.
 - `systemctl enable bluetooth.service && systemctl start bluetooth.service`
 
 ## Audio
-- `pacman -S pulseaudio pamixer pavucontrol paprefs bc`
+- `pacman -S pulseaudio pamixer pavucontrol paprefs bc sox`
 - Install [pasystray](https://aur.archlinux.org/cgit/aur.git/snapshot/pasystray.tar.gz)
 - Install [hcchu/volnoti](https://github.com/hcchu/volnoti#new-options-in-this-fork) from github. [volnoti](https://aur.archlinux.org/packages/volnoti) doesn't have the features needed for volnoti-brightness.
 - NOTE: Confusingly enough, I had to change the Profile setting under "Configuration" to get HDMI output working.

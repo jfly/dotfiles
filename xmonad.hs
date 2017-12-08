@@ -46,6 +46,7 @@ myKeys =
     [
         -- http://xmonad.org/xmonad-docs/xmonad-contrib/XMonad-Hooks-ManageDocks.html
         ((myModMask, xK_b), sendMessage ToggleStruts),
+        ((0, xK_F11), sendMessage ToggleStruts),
 
         -- Launch a terminal (changed from return to semicolon)
         ((myModMask .|. shiftMask, xK_semicolon), spawn myTerminal),
@@ -99,7 +100,7 @@ myKeys =
         ((myModMask, xK_d), spawn "sleep 0.1 && xdotool key --clearmodifiers XF86AudioNext"),
         ((myModMask .|. shiftMask, xK_d), spawn "sleep 0.1 && xdotool key --clearmodifiers XF86AudioPrev"),
 
-        ((myModMask, xK_a), spawn "automon"),
+        ((myModMask, xK_a), spawn "autoperipherals"),
         ((myModMask .|. shiftMask, xK_a), spawn "mobile.sh")
         -- ((myModMask .|. shiftMask, xK_a), spawn "mission-desk.sh")
     ]
