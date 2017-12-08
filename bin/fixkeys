@@ -7,7 +7,9 @@ export DISPLAY=:0
 # https://bugs.launchpad.net/ubuntu/+source/xserver-xorg-video-intel/+bug/660901/comments/3
 export XAUTHORITY=/home/jeremy/.Xauthority
 
-xmodmap ~/.Xmodmap
-
 # Speed up keyrepeat
 xset r rate 200 30
+
+# First reset keys before running xmodmap.
+setxkbmap
+xmodmap ~/.Xmodmap

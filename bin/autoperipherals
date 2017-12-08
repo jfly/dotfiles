@@ -1,23 +1,24 @@
 #!/bin/bash
 
-fixkeys
-fixmouse
-
 HDMI_STATUS=$(</sys/class/drm/card0/*HDMI*/status)
 
 # TODO - look into automating this via udev, see https://wiki.archlinux.org/index.php/PulseAudio/Examples#Automatically_switch_audio_to_HDMI
 
 if [ $HDMI_STATUS == "connected" ]; then
-    echo "HDMI is connected!"
     LAYOUT_SCRIPT=mission-desk.sh
     NEW_DPI=96
 else
-    echo "Looks like nothing is connected, going mobile"
     LAYOUT_SCRIPT=mobile.sh
     NEW_DPI=144
 fi
 
 sed "s/Xft.dpi.*/Xft.dpi: $NEW_DPI/" -i ~/.Xresources
 
+notify-send "Running $LAYOUT_SCRIPT"
 $LAYOUT_SCRIPT
 
+fixmouse
+
+# Note, we intentionally run fixkeys last, because xmodmap block if you're holding any keys down.
+# See: https://forums.fedoraforum.org/showthread.php?296298-xmodmap-please-release-the-following-keys-within-2-seconds
+fixkeys
