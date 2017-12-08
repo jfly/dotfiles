@@ -31,6 +31,10 @@ if [ -x /usr/bin/nm-applet ]; then
     nm-applet &
 fi
 
+if [ -x /usr/bin/blueman-applet ]; then
+    blueman-applet &
+fi
+
 if [ -x /usr/bin/dunst ]; then
     dunst &
 fi

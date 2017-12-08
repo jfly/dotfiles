@@ -39,7 +39,7 @@ manage everything. Just git clone, and run the `./install` script!
 ## Bluetooth
 See <https://wiki.archlinux.org/index.php/Bluetooth_keyboard>.
 
-- `pacman -S bluez bluez-utils gnome-bluetooth blueberry`
+- `pacman -S bluez bluez-utils gnome-bluetooth blueman`
 - `systemctl enable bluetooth.service && systemctl start bluetooth.service`
 
 ## Audio
