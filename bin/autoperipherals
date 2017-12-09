@@ -17,7 +17,10 @@ fi
 
 sed "s/Xft.dpi.*/Xft.dpi: $NEW_DPI/" -i ~/.Xresources
 
-notify-send "Running $LAYOUT_SCRIPT"
+# notify-send blocks until something receives the message. When booting,
+# we haven't started dunst yet, so we need to run notify-send in the background.
+notify-send "Running $LAYOUT_SCRIPT" &
+
 $LAYOUT_SCRIPT
 
 fixmouse
