@@ -1,9 +1,37 @@
 #!/usr/bin/env bash
+
+# Change into script directory.
+cd "$(dirname "$0")"
+
+PID_FILE=jscrot.pid
+
+if [ -e $PID_FILE ]; then
+    kill `cat $PID_FILE`
+    echo "I see an ongoing jscrot, I'm going to kill it and exit"
+    exit 1
+fi
+
+# Sound notification to let one know when recording is about to start (and ends)
+beep() {
+    paplay /usr/share/sounds/freedesktop/stereo/bell.oga &
+}
+
 SCREENSHOTS_DIR=$HOME/screenshots
 mkdir -p $SCREENSHOTS_DIR
-scrot "%Y-%m-%d_%H:%M:%S_\$wx\$h_${HOSTNAME}.png" -e "mv \$f \"$SCREENSHOTS_DIR\"" "$@"
 
-# Find the newest file in $SCREENSHOTS_DIR
-f=`ls -t $SCREENSHOTS_DIR | head -1`
-# Copy that file (we assume it's a png) to the clipboard.
-xclip -selection clipboard -t "image/png" $SCREENSHOTS_DIR/$f
+slop=$(slop -f "%x %y %w %h %g %i") || exit 1
+read -r X Y W H G ID < <(echo $slop)
+
+file_noext=$SCREENSHOTS_DIR/"`date +"%Y-%m-%d_%H:%M:%S"`_$W_$H_$HOSTNAME"
+
+if [ "$1" == "--video" ]; then
+    file=${file_noext}.gif
+    byzanz-record --verbose --cursor --exec="savepid $PID_FILE bash -c 'while true; do sleep 1; done'" --delay=0 --x=$X --y=$Y --width=$W --height=$H $file
+    beep
+else
+    file=${file_noext}.png
+    maim -g $G $file
+fi
+
+# Copy that file to the clipboard.
+xclip -selection clipboard -t "image/${file##*.}" $file

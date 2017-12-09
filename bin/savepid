@@ -12,7 +12,7 @@ set -o monitor
 
 PIDFILE="$1" # the first command line argument is the pid
 shift
-$@ & # execute the rest of the command line arguments in the background
+"$@" & # execute the rest of the command line arguments in the background
 echo $! > "$PIDFILE"
-fg
+fg &> /dev/null
 rm $PIDFILE

@@ -93,7 +93,7 @@ myKeys =
         -- note the sleep 0.2 as a workaround for the ancient:
         --  https://code.google.com/p/xmonad/issues/detail?id=476
         ((0, xK_Print), spawn "sleep 0.2; jscrot --select"),
-        ((controlMask, xK_Print), spawn "jscrot --focused"),
+        ((controlMask, xK_Print), spawn "jscrot --video"),
         ((shiftMask, xK_Print), spawn "jscrot"),
 
         ((controlMask .|. altMask, xK_Left), spawn "xrandr -o right"),
