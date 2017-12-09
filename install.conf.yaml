@@ -47,10 +47,6 @@
     ~/bin:
         path: bin
         force: true
-    ~/.config/autorandr:
-        path: autorandr
-        create: true
-        force: true
     ~/.config/roxterm.sourceforge.net:
         path: roxterm.sourceforge.net
         create: true
