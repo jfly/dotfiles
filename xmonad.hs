@@ -30,6 +30,7 @@ windowPlacement = composeAll [
 
         -- Shift Hangouts video calls to the "videos" desktop.
         -- className =? "Chromium" <&&> role =? "pop-up" <&&> fmap (isInfixOf "Untitled") title --> doShift "video",
+        className =? "Chromium" <&&> fmap (isInfixOf "Google Play Music") title --> doShift "9",
 
         -- Fix for GIMP windows
         className =? "Gimp" --> doFloat
