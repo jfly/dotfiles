@@ -30,7 +30,7 @@ if [ "$1" == "--video" ]; then
     beep
 else
     file=${file_noext}.png
-    maim -g $G $file
+    maim -g $G --hidecursor $file
 fi
 
 # Copy that file to the clipboard.
