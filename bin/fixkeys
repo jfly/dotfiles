@@ -7,6 +7,13 @@ export DISPLAY=:0
 # https://bugs.launchpad.net/ubuntu/+source/xserver-xorg-video-intel/+bug/660901/comments/3
 export XAUTHORITY=/home/jeremy/.Xauthority
 
+# Turn off capslock just in case it's on.
+# Normally, I run fixkeys right after noticing that my capslock key is
+# actually doing capslock and not escape. I then run fixkeys, which previously
+# would trap me in capslock mode, because capslock no longer disables
+# capslock.
+capslockx off
+
 # Speed up keyrepeat
 xset r rate 200 30
 
