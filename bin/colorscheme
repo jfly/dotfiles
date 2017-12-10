@@ -1,15 +1,7 @@
 #/usr/bin/env bash
 
-function roxterm_dark() {
-  xdotool sleep 0.5 mousemove -w `xdotool getwindowfocus` 0 0 key --clearmodifiers shift+F10 Up Up Up Right Down Right Up Up Up Return 1 BackSpace # Dark
-}
-
-function roxterm_light() {
-  xdotool sleep 0.5 mousemove -w `xdotool getwindowfocus` 0 0 key --clearmodifiers shift+F10 Up Up Up Right Down Right Up Up Return 2 BackSpace # Light
-}
-
 function get_termite_font_size {
-    grep "font = " ~/.config/termite/config | grep -Eo "[0-9]+$"
+  grep "font = " ~/.config/termite/config | grep -Eo "[0-9]+$"
 }
 
 function set_termite_colorscheme_file {
@@ -18,7 +10,10 @@ function set_termite_colorscheme_file {
 }
 
 function reload_termite_config() {
-  xdotool sleep 0.2 key --clearmodifiers ctrl+shift+r
+  # Termite reloads its config on SIGUSR1.
+  # https://github.com/thestinger/termite/blob/3bc2a43bef9b0842cb242dd19853d0344c8a2766/termite.cc#L1715
+
+  kill -s USR1 `xdotool getwindowpid $(xdotool getwindowfocus)`
 }
 
 function dark() {

@@ -32,8 +32,6 @@ allow_bold = true
 dynamic_title = true
 urgent_on_bell = true
 clickable_url = false
-# 239 columns at 144 dpi with size 8 <<<
-# 239 columns at 96 dpi with size 12 <<<
 font = Ubuntu Mono ${FONT_SIZE}
 scrollback_lines = 10000
 search_wrap = true

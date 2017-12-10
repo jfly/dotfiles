@@ -50,7 +50,10 @@ function size_tray() {
 function size_termite() {
     font_size=$1
     ~/.config/termite/config.template.sh solarized-dark $font_size
-    # <<< TODO reload all existing termite sessions >>>
+
+    # Termite reloads its config on SIGUSR1.
+    # https://github.com/thestinger/termite/blob/3bc2a43bef9b0842cb242dd19853d0344c8a2766/termite.cc#L1715
+    killall -s USR1 termite
 }
 
 function size_chromium() {
