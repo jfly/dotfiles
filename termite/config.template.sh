@@ -4,15 +4,16 @@ cd "$(dirname "$0")"
 
 # Validate command line arguments
 print_usage_and_exit() {
-  echo "Usage: $0 [colorschemefilename.config]"
+  echo "Usage: $0 [colorschemefilename.config] [font_size]"
   echo
   exit
 }
-if [ $# -ne 1 ]; then
+if [ $# -ne 2 ]; then
   print_usage_and_exit
 fi
 
 COLORSCHEME_FILENAME=$1
+FONT_SIZE=$2
 
 COLORSCHEME=`cat ${COLORSCHEME_FILENAME}`
 
@@ -24,14 +25,16 @@ cat > config <<EOF
 
 [options]
 scroll_on_output = false
-scroll_on_keystroke = true
+scroll_on_keystroke = false
 audible_bell = false
 mouse_autohide = false
 allow_bold = true
 dynamic_title = true
 urgent_on_bell = true
-clickable_url = true
-font = Ubuntu Mono 12
+clickable_url = false
+# 239 columns at 144 dpi with size 8 <<<
+# 239 columns at 96 dpi with size 12 <<<
+font = Ubuntu Mono ${FONT_SIZE}
 scrollback_lines = 10000
 search_wrap = true
 #icon_name = terminal
@@ -54,18 +57,6 @@ filter_unmatched_urls = true
 
 # emit escape sequences for extra modified keys
 #modify_other_keys = false
-
-
-[hints]
-#font = Monospace 12
-#foreground = #dcdccc
-#background = #3f3f3f
-#active_foreground = #e68080
-#active_background = #3f3f3f
-#padding = 2
-#border = #3f3f3f
-#border_width = 0.5
-#roundness = 2.0
 
 ## The following was copied from ${COLORSCHEME_FILENAME}
 ${COLORSCHEME}

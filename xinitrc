@@ -39,15 +39,6 @@ if [ -x /usr/bin/dunst ]; then
     dunst &
 fi
 
-dpi=`xrdb -query Xft.dpi | grep "Xft.dpi" | grep -oE "[0-9]+$"`
-
-if [ "$dpi" == "144" ]; then
-    TRAYER_HEIGHT=25
-else
-    TRAYER_HEIGHT=19
-fi
-trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 10 --height $TRAYER_HEIGHT --transparent true --alpha 0 --tint 0 &
-
 sudo systemctl start fixkeys.path
 sudo systemctl start fixmouse.path
 

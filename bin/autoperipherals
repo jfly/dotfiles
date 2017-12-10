@@ -1,31 +1,61 @@
 #!/bin/bash
 
-# TODO - look into running whenever power is added/removed
-# "on" or "off": POWER_STATUS=$(acpi -a | cut -d' ' -f3 | cut -d- -f1)
+function main() {
+    # TODO - look into running whenever power is added/removed
+    # "on" or "off": POWER_STATUS=$(acpi -a | cut -d' ' -f3 | cut -d- -f1)
 
-HDMI_STATUS=$(</sys/class/drm/card0/*HDMI*/status)
+    HDMI_STATUS=$(</sys/class/drm/card0/*HDMI*/status)
 
-# TODO - look into automating this via udev, see https://wiki.archlinux.org/index.php/PulseAudio/Examples#Automatically_switch_audio_to_HDMI
+    # TODO - look into automating this via udev, see https://wiki.archlinux.org/index.php/PulseAudio/Examples#Automatically_switch_audio_to_HDMI
 
-if [ $HDMI_STATUS == "connected" ]; then
-    LAYOUT_SCRIPT=mission-desk.sh
-    NEW_DPI=96
-else
-    LAYOUT_SCRIPT=mobile.sh
-    NEW_DPI=144
-fi
+    if [ $HDMI_STATUS == "connected" ]; then
+        LAYOUT_SCRIPT=mission-desk.sh
+        TRAYER_HEIGHT=19
+        TERM_FONT_SIZE=8
+    else
+        LAYOUT_SCRIPT=mobile.sh
+        # Temporarily trying out a a really tiny tray on mobile... TRAYER_HEIGHT=25
+        TRAYER_HEIGHT=19
+        TERM_FONT_SIZE=12
+    fi
 
-sed "s/Xft.dpi.*/Xft.dpi: $NEW_DPI/" -i ~/.Xresources
+    size_tray $TRAYER_HEIGHT
+    size_termite $TERM_FONT_SIZE
+    size_chromium
 
-# notify-send blocks until something receives the message. When booting,
-# we haven't started dunst yet, so we need to run notify-send in the background.
-notify-send "Running $LAYOUT_SCRIPT" &
+    # notify-send blocks until something receives the message. When booting,
+    # we haven't started dunst yet, so we need to run notify-send in the background.
+    notify-send "Running $LAYOUT_SCRIPT" &
 
-$LAYOUT_SCRIPT
+    $LAYOUT_SCRIPT
 
-fixmouse
+    fixmouse
 
-# TODO - look into running this whenever a new keyboard appears
-# Note, we intentionally run fixkeys last, because xmodmap blocks if you're holding any keys down.
-# See: https://forums.fedoraforum.org/showthread.php?296298-xmodmap-please-release-the-following-keys-within-2-seconds
-fixkeys
+    # TODO - look into running this whenever a new keyboard appears
+    # Note, we intentionally run fixkeys last, because xmodmap blocks if you're holding any keys down.
+    # See: https://forums.fedoraforum.org/showthread.php?296298-xmodmap-please-release-the-following-keys-within-2-seconds
+    fixkeys
+}
+
+function size_tray() {
+    height=$1
+    killall -q trayer
+    trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 10 --height $height --transparent true --alpha 0 --tint 0 &
+
+    # TODO - if we want to resize xmobar, we need to:
+    #         1. edit our xmobarrc
+    #         2. run `xmonad --restart`
+}
+
+function size_termite() {
+    font_size=$1
+    ~/.config/termite/config.template.sh solarized-dark $font_size
+    # <<< TODO reload all existing termite sessions >>>
+}
+
+function size_chromium() {
+    # <<< TODO >>>
+    echo TODO size chromium
+}
+
+main
