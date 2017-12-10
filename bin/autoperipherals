@@ -9,11 +9,11 @@ function main() {
     # TODO - look into automating this via udev, see https://wiki.archlinux.org/index.php/PulseAudio/Examples#Automatically_switch_audio_to_HDMI
 
     if [ $HDMI_STATUS == "connected" ]; then
-        LAYOUT_SCRIPT=mission-desk.sh
+        LAYOUT_NAME=mission-desk
         TRAYER_HEIGHT=19
         TERM_FONT_SIZE=8
     else
-        LAYOUT_SCRIPT=mobile.sh
+        LAYOUT_NAME=mobile
         # Temporarily trying out a a really tiny tray on mobile... TRAYER_HEIGHT=25
         TRAYER_HEIGHT=19
         TERM_FONT_SIZE=12
@@ -21,13 +21,13 @@ function main() {
 
     size_tray $TRAYER_HEIGHT
     size_termite $TERM_FONT_SIZE
-    size_chromium
+    size_chromium $LAYOUT_NAME
 
     # notify-send blocks until something receives the message. When booting,
     # we haven't started dunst yet, so we need to run notify-send in the background.
-    notify-send "Running $LAYOUT_SCRIPT" &
+    notify-send "Detected environment $LAYOUT_NAME" &
 
-    $LAYOUT_SCRIPT
+    $LAYOUT_NAME.sh
 
     fixmouse
 
@@ -54,8 +54,13 @@ function size_termite() {
 }
 
 function size_chromium() {
-    # <<< TODO >>>
-    echo TODO size chromium
+    LAYOUT_NAME=$1
+    # 1. Set "Page zoom" in chrome://settings/?search=page+zoom to 75%.
+    # 2. Reduce the size of all the chrome?? is this even possible? =(
+    #    Two ways to do it that involve restarting chrome:
+    #      - Change Xresources and restart chrome, but this will affect other apps as well.
+    #      - chromium --force-device-scale-factor=1
+    sudo ln -sf ~/bin/layouts/chromium-$LAYOUT_NAME /usr/local/sbin/chromium
 }
 
 main
