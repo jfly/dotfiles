@@ -58,6 +58,7 @@ function size_termite() {
 
 function size_chromium() {
     LAYOUT_NAME=$1
+    # Urg, this is tough. Some ideas:
     # 1. Set "Page zoom" in chrome://settings/?search=page+zoom to 75%.
     # 2. Reduce the size of all the chrome?? is this even possible? =(
     #    Two ways to do it that involve restarting chrome:
@@ -66,4 +67,9 @@ function size_chromium() {
     sudo ln -sf ~/bin/layouts/chromium-$LAYOUT_NAME /usr/local/sbin/chromium
 }
 
+# There's no way it's good to be running this command simultaneously.
+if pgrep autoperipherals | grep -v $$; then
+    echo "I see an autoperipherals command already running, lets not step on its toes."
+    exit 1
+fi
 main

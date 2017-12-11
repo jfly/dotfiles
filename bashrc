@@ -1,7 +1,12 @@
 # .bashrc
 
-# If not running interactively, don't do anything
-[[ $- != *i* ]] && return
+export PATH=$PATH:$HOME/bin
+export PATH=$PATH:$HOME/bin/layouts
+
+export ANDROID_HOME=$HOME/Android/Sdk
+export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
+
+export PATH=$PATH:$HOME/.gem/ruby/2.4.0/bin
 
 source ~/.aliases
 
@@ -42,6 +47,9 @@ export EDITOR=vim
 # up that it's not the default browser.
 #export BROWSER=chromium
 
+# If not running interactively, don't do anything else
+[[ $- != *i* ]] && return
+
 if tty -s; then
   green=$(tput setaf 2)
   reset=$(tput sgr0)
@@ -50,13 +58,6 @@ MY_BODY="\[$green$bold\]\w\[$reset\] @\h"
 END=">"
 export PS1="${MY_BODY}${END} "
 
-export PATH=$PATH:$HOME/bin
-export PATH=$PATH:$HOME/bin/layouts
-
-export ANDROID_HOME=$HOME/Android/Sdk
-export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
-
-export PATH=$PATH:$HOME/.gem/ruby/2.4.0/bin
 
 export HISTCONTROL=ignorespace
 
