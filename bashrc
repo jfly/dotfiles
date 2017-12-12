@@ -1,10 +1,8 @@
 # .bashrc
 
+export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl"
 export PATH=$PATH:$HOME/bin
 export PATH=$PATH:$HOME/bin/layouts
-
-export ANDROID_HOME=$HOME/Android/Sdk
-export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
 
 export PATH=$PATH:$HOME/.gem/ruby/2.4.0/bin
 
