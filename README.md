@@ -41,6 +41,7 @@ See <https://wiki.archlinux.org/index.php/Bluetooth_keyboard>.
 
 - `pacman -S bluez bluez-utils gnome-bluetooth blueman`
 - `systemctl enable bluetooth.service && systemctl start bluetooth.service`
+- Note: Dualbooting with bluetooth is a *pain*. See: https://unix.stackexchange.com/a/255510 for more details and an awesome workaround.
 
 ## Audio
 - `pacman -S pulseaudio pamixer pavucontrol paprefs bc sox`
@@ -73,6 +74,7 @@ See <https://wiki.archlinux.org/index.php/Bluetooth_keyboard>.
 - When switching monitors, change DPI and update running applications
   - http://unix.stackexchange.com/questions/12613/is-there-a-way-to-find-all-x-resources-an-application-uses
   - backup plan: chrome://settings/search#zoom
+- `systemctl enable fixinputs.path && systemctl enable monitors` - Do these need to be run, or are they automatically enabled?
 
 ## breq specific
 
