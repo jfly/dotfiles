@@ -29,12 +29,9 @@ function main() {
 
     $LAYOUT_NAME.sh
 
-    fixmouse
-
-    # TODO - look into running this whenever a new keyboard appears
     # Note, we intentionally run fixkeys last, because xmodmap blocks if you're holding any keys down.
     # See: https://forums.fedoraforum.org/showthread.php?296298-xmodmap-please-release-the-following-keys-within-2-seconds
-    fixkeys
+    fixinputs
 }
 
 function size_tray() {

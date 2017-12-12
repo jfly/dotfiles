@@ -89,20 +89,12 @@
         create: true
         force: true
 
-    /usr/lib/systemd/system/fixkeys.path:
-        path: units/fixkeys.path
+    /usr/lib/systemd/system/fixinputs.path:
+        path: units/fixinputs.path
         create: true
         force: true
-    /usr/lib/systemd/system/fixkeys.service:
-        path: units/fixkeys.service
-        create: true
-        force: true
-    /usr/lib/systemd/system/fixmouse.path:
-        path: units/fixkeys.path
-        create: true
-        force: true
-    /usr/lib/systemd/system/fixmouse.service:
-        path: units/fixkeys.service
+    /usr/lib/systemd/system/fixinputs.service:
+        path: units/fixinputs.service
         create: true
         force: true
 

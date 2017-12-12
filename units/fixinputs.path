@@ -4,7 +4,7 @@
 Description=Triggers the service that sets up external keyboard
 
 [Path]
-PathExists=/dev/input/by-id/usb-Microsoft_Comfort_Curve_Keyboard_2000-event-kbd
+PathChanged=/dev/input/
 
 [Install]
 WantedBy=multi-user.target

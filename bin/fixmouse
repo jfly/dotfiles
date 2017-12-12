@@ -1,6 +1,0 @@
-#!/bin/bash
-
-set -e
-
-# https://wiki.archlinux.org/index.php/Mouse_acceleration
-xset m 2.5 0

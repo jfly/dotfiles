@@ -39,9 +39,6 @@ if [ -x /usr/bin/dunst ]; then
     dunst &
 fi
 
-sudo systemctl start fixkeys.path
-sudo systemctl start fixmouse.path
-
 # xmonad doesn't set a cursor
 xsetroot -cursor_name left_ptr
 exec xmonad
