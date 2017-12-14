@@ -16,14 +16,19 @@
     ~/.vimrc:
         path: vimrc
         force: true
+
     ~/.bashrc:
         path: bashrc
         force: true
+    ~/.zshrc:
+        path: zshrc
+        force: true
+    ~/.commonrc:
+        path: commonrc
+        force: true
+
     ~/.bash_profile:
         path: bash_profile
-        force: true
-    ~/.aliases:
-        path: aliases
         force: true
     ~/.xmonad/xmonad.hs:
         path: xmonad.hs

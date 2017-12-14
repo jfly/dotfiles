@@ -1,0 +1,48 @@
+# vi: ft=sh
+
+###
+### Environment variables
+###
+export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl"
+export PATH=$PATH:$HOME/bin
+export PATH=$PATH:$HOME/bin/layouts
+
+export PATH=$PATH:$HOME/.gem/ruby/2.4.0/bin
+
+export VISUAL=vim
+export EDITOR=vim
+
+# Don't set BROWSER because if you do, then xdg-settings get default-web-browser` returns
+# something other than "chromium.desktop", which then causes chromium to complain when starting
+# up that it's not the default browser.
+#export BROWSER=chromium
+
+# Urg, termite sets this to xterm-termite, which causes ssh to freak out when running tput.
+export TERM=xterm
+
+export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
+export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
+##################################
+
+###
+### Setup SSH Agent
+###
+# From https://wiki.archlinux.org/index.php/SSH_keys#ssh-agent
+if ! pgrep -u $USER ssh-agent > /dev/null; then
+  ssh-agent > ~/.ssh-agent-thing
+fi
+if [[ "$SSH_AGENT_PID" == "" ]]; then
+  eval $(<~/.ssh-agent-thing)
+fi
+##################################
+
+###
+### Setup ctrl-shift-n for VTE
+###
+[[ -f /etc/profile.d/vte.sh ]] && source /etc/profile.d/vte.sh
+##################################
+
+source ~/.commonrc/aliases
+
+# startx at login
+[[ -z $DISPLAY && $XDG_VTNR -eq 1 && -z $TMUX ]] && exec startx

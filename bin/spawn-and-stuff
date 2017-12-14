@@ -1,15 +1,26 @@
-#!/usr/bin/env bash
+#!/usr/bin/env expect
 
-exec expect -c "
+set to_spawn [lindex $argv 0];
+set to_stuff [lindex $argv 1];
+
 # Make sure SIGWINCH gets sent down to our spawned process.
 # https://stackoverflow.com/questions/45454452/expect-script-fixing-weird-terminal-resizing-behaviour
 trap {
- set rows [stty rows]
- set cols [stty columns]
- stty rows \$rows columns \$cols < \$spawn_out(slave,name)
+    set rows [stty rows]
+    set cols [stty columns]
+    stty rows $rows columns $cols < $spawn_out(slave,name)
 } WINCH
 
-spawn -noecho $1
-send -- \"$2\"
+# Whenever we receive a SIGUSR1, read and stuff the contents of /tmp/spawn-and-stuff-commands.txt.
+# This is almost certainly a security vulnerability, but it does work!
+trap {
+    set f [open "/tmp/spawn-and-stuff-commands.txt"]
+    set cmd [read $f]
+    close $f
+
+    send -- "$cmd"
+} USR1
+
+spawn -noecho "$to_spawn"
+send -- "$to_stuff"
 interact
-"

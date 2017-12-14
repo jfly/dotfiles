@@ -2,19 +2,22 @@
 call plug#begin('~/.vim/plugged')
 
 " Declare the list of plugins.
+Plug '~/.fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'Valloric/MatchTagAlways'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-scripts/matchit.zip'
 Plug 'tomtom/tcomment_vim'
 Plug 'altercation/vim-colors-solarized'
+
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
+
 Plug 'sheerun/vim-polyglot'
 Plug 'editorconfig/editorconfig-vim'
 
 Plug 'janko-m/vim-test'
-Plug 'jgdavey/tslime.vim'
-Plug 'skywind3000/asyncrun.vim'
+Plug 'kassio/neoterm'
 
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
@@ -92,7 +95,7 @@ noremap <leader>b :Buffers<CR>
 """"""
 
 " - Testing goodness!
-let test#strategy = "tslime"
+let test#strategy = "neoterm"
 nnoremap <leader>ts :TestSuite<CR>
 nnoremap <leader>tf :TestFile<CR>
 nnoremap <leader>tl :TestLast<CR>

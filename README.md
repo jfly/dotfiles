@@ -15,6 +15,7 @@ manage everything. Just git clone, and run the `./install` script!
 
 - `pacman -S vim editorconfig-core-c && mv /usr/bin/vi /usr/bin/vi.bak && ln -s /usr/bin/vim /usr/bin/vi` - install and set up vim as default
   - TODO - you need to run `:PlugInstall` inside of vim.
+  - Switch neovim?
 - `pacman -S sudo && visudo` - install and configure sudo
 - `useradd -m -G wheel -s /bin/bash jeremy && passwd jeremy` - create user and set their password
 - `pacman -S git python openssh` - install dependencies to install jfly/dotfiles

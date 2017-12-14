@@ -1,3 +1,5 @@
+# vi: ft=sh
+
 alias bs="mosh bs336 -- bash -cli bs"
 alias ls='ls --color=auto'
 alias o=xdg-open
@@ -15,3 +17,32 @@ alias ssh="light_dark_ssh"
 # Awesome debug script from https://unix.stackexchange.com/a/231310
 # Very useful for finding short lived processes.
 alias allprocs='sudo sysdig -p"*%evt.time %proc.pid %proc.ppid %evt.dir %proc.exeline"     "( evt.dir=< and evt.type=execve ) or evt.type=procexit"'
+
+function de {
+    CONTAINER=$1
+    shift
+    CMD="docker exec -it --detach-keys='ctrl-^,q' $CONTAINER env TERM=xterm bash"
+    if [ "$#" -gt 0 ]; then
+        CMD="$CMD -c '$*'"
+    fi
+    echo $CMD
+    eval $CMD
+}
+
+# Copied from https://gist.github.com/jfly/7b94cba17c04d344d62a7bea916bb55a
+function start_screen {
+    NAME=$1
+    shift
+    screen -dmS "$NAME" -s bash # start screen
+
+    while test $# -gt 0
+    do
+        TITLE="$1"
+        shift
+        CMD="$1"$'\n'
+        shift
+        screen -S "$NAME" -X title "$TITLE" # set title of window
+        screen -S "$NAME" -X stuff "$CMD" # run command in window
+        screen -S "$NAME" -X screen # add new window
+    done
+}
