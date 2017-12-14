@@ -4,13 +4,13 @@ function startOn() {
     CMD=$1
     WORKSPACE=$2
 
-    termite -d $DIR -r "send to $WORKSPACE" -e "bash -ic '$CMD; exec bash'" &
+    termite -d $DIR -r "send to $WORKSPACE" -e "spawn-and-stuff bash \"$CMD\"" &
     sleep 0.1 # slow down spawning termites so things don't behave intermittently
 }
 
 DIR=~/gitting/worldcubeassociation.org/WcaOnRails/
-startOn "cd WcaOnRails; bin/rails s" "wrk"
+startOn $'bin/rails s\n' "wrk"
 
 DIR=~/gitting/worldcubeassociation.org/
-startOn "sudo systemctl start mysqld" "wrk"
-startOn "vim" "wrk"
+startOn $'sudo systemctl start mysqld\n' "wrk"
+startOn $'vim\n' "wrk"

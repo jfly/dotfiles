@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+exec expect -c "
+# Make sure SIGWINCH gets sent down to our spawned process.
+# https://stackoverflow.com/questions/45454452/expect-script-fixing-weird-terminal-resizing-behaviour
+trap {
+ set rows [stty rows]
+ set cols [stty columns]
+ stty rows \$rows columns \$cols < \$spawn_out(slave,name)
+} WINCH
+
+spawn -noecho $1
+send -- \"$2\"
+interact
+"
