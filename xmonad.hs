@@ -33,7 +33,10 @@ windowPlacement = composeAll [
         className =? "Chromium" <&&> fmap (isInfixOf "Google Play Music") title --> doShift "9",
 
         -- Fix for GIMP windows
-        className =? "Gimp" --> doFloat
+        className =? "Gimp" --> doFloat,
+
+        role =? "send to wrk" --> doShift "wrk",
+        role =? "send to test" --> doShift "test"
     ] where role = stringProperty "WM_WINDOW_ROLE"
 
 -- https://github.com/hcchu/dotfiles/blob/master/.xmonad/xmonad.hs
