@@ -13,7 +13,8 @@ manage everything. Just git clone, and run the `./install` script!
   - Enable virtualization in BIOS (otherwise you will see a message "kvm:disabled by bios")
 - I chose to use the [rEFInd bootloader](https://wiki.archlinux.org/index.php/REFInd). You might want to restyle rEFInd by adding a theme such as [rEFInd-minimal](https://github.com/EvanPurkhiser/rEFInd-minimal).
 
-- `pacman -S vim && mv /usr/bin/vi /usr/bin/vi.bak && ln -s /usr/bin/vim /usr/bin/vi` - install and set up vim as default
+- `pacman -S vim editorconfig-core-c && mv /usr/bin/vi /usr/bin/vi.bak && ln -s /usr/bin/vim /usr/bin/vi` - install and set up vim as default
+  - TODO - you need to run `:PlugInstall` inside of vim.
 - `pacman -S sudo && visudo` - install and configure sudo
 - `useradd -m -G wheel -s /bin/bash jeremy && passwd jeremy` - create user and set their password
 - `pacman -S git python openssh` - install dependencies to install jfly/dotfiles
@@ -75,6 +76,7 @@ See <https://wiki.archlinux.org/index.php/Bluetooth_keyboard>.
   - http://unix.stackexchange.com/questions/12613/is-there-a-way-to-find-all-x-resources-an-application-uses
   - backup plan: chrome://settings/search#zoom
 - `systemctl enable fixinputs.path && systemctl enable monitors` - Do these need to be run, or are they automatically enabled?
+- Set up fzf: https://github.com/junegunn/fzf#using-git
 
 ## breq specific
 

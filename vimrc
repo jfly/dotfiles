@@ -1,7 +1,26 @@
-execute pathogen#infect()
+" Plugins will be downloaded under the specified directory.
+call plug#begin('~/.vim/plugged')
+
+" Declare the list of plugins.
+Plug 'junegunn/fzf.vim'
+Plug 'Valloric/MatchTagAlways'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-scripts/matchit.zip'
+Plug 'tomtom/tcomment_vim'
+Plug 'altercation/vim-colors-solarized'
+Plug 'tpope/vim-fugitive'
+Plug 'sheerun/vim-polyglot'
+Plug 'editorconfig/editorconfig-vim'
+
+Plug 'janko-m/vim-test'
+Plug 'jgdavey/tslime.vim'
+Plug 'skywind3000/asyncrun.vim'
+
+" List ends here. Plugins become visible to Vim after this call.
+call plug#end()
 
 let mapleader = ","
-" Fast reloading of the .vimrc
+" Fast reloading of .vimrc
 map <leader>r :source ~/.vimrc<cr>
 
 " http://vim.wikia.com/wiki/Indenting_source_code
@@ -67,34 +86,18 @@ au BufRead,BufNewFile Vagrantfile set filetype=ruby
 au BufRead,BufNewFile *.jy set filetype=python
 """"""
 
-"""""" ctrlp configuration
-" http://stackoverflow.com/a/22784889
-if executable('ag')
-  " Use ag over grep
-  set grepprg=ag\ --nogroup\ --nocolor
-
-endif
-let g:ctrlp_user_command = {
-  \ 'types': {
-    \ 1: ['.git', 'cd %s && git ls-files'],
-    \ 2: ['.hg', 'hg --cwd %s locate -I .'],
-    \ },
-  \ 'fallback': 'ag %s -l --nocolor -g ""'
-  \ }
-
-
-let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
-let g:ctrlp_working_path_mode = 'wra'
-let g:ctrlp_max_files = 1000000
-let g:ctrlp_max_depth = 40
-" https://coderwall.com/p/hk_bwg
-" Ignore some folders and files for CtrlP indexing
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
-  \ 'file': '\v\.(exe|so|dll|pyc)$',
-  \ }
-map <leader>b :CtrlPBuffer<CR>
+"""""" FZF configuration
+noremap <c-p> :Files<CR>
+noremap <leader>b :Buffers<CR>
 """"""
+
+" - Testing goodness!
+let test#strategy = "tslime"
+nnoremap <leader>ts :TestSuite<CR>
+nnoremap <leader>tf :TestFile<CR>
+nnoremap <leader>tl :TestLast<CR>
+nnoremap <leader>tn :TestNearest<CR>
+
 
 """""" airline configuration
 " Display all buffers when there's only one tab open
@@ -104,11 +107,6 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 
 " http://unix.stackexchange.com/a/30757
 set tabpagemax=100
-"<<< does not look good in light mode set colorcolumn=80,120
 
 " https://webpack.github.io/docs/webpack-dev-server.html#working-with-editors-ides-supporting-safe-write
 set backupcopy=yes
-
-" https://github.com/mxw/vim-jsx
-" By default, JSX syntax highlighting and indenting will be enabled only for files with the .jsx extension. If you would like JSX in .js files, add
-let g:jsx_ext_required = 0

@@ -85,3 +85,5 @@ fi
 
 # startx at login
 [[ -z $DISPLAY && $XDG_VTNR -eq 1 && -z $TMUX ]] && exec startx
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
