@@ -42,7 +42,9 @@ windowPlacement = composeAll [
 -- https://github.com/hcchu/dotfiles/blob/master/.xmonad/xmonad.hs
 muteAndShowVolume = "set_volume.py toggle-mute; show-volume.sh"
 changeVolume s = "set_volume.py " ++ s ++ "; show-volume.sh"
-toggleMicMute = "pactl set-source-mute 1 toggle"
+
+-- TODO sometimes this fails with "No such entity", look into why the indices are changing, or use `pactl list sources` to find the source?
+toggleMicMute = "pactl set-source-mute 10 toggle"
 changeBrightness s = "sudo change-brightness.py " ++ s ++ "; show-brightness.sh"
 
 fullscreenChrome :: X ()

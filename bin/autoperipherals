@@ -70,7 +70,7 @@ function size_chromium() {
 
 # There's no way it's good to be running this command simultaneously.
 if pgrep autoperipherals | grep -v $$; then
-    echo "I see an autoperipherals command already running, lets not step on its toes."
+    echo "I see an autoperipherals command already running, let's not step on its toes."
     exit 1
 fi
 main
