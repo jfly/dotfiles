@@ -68,4 +68,12 @@ PROMPT='${ret_status} %{$fg[cyan]%}%~%{$reset_color%} $(git_prompt_info)'
 
 setopt HIST_IGNORE_SPACE
 
+###
+### Bash-like navigation
+### Copied from: https://stackoverflow.com/a/10860628/1739415
+###
+autoload -U select-word-style
+select-word-style bash
+#####################
+
 source ~/.commonrc/commonrc
