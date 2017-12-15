@@ -94,13 +94,20 @@ noremap <c-p> :Files<CR>
 noremap <leader>b :Buffers<CR>
 """"""
 
-" - Testing goodness!
-let test#strategy = "neoterm"
+"""""" vim-test configuration
+function! FatRunnerStrategy(cmd)
+  call system("fat-runner run " . shellescape("clear;" . a:cmd))
+endfunction
+
+let g:test#custom_strategies = {'fat_runner': function('FatRunnerStrategy')}
+let g:test#strategy = "fat_runner"
+""""""
+
 nnoremap <leader>ts :TestSuite<CR>
 nnoremap <leader>tf :TestFile<CR>
 nnoremap <leader>tl :TestLast<CR>
 nnoremap <leader>tn :TestNearest<CR>
-
+""""""
 
 """""" airline configuration
 " Display all buffers when there's only one tab open

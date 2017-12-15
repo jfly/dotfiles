@@ -1,20 +1,16 @@
 #!/usr/bin/env bash
 
-function getShell() {
-    getent passwd $USER | cut -d: -f7
-}
-
-function startOn() {
+function terminalOn() {
     CMD=$1
     WORKSPACE=$2
 
-    termite -d $DIR -r "send to $WORKSPACE" -e "spawn-and-stuff $(getShell) \"$CMD\"" &
+    termite -r "send to $WORKSPACE" -e "shell-and-stuff \"$CMD\"" &
     sleep 0.1 # slow down spawning termites so things don't behave intermittently
 }
 
-DIR=~/gitting/worldcubeassociation.org/WcaOnRails/
-startOn $'bin/rails s\n' "wrk"
+sudo systemctl start mysqld
 
-DIR=~/gitting/worldcubeassociation.org/
-startOn $'sudo systemctl start mysqld\n' "wrk"
-startOn $'vim\n' "wrk"
+cd ~/gitting/worldcubeassociation.org/WcaOnRails/
+terminalOn "bin/rails s" "wrk"
+terminalOn "fat-runner become" "wrk"
+terminalOn "vim" "wrk"
