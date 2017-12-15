@@ -1,4 +1,4 @@
-#/usr/bin/env bash
+#!/usr/bin/env bash
 
 function get_termite_font_size {
   grep "font = " ~/.config/termite/config | grep -Eo "[0-9]+$"
@@ -14,7 +14,7 @@ function reload_termite_config() {
   # https://github.com/thestinger/termite/blob/3bc2a43bef9b0842cb242dd19853d0344c8a2766/termite.cc#L1715
 
   # First search for an ancestor termite process.
-  TERMITE_PID=$(pstree -sp $$ | grep -Eo 'termite\([0-9]+\)' | grep -o '[0-9]*' | tail -1)
+  TERMITE_PID=$(pstree -spl $$ | grep -Eo 'termite\([0-9]+\)' | grep -o '[0-9]*' | tail -1)
   if [ -z "$TERMITE_PID" ]; then
     # If there isn't an ancestor termite process, then look at the currently focused window,
     # but make sure it's a termite process and not some poor other process that we're going to

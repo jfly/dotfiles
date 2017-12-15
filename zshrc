@@ -71,6 +71,8 @@ setopt HIST_IGNORE_SPACE
 ###
 ### Bash-like navigation
 ### Copied from: https://stackoverflow.com/a/10860628/1739415
+### TODO - ctrl-w should delete all of foo_bar, not just the bar
+### TODO - ctrl-u should delete to beginning of line, not entire line
 ###
 autoload -U select-word-style
 select-word-style bash

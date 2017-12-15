@@ -3,7 +3,7 @@ xrandr --output HDMI1 --mode 1920x1080 --pos 0x0 --rotate normal --output VIRTUA
 fixtray
 
 # Switch to HDMI audio.
-pactl set-card-profile 1 output:hdmi-stereo+input:analog-stereo
+pactl set-card-profile 3 output:hdmi-stereo+input:analog-stereo
 
 # Enable bluetooth
 rfkill unblock bluetooth
