@@ -6,10 +6,10 @@ set -e
 xset m 2.5 0
 
 # Turn off capslock just in case it's on.
-# Normally, I run fixkeys right after noticing that my capslock key is
-# actually doing capslock and not escape. I then run fixkeys, which previously
-# would trap me in capslock mode, because capslock no longer disables
-# capslock.
+# Normally, I run fixinputs right after noticing that my capslock key is
+# actually doing capslock and not escape. I then run fixinputs, and it's
+# nice for fixinputs to actually disable capslock, because I didn't want
+# it on in the first place!
 capslockx off
 
 # Speed up keyrepeat
