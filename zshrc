@@ -71,11 +71,30 @@ setopt HIST_IGNORE_SPACE
 ###
 ### Bash-like navigation
 ### Copied from: https://stackoverflow.com/a/10860628/1739415
-### TODO - ctrl-w should delete all of foo_bar, not just the bar
-### TODO - ctrl-u should delete to beginning of line, not entire line
+### Also see https://stackoverflow.com/a/3483679/1739415
 ###
-autoload -U select-word-style
-select-word-style bash
+
+# Bind ctrl-u to cut to beginning of line.
+bindkey "^U" backward-kill-line
+
+# Change behavior of alt-b and alt-f to behave more like bash with regards to
+# trailing whitespace.
+autoload -Uz forward-word-match
+zle -N forward-word forward-word-match
+zstyle ':zle:*' skip-whitespace-first true
+zstyle ':zle:*' word-chars ''
+
+# Bind alt-backspace to delete one not so aggressive word backwards.
+bindkey '^[^?' backward-kill-word
+
+### Bind ctrl-w to delete one aggressive word backwards.
+backward-kill-dir() {
+    local WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
+    zle backward-kill-word
+}
+zle -N backward-kill-dir
+bindkey "^W" backward-kill-dir
+
 #####################
 
 source ~/.commonrc/commonrc
