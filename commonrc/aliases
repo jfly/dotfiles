@@ -46,3 +46,11 @@ function start_screen {
         screen -S "$NAME" -X screen # add new window
     done
 }
+
+function cgl {
+    hub browse -u -- commit/$1 | clipit
+}
+
+function clcl {
+    cgl `git rev-parse HEAD`
+}
