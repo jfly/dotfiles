@@ -6,7 +6,7 @@ PID_FILE=$CFG_DIR/pid
 mkdir -p $CFG_DIR
 
 function become() {
-  PID=$(find-nearest-ancestor expect)
+  PID=$(find-nearest-ancestor spawn-and-stuff)
   if [ -z "$PID" ]; then
       exec shell-and-stuff "fat-runner become"
   fi

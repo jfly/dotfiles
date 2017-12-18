@@ -18,14 +18,15 @@ manage everything. Just git clone, and run the `./install` script!
   - Switch neovim?
 - `pacman -S sudo && visudo` - install and configure sudo
 - `useradd -m -G wheel -s /bin/bash jeremy && passwd jeremy` - create user and set their password
-- `pacman -S git python openssh` - install dependencies to install jfly/dotfiles
+- `pacman -S git python python-pip python-pexpect openssh` - install dependencies to install jfly/dotfiles
+    - `pip install setproctitle`
 - `pacman -S wget base-devel` - needed to install stuff from the AUR
 - `git clone https://github.com/jfly/dotfiles.git && cd dotfiles && ./install`
 
 ## Setting up x11 and xmonad
 - Install the appropriate [video card driver](https://wiki.archlinux.org/index.php/xorg#Driver_installation)
   - `pacman -S driconf` - Fix for video tearing (see [here](http://www.apolitech.com/2017/04/20how-to-solve-video-tearing-on-intel.html)).
-- `pacman -S xorg-server xorg-xinit xorg-xsetroot xorg-xmodmap xorg-xmessage xorg-xrandr xorg-xrdb xmonad xmonad-contrib xmobar feh wmname network-manager-applet openssh alsa-utils maim xclip numlockx xvkbd xsel xdotool slop byzanz expect`
+- `pacman -S xorg-server xorg-xinit xorg-xsetroot xorg-xmodmap xorg-xmessage xorg-xrandr xorg-xrdb xmonad xmonad-contrib xmobar feh wmname network-manager-applet openssh alsa-utils maim xclip numlockx xvkbd xsel xdotool slop byzanz `
 - [trayer-srg](https://aur.archlinux.org/packages/trayer-srg-git/)
 - [dmenu2](https://aur.archlinux.org/packages/dmenu2/)
 - `pacman -S roxterm termite chromium`
