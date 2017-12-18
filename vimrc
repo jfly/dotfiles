@@ -50,10 +50,12 @@ noremap ]q :cnext<CR>
 noremap [q :cprevious<CR>
 
 " http://stackoverflow.com/a/234578
-set smartindent
+filetype plugin indent on
+" show existing tab with 4 spaces width
 set tabstop=4
-set softtabstop=4
+" when indenting with '>', use 4 spaces width
 set shiftwidth=4
+" On pressing tab, insert 4 spaces
 set expandtab
 
 " http://vim.wikia.com/wiki/256_colors_in_vim

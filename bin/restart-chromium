@@ -9,4 +9,4 @@ while pgrep chromium; do
 done
 
 echo "Starting chromium back up"
-chromium
+exec chromium
