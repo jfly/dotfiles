@@ -11,7 +11,7 @@ manage everything. Just git clone, and run the `./install` script!
   - Set Windows to use UTC hardware clock time ([instructions from here](https://wiki.archlinux.org/index.php/time#UTC_in_Windows)): `reg add "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\TimeZoneInformation" /v RealTimeIsUniversal /d 1 /t REG_QWORD /f`
   - Disable Secure Boot in BIOS
   - Enable virtualization in BIOS (otherwise you will see a message "kvm:disabled by bios")
-- I chose to use the [rEFInd bootloader](https://wiki.archlinux.org/index.php/REFInd). You might want to restyle rEFInd by adding a theme such as [rEFInd-minimal](https://github.com/EvanPurkhiser/rEFInd-minimal).
+- I chose to use the [rEFInd bootloader](https://wiki.archlinux.org/index.php/REFInd). You might want to restyle rEFInd by adding a theme such as [rEFInd-minimal](https://github.com/EvanPurkhiser/rEFInd-minimal) or [rEFInd-minimal-black-flat](https://github.com/dnaf/rEFInd-minimal-black-flat)
 
 - `pacman -S vim editorconfig-core-c && mv /usr/bin/vi /usr/bin/vi.bak && ln -s /usr/bin/vim /usr/bin/vi` - install and set up vim as default
   - TODO - you need to run `:PlugInstall` inside of vim.
