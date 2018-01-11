@@ -105,10 +105,10 @@ let g:test#custom_strategies = {'fat_runner': function('FatRunnerStrategy')}
 let g:test#strategy = "fat_runner"
 """"""
 
-nnoremap <leader>ts :TestSuite<CR>
-nnoremap <leader>tf :TestFile<CR>
-nnoremap <leader>tl :TestLast<CR>
-nnoremap <leader>tn :TestNearest<CR>
+nnoremap <leader>ts :w<CR>:TestSuite<CR>
+nnoremap <leader>tf :w<CR>:TestFile<CR>
+nnoremap <leader>tl :w<CR>:TestLast<CR>
+nnoremap <leader>tn :w<CR>:TestNearest<CR>
 """"""
 
 """""" airline configuration
