@@ -43,8 +43,7 @@ windowPlacement = composeAll [
 muteAndShowVolume = "set_volume.py toggle-mute; show-volume.sh"
 changeVolume s = "set_volume.py " ++ s ++ "; show-volume.sh"
 
--- TODO sometimes this fails with "No such entity", look into why the indices are changing, or use `pactl list sources` to find the source?
-toggleMicMute = "pactl set-source-mute 10 toggle"
+toggleMicMute = "pactl set-source-mute alsa_input.pci-0000_00_1f.3.analog-stereo toggle"
 changeBrightness s = "sudo change-brightness.py " ++ s ++ "; show-brightness.sh"
 
 fullscreenChrome :: X ()
