@@ -58,12 +58,16 @@ function gnb {
     if [ -z "$1" ]; then
         echo "Please specify a branch name to create." >> /dev/stderr
     else
-        git stash
+        stashed=$(git stash)
+
         git fetch upstream
         git checkout --no-track -b $1 upstream/master
         git push -u origin $1
-        git stash apply
-        echo "I just did a git stash apply, if things worked well, don't forget to do a `git stash drop`"
+
+        if [ "$stashed" != "No local changes to save" ]; then
+            git stash apply
+            echo "I just did a git stash apply, if things worked well, don't forget to do a `git stash drop`"
+        fi
     fi
 }
 
