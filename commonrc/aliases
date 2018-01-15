@@ -83,6 +83,7 @@ function remote_to_gh_url {
 }
 
 function gnpr {
+    git push
     upstream=$(remote_to_gh_url $(git remote get-url upstream))
     origin=$(remote_to_gh_url $(git remote get-url origin))
     origin_repo=${origin%/*}
