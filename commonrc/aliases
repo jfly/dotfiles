@@ -2,7 +2,6 @@
 
 alias bs="mosh bs336 -- bash -cli bs"
 alias ls='ls --color=auto'
-alias o=xdg-open
 alias be="bundle exec"
 
 alias ssh="light_dark_ssh"
@@ -16,6 +15,20 @@ alias rrtdb="bin/rails db:environment:set RAILS_ENV=test && bin/rake db:reset RA
 
 alias wcacheckmem="ssh wca 'date && ps -eo rss,comm,pid,args | grep -i unicorn | grep -v grep'"
 alias wcadeploy="ssh -A cubing@worldcubeassociation.org worldcubeassociation.org/scripts/deploy.sh pull_latest rebuild_regs rebuild_rails"
+
+function o {
+    if [ -e "$1" ]; then
+        DROPBOX_DIR=$(readlink -f ~/Dropbox)
+        if [[ "$1" = "$DROPBOX_DIR"* ]]; then
+            path_to_file=$(relpath "$1" "$DROPBOX_DIR")
+            1="https://www.dropbox.com/home/$path_to_file"
+        fi
+    fi
+    xdg-open "$1"
+}
+
+# https://stackoverflow.com/a/7305217/1739415
+relpath(){ python -c "import os.path; print(os.path.relpath('$1','${2:-$PWD}'))" ; }
 
 function de {
     CONTAINER=$1
