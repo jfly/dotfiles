@@ -1,14 +1,24 @@
 # jfly/dotfiles
 
+I'm using the excellent [dotbot](https://github.com/anishathalye/dotbot) to
+manage everything. Just git clone, and run the `./install` script!
+
 See instructions on [this Google Doc](https://docs.google.com/document/d/1Ji1dfnQxlb9KJGmVin4W6oAqN4-SWokSlXGYumss74M/edit#heading=h.1gvhtuttse8f).
 
+## Pre-install (if dual booting with Windows)
+  - Windows
+    - Disable hibernation in Windows (`powercfg /hibernate on`)
+    - Resize Windows partition with Disk Management. (Sometimes this gets tricky with immovable files over in Windows. Forcing a defrag can help, but there are some system files that defrag won't move, and you'll need to move them yourself).
+    - Set Windows to use UTC hardware clock time ([instructions from here](https://wiki.archlinux.org/index.php/time#UTC_in_Windows)): `reg add "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\TimeZoneInformation" /v RealTimeIsUniversal /d 1 /t REG_QWORD /f`
+  - UEFI/BIOS
+    - Disable Secure Boot and "os optimized" in restart tab: https://blog.fpmurphy.com/2012/09/lenovo-t430-t530-now-support-uefi-secure-boot.html
+    - Enable virtualization in BIOS (otherwise you will see a message "kvm:disabled by bios")
+
 ## Directions for fresh Arch install
-- Pre-install
-  - Disable hibernation in Windows, resize Windows partition
-  - Set Windows to use UTC hardware clock time ([instructions from here](https://wiki.archlinux.org/index.php/time#UTC_in_Windows)): `reg add "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\TimeZoneInformation" /v RealTimeIsUniversal /d 1 /t REG_QWORD /f`
-  - Disable Secure Boot in BIOS
-  - Enable virtualization in BIOS (otherwise you will see a message "kvm:disabled by bios")
-- I chose to use the [rEFInd bootloader](https://wiki.archlinux.org/index.php/REFInd). You might want to restyle rEFInd by adding a theme such as [rEFInd-minimal](https://github.com/EvanPurkhiser/rEFInd-minimal) or [rEFInd-minimal-black-flat](https://github.com/dnaf/rEFInd-minimal-black-flat)
+
+Follow the wiki! https://wiki.archlinux.org/index.php/installation_guide
+
+I chose to use the [rEFInd bootloader](https://wiki.archlinux.org/index.php/REFInd). You might want to restyle rEFInd by adding a theme such [rEFInd-minimal-black-flat](https://github.com/dnaf/rEFInd-minimal-black-flat).
 
 - `useradd -m -G wheel -s /bin/bash jeremy && passwd jeremy` - create user and set their password
 - `pacman -S git python python-pip python-pexpect openssh` - install dependencies to install jfly/dotfiles
