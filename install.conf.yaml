@@ -84,8 +84,8 @@
         path: suspend-on-powerbutton.conf
         create: true
         force: true
-    /etc/X11/xorg.conf.d/20-kaladin-intel.conf:
-        path: 20-kaladin-intel.conf
+    /etc/X11/xorg.conf.d/20-intel.conf:
+        path: 20-intel.conf
         create: true
         force: true
     # Fix trackpoint middle button scroll by creating a `/etc/X11/xorg.conf.d/20-trackpoint.conf` as per https://wiki.archlinux.org/index.php/Lenovo_ThinkPad_T410.

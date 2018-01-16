@@ -36,13 +36,18 @@ manage everything. Just git clone, and run the `./install` script!
 ## Setting up wireless with network manager
 - `pacman -S networkmanager network-manager-applet networkmanager-vpnc gnome-keyring`
   - TODO: Look into [networkmanager-dmenu](https://github.com/firecat53/networkmanager-dmenu)?
-- `systemctl enable NetworkManager.service && systemctl start NetworkManager.service`
+- `systemctl enable --now NetworkManager.service`
+
+## Printer
+- `sudo pacman -S cups`
+- `sudo systemctl enable --now org.cups.cupsd.service`
+- When adding printer, use ppd file from <http://www.openprinting.org/printer/Brother/Brother-HL-2240>.
 
 ## Bluetooth
 See <https://wiki.archlinux.org/index.php/Bluetooth_keyboard>.
 
 - `pacman -S bluez bluez-utils gnome-bluetooth blueman`
-- `systemctl enable bluetooth.service && systemctl start bluetooth.service`
+- `systemctl enable --now bluetooth.service`
 - Note: Dualbooting with bluetooth is a *pain*. See: https://unix.stackexchange.com/a/255510 for more details and an awesome workaround.
 
 ## Audio
@@ -54,7 +59,7 @@ See <https://wiki.archlinux.org/index.php/Bluetooth_keyboard>.
 ## Power stuff
 - Install from AUR: `https://aur.archlinux.org/packages/laptop-mode-tools/`
 - `pacman -S acpi acpid ethtool wireless_tools`
-- `systemctl enable laptop-mode`
+- `systemctl enable --now laptop-mode`
 - Edit `/etc/laptop-mode/laptop-mode.conf` accordingly (https://push.cx/2015/dual-booting-arch-linux-on-lenovo-x1-carbon-3rd-gen suggests changing LM_BATT_MAX_LOST_WORK_SECONDS)
 
 ## Misc
@@ -72,7 +77,7 @@ See <https://wiki.archlinux.org/index.php/Bluetooth_keyboard>.
   - `chmod 600 ~/.ssh/id_rsa ~/.ssh/*.pem`
 
 ## TODO
-- `systemctl enable fixinputs.path && systemctl enable monitors` - Do these need to be run, or are they automatically enabled?
+- `systemctl enable fixinputs.path` - Do these need to be run, or are they automatically enabled?
 - Set up fzf: https://github.com/junegunn/fzf#using-git
 - Add `"detachKeys": "ctrl-^,q"` to `~/.docker/config.json`
 - Prevent autosuspend of usb mouse: https://fitzcarraldoblog.wordpress.com/2013/02/26/how-to-prevent-a-usb-mouse-auto-suspending-in-linux-when-a-laptops-power-supply-is-disconnected/

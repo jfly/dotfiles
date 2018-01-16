@@ -12,4 +12,4 @@ Environment=XAUTHORITY=/home/jeremy/.Xauthority
 Environment=BASH_ENV=/home/jeremy/.bashrc
 Environment=DISPLAY=:0
 Environment=XDG_RUNTIME_DIR=/run/user/1000
-ExecStart=/usr/bin/su jeremy -c fixinputs
+ExecStart=/usr/bin/su jeremy --shell /usr/bin/bash -c fixinputs
