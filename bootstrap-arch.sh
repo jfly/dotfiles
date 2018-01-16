@@ -38,8 +38,8 @@ sudo ./install
 arch_package wget base-devel
 
 ## Python
-sudo pip install setproctitle # needed by spawn-and-stuff
 arch_package python-pip python-pexpect openssh
+sudo pip install setproctitle # needed by spawn-and-stuff
 
 ## Vim
 arch_package gvim editorconfig-core-c
