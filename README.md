@@ -22,53 +22,14 @@ I chose to use the [rEFInd bootloader](https://wiki.archlinux.org/index.php/REFI
 - `pacman -S sudo && visudo` - Install and configure sudo.
 - `useradd -m -G wheel -s /bin/bash jeremy && passwd jeremy && su jeremy` - Create user and set their password.
 - `pacman -S git && mkdir ~/gitting && cd ~/gitting && git clone https://github.com/jfly/dotfiles.git && cd dotfiles` - Checkout and cd into this repo!
-
-- `pacman -S git python python-pip python-pexpect openssh` - install dependencies to install jfly/dotfiles
-    - `pip install setproctitle`
-- `pacman -S wget base-devel` - needed to install stuff from the AUR
-- `git clone https://github.com/jfly/dotfiles.git && cd dotfiles && ./install`
-- `pacman -S gvim editorconfig-core-c && mv /usr/bin/vi /usr/bin/vi.bak && ln -s /usr/bin/vim /usr/bin/vi && vim +PlugInstall +qall` - install and set up vim as default
-- `pacman -S mosh the_silver_searcher fzf` - misc stuff
-- `systemctl enable fixinputs.path` - run xmodmap everytime a keyboard appears
-
-## Setting up x11 and xmonad
-- Install the appropriate [video card driver](https://wiki.archlinux.org/index.php/xorg#Driver_installation)
-  - `pacman -S driconf` - Fix for video tearing (see [here](http://www.apolitech.com/2017/04/20how-to-solve-video-tearing-on-intel.html)).
-- `pacman -S xorg-server xorg-xinit xorg-xsetroot xorg-xmodmap xorg-xmessage xorg-xrandr xorg-xrdb xmonad xmonad-contrib xmobar feh wmname network-manager-applet openssh alsa-utils maim xclip numlockx xvkbd xsel xdotool slop byzanz`
-- [trayer-srg](https://aur.archlinux.org/packages/trayer-srg-git/)
-- [dmenu2](https://aur.archlinux.org/packages/dmenu2/)
-- `pacman -S roxterm termite chromium`
-- Fonts
-  - `pacman -S ttf-liberation ttf-bitstream-vera noto-fonts noto-fonts-emoji`
-  - Install [ttf-google-fonts-git](https://aur.archlinux.org/packages/ttf-google-fonts-git/) from the AUR
-
-## Setting up wireless with network manager
-- `pacman -S networkmanager network-manager-applet networkmanager-vpnc gnome-keyring`
-- `systemctl enable --now NetworkManager.service`
+- `./bootstrap-arch.sh` - Bootstrap Arch Linux installation, installing all dependencies. Make sure this command succeeds! This will also symlink dotfiles by running `./install`.
 
 ## Printer
-- `sudo pacman -S cups`
-- `sudo systemctl enable --now org.cups.cupsd.service`
-- When adding printer, use ppd file from <http://www.openprinting.org/printer/Brother/Brother-HL-2240>.
+- When actually adding printer, use ppd file from <http://www.openprinting.org/printer/Brother/Brother-HL-2240>.
 
 ## Bluetooth
 See <https://wiki.archlinux.org/index.php/Bluetooth_keyboard>.
-
-- `pacman -S bluez bluez-utils gnome-bluetooth blueman`
-- `systemctl enable --now bluetooth.service`
-- Note: Dualbooting with bluetooth is a *pain*. See: https://unix.stackexchange.com/a/255510 for more details and an awesome workaround.
-
-## Audio
-- `pacman -S pulseaudio pamixer pavucontrol paprefs bc sox`
-- Install [pasystray](https://aur.archlinux.org/cgit/aur.git/snapshot/pasystray.tar.gz)
-- Install [hcchu/volnoti](https://github.com/hcchu/volnoti#new-options-in-this-fork) from github. [volnoti](https://aur.archlinux.org/packages/volnoti) doesn't have the features needed for volnoti-brightness.
-- NOTE: Confusingly enough, I had to change the Profile setting under "Configuration" to get HDMI output working.
-
-## Power stuff
-- Install from AUR: `https://aur.archlinux.org/packages/laptop-mode-tools/`
-- `pacman -S acpi acpid ethtool wireless_tools`
-- `systemctl enable --now laptop-mode`
-- Edit `/etc/laptop-mode/laptop-mode.conf` accordingly (https://push.cx/2015/dual-booting-arch-linux-on-lenovo-x1-carbon-3rd-gen suggests changing LM_BATT_MAX_LOST_WORK_SECONDS)
+Note: Dualbooting with bluetooth is a *pain*. See: https://unix.stackexchange.com/a/255510 for more details and crazy workaround.
 
 ## Dropbox
 - https://aur.archlinux.org/packages/dropbox/
