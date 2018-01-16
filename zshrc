@@ -64,8 +64,15 @@ local ret_status="%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )"
 PROMPT='${ret_status} %{$fg[cyan]%}%~%{$reset_color%} $(git_prompt_info)'
 #####################
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+###
+### Set up FZF
+###
+source /usr/share/fzf/key-bindings.zsh
+source /usr/share/fzf/completion.zsh
 
+###
+### Don't add comments starting with space to the history.
+###
 setopt HIST_IGNORE_SPACE
 
 ###

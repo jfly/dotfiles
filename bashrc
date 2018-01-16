@@ -27,8 +27,9 @@ export PS1="${MY_BODY}${END} "
 
 export HISTCONTROL=ignorespace
 
-# Set up FZF
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+# Set up FZF (https://wiki.archlinux.org/index.php/Fzf#bash)
+source /usr/share/fzf/key-bindings.bash
+source /usr/share/fzf/completion.bash
 
 # Better dircolors for solarized
 # http://archlinux.me/w0ng/2012/04/21/better-dircolors-with-solarized/

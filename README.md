@@ -1,9 +1,6 @@
 # jfly/dotfiles
 
-I bought a new laptop, so it felt like it's finally time to do this.
-
-I'm using the excellent [dotbot](https://github.com/anishathalye/dotbot) to
-manage everything. Just git clone, and run the `./install` script!
+See instructions on [this Google Doc](https://docs.google.com/document/d/1Ji1dfnQxlb9KJGmVin4W6oAqN4-SWokSlXGYumss74M/edit#heading=h.1gvhtuttse8f).
 
 ## Directions for fresh Arch install
 - Pre-install
@@ -13,19 +10,20 @@ manage everything. Just git clone, and run the `./install` script!
   - Enable virtualization in BIOS (otherwise you will see a message "kvm:disabled by bios")
 - I chose to use the [rEFInd bootloader](https://wiki.archlinux.org/index.php/REFInd). You might want to restyle rEFInd by adding a theme such as [rEFInd-minimal](https://github.com/EvanPurkhiser/rEFInd-minimal) or [rEFInd-minimal-black-flat](https://github.com/dnaf/rEFInd-minimal-black-flat)
 
-- `pacman -S gvim editorconfig-core-c && mv /usr/bin/vi /usr/bin/vi.bak && ln -s /usr/bin/vim /usr/bin/vi` - install and set up vim as default
-  - TODO - you need to run `:PlugInstall` inside of vim.
-- `pacman -S sudo && visudo` - install and configure sudo
 - `useradd -m -G wheel -s /bin/bash jeremy && passwd jeremy` - create user and set their password
 - `pacman -S git python python-pip python-pexpect openssh` - install dependencies to install jfly/dotfiles
     - `pip install setproctitle`
 - `pacman -S wget base-devel` - needed to install stuff from the AUR
 - `git clone https://github.com/jfly/dotfiles.git && cd dotfiles && ./install`
+- `pacman -S gvim editorconfig-core-c && mv /usr/bin/vi /usr/bin/vi.bak && ln -s /usr/bin/vim /usr/bin/vi && vim +PlugInstall +qall` - install and set up vim as default
+- `pacman -S mosh the_silver_searcher fzf` - misc stuff
+- `pacman -S sudo && visudo` - install and configure sudo
+- `systemctl enable fixinputs.path` - run xmodmap everytime a keyboard appears
 
 ## Setting up x11 and xmonad
 - Install the appropriate [video card driver](https://wiki.archlinux.org/index.php/xorg#Driver_installation)
   - `pacman -S driconf` - Fix for video tearing (see [here](http://www.apolitech.com/2017/04/20how-to-solve-video-tearing-on-intel.html)).
-- `pacman -S xorg-server xorg-xinit xorg-xsetroot xorg-xmodmap xorg-xmessage xorg-xrandr xorg-xrdb xmonad xmonad-contrib xmobar feh wmname network-manager-applet openssh alsa-utils maim xclip numlockx xvkbd xsel xdotool slop byzanz `
+- `pacman -S xorg-server xorg-xinit xorg-xsetroot xorg-xmodmap xorg-xmessage xorg-xrandr xorg-xrdb xmonad xmonad-contrib xmobar feh wmname network-manager-applet openssh alsa-utils maim xclip numlockx xvkbd xsel xdotool slop byzanz`
 - [trayer-srg](https://aur.archlinux.org/packages/trayer-srg-git/)
 - [dmenu2](https://aur.archlinux.org/packages/dmenu2/)
 - `pacman -S roxterm termite chromium`
@@ -35,7 +33,6 @@ manage everything. Just git clone, and run the `./install` script!
 
 ## Setting up wireless with network manager
 - `pacman -S networkmanager network-manager-applet networkmanager-vpnc gnome-keyring`
-  - TODO: Look into [networkmanager-dmenu](https://github.com/firecat53/networkmanager-dmenu)?
 - `systemctl enable --now NetworkManager.service`
 
 ## Printer
@@ -62,13 +59,6 @@ See <https://wiki.archlinux.org/index.php/Bluetooth_keyboard>.
 - `systemctl enable --now laptop-mode`
 - Edit `/etc/laptop-mode/laptop-mode.conf` accordingly (https://push.cx/2015/dual-booting-arch-linux-on-lenovo-x1-carbon-3rd-gen suggests changing LM_BATT_MAX_LOST_WORK_SECONDS)
 
-## Misc
-- `pacman -S mosh`
-- `pacman -S ctags && sudo npm install -g git://github.com/ramitos/jsctags.git` - for vim tagbar plugin
-- `pacman -S the_silver_searcher` - for faster ctrl+p in vim
-- [byzanz](https://aur.archlinux.org/packages/byzanz/)
-  - [xrectsel](https://aur.archlinux.org/packages/xrectsel/)
-
 ## Dropbox
 - https://aur.archlinux.org/packages/dropbox/
 - `ln -s Dropbox/pics/lolcommits .lolcommits` - set up lolcommits
@@ -77,8 +67,6 @@ See <https://wiki.archlinux.org/index.php/Bluetooth_keyboard>.
   - `chmod 600 ~/.ssh/id_rsa ~/.ssh/*.pem`
 
 ## TODO
-- `systemctl enable fixinputs.path` - Do these need to be run, or are they automatically enabled?
-- Set up fzf: https://github.com/junegunn/fzf#using-git
 - Add `"detachKeys": "ctrl-^,q"` to `~/.docker/config.json`
 - Prevent autosuspend of usb mouse: https://fitzcarraldoblog.wordpress.com/2013/02/26/how-to-prevent-a-usb-mouse-auto-suspending-in-linux-when-a-laptops-power-supply-is-disconnected/
 - Headphone noise is due to power_save mode - https://bbs.archlinux.org/viewtopic.php?pid=1554497#p1554497
