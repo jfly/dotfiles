@@ -38,7 +38,9 @@ syntax enable
 let g:solarized_termtrans=1
 
 set background=dark
-colorscheme solarized
+" Ignore if the solarized colorscheme is not yet installed. This happens when
+" we first run vim to run vim plug.
+silent! colorscheme solarized
 " Shortcuts to change our colorscheme
 noremap 1<Backspace> :set background=dark<CR>
 noremap 2<Backspace> :set background=light<CR>

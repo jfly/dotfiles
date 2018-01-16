@@ -10,7 +10,7 @@ arch_package() {
 
 aur_package() {
     for aur_package_name in $@; do
-        if [ -n "$(pacman -Qs $aur_package_name)" ]; then
+        if [ -n "$(pacman -Qs ${aur_package_name}$)" ]; then
             echo "warning: AUR package $aur_package_name is already installed -- skipping"
         else
             (
@@ -30,15 +30,16 @@ enable_service() {
 }
 
 ## Install dotfiles
-./install
+arch_package python
 sudo ./install
-
-## Python
-arch_package git python python-pip python-pexpect openssh
-pip install setproctitle # needed by spawn-and-stuff
+./install
 
 ## Dependencies to install stuff from the AUR
 arch_package wget base-devel
+
+## Python
+sudo pip install setproctitle # needed by spawn-and-stuff
+arch_package python-pip python-pexpect openssh
 
 ## Vim
 arch_package gvim editorconfig-core-c
@@ -68,7 +69,7 @@ arch_package termite chromium
 aur_package trayer-srg-git dmenu2
 # Fonts
 arch_package ttf-liberation ttf-bitstream-vera noto-fonts noto-fonts-emoji
-aur_package ttf-google-fonts-git
+aur_package ttf-merriweather ttf-merriweather-sans ttf-opensans ttf-oswald ttf-quintessential ttf-signika ttf-google-fonts-git
 
 ## Setting up wireless with network manager
 arch_package networkmanager network-manager-applet networkmanager-vpnc gnome-keyring
@@ -84,27 +85,29 @@ enable_service bluetooth.service
 
 ## Audio
 arch_package pulseaudio pamixer pavucontrol paprefs bc sox
-aur_package pasystray
+aur_package pasystray-gtk2
 # Install [hcchu/volnoti](https://github.com/hcchu/volnoti#new-options-in-this-fork) from Github.
 # [volnoti](https://aur.archlinux.org/packages/volnoti) doesn't have the features needed for volnoti-brightness.
-(
-    cd $THIRD_REPOS_DIR
-    rm -rf volnoti
-    git clone https://github.com/hcchu/volnoti.git
-    cd volnoti
-    ./prepare.sh
-    ./configure --prefix=/usr
+if ! [ -x "$(command -v volnoti)" ]; then
     (
-        # See https://ubuntuforums.org/showthread.php?t=2215264&p=12978792#post12978792
-        cd src;
-        rm value-client-stub.h && make value-client-stub.h
-        dbus-binding-tool --prefix=volume_object --mode=glib-client specs.xml > value-client-stub.h
-        rm value-daemon-stub.h && make value-daemon-stub.h
-        dbus-binding-tool --prefix=volume_object --mode=glib-server specs.xml > value-daemon-stub.h
+        cd $THIRD_REPOS_DIR
+        rm -rf volnoti
+        git clone https://github.com/hcchu/volnoti.git
+        cd volnoti
+        ./prepare.sh
+        ./configure --prefix=/usr
+        (
+            # See https://ubuntuforums.org/showthread.php?t=2215264&p=12978792#post12978792
+            cd src;
+            rm value-client-stub.h && make value-client-stub.h
+            dbus-binding-tool --prefix=volume_object --mode=glib-client specs.xml > value-client-stub.h
+            rm value-daemon-stub.h && make value-daemon-stub.h
+            dbus-binding-tool --prefix=volume_object --mode=glib-server specs.xml > value-daemon-stub.h
+        )
+        make
+        sudo make install
     )
-    make
-    sudo make install
-)
+fi
 
 ## Power stuff
 # https://wiki.archlinux.org/index.php/Laptop_Mode_Tools
