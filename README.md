@@ -1,7 +1,6 @@
 # jfly/dotfiles
 
-I'm using the excellent [dotbot](https://github.com/anishathalye/dotbot) to
-manage everything. Just git clone, and run the `./install` script!
+I'm using the excellent [dotbot](https://github.com/anishathalye/dotbot).
 
 See instructions on [this Google Doc](https://docs.google.com/document/d/1Ji1dfnQxlb9KJGmVin4W6oAqN4-SWokSlXGYumss74M/edit#heading=h.1gvhtuttse8f).
 
@@ -20,14 +19,16 @@ Follow the wiki! https://wiki.archlinux.org/index.php/installation_guide
 
 I chose to use the [rEFInd bootloader](https://wiki.archlinux.org/index.php/REFInd). You might want to restyle rEFInd by adding a theme such [rEFInd-minimal-black-flat](https://github.com/dnaf/rEFInd-minimal-black-flat).
 
-- `useradd -m -G wheel -s /bin/bash jeremy && passwd jeremy` - create user and set their password
+- `pacman -S sudo && visudo` - Install and configure sudo.
+- `useradd -m -G wheel -s /bin/bash jeremy && passwd jeremy && su jeremy` - Create user and set their password.
+- `pacman -S git && mkdir ~/gitting && cd ~/gitting && git clone https://github.com/jfly/dotfiles.git && cd dotfiles` - Checkout and cd into this repo!
+
 - `pacman -S git python python-pip python-pexpect openssh` - install dependencies to install jfly/dotfiles
     - `pip install setproctitle`
 - `pacman -S wget base-devel` - needed to install stuff from the AUR
 - `git clone https://github.com/jfly/dotfiles.git && cd dotfiles && ./install`
 - `pacman -S gvim editorconfig-core-c && mv /usr/bin/vi /usr/bin/vi.bak && ln -s /usr/bin/vim /usr/bin/vi && vim +PlugInstall +qall` - install and set up vim as default
 - `pacman -S mosh the_silver_searcher fzf` - misc stuff
-- `pacman -S sudo && visudo` - install and configure sudo
 - `systemctl enable fixinputs.path` - run xmodmap everytime a keyboard appears
 
 ## Setting up x11 and xmonad

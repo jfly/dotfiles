@@ -1,126 +1,49 @@
 - clean: ['~']
 
+- defaults:
+    link:
+        create: true
+        relink: true
+        force: true
+
 - link:
-    ~/.dotfiles:
-        path: ""
-        force: true
-    ~/.gitconfig:
-        path: gitconfig
-        force: true
-    ~/.gitignore_global:
-        path: gitignore_global
-        force: true
-    ~/.vim:
-        path: vim/
-        force: true
-    ~/.vimrc:
-        path: vimrc
-        force: true
+    ~/.dotfiles: ""
+    ~/.gitconfig: gitconfig
+    ~/.gitignore_global: gitignore_global
+    ~/.vim: vim/
+    ~/.vimrc: vimrc
 
-    ~/.bashrc:
-        path: bashrc
-        force: true
-    ~/.zshrc:
-        path: zshrc
-        force: true
-    ~/.commonrc:
-        path: commonrc
-        force: true
+    ~/.bashrc: bashrc
+    ~/.zshrc: zshrc
+    ~/.commonrc: commonrc
 
-    ~/.bash_profile:
-        path: bash_profile
-        force: true
-    ~/.xmonad/xmonad.hs:
-        path: xmonad.hs
-        create: true
-        force: true
-    ~/.xmobarrc:
-        path: xmobarrc
-        force: true
-    ~/.Xmodmap:
-        path: Xmodmap
-        force: true
-    ~/.Xresources:
-        path: Xresources
-        force: true
-    ~/.xinitrc:
-        path: xinitrc
-        force: true
-    ~/.conkyrc:
-        path: conkyrc
-        force: true
-    ~/bin:
-        path: bin
-        force: true
-    ~/.config/roxterm.sourceforge.net:
-        path: roxterm.sourceforge.net
-        create: true
-        force: true
-    ~/.config/termite:
-        path: termite
-        create: true
-        force: true
-    ~/.config/dunst:
-        path: dunst
-        create: true
-        force: true
-    ~/.dir_colors:
-        path: dir_colors
-        force: true
-    ~/.ssh/config:
-        path: ssh_config
-        create: true
-        force: true
-    ~/.mplayer:
-        path: mplayer
-        create: true
-        force: true
+    ~/.bash_profile: bash_profile
+    ~/.xmonad/xmonad.hs: xmonad.hs
+    ~/.xmobarrc: xmobarrc
+    ~/.Xmodmap: Xmodmap
+    ~/.Xresources: Xresources
+    ~/.xinitrc: xinitrc
+    ~/.conkyrc: conkyrc
+    ~/bin: bin
+    ~/.config/roxterm.sourceforge.net: roxterm.sourceforge.net
+    ~/.config/termite: termite
+    ~/.config/dunst: dunst
+    ~/.dir_colors: dir_colors
+    ~/.ssh/config: ssh_config
+    ~/.mplayer: mplayer
 
-    /etc/systemd/logind.conf.d/no-suspend-on-lidswitch.conf:
-        path: no-suspend-on-lidswitch.conf
-        create: true
-        force: true
-    /etc/systemd/logind.conf.d/suspend-on-powerbutton.conf:
-        path: suspend-on-powerbutton.conf
-        create: true
-        force: true
-    /etc/X11/xorg.conf.d/20-intel.conf:
-        path: 20-intel.conf
-        create: true
-        force: true
-    # Fix trackpoint middle button scroll by creating a `/etc/X11/xorg.conf.d/20-trackpoint.conf` as per https://wiki.archlinux.org/index.php/Lenovo_ThinkPad_T410.
-    /etc/X11/xorg.conf.d/20-trackpoint.conf:
-        path: 20-trackpoint.conf
-        create: true
-        force: true
-    /etc/vconsole.conf:
-        path: vconsole.conf
-        create: true
-        force: true
+    /etc/modprobe.d/nobeep.conf: nobeep.conf
+    /etc/systemd/logind.conf.d/no-suspend-on-lidswitch.conf: no-suspend-on-lidswitch.conf
+    /etc/systemd/logind.conf.d/suspend-on-powerbutton.conf: suspend-on-powerbutton.conf
+    /etc/vconsole.conf: vconsole.conf
+    /etc/X11/xorg.conf.d/20-intel.conf: 20-intel.conf
+    /etc/X11/xorg.conf.d/20-trackpoint.conf: 20-trackpoint.conf
 
-    /usr/lib/systemd/system/fixinputs.path:
-        path: units/fixinputs.path
-        create: true
-        force: true
-    /usr/lib/systemd/system/fixinputs.service:
-        path: units/fixinputs.service
-        create: true
-        force: true
+    /usr/lib/systemd/system/fixinputs.path: units/fixinputs.path
+    /usr/lib/systemd/system/fixinputs.service: units/fixinputs.service
 
-    /etc/udev/rules.d/10-local.rules:
-        path: udev/10-local.rules
-        create: true
-        force: true
-    /usr/lib/systemd/system/monitors.service:
-        path: units/monitors.service
-        create: true
-        force: true
-    /etc/modprobe.d/nobeep.conf:
-        path: nobeep.conf
-        create: true
-        force: true
+    /etc/udev/rules.d/10-local.rules: udev/10-local.rules
+    /usr/lib/systemd/system/monitors.service: units/monitors.service
 
 - shell:
-  -
-    - git update-submodules
-    - Install/update submodules
+  - [git update-submodules, Install/update submodules]
