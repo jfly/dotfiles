@@ -51,7 +51,10 @@ if [ `readlink /usr/bin/vi` != "/usr/bin/vim" ]; then
 fi
 
 ## Misc
-arch_package mosh the_silver_searcher fzf
+arch_package zsh mosh the_silver_searcher fzf
+if [ ! -d ~/.oh-my-zsh ]; then
+    git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+fi
 
 ## Keyboard stuff
 # Run xmodmap every time a keyboard appears.
@@ -64,7 +67,7 @@ arch_package xf86-video-intel driconf
 # Install everything else needed for the desktop environment.
 arch_package xorg-server xorg-xinit xorg-xsetroot xorg-xmodmap xorg-xmessage xorg-xrandr xorg-xrdb
 arch_package xmonad xmonad-contrib xmobar
-arch_package feh wmname network-manager-applet alsa-utils maim xclip numlockx xsel xdotool slop byzanz
+arch_package feh wmname network-manager-applet alsa-utils maim xclip numlockx xsel xdotool slop byzanz dunst
 arch_package termite chromium
 aur_package trayer-srg-git dmenu2
 # Fonts
