@@ -39,6 +39,13 @@ if [ -x /usr/bin/dunst ]; then
     dunst &
 fi
 
+# From https://wiki.archlinux.org/index.php/GNOME/Keyring#xinitrc_method
+if [ -x /usr/bin/gnome-keyring-daemon ]; then
+    dbus-update-activation-environment --systemd DISPLAY
+    eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
+    export SSH_AUTH_SOCK
+fi
+
 # xmonad doesn't set a cursor
 xsetroot -cursor_name left_ptr
 exec xmonad
