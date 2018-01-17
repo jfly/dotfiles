@@ -41,6 +41,7 @@
 
     /usr/lib/systemd/system/fixinputs.path: units/fixinputs.path
     /usr/lib/systemd/system/fixinputs.service: units/fixinputs.service
+    /etc/systemd/system/slock@.service: units/slock@.service
 
     /etc/udev/rules.d/10-local.rules: udev/10-local.rules
     /usr/lib/systemd/system/monitors.service: units/monitors.service

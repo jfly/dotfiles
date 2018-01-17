@@ -29,6 +29,10 @@ enable_service() {
     sudo systemctl enable --now "$1"
 }
 
+enable_service_not_now() {
+    sudo systemctl enable "$1"
+}
+
 ## Install dotfiles
 arch_package python
 sudo ./install
@@ -73,6 +77,11 @@ aur_package trayer-srg-git dmenu2
 # Fonts
 arch_package ttf-liberation ttf-bitstream-vera noto-fonts noto-fonts-emoji
 aur_package ttf-merriweather ttf-merriweather-sans ttf-opensans ttf-oswald ttf-quintessential ttf-signika ttf-google-fonts-git
+
+# Lock screen on suspend.
+# https://wiki.archlinux.org/index.php/Slock
+arch_package slock
+enable_service_not_now slock@jeremy.service
 
 ## Setting up wireless with network manager
 arch_package networkmanager network-manager-applet networkmanager-vpnc gnome-keyring
