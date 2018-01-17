@@ -17,7 +17,7 @@ See instructions on [this Google Doc](https://docs.google.com/document/d/1Ji1dfn
 
 Follow the wiki! https://wiki.archlinux.org/index.php/installation_guide
 
-I chose to use the [rEFInd bootloader](https://wiki.archlinux.org/index.php/REFInd). You might want to restyle rEFInd by adding a theme such [rEFInd-minimal-black-flat](https://github.com/dnaf/rEFInd-minimal-black-flat).
+I chose to use the [rEFInd bootloader](https://wiki.archlinux.org/index.php/REFInd). You might want to restyle rEFInd by adding a theme such [rEFInd-minimal-black-flat](https://github.com/dnaf/rEFInd-minimal-black-flat). I also changed `timeout` in `/boot/EFI/refind/refind.conf` to 5 seconds.
 
 - `pacman -S sudo && visudo` - Install and configure sudo.
 - `useradd -m -G wheel -s /bin/bash jeremy && passwd jeremy && su jeremy` - Create user and set their password.
