@@ -35,6 +35,7 @@ windowPlacement = composeAll [
         -- Fix for GIMP windows
         className =? "Gimp" --> doFloat,
 
+        role =? "send to play" --> doShift "play",
         role =? "send to wrk" --> doShift "wrk",
         role =? "send to test" --> doShift "test"
     ] where role = stringProperty "WM_WINDOW_ROLE"
