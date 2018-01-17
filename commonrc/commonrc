@@ -11,15 +11,21 @@ export PATH=$PATH:$HOME/.gem/ruby/2.5.0/bin
 # https://github.com/pyenv/pyenv#basic-github-checkout
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
-if command -v pyenv 1>/dev/null 2>&1; then
-    eval "$(pyenv init -)"
-    eval "$(pyenv virtualenv-init -)"
+# Don't initialize pyenv if it is already initialized.
+# See: https://github.com/pyenv/pyenv/issues/264#issuecomment-358490657
+if [ -n "$PYENV_LOADING" ]; then
+    true
+else
+    export PYENV_LOADING="true"
+    if which pyenv > /dev/null 2>&1; then eval "$(pyenv init -)"; fi
+    if which pyenv-virtualenv-init > /dev/null 2>&1; then eval "$(pyenv virtualenv-init -)"; fi
+    unset PYENV_LOADING
 fi
 
 export VISUAL=vim
 export EDITOR=vim
 
-# Don't set BROWSER because if you do, then xdg-settings get default-web-browser` returns
+# Don't set BROWSER because if you do, then `xdg-settings get default-web-browser` returns
 # something other than "chromium.desktop", which then causes chromium to complain when starting
 # up that it's not the default browser.
 #export BROWSER=chromium
