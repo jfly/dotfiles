@@ -128,5 +128,10 @@ aur_package laptop-mode-tools
 arch_package acpi acpid ethtool wireless_tools
 enable_service laptop-mode
 
+## Increase number of inotify watchers
+# https://github.com/webpack/docs/wiki/troubleshooting#not-enough-watchers
+sudo bash -c "echo fs.inotify.max_user_watches=524288 > /etc/sysctl.d/99-sysctl.conf"
+sudo sysctl --system
+
 echo ""
 echo "Successfully bootstrapped your new Arch system. Happy Linuxing!"
