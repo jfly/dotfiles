@@ -13,8 +13,13 @@ alias allprocs='sudo sysdig -p"*%evt.time %proc.pid %proc.ppid %evt.dir %proc.ex
 # Rails Reset Test DB
 alias rrtdb="bin/rails db:environment:set RAILS_ENV=test && bin/rake db:reset RACK_ENV=test"
 
+# WCA specific stuff
 alias wcacheckmem="ssh wca 'date && ps -eo rss,comm,pid,args | grep -i unicorn | grep -v grep'"
 alias wcadeploy="ssh -A cubing@worldcubeassociation.org worldcubeassociation.org/scripts/deploy.sh pull_latest rebuild_regs rebuild_rails"
+
+# Honor specific stuff
+alias h4posth="rbt-log-post --open HEAD"
+alias h4reposth="rbt-log-post --open --update HEAD"
 
 function o {
     if [ -e "$1" ]; then
