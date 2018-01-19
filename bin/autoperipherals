@@ -5,13 +5,18 @@ function main() {
     # "on" or "off": POWER_STATUS=$(acpi -a | cut -d' ' -f3 | cut -d- -f1)
 
     HDMI_STATUS=$(</sys/class/drm/card0/*HDMI*/status)
+    DP1_STATUS=$(</sys/class/drm/card0/card0-DP-1/status)
 
     # TODO - look into automating this via udev, see https://wiki.archlinux.org/index.php/PulseAudio/Examples#Automatically_switch_audio_to_HDMI
 
-    if [ $HDMI_STATUS == "connected" ]; then
+    if [ "$HDMI_STATUS" == "connected" ]; then
         LAYOUT_NAME=mission-desk
         TRAYER_HEIGHT=19
         TERM_FONT_SIZE=8
+    elif [ "$DP1_STATUS" == "connected" ]; then
+        LAYOUT_NAME=honor-desk
+        TRAYER_HEIGHT=19
+        TERM_FONT_SIZE=9
     else
         LAYOUT_NAME=mobile
         # Temporarily trying out a a really tiny tray on mobile... TRAYER_HEIGHT=25
