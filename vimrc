@@ -100,11 +100,27 @@ noremap <leader>b :Buffers<CR>
 
 """""" vim-test configuration
 function! FatRunnerStrategy(cmd)
-  call system("fat-runner run " . shellescape("clear;" . a:cmd))
+    call system("fat-runner run " . shellescape("clear;" . a:cmd))
 endfunction
 
 let g:test#custom_strategies = {'fat_runner': function('FatRunnerStrategy')}
 let g:test#strategy = "fat_runner"
+
+" vim-test transformation to run nose tests via `make singletest`.
+" If a command looks like "nosetests ...", transform it to
+" "make singletest NOSEARGS='...'"
+function! HonorTransform(cmd) abort
+    if a:cmd =~ '^nosetests '
+        let a:cmd_sans_nosetests = substitute(a:cmd, '^nosetests ', '', '')
+        let a:cmd = 'make singletest NOSEARGS='.shellescape(a:cmd_sans_nosetests)
+    else
+        let a:new_cmd = a:cmd
+    endif
+    return a:new_cmd
+endfunction
+
+let g:test#custom_transformations = {'honor': function('HonorTransform')}
+let g:test#transformation = 'honor'
 """"""
 
 nnoremap <leader>ts :w<CR>:TestSuite<CR>
