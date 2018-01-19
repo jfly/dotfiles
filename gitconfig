@@ -19,3 +19,5 @@
     excludesfile = /home/jeremy/.gitignore_global
 [credential]
     helper = cache --timeout=3600
+[pager]
+    branch = false
