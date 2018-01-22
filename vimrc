@@ -47,7 +47,7 @@ noremap 2<Backspace> :set background=light<CR>
 
 " Experimenting with cross file search
 " See: http://stackoverflow.com/a/25879734
-noremap <leader>f :exec "cope \| :silent Ggrep ".input(">>> ")." \| redraw!"<CR>
+noremap <leader>f :exec "cope \| :silent Ggrep ".shellescape(input(">>> ", expand("<cword>")))." \| redraw!"<CR>
 noremap ]q :cnext<CR>
 noremap [q :cprevious<CR>
 
