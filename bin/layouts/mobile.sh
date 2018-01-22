@@ -8,4 +8,4 @@ fixtray
 pactl set-card-profile 1 output:analog-stereo+input:analog-stereo
 
 # Disable bluetooth
-rfkill block bluetooth
+rfkill unblock bluetooth
