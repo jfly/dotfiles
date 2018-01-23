@@ -46,5 +46,7 @@
     /etc/udev/rules.d/10-local.rules: udev/10-local.rules
     /usr/lib/systemd/system/monitors.service: units/monitors.service
 
+    /etc/pacman.d/hooks/99-secureboot.hook: pac-hooks/99-secureboot.hook
+
 - shell:
   - [git update-submodules, Install/update submodules]
