@@ -20,6 +20,7 @@ alias wcadeploy="ssh -A cubing@worldcubeassociation.org worldcubeassociation.org
 # Honor specific stuff
 alias h4posth="rbt-log-post --open HEAD"
 alias h4reposth="rbt-log-post --open --update HEAD"
+alias h4mysql="mysql -u root sonasandboxdb --binary-as-hex"
 
 function o {
     if [ -e "$1" ]; then
