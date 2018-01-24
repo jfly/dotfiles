@@ -12,7 +12,7 @@ See instructions on [this Google Doc](https://docs.google.com/document/d/1Ji1dfn
   - UEFI/Secure Boot
     - In order to boot from the Arch USB, you will need to disable Secure Boot in the BIOS security tab.
     - Then, you can install a bootloader and set up Secue Boot. I have had good luck with rEFInd + shim.
-        - [rEFInd bootloader](https://wiki.archlinux.org/index.php/REFInd). You might want to restyle rEFInd by adding a theme such [rEFInd-minimal-black-flat](https://github.com/dnaf/rEFInd-minimal-black-flat). I also changed `timeout` in `/boot/EFI/refind/refind.conf` to 5 seconds.
+        - [rEFInd bootloader](https://wiki.archlinux.org/index.php/REFInd). You might want to restyle rEFInd by adding a theme such [rEFInd-minimal-black-flat](https://github.com/dnaf/rEFInd-minimal-black-flat). I also changed `timeout` in `/boot/EFI/refind/refind.conf` to 5 seconds, and added `default_selection Linux`.
         - Install [shim-signed](https://aur.archlinux.org/packages/shim-signed/) and `sbsigntools`
         - `refind-install --shim /usr/share/shim-signed/shimx64.efi --localkeys`
         - `# sbsign --key /etc/refind.d/keys/refind_local.key --cert /etc/refind.d/keys/refind_local.crt --output /boot/vmlinuz-linux /boot/vmlinuz-linux`
