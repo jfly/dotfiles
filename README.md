@@ -41,11 +41,7 @@ See <https://wiki.archlinux.org/index.php/Bluetooth_keyboard>.
 Note: Dualbooting with bluetooth is a *pain*. See: https://unix.stackexchange.com/a/255510 for more details and crazy workaround.
 
 ## Dropbox
-- https://aur.archlinux.org/packages/dropbox/
-- `ln -s ~/Dropbox/pics/lolcommits ~/.lolcommits` - set up lolcommits
-- ssh keys (or if you want to, you can [generate new ssh keys](https://help.github.com/articles/generating-ssh-keys/))
-  - `rm -r ~/.ssh && ln -s ~/Dropbox/kaladin-ssh/ ~/.ssh`
-  - `chmod 600 ~/.ssh/id_rsa ~/.ssh/*.pem`
+- `dropbox` - Need to manually start dropbox and log in.
 
 ## TODO
 - Add `"detachKeys": "ctrl-^,q"` to `~/.docker/config.json`

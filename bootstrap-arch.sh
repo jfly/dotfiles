@@ -38,6 +38,13 @@ arch_package python
 sudo ./install
 ./install
 
+# Symlink Linux secrets
+aur_package dropbox
+ln -sf ~/Dropbox/linux-secrets/kaladin-ssh/ ~/.ssh
+chmod 600 ~/.ssh/id_rsa ~/.ssh/*.pem
+ln -sf ~/Dropbox/linux-secrets/gnupg ~/.gnupg
+ln -sf ~/Dropbox/pics/lolcommits ~/.lolcommits
+
 ## Dependencies to install stuff from the AUR
 arch_package wget base-devel
 
