@@ -54,4 +54,5 @@
 
 - shell:
   - [git update-submodules, Install/update submodules]
-  - [chmod 600 ~/.ssh/id_rsa ~/.ssh/*.pem || true, Fix ssh key permissions]
+  - ["chmod -R u=rwX,og= ~/.ssh/", Fix ssh key permissions]
+  - ["chmod -R u=rwX,og= ~/.gnupg/", Fix gnupg permissions]
