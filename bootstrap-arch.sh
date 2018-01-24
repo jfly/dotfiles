@@ -33,17 +33,22 @@ enable_service_not_now() {
     sudo systemctl enable "$1"
 }
 
+## Some hacky pre-setup before running dotbot
+# Dotbot sets up some symlinks into Dropbox, but this doesn't work if our
+# Dropbox has not yet sync-ed. We hack around this by creating the expected
+# folders if they don't yet exist.
+mkdir -p ~/Dropbox/linux-secrets/{kaladin-ssh,gnupg}
+mkdir -p ~/Dropbox/pics/lolcommits
+sudo mkdir -p /root/Dropbox/linux-secrets/{kaladin-ssh,gnupg}
+sudo mkdir -p /root/Dropbox/pics/lolcommits
+
 ## Install dotfiles
 arch_package python
 sudo ./install
 ./install
 
-# Symlink Linux secrets
+# Install dropbox
 aur_package dropbox
-ln -sf ~/Dropbox/linux-secrets/kaladin-ssh/ ~/.ssh
-chmod 600 ~/.ssh/id_rsa ~/.ssh/*.pem
-ln -sf ~/Dropbox/linux-secrets/gnupg ~/.gnupg
-ln -sf ~/Dropbox/pics/lolcommits ~/.lolcommits
 
 ## Dependencies to install stuff from the AUR
 arch_package wget base-devel

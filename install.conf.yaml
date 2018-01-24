@@ -32,6 +32,10 @@
     ~/.ssh/config: ssh_config
     ~/.mplayer: mplayer
 
+    ~/.ssh: ~/Dropbox/linux-secrets/kaladin-ssh
+    ~/.gnupg: ~/Dropbox/linux-secrets/gnupg
+    ~/.lolcommits: ~/Dropbox/pics/lolcommits
+
     /etc/modprobe.d/nobeep.conf: nobeep.conf
     /etc/systemd/logind.conf.d/no-suspend-on-lidswitch.conf: no-suspend-on-lidswitch.conf
     /etc/systemd/logind.conf.d/suspend-on-powerbutton.conf: suspend-on-powerbutton.conf
@@ -50,3 +54,4 @@
 
 - shell:
   - [git update-submodules, Install/update submodules]
+  - [chmod 600 ~/.ssh/id_rsa ~/.ssh/*.pem || true, Fix ssh key permissions]
