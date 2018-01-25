@@ -14,6 +14,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 
 Plug 'sheerun/vim-polyglot'
+Plug 'tmhedberg/SimpylFold'
 Plug 'editorconfig/editorconfig-vim'
 
 Plug 'janko-m/vim-test'
@@ -27,7 +28,15 @@ let mapleader = ","
 map <leader>r :source ~/.vimrc<cr>
 
 " http://vim.wikia.com/wiki/Indenting_source_code
+" http://stackoverflow.com/a/234578
 filetype plugin indent on
+" show existing tab with 4 spaces width
+set tabstop=4
+" when indenting with '>', use 4 spaces width
+set shiftwidth=4
+" On pressing tab, insert 4 spaces
+set expandtab
+
 syntax on
 
 " http://ethanschoonover.com/solarized/vim-colors-solarized
@@ -50,15 +59,6 @@ noremap 2<Backspace> :set background=light<CR>
 noremap <leader>f :exec "cope \| :silent Ggrep ".shellescape(input(">>> ", expand("<cword>")))." \| redraw!"<CR>
 noremap ]q :cnext<CR>
 noremap [q :cprevious<CR>
-
-" http://stackoverflow.com/a/234578
-filetype plugin indent on
-" show existing tab with 4 spaces width
-set tabstop=4
-" when indenting with '>', use 4 spaces width
-set shiftwidth=4
-" On pressing tab, insert 4 spaces
-set expandtab
 
 " http://vim.wikia.com/wiki/256_colors_in_vim
 set t_Co=256
@@ -134,6 +134,11 @@ nnoremap <leader>tn :w<CR>:TestNearest<CR>
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 """"""
+
+"" Set up folding
+" https://unix.stackexchange.com/a/141104
+set foldmethod=syntax
+set nofoldenable
 
 " http://unix.stackexchange.com/a/30757
 set tabpagemax=100
