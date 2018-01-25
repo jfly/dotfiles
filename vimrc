@@ -119,6 +119,10 @@ function! HonorTransform(cmd) abort
     return a:new_cmd
 endfunction
 
+" Force use of nosetest over pytest
+let test#python#pytest#file_pattern = '\vMATCH_NOTHING_AT_ALL$'
+let test#python#nose#file_pattern = '\v(^|[\b_\.-])[Tt]est.*\.py$'
+
 let g:test#custom_transformations = {'honor': function('HonorTransform')}
 let g:test#transformation = 'honor'
 """"""
