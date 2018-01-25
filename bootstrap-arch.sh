@@ -133,6 +133,14 @@ if ! [ -x "$(command -v volnoti)" ]; then
         sudo make install
     )
 fi
+# Automatically switch to Bluetooth or USB headset when connected
+# See https://wiki.archlinux.org/index.php/PulseAudio/Troubleshooting#Automatically_switch_to_Bluetooth_or_USB_headset
+# and https://wiki.archlinux.org/index.php/PulseAudio#Switch_on_connect.
+if ! grep 'load-module module-switch-on-connect' /etc/pulse/default.pa &> /dev/null; then
+    sudo bash -c "echo 'load-module module-switch-on-connect' >> /etc/pulse/default.pa"
+    pulseaudio -k
+    pulseaudio --start
+fi
 
 ## Power stuff
 # https://wiki.archlinux.org/index.php/Laptop_Mode_Tools

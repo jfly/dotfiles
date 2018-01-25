@@ -47,3 +47,7 @@ Note: Dualbooting with bluetooth is a *pain*. See: https://unix.stackexchange.co
 - Add `"detachKeys": "ctrl-^,q"` to `~/.docker/config.json`
 - Prevent autosuspend of usb mouse: https://fitzcarraldoblog.wordpress.com/2013/02/26/how-to-prevent-a-usb-mouse-auto-suspending-in-linux-when-a-laptops-power-supply-is-disconnected/
 - Headphone noise is due to power_save mode - https://bbs.archlinux.org/viewtopic.php?pid=1554497#p1554497
+- Bluetooth headset works great as speakers (audio profile A2DP sink), but don't work as a microphone (HSP/HFP profile)?
+    - https://bbs.archlinux.org/viewtopic.php?id=209979
+    - https://bugs.launchpad.net/ubuntu/+source/pulseaudio/+bug/508522
+    - https://bugs.launchpad.net/ubuntu/+source/pulseaudio/+bug/1711087
