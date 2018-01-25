@@ -1,3 +1,5 @@
 #!/usr/bin/bash
 
-sshfs -o reconnect clark@clark:/home/media ~/media/clark/
+DIR=~/media/clark/
+mkdir -p "$DIR"
+sshfs -o reconnect clark@clark:/home/media "$DIR"

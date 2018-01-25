@@ -1,3 +1,5 @@
 #!/usr/bin/bash
 
-sshfs -o reconnect kent@kent:/home/media ~/media/kent/
+DIR=~/media/kent/
+mkdir -p "$DIR"
+sshfs -o reconnect kent@kent:/home/media "$DIR"

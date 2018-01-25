@@ -3,6 +3,7 @@
 THIRD_REPOS_DIR=~/thirdrepos
 
 set -e
+cd "$(dirname "$0")"
 
 arch_package() {
     sudo pacman -S --noconfirm --needed $@
@@ -147,6 +148,11 @@ sudo sysctl --system
 
 ## GPG stuff
 arch_package gnupg
+
+## Some FUSE stuff
+arch_package sshfs
+# MTP stuff (see https://wiki.archlinux.org/index.php/MTP#simple-mtpfs)
+aur_package simple-mtpfs
 
 echo ""
 echo "Successfully bootstrapped your new Arch system. Happy Linuxing!"
