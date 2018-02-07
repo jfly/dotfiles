@@ -18,8 +18,8 @@ alias wcacheckmem="ssh wca 'date && ps -eo rss,comm,pid,args | grep -i unicorn |
 alias wcadeploy="ssh -A cubing@worldcubeassociation.org worldcubeassociation.org/scripts/deploy.sh pull_latest rebuild_regs rebuild_rails"
 
 # Honor specific stuff
-alias h4posth="rbt-log-post --open HEAD"
-alias h4reposth="rbt-log-post --open --update HEAD"
+alias h4post="rbt-log-post --open --parent=upstream/master"
+alias h4repost="rbt-log-post --open --update --parent=upstream/master"
 alias h4mysql="mysql -u root sonasandboxdb --binary-as-hex"
 
 function o {

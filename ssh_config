@@ -50,3 +50,13 @@ Host hadronlabs
 HostName www.hadronlabs.com
 User ec2-user
 ### End Hadron Labs stuff
+
+### Honor stuff
+Host bastion.honordev.com bastion
+Hostname bastion.honordev.com
+ForwardAgent yes
+ControlMaster auto
+ControlPath ~/.ssh/%r@%h:%p
+ServerAliveInterval 60
+User jeremy
+###
