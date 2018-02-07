@@ -19,6 +19,7 @@ Plug 'editorconfig/editorconfig-vim'
 
 Plug 'janko-m/vim-test'
 Plug 'kassio/neoterm'
+Plug 'dhruvasagar/vim-zoom'
 
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
@@ -149,3 +150,6 @@ set tabpagemax=100
 
 " https://webpack.github.io/docs/webpack-dev-server.html#working-with-editors-ides-supporting-safe-write
 set backupcopy=yes
+
+" Set up vim-zoom
+nnoremap <leader>z :call zoom#toggle()<CR>
