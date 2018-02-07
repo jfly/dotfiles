@@ -101,7 +101,7 @@ arch_package networkmanager network-manager-applet networkmanager-vpnc gnome-key
 enable_service NetworkManager.service
 
 ## Printer
-arch_package cups
+arch_package cups ghostscript
 enable_service org.cups.cupsd.service
 
 ## Bluetooth
