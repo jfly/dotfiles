@@ -6,13 +6,7 @@ Type=simple
 # Don't kill child processes started by autoperipherals
 KillMode=none
 
-# Some stuff to simulate an X11 environment running under user jeremy.
-# https://bugs.launchpad.net/ubuntu/+source/xserver-xorg-video-intel/+bug/660901/comments/3
-Environment=XAUTHORITY=/home/jeremy/.Xauthority
-Environment=BASH_ENV=/home/jeremy/.bashrc
-Environment=DISPLAY=:0
-Environment=XDG_RUNTIME_DIR=/run/user/1000
-ExecStart=/usr/bin/su jeremy --shell /usr/bin/bash -c autoperipherals
+ExecStart=/home/jeremy/bin/x11-run-as jeremy autoperipherals
 
 [Install]
 WantedBy=multi-user.target
