@@ -33,6 +33,18 @@ Follow the wiki! https://wiki.archlinux.org/index.php/installation_guide
 - `sudo pacman -S git && mkdir ~/gitting && cd ~/gitting && git clone https://github.com/jfly/dotfiles.git && cd dotfiles` - Checkout and cd into this repo!
 - `./bootstrap-arch.sh` - Bootstrap Arch Linux installation, installing all dependencies. Make sure this command succeeds! This will also symlink dotfiles by running `./install`.
 
+## Swap
+
+Copied from https://wiki.archlinux.org/index.php/Swap#Swap_file.
+
+```
+$ sudo fallocate -l 8G /swapfile
+$ sudo chmod 600 /swapfile
+$ sudo mkswap /swapfile
+$ sudo swapon /swapfile
+```
+
+
 ## Printer
 - When actually adding printer, use ppd file from <http://www.openprinting.org/printer/Brother/Brother-HL-2240>.
 
