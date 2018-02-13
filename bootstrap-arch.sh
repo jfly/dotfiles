@@ -73,6 +73,10 @@ if [ ! -d ~/.oh-my-zsh ]; then
     git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
 fi
 
+## Prevent issue where suspending with bluetooth devices connected
+## would cause us to immediately wake from sleep.
+enable_service disable-bt-wakeup.service
+
 ## Keyboard stuff
 # Run xmodmap every time a keyboard appears.
 enable_service fixinputs.path

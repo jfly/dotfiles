@@ -1,0 +1,11 @@
+# Inspired by https://bbs.archlinux.org/viewtopic.php?pid=1575617#p1575617
+# and https://www.reddit.com/r/archlinux/comments/3zxg65/how_to_permanently_change_procacpiwakeup_or/
+# and https://wiki.archlinux.org/index.php/Power_management/Suspend_and_hibernate#Instantaneous_wakeups_from_suspend.
+[Unit]
+Description=Prevent unintended wakeups from suspend
+
+[Service]
+ExecStart=/bin/bash -c "echo EHC1 >> /proc/acpi/wakeup; echo XHC >> /proc/acpi/wakeup"
+
+[Install]
+WantedBy=multi-user.target
