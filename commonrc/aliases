@@ -85,7 +85,7 @@ function gnb {
 
         if [ "$stashed" != "No local changes to save" ]; then
             git stash apply
-            echo "I just did a git stash apply, if things worked well, don't forget to do a `git stash drop`"
+            echo "I just did a git stash apply, if things worked well, don't forget to do a 'git stash drop'"
         fi
     fi
 }
