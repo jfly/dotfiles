@@ -59,4 +59,8 @@ ControlMaster auto
 ControlPath ~/.ssh/%r@%h:%p
 ServerAliveInterval 60
 User jeremy
+
+Host g2g
+Hostname g2g.honordev.com
+User pi
 ###
