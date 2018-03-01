@@ -48,7 +48,7 @@ arch_package python
 sudo ./install
 ./install
 
-# Install dropbox
+## Install dropbox
 aur_package dropbox
 
 ## Dependencies to install stuff from the AUR
@@ -72,6 +72,9 @@ arch_package zsh mosh the_silver_searcher fzf hub efibootmgr dnsutils
 if [ ! -d ~/.oh-my-zsh ]; then
     git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
 fi
+
+## Enable NTP
+timedatectl set-ntp true
 
 ## Prevent issue where suspending with bluetooth devices connected
 ## would cause us to immediately wake from sleep.
