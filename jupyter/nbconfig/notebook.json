@@ -1,7 +1,8 @@
 {
   "Cell": {
     "cm_config": {
-      "lineWrapping": true
+      "lineWrapping": true,
+      "lineNumbers": false
     }
   }
 }
