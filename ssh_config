@@ -32,7 +32,7 @@ HostName staging.worldcubeassociation.org
 User cubing
 
 Host cusa
-HostName cubingusa.com
+HostName 52.41.194.238
 User ubuntu
 
 Host ocf

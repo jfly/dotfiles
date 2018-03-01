@@ -5,3 +5,5 @@ export PATH=$PATH:$HOME/.gem/ruby/2.5.0/bin
 
 # pip seems to install binaries to here
 export PATH=$PATH:$HOME/.local/bin/
+
+export PATH=$PATH:$HOME/thirdrepos/google-cloud-sdk/bin
