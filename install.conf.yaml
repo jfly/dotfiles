@@ -35,7 +35,7 @@
     ~/.ssh: ~/Dropbox/linux-secrets/kaladin-ssh
     ~/.gnupg: ~/Dropbox/linux-secrets/gnupg
     ~/.lolcommits: ~/Dropbox/pics/lolcommits
-    ~/.jupyter: jupyter
+    ~/.jupyter/nbconfig: jupyter/nbconfig
 
     /etc/modprobe.d/nobeep.conf: nobeep.conf
     /etc/systemd/logind.conf.d/no-suspend-on-lidswitch.conf: no-suspend-on-lidswitch.conf
