@@ -74,7 +74,7 @@ if [ ! -d ~/.oh-my-zsh ]; then
 fi
 
 ## Enable NTP
-timedatectl set-ntp true
+sudo timedatectl set-ntp true
 
 ## Prevent issue where suspending with bluetooth devices connected
 ## would cause us to immediately wake from sleep.
