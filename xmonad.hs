@@ -102,10 +102,10 @@ myKeys =
         ((controlMask, xK_Print), spawn "jscrot --video"),
         ((shiftMask, xK_Print), spawn "jscrot"),
 
-        ((controlMask .|. altMask, xK_Left), spawn "xrandr -o right"),
-        ((controlMask .|. altMask, xK_Right), spawn "xrandr -o left"),
-        ((controlMask .|. altMask, xK_Down), spawn "xrandr -o normal"),
-        ((controlMask .|. altMask, xK_Up), spawn "xrandr -o inverted"),
+        ((controlMask .|. altMask, xK_Left), spawn "xrandr -o right && fixtray"),
+        ((controlMask .|. altMask, xK_Right), spawn "xrandr -o left && fixtray"),
+        ((controlMask .|. altMask, xK_Down), spawn "xrandr -o normal && fixtray"),
+        ((controlMask .|. altMask, xK_Up), spawn "xrandr -o inverted && fixtray"),
 
         -- Create our own play/pause button.
         ((myModMask, xK_s), spawn "sleep 0.1 && xdotool key --clearmodifiers XF86AudioPlay"),
@@ -114,7 +114,6 @@ myKeys =
 
         ((myModMask, xK_a), spawn "autoperipherals"),
         ((myModMask .|. shiftMask, xK_a), spawn "mobile.sh")
-        -- ((myModMask .|. shiftMask, xK_a), spawn "mission-desk.sh")
     ]
 
 main = do
