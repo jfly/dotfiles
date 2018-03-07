@@ -193,6 +193,15 @@ laptop_stuff() {
 
 htpc_stuff() {
     install_vim vim
+
+    ## Install kodi
+    # https://wiki.archlinux.org/index.php/Kodi#Raspberry_Pi_.28all_generations.29
+    # and http://blog.monkey.codes/how-to-setup-kodi-on-a-raspberry-pi/
+    arch_package kodi-rbp libcec-rpi
+    sudo sed -i 's/gpu_mem=64/gpu_mem=256/' /boot/config.txt
+
+    enable_service_not_now kodi
+
     echo TODO #<<<
     exit 1 #<<<
 }
