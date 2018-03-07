@@ -19,7 +19,7 @@
 [include]
     path = ~/.gitconfig_local
 [core]
-    excludesfile = /home/jeremy/.gitignore_global
+    excludesfile = ~/.gitignore_global
 [credential]
     helper = cache --timeout=3600
 [pager]
