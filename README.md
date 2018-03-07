@@ -28,6 +28,8 @@ See instructions on [this Google Doc](https://docs.google.com/document/d/1Ji1dfn
 
 Follow the wiki! https://wiki.archlinux.org/index.php/installation_guide
 
+- Set hostname: https://wiki.archlinux.org/index.php/installation_guide#Hostname
+- `passwd` - Set the root password
 - `pacman -S sudo && visudo` - Install and configure sudo.
 - `useradd -m -G wheel -s /bin/bash jeremy && passwd jeremy && su jeremy` - Create user and set their password.
 - `sudo pacman -S git && mkdir ~/gitting && cd ~/gitting && git clone https://github.com/jfly/dotfiles.git && cd dotfiles` - Checkout and cd into this repo!

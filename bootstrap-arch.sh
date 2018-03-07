@@ -3,6 +3,11 @@
 set -e
 cd "$(dirname "$0")"
 
+if [ "$EUID" -eq 0 ]; then
+    echo "Do not rush this script as root, instead run it as the non-root user you want to set up."
+    exit 1
+fi
+
 arch_package() {
     sudo pacman -S --noconfirm --needed $@
 }
@@ -34,6 +39,15 @@ enable_service_not_now() {
 }
 
 base_stuff() {
+    ## Set timezone
+    # https://wiki.archlinux.org/index.php/installation_guide#Time_zone
+    sudo ln -sf /usr/share/zoneinfo/America/Los_Angeles /etc/localtime
+    sudo hwclock --systohc
+
+    ## Set locale
+    sudo sed -i 's/^#\(en_US.UTF-8 UTF-8\)/\1/' /etc/locale.gen
+    sudo locale-gen
+
     ## Some hacky pre-setup before running dotbot
     # Dotbot sets up some symlinks into Dropbox, but this doesn't work if our
     # Dropbox has not yet sync-ed. We hack around this by creating the expected
@@ -183,7 +197,7 @@ elif [ "$(hostname)" = "kent" ]; then
     device_specific_command=htpc_stuff
 else
     echo "Unrecognized hostname '$(hostname)'"
-    exit 1
+    exit 2
 fi
 
 base_stuff
