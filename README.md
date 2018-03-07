@@ -39,7 +39,7 @@ Follow the wiki! https://wiki.archlinux.org/index.php/installation_guide
 See https://wiki.archlinux.org/index.php/Swap#Swap_file_creation.
 
 ## Printer
-- When actually adding printer, use ppd file from <http://www.openprinting.org/printer/Brother/Brother-HL-2240>.
+When actually adding printer, use ppd file from <http://www.openprinting.org/printer/Brother/Brother-HL-2240>.
 
 ## Bluetooth
 See <https://wiki.archlinux.org/index.php/Bluetooth_keyboard>.
