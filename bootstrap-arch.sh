@@ -202,6 +202,41 @@ htpc_stuff() {
 
     enable_service_not_now kodi
 
+    cat <<EOF > ~/.kodi/userdata/sources.xml
+<sources>
+    <programs>
+        <default pathversion="1"></default>
+    </programs>
+    <video>
+        <default pathversion="1"></default>
+        <source>
+            <name>shows</name>
+            <path pathversion="1">/home/media/shows/</path>
+            <allowsharing>true</allowsharing>
+        </source>
+        <source>
+            <name>movies</name>
+            <path pathversion="1">/home/media/movies/</path>
+            <allowsharing>true</allowsharing>
+        </source>
+    </video>
+    <music>
+        <default pathversion="1"></default>
+        <source>
+            <name>music</name>
+            <path pathversion="1">/home/media/music/</path>
+            <allowsharing>true</allowsharing>
+        </source>
+    </music>
+    <pictures>
+        <default pathversion="1"></default>
+    </pictures>
+    <files>
+        <default pathversion="1"></default>
+    </files>
+</sources>
+EOF
+
     echo TODO #<<<
     exit 1 #<<<
 }
