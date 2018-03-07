@@ -42,7 +42,7 @@ base_stuff() {
     ## Set timezone
     # https://wiki.archlinux.org/index.php/installation_guide#Time_zone
     sudo ln -sf /usr/share/zoneinfo/America/Los_Angeles /etc/localtime
-    sudo hwclock --systohc
+    sudo hwclock --systohc || true # RPI doesn't even have a RTC module!
 
     ## Set locale
     sudo sed -i 's/^#\(en_US.UTF-8 UTF-8\)/\1/' /etc/locale.gen
