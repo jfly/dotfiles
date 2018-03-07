@@ -69,15 +69,6 @@ base_stuff() {
     arch_package python-pip python-pexpect openssh
     sudo pip install setproctitle # needed by spawn-and-stuff
 
-    ## Vim
-    arch_package gvim editorconfig-core-c
-    vim +PlugInstall +qall
-    # Symlink vi to vim if it has not been symlinked already.
-    if [ `readlink /usr/bin/vi` != "/usr/bin/vim" ]; then
-        sudo mv /usr/bin/vi /usr/bin/vi.bak
-        sudo ln -s /usr/bin/vim /usr/bin/vi
-    fi
-
     ## Misc
     arch_package zsh mosh the_silver_searcher fzf hub efibootmgr dnsutils
     if [ ! -d ~/.oh-my-zsh ]; then
@@ -112,7 +103,21 @@ base_stuff() {
     aur_package simple-mtpfs
 }
 
+install_vim() {
+    ## Vim
+    arch_package $1 editorconfig-core-c
+    vim +PlugInstall +qall
+    # Symlink vi to vim if it has not been symlinked already.
+    if [ `readlink /usr/bin/vi` != "/usr/bin/vim" ]; then
+        sudo mv /usr/bin/vi /usr/bin/vi.bak
+        sudo ln -s /usr/bin/vim /usr/bin/vi
+    fi
+}
+
+
 laptop_stuff() {
+    install_vim gvim
+
     ## Install dropbox
     aur_package dropbox
 
@@ -187,6 +192,7 @@ laptop_stuff() {
 }
 
 htpc_stuff() {
+    install_vim vim
     echo TODO #<<<
     exit 1 #<<<
 }
