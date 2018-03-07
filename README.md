@@ -36,23 +36,14 @@ Follow the wiki! https://wiki.archlinux.org/index.php/installation_guide
 - `./bootstrap-arch.sh` - Bootstrap Arch Linux installation, installing all dependencies. Make sure this command succeeds! This will also symlink dotfiles by running `./install`.
 
 ## Swap
-
-Copied from https://wiki.archlinux.org/index.php/Swap#Swap_file.
-
-```
-$ sudo fallocate -l 8G /swapfile
-$ sudo chmod 600 /swapfile
-$ sudo mkswap /swapfile
-$ sudo swapon /swapfile
-```
-
+See https://wiki.archlinux.org/index.php/Swap#Swap_file_creation.
 
 ## Printer
 - When actually adding printer, use ppd file from <http://www.openprinting.org/printer/Brother/Brother-HL-2240>.
 
 ## Bluetooth
 See <https://wiki.archlinux.org/index.php/Bluetooth_keyboard>.
-Note: Dualbooting with bluetooth is a *pain*. See: https://unix.stackexchange.com/a/255510 for more details and crazy workaround.
+Note: Dualbooting with bluetooth is a *pain*. See: https://unix.stackexchange.com/a/255510 for more details and a crazy workaround.
 
 ## Dropbox
 - `dropbox` - Need to manually start dropbox and log in.
