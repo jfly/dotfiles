@@ -99,8 +99,6 @@ base_stuff() {
 
     ## Some FUSE stuff
     arch_package sshfs
-    # MTP stuff (see https://wiki.archlinux.org/index.php/MTP#simple-mtpfs)
-    aur_package simple-mtpfs
 }
 
 install_vim() {
@@ -114,9 +112,11 @@ install_vim() {
     fi
 }
 
-
 laptop_stuff() {
     install_vim gvim
+
+    ## MTP stuff (see https://wiki.archlinux.org/index.php/MTP#simple-mtpfs)
+    aur_package simple-mtpfs
 
     ## Install dropbox
     aur_package dropbox
