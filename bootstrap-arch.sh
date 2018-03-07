@@ -84,7 +84,7 @@ base_stuff() {
 
     ## Keyboard stuff
     # Run xmodmap every time a keyboard appears.
-    enable_service fixinputs.path
+    enable_service fixinputs@$(whoami).path
 
     ## Printer
     arch_package cups ghostscript
@@ -138,7 +138,7 @@ laptop_stuff() {
     # Lock screen on suspend.
     # https://wiki.archlinux.org/index.php/Slock
     arch_package slock
-    enable_service_not_now slock@`whoami`.service
+    enable_service_not_now slock@$(whoami).service
 
     ## Setting up wireless with network manager
     arch_package networkmanager network-manager-applet networkmanager-vpnc gnome-keyring

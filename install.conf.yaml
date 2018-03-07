@@ -39,13 +39,13 @@
 
     /etc/systemd/logind.conf.d/no-suspend-on-lidswitch.conf: no-suspend-on-lidswitch.conf
     /etc/systemd/logind.conf.d/suspend-on-powerbutton.conf: suspend-on-powerbutton.conf
-    /etc/systemd/system/fixinputs.path: units/fixinputs.path
-    /etc/systemd/system/fixinputs.service: units/fixinputs.service
+    /etc/systemd/system/fixinputs@.path: units/fixinputs@.path
+    /etc/systemd/system/fixinputs@.service: units/fixinputs@.service
     /etc/systemd/system/slock@.service: units/slock@.service
     /etc/systemd/system/disable-bt-wakeup.service: units/disable-bt-wakeup.service
 
     /etc/udev/rules.d/10-local.rules: udev/10-local.rules
-    /usr/lib/systemd/system/monitors.service: units/monitors.service
+    /etc/systemd/system/monitors@.service: units/monitors@.service
 
     /etc/X11/xorg.conf.d/20-intel.conf: 20-intel.conf
     /etc/X11/xorg.conf.d/20-trackpoint.conf: 20-trackpoint.conf
