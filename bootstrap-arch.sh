@@ -70,7 +70,7 @@ base_stuff() {
     sudo pip install setproctitle # needed by spawn-and-stuff
 
     ## Misc
-    arch_package zsh mosh the_silver_searcher fzf hub efibootmgr dnsutils
+    arch_package zsh mosh the_silver_searcher fzf hub efibootmgr dnsutils screen
     if [ ! -d ~/.oh-my-zsh ]; then
         git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
     fi
@@ -202,9 +202,12 @@ htpc_stuff() {
 
     enable_service_not_now kodi
 
-    mkdir -p ~/gitting/
-    git clone https://github.com/jfly/jpi.jflei.com.git ~/gitting/jpi.jflei.com
+    if [ ! -d ~/gitting/jpi.jflei.com ]; then
+        mkdir -p ~/gitting/
+        git clone https://github.com/jfly/jpi.jflei.com.git ~/gitting/jpi.jflei.com
+    fi
 
+    arch_package nginx nodejs npm
     # TODO - run startall on boot.
     # TODO - generate htpasswd file.
 
