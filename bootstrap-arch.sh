@@ -74,6 +74,9 @@ base_stuff() {
     if [ ! -d ~/.oh-my-zsh ]; then
         git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
     fi
+    if [ ! -d /root/.oh-my-zsh ]; then
+        sudo git clone git://github.com/robbyrussell/oh-my-zsh.git /root/.oh-my-zsh
+    fi
 
     ## Enable NTP
     sudo timedatectl set-ntp true
