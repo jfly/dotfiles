@@ -10,6 +10,7 @@ Host kent
 HostName kent.jflei.com
 #HostName kent
 User kent
+ForwardAgent yes
 
 Host ccm
 HostName 54.148.223.17
