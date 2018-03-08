@@ -60,8 +60,12 @@ source $ZSH/oh-my-zsh.sh
 ###
 ### Set prompt (copied and modified from ~/.oh-my-zsh/themes/robbyrussell.zsh-theme)
 ###
+local host=""
+if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
+  host=" @%M"
+fi
 local ret_status="%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )"
-PROMPT='${ret_status} %{$fg[cyan]%}%~%{$reset_color%} $(git_prompt_info)'
+PROMPT='${ret_status}${host} %{$fg[cyan]%}%~%{$reset_color%} $(git_prompt_info)'
 #####################
 
 ###
