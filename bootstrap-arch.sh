@@ -31,11 +31,11 @@ aur_package() {
 }
 
 enable_service() {
-    sudo systemctl enable --now "$1"
+    sudo systemctl enable --now $@
 }
 
 enable_service_not_now() {
-    sudo systemctl enable "$1"
+    sudo systemctl enable $@
 }
 
 base_stuff() {
@@ -208,11 +208,38 @@ htpc_stuff() {
     fi
 
     arch_package nginx nodejs npm
-    # TODO - run startall on boot.
-    # TODO - generate htpasswd file.
 
-    echo TODO #<<<
-    exit 1 #<<<
+    # Install and configure transmission.
+    arch_package transmission-cli
+    enable_service transmission
+    sudo systemctl stop transmission
+    sudo sed -i 's_\( *"download-dir: \).*_\1"/home/media/torrents",_' /var/lib/transmission/.config/transmission-daemon/settings.json
+    sudo sed -i 's_\( *"rpc-host-whitelist": \).*_\1"*",_' /var/lib/transmission/.config/transmission-daemon/settings.json
+    sudo sed -i 's_\( *"rpc-host-whitelist-enabled": \).*_\1false,_' /var/lib/transmission/.config/transmission-daemon/settings.json
+    sudo systemctl start transmission
+
+    mkdir -p ~/.config/systemd/user/
+    cat > ~/.config/systemd/user/gatekeeper.service <<EOL
+[Unit]
+Description=gatekeeper and nginx
+
+[Service]
+ExecStart=$HOME/gitting/jpi.jflei.com/runall.sh
+Type=oneshot
+RemainAfterExit=yes
+
+[Install]
+WantedBy=default.target
+EOL
+    systemctl enable --now --user gatekeeper.service
+
+    if [ ! -f ~/gitting/jpi.jflei.com/htpasswd ]; then
+        echo "Enter the password you want to use for HTTP basic access from the outside word."
+        echo -n "> "
+        read -s password
+        echo
+        echo "kent:{PLAIN}$password" > ~/gitting/jpi.jflei.com/htpasswd
+    fi
 }
 
 if [ "$(hostname)" = "breq" ] || [ "$(hostname)" = "dalinar" ]; then
