@@ -2,4 +2,6 @@
 
 colorscheme light &> /dev/null
 ssh $@
+exit_code=$?
 colorscheme dark &> /dev/null
+exit $exit_code
