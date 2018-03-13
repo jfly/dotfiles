@@ -25,7 +25,7 @@ cat > config <<EOF
 
 [options]
 scroll_on_output = false
-scroll_on_keystroke = false
+scroll_on_keystroke = true
 audible_bell = false
 mouse_autohide = false
 allow_bold = true
