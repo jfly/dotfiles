@@ -22,6 +22,11 @@ alias h4post="rbt-log-post --open --parent=upstream/master"
 alias h4repost="rbt-log-post --open --update --parent=upstream/master"
 alias h4mysql="mysql -u root sonasandboxdb --binary-as-hex"
 
+# --xetex avoids huge file sizes when trimming pdfs.
+# See: http://alexsleat.co.uk/2011/01/25/using-pdfcrop-to-remove-white-margins-ubuntu/
+# sudo pacman -S texlive-extra-utils
+alias pdfcrop="pdfcrop --xetex"
+
 function o {
     if [ -e "$1" ]; then
         DROPBOX_DIR=$(readlink -f ~/Dropbox)
