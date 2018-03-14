@@ -2,6 +2,7 @@ import Data.List
 import XMonad hiding ( (|||) ) -- don't use the normal ||| operator
 import XMonad.Config.Desktop
 import XMonad.Layout.LayoutCombinators -- use the one from LayoutCombinators instead
+import XMonad.Layout.ToggleLayouts
 import XMonad.Actions.SpawnOn
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
@@ -21,7 +22,7 @@ myModMask = mod4Mask
 
 myTerminal = "termite"
 tall = Tall 1 (3/100) (1/2)
-myLayout = avoidStruts $ smartBorders $ tall ||| Mirror tall ||| Full
+myLayout = avoidStruts $ smartBorders $ toggleLayouts Full tall ||| toggleLayouts Full (Mirror tall)
 
 myBorderWidth = 2
 
@@ -68,9 +69,11 @@ myKeys =
         -- doesn't conflict with browers =)
         ((myModMask, xK_semicolon), windows W.swapMaster),
 
-        -- Jump directly to the Full layout
-        ((myModMask, xK_m), sendMessage $ JumpToLayout "Full"),
-        ((myModMask, xK_t), sendMessage $ JumpToLayout "Tall"),
+        -- Toggle between.
+        ((myModMask, xK_space), sendMessage ToggleLayout),
+
+        -- Go to next layout.
+        ((myModMask, xK_t), sendMessage NextLayout),
 
         -- We stole this shortcut above (to emulate DWM's monocle shortcut)
         -- Lets add a shift modifier.
