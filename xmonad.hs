@@ -3,6 +3,7 @@ import XMonad hiding ( (|||) ) -- don't use the normal ||| operator
 import XMonad.Config.Desktop
 import XMonad.Layout.LayoutCombinators -- use the one from LayoutCombinators instead
 import XMonad.Layout.ToggleLayouts
+import XMonad.Layout.ThreeColumns
 import XMonad.Actions.SpawnOn
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
@@ -22,7 +23,8 @@ myModMask = mod4Mask
 
 myTerminal = "termite"
 tall = Tall 1 (3/100) (1/2)
-myLayout = avoidStruts $ smartBorders $ toggleLayouts Full tall ||| toggleLayouts Full (Mirror tall)
+threeCol = ThreeCol 1 (3/100) (0.36) -- just enough space for 100 columns wide in vim
+myLayout = avoidStruts $ smartBorders $ toggleLayouts Full tall ||| toggleLayouts Full threeCol ||| toggleLayouts Full (Mirror tall)
 
 myBorderWidth = 2
 
