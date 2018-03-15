@@ -94,6 +94,10 @@ au BufRead,BufNewFile Vagrantfile set filetype=ruby
 au BufRead,BufNewFile *.jy set filetype=python
 """"""
 
+"""""" tcomment configuration
+call tcomment#DefineType('python', '#<<< %s')
+""""""
+
 """""" FZF configuration
 noremap <c-p> :Files<CR>
 noremap <leader>b :Buffers<CR>
