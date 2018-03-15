@@ -134,6 +134,21 @@ nnoremap <leader>tl :w<CR>:TestLast<CR>
 nnoremap <leader>tn :w<CR>:TestNearest<CR>
 """"""
 
+"""""" ToggleTest between file and corresponding test file.
+function! ToggleTest(path)
+    if a:path =~ "_test\.py$"
+        let l:other_path = substitute(expand('%'), "_test\.py$", ".py", "")
+    elseif a:path =~ "\.py$"
+        let l:other_path = substitute(expand('%'), "\.py$", "_test.py", "")
+    else
+        echo "I'm not sure how to toggle " . a:path
+        return
+    endif
+    :execute 'edit' l:other_path
+endfunction
+nnoremap <leader>tt :call ToggleTest(expand('%'))<CR>
+""""""
+
 """""" airline configuration
 " Display all buffers when there's only one tab open
 let g:airline#extensions#tabline#enabled = 1
