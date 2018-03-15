@@ -2,4 +2,4 @@
 
 DIR=~/media/kent/
 mkdir -p "$DIR"
-sshfs -o reconnect kent@kent:/home/media "$DIR"
+sshfs -o allow_root,reconnect kent@kent:/home/media "$DIR"

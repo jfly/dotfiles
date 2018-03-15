@@ -2,4 +2,4 @@
 
 DIR=~/media/clark/
 mkdir -p "$DIR"
-sshfs -o reconnect clark@clark:/home/media "$DIR"
+sshfs -o allow_root,reconnect clark@clark:/home/media "$DIR"

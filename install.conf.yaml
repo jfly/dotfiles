@@ -37,6 +37,8 @@
     ~/.lolcommits: ~/Dropbox/pics/lolcommits
     ~/.jupyter/nbconfig: jupyter/nbconfig
 
+    /etc/fuse.conf: fuse.conf
+
     /etc/systemd/logind.conf.d/no-suspend-on-lidswitch.conf: no-suspend-on-lidswitch.conf
     /etc/systemd/logind.conf.d/suspend-on-powerbutton.conf: suspend-on-powerbutton.conf
     /etc/systemd/system/fixinputs@.path: units/fixinputs@.path
