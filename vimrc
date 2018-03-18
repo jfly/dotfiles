@@ -116,7 +116,8 @@ let g:test#strategy = "fat_runner"
 " "make singletest NOSEARGS='...'"
 function! HonorTransform(cmd) abort
     if a:cmd =~ '^nosetests '
-        let a:cmd_sans_nosetests = "-s --pdb ".substitute(a:cmd, '^nosetests ', '', '')
+        "let a:cmd_sans_nosetests = "-s --pdb ".substitute(a:cmd, '^nosetests ', '', '')
+        let a:cmd_sans_nosetests = "-s ".substitute(a:cmd, '^nosetests ', '', '')
         let a:new_cmd = 'make singletest TEST_PROCESSES=0 TEST_DB_COUNT=1 NOSEARGS='.shellescape(a:cmd_sans_nosetests)
     else
         let a:new_cmd = a:cmd
