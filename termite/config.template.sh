@@ -4,16 +4,16 @@ cd "$(dirname "$0")"
 
 # Validate command line arguments
 print_usage_and_exit() {
-  echo "Usage: $0 [colorschemefilename.config] [font_size]"
+  echo "Usage: $0 [colorschemefilename.config]"
   echo
   exit
 }
-if [ $# -ne 2 ]; then
+if [ $# -ne 1 ]; then
   print_usage_and_exit
 fi
 
 COLORSCHEME_FILENAME=$1
-FONT_SIZE=$2
+FONT_SIZE=12
 
 COLORSCHEME=`cat ${COLORSCHEME_FILENAME}`
 

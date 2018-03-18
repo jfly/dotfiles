@@ -1,12 +1,8 @@
 #!/usr/bin/env bash
 
-function get_termite_font_size {
-  grep "font = " ~/.config/termite/config | grep -Eo "[0-9]+$"
-}
-
 function set_termite_colorscheme_file {
   colorscheme_file=$1
-  ~/.config/termite/config.template.sh "$colorscheme_file" `get_termite_font_size`
+  ~/.config/termite/config.template.sh "$colorscheme_file"
 }
 
 function reload_termite_config() {

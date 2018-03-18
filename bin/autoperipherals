@@ -1,32 +1,28 @@
 #!/bin/bash
 
 function main() {
-    # TODO - look into running whenever power is added/removed
-    # "on" or "off": POWER_STATUS=$(acpi -a | cut -d' ' -f3 | cut -d- -f1)
-
     HDMI_STATUS=$(</sys/class/drm/card0/*HDMI*/status)
     DP1_STATUS=$(</sys/class/drm/card0/card0-DP-1/status)
-
-    # TODO - look into automating this via udev, see https://wiki.archlinux.org/index.php/PulseAudio/Examples#Automatically_switch_audio_to_HDMI
 
     if [ "$HDMI_STATUS" == "connected" ]; then
         LAYOUT_NAME=mission-desk
         TRAYER_HEIGHT=19
-        TERM_FONT_SIZE=8
+        XFT_DPI=$((1024*96))
     elif [ "$DP1_STATUS" == "connected" ]; then
         LAYOUT_NAME=honor-desk
         TRAYER_HEIGHT=19
-        TERM_FONT_SIZE=9
+        XFT_DPI=$((1024*96))
     else
         LAYOUT_NAME=mobile
         # Temporarily trying out a a really tiny tray on mobile... TRAYER_HEIGHT=25
         TRAYER_HEIGHT=19
-        TERM_FONT_SIZE=12
+        XFT_DPI=$((1024*133))
     fi
 
     size_tray $TRAYER_HEIGHT
-    size_termite $TERM_FONT_SIZE
-    size_chromium $LAYOUT_NAME
+
+    echo "Xft/DPI $XFT_DPI" > ~/.xsettingsd
+    killall -HUP xsettingsd
 
     # notify-send blocks until something receives the message. When booting,
     # we haven't started dunst yet, so we need to run notify-send in the background.
@@ -41,36 +37,16 @@ function main() {
 
 function size_tray() {
     height=$1
+    # TODO - the following doesn't actually resize the tray. if we want to
+    #        resize xmobar, i think we need to:
+    #         1. edit our xmobarrc
+    #         2. run `xmonad --restart`
     # We'd just kill and restart trayer everytime to resize it, but this also causes trayer to stay
     # on top of windows when we turn off struts.
     #killall -q trayer
     if ! pgrep trayer &> /dev/null; then
         trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 10 --height $height --transparent true --alpha 0 --tint 0 &
     fi
-
-    # TODO - if we want to resize xmobar, we need to:
-    #         1. edit our xmobarrc
-    #         2. run `xmonad --restart`
-}
-
-function size_termite() {
-    font_size=$1
-    ~/.config/termite/config.template.sh solarized-dark $font_size
-
-    # Termite reloads its config on SIGUSR1.
-    # https://github.com/thestinger/termite/blob/3bc2a43bef9b0842cb242dd19853d0344c8a2766/termite.cc#L1715
-    killall -s USR1 termite
-}
-
-function size_chromium() {
-    LAYOUT_NAME=$1
-    # Urg, this is tough. Some ideas:
-    # 1. Set "Page zoom" in chrome://settings/?search=page+zoom to 75%.
-    # 2. Reduce the size of all the chrome?? is this even possible? =(
-    #    Two ways to do it that involve restarting chrome:
-    #      - Change Xresources and restart chrome, but this will affect other apps as well.
-    #      - chromium --force-device-scale-factor=1
-    sudo ln -sf ~/bin/layouts/chromium-$LAYOUT_NAME /usr/local/sbin/chromium
 }
 
 # There's no way it's good to be running this command simultaneously.

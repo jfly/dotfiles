@@ -39,6 +39,11 @@ if [ -x /usr/bin/dunst ]; then
     dunst &
 fi
 
+if [ -x /usr/bin/xsettingsd ]; then
+    touch ~/.xsettingsd
+    /usr/bin/xsettingsd &
+fi
+
 # From https://wiki.archlinux.org/index.php/GNOME/Keyring#xinitrc_method
 if [ -x /usr/bin/gnome-keyring-daemon ]; then
     dbus-update-activation-environment --systemd DISPLAY

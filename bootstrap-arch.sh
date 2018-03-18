@@ -133,7 +133,7 @@ laptop_stuff() {
     arch_package xmonad xmonad-contrib xmobar
     arch_package feh wmname network-manager-applet alsa-utils maim xclip numlockx xsel xdotool slop byzanz dunst
     arch_package termite chromium
-    aur_package trayer-srg-git dmenu2
+    aur_package trayer-srg-git dmenu2 xsettingsd
     # Fonts
     arch_package ttf-liberation ttf-bitstream-vera noto-fonts noto-fonts-emoji
     aur_package ttf-merriweather ttf-merriweather-sans ttf-opensans ttf-oswald ttf-quintessential ttf-signika ttf-google-fonts-git
