@@ -9,7 +9,18 @@ if [ "$EUID" -eq 0 ]; then
 fi
 
 arch_package() {
-    sudo pacman -S --noconfirm --needed $@
+    to_install=""
+    for arch_package_name in $@; do
+        if [ -n "$(pacman -Qs ${arch_package_name}$)" ]; then
+            echo "warning: Arch package $arch_package_name is already installed -- skipping"
+        else
+            to_install="$to_install $arch_package_name"
+        fi
+    done
+
+    if [ -n "$to_install" ]; then
+        sudo pacman -S --noconfirm --needed $to_install
+    fi
 }
 
 THIRD_REPOS_DIR=~/thirdrepos
@@ -74,7 +85,7 @@ base_stuff() {
     if [ ! -d ~/.oh-my-zsh ]; then
         git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
     fi
-    if [ ! -d /root/.oh-my-zsh ]; then
+    if sudo bash -c "[ ! -d /root/.oh-my-zsh ]"; then
         sudo git clone git://github.com/robbyrussell/oh-my-zsh.git /root/.oh-my-zsh
     fi
 
