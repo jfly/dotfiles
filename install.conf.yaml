@@ -23,7 +23,6 @@
     ~/.Xmodmap: Xmodmap
     ~/.Xresources: Xresources
     ~/.xinitrc: xinitrc
-    ~/.conkyrc: conkyrc
     ~/bin: bin
     ~/.config/roxterm.sourceforge.net: roxterm.sourceforge.net
     ~/.config/termite: termite
