@@ -7,6 +7,7 @@ function main() {
     if [ "$HDMI1_STATUS" == "connected" ]; then
         LAYOUT_NAME=hdmi
         TRAYER_HEIGHT=19
+        XMOBAR_FONT_SIZE=6
         XFT_DPI=$((1024*96))
 
         xrandr --output HDMI1 --auto --pos 0x0 --rotate normal --output VIRTUAL1 --off --output DP1 --off --output eDP1 --off --output DP2 --off
@@ -18,6 +19,7 @@ function main() {
     elif [ "$DP1_STATUS" == "connected" ]; then
         LAYOUT_NAME=dp1
         TRAYER_HEIGHT=19
+        XMOBAR_FONT_SIZE=6
         XFT_DPI=$((1024*96))
 
         xrandr --output DP1 --auto --pos 0x0 --rotate normal --output VIRTUAL1 --off --output HDMI1 --off --output eDP1 --off --output DP2 --off
@@ -27,8 +29,8 @@ function main() {
         pactl set-card-profile alsa_card.pci-0000_00_1f.3 output:hdmi-stereo+input:stereo-fallback
     else
         LAYOUT_NAME=mobile
-        # Temporarily trying out a really tiny tray on mobile... TRAYER_HEIGHT=25
-        TRAYER_HEIGHT=19
+        TRAYER_HEIGHT=25
+        XMOBAR_FONT_SIZE=9
         XFT_DPI=$((1024*133))
 
         xrandr --output HDMI1 --off --output VIRTUAL1 --off --output DP1 --off --output eDP1 --primary --mode 2560x1440 --pos 0x0 --rotate normal --output DP2 --off
@@ -39,7 +41,7 @@ function main() {
 
     setbg
 
-    size_tray $TRAYER_HEIGHT
+    size_tray $TRAYER_HEIGHT $XMOBAR_FONT_SIZE
 
     # Change DPI and notify everyone via XSETTINGS.
     # See https://utcc.utoronto.ca/~cks/space/blog/linux/XSettingsNotes?showcomments
@@ -57,17 +59,16 @@ function main() {
 }
 
 function size_tray() {
-    height=$1
-    # TODO - the following doesn't actually resize the tray. if we want to
-    #        resize xmobar, i think we need to:
-    #         1. edit our xmobarrc
-    #         2. run `xmonad --restart`
-    # We'd just kill and restart trayer everytime to resize it, but this also causes trayer to stay
-    # on top of windows when we turn off struts.
-    #killall -q trayer
-    if ! pgrep trayer &> /dev/null; then
-        trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --widthtype request --height $trayer_height --transparent true --alpha 0 --tint 0 &
-    fi
+    trayer_height=$1
+    xmobar_font_size=$2
+
+    # To resize our xmobar, we must edit our xmobarrc and then restart xmonad.
+    sed -i "s/size=[^:]*:/size=${xmobar_font_size}:/" ~/.xmobarrc
+    xmonad --restart
+
+    # Kill existing trayer and start it back up to resize it.
+    killall -q trayer
+    trayer -l --edge top --align right --SetDockType true --SetPartialStrut true --expand true --widthtype request --height $trayer_height --transparent true --alpha 0 --tint 0 &
 }
 
 # There's no way it's good to be running this command simultaneously.
