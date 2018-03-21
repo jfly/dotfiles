@@ -34,6 +34,7 @@ Follow the wiki! https://wiki.archlinux.org/index.php/installation_guide
 - `useradd -m -G wheel -s /bin/bash jeremy && passwd jeremy && su jeremy` - Create user and set their password.
 - `sudo pacman -S git && mkdir ~/gitting && cd ~/gitting && git clone https://github.com/jfly/dotfiles.git && cd dotfiles` - Checkout and cd into this repo!
 - `./bootstrap-arch.sh` - Bootstrap Arch Linux installation, installing all dependencies. Make sure this command succeeds!
+- If you want fancy fonts, you might want to look into https://aur.archlinux.org/packages/ttf-ms-win10/, which is a bit of an adventure to install.
 
 ## Swap
 See https://wiki.archlinux.org/index.php/Swap#Swap_file_creation.
