@@ -51,7 +51,6 @@
     /etc/X11/xorg.conf.d/20-intel.conf: 20-intel.conf
     /etc/X11/xorg.conf.d/20-trackpoint.conf: 20-trackpoint.conf
 
-    /etc/bluetooth/main.conf: etc_bluetooth_main.conf
     /etc/modprobe.d/nobeep.conf: nobeep.conf
     /etc/vconsole.conf: vconsole.conf
     /etc/locale.conf: locale.conf

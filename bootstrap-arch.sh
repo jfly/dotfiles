@@ -71,6 +71,10 @@ base_stuff() {
     ## Install dotfiles
     arch_package python
     sudo ./install
+    # TODO - for some reason, symlinking this file gives a
+    # "Parsing /etc/bluetooth/main.conf failed: Permission denied" error when bluetoothd
+    # starts up.
+    sudo cp etc_bluetooth_main.conf /etc/bluetooth/main.conf
     ./install
 
     ## Dependencies to install stuff from the AUR
