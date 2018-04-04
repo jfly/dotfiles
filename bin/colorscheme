@@ -66,7 +66,7 @@ done
 
 # Comands have been validated, so execute them!
 # Show commands before running them.
-set -ex
+set -e
 for command in "$@"; do
   $command
 done
