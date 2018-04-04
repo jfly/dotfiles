@@ -10,7 +10,7 @@ function main() {
         XMOBAR_FONT_SIZE=6
         XFT_DPI=$((1024*96))
 
-        xrandr --output HDMI1 --auto --pos 0x0 --rotate normal --output VIRTUAL1 --off --output DP1 --off --output eDP1 --off --output DP2 --off
+        xrandr --output HDMI1 --preferred --pos 0x0 --rotate normal --output VIRTUAL1 --off --output DP1 --off --output eDP1 --off --output DP2 --off
 
         # Switch to HDMI audio.
         # TODO - for some reason, only one of these profiles is available, but it seems to change randomly.
@@ -22,7 +22,7 @@ function main() {
         XMOBAR_FONT_SIZE=6
         XFT_DPI=$((1024*96))
 
-        xrandr --output DP1 --auto --pos 0x0 --rotate normal --output VIRTUAL1 --off --output HDMI1 --off --output eDP1 --off --output DP2 --off
+        xrandr --output DP1 --preferred --pos 0x0 --rotate normal --output VIRTUAL1 --off --output HDMI1 --off --output eDP1 --off --output DP2 --off
         # Switch to HDMI audio.
         # TODO - for some reason, only one of these profiles is available, but it seems to change randomly.
         pactl set-card-profile alsa_card.pci-0000_00_1f.3 output:hdmi-stereo+input:analog-stereo
