@@ -18,8 +18,28 @@ alias wcacheckmem="ssh wca 'date && ps -eo rss,comm,pid,args | grep -i unicorn |
 alias wcadeploy="ssh -A cubing@worldcubeassociation.org worldcubeassociation.org/scripts/deploy.sh pull_latest rebuild_regs rebuild_rails"
 
 # Honor specific stuff
-alias h4post="rbt-log-post --open --parent=upstream/master"
-alias h4repost="rbt-log-post --open --update --parent=upstream/master"
+function h4post {
+    (
+        set -e
+        _og_ref=$(git symbolic-ref HEAD 2> /dev/null) || _og_ref=$(git rev-parse --short HEAD 2> /dev/null)
+        _og_ref=${_og_ref#refs/heads/}
+        if [ "$_og_ref" != "temp" ]; then
+            git checkout -b temp
+        fi
+        rbt-log-post --open --parent=HEAD~1 $@ HEAD || true
+        git checkout $_og_ref
+        if [ "$_og_ref" != "temp" ]; then
+            git branch -d temp
+        fi
+    )
+}
+function h4repost {
+    if [ "$#" -ne 1 ]; then
+        echo "Please specify a review request id"
+    else
+        h4post --review-request-id $1
+    fi
+}
 alias h4mysql="mysql -u root sonasandboxdb --binary-as-hex"
 
 # --xetex avoids huge file sizes when trimming pdfs.
