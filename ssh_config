@@ -20,13 +20,13 @@ Host wca
 HostName worldcubeassociation.org
 User cubing
 
-Host wca-new
-HostName 34.208.140.116
-User cubing
+Host wca-ru
+HostName 172.104.88.210
+User root
 
-Host wca-old
-HostName 34.208.140.116
-User cubing
+Host wca-ovh
+HostName 54.38.53.234
+User root
 
 Host staging.wca
 HostName staging.worldcubeassociation.org
