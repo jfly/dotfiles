@@ -28,6 +28,9 @@ let mapleader = ","
 " Fast reloading of .vimrc
 map <leader>r :source ~/.vimrc<cr>
 
+" Easy copying of path to file
+nnoremap <Leader>cf :let @+ = expand("%")<CR>
+
 " http://vim.wikia.com/wiki/Indenting_source_code
 " http://stackoverflow.com/a/234578
 filetype plugin indent on
