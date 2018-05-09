@@ -89,7 +89,7 @@ base_stuff() {
     if [ ! -d ~/.oh-my-zsh ]; then
         git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
     fi
-    if sudo bash -c "[ ! -d /root/.oh-my-zsh ]"; then
+    if sudo [ ! -d /root/.oh-my-zsh ]; then
         sudo git clone git://github.com/robbyrussell/oh-my-zsh.git /root/.oh-my-zsh
     fi
 
@@ -258,6 +258,55 @@ EOL
         echo
         echo "kent:{PLAIN}$password" > ~/gitting/jpi.jflei.com/htpasswd
     fi
+
+    # Install and configure ddclient for dynamic dns
+    arch_package ddclient
+	if [ ! -f /etc/ddclient/ddclient.conf.bak ]; then
+		sudo cp /etc/ddclient/ddclient.conf /etc/ddclient/ddclient.conf.before
+
+        echo "Enter the domain name you want to update via Google Domains"
+        echo -n "> "
+        read domain_name
+        echo
+
+        echo "Enter the generated username for $domain_name"
+        echo -n "> "
+        read google_domains_username
+        echo
+
+        echo "Enter the generated password for $domain_name"
+        echo -n "> "
+        read google_domains_password
+        echo
+
+		sudo bash -c "cat > /etc/ddclient/ddclient.conf" <<EOL
+daemon=600              # check every 600 seconds
+syslog=yes              # log update msgs to syslog
+mail=root               # mail all msgs to root
+mail-failure=root           # mail failed update msgs to root
+pid=/var/run/ddclient.pid       # record PID in file.
+ssl=yes                 # use ssl-support.  Works with
+                    # ssl-library
+
+## To obtain an IP address from Web status page (using the proxy if defined)
+## by default, checkip.dyndns.org is used if you use the dyndns protocol.
+## Using use=web is enough to get it working.
+## WARNING: set deamon at least to 600 seconds if you use checkip or you could
+## get banned from their service.
+use=web, web=checkip.dyndns.org/, web-skip='IP Address' # found after IP Address
+
+###
+### Google Domains
+###
+ssl=yes
+protocol=googledomains
+login=$google_domains_username
+password=$google_domains_password
+$domain_name
+EOL
+		sudo mv /etc/ddclient/ddclient.conf.before /etc/ddclient/ddclient.conf.bak
+	fi
+    enable_service ddclient.service
 }
 
 if [ "$(hostname)" = "breq" ] || [ "$(hostname)" = "dalinar" ]; then
