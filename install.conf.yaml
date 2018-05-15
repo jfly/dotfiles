@@ -27,6 +27,7 @@
     ~/.config/roxterm.sourceforge.net: roxterm.sourceforge.net
     ~/.config/termite: termite
     ~/.config/dunst: dunst
+    ~/.config/gtk-3.0: gtk-3.0
     ~/.dir_colors: dir_colors
     ~/.ssh/config: ssh_config
     ~/.mplayer: mplayer
@@ -35,6 +36,8 @@
     ~/.gnupg: ~/Dropbox/linux-secrets/gnupg
     ~/.lolcommits: ~/Dropbox/pics/lolcommits
     ~/.jupyter/nbconfig: jupyter/nbconfig
+
+    /usr/share/themes/jfattymacs: gtk-themes/jfattymacs
 
     /etc/fuse.conf: fuse.conf
 
