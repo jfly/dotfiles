@@ -83,6 +83,7 @@ base_stuff() {
     ## Python
     arch_package python-pip python-pexpect openssh
     sudo pip install setproctitle # needed by spawn-and-stuff
+    aur_package direnv
 
     ## Misc
     arch_package zsh mosh the_silver_searcher fzf hub efibootmgr dnsutils screen

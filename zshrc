@@ -65,7 +65,7 @@ if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
   host=" @%M"
 fi
 local ret_status="%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )"
-PROMPT='${ret_status}${host} %{$fg[cyan]%}%~%{$reset_color%} $(git_prompt_info)'
+export PROMPT='${ret_status}${host} %{$fg[cyan]%}%~%{$reset_color%} $(git_prompt_info)'
 #####################
 
 ###
@@ -109,3 +109,6 @@ bindkey "^W" backward-kill-dir
 #####################
 
 source ~/.commonrc/commonrc
+
+# Activate direnv. See https://github.com/direnv/direnv#zsh
+eval "$(direnv hook zsh)"

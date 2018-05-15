@@ -8,34 +8,35 @@
 
 - link:
     ~/.dotfiles: ""
-    ~/.gitconfig: gitconfig
-    ~/.gitignore_global: gitignore_global
-    ~/.vim: vim/
-    ~/.vimrc: vimrc
 
+    ~/.bash_profile: bash_profile
     ~/.bashrc: bashrc
     ~/.zshrc: zshrc
     ~/.commonrc: commonrc
 
-    ~/.bash_profile: bash_profile
-    ~/.xmonad/xmonad.hs: xmonad.hs
-    ~/.xmobarrc: xmobarrc
-    ~/.Xmodmap: Xmodmap
-    ~/.Xresources: Xresources
-    ~/.xinitrc: xinitrc
     ~/bin: bin
     ~/.config/roxterm.sourceforge.net: roxterm.sourceforge.net
     ~/.config/termite: termite
     ~/.config/dunst: dunst
     ~/.config/gtk-3.0: gtk-3.0
     ~/.dir_colors: dir_colors
-    ~/.ssh/config: ssh_config
+    ~/.direnvrc: direnvrc
+    ~/.gitconfig: gitconfig
+    ~/.gitignore_global: gitignore_global
+    ~/.jupyter/nbconfig: jupyter/nbconfig
     ~/.mplayer: mplayer
+    ~/.vim: vim
+    ~/.vimrc: vimrc
+    ~/.xmonad/xmonad.hs: xmonad.hs
+    ~/.xmobarrc: xmobarrc
+    ~/.Xmodmap: Xmodmap
+    ~/.Xresources: Xresources
+    ~/.xinitrc: xinitrc
 
+    ~/.ssh/config: ssh_config
     ~/.ssh: ~/Dropbox/linux-secrets/kaladin-ssh
     ~/.gnupg: ~/Dropbox/linux-secrets/gnupg
     ~/.lolcommits: ~/Dropbox/pics/lolcommits
-    ~/.jupyter/nbconfig: jupyter/nbconfig
 
     /usr/share/themes/jfattymacs: gtk-themes/jfattymacs
 
