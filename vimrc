@@ -19,7 +19,7 @@ Plug 'editorconfig/editorconfig-vim'
 
 Plug 'janko-m/vim-test'
 Plug 'kassio/neoterm'
-Plug 'dhruvasagar/vim-zoom'
+Plug 'xtal8/traces.vim'
 
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
@@ -99,6 +99,7 @@ au BufRead,BufNewFile *.jy set filetype=python
 
 """""" tcomment configuration
 call tcomment#DefineType('python', '#<<< %s')
+call tcomment#DefineType('vim', '"<<< %s')
 """"""
 
 """""" FZF configuration
@@ -142,6 +143,7 @@ nnoremap <leader>ts :w<CR>:TestSuite<CR>
 nnoremap <leader>tf :w<CR>:TestFile<CR>
 nnoremap <leader>tl :w<CR>:TestLast<CR>
 nnoremap <leader>tn :w<CR>:TestNearest<CR>
+nnoremap <leader>tv :w<CR>:TestVisit<CR>
 """"""
 
 """""" ToggleTest between file and corresponding test file.
@@ -169,9 +171,7 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 """"""
 
-"" Set up folding
-" https://unix.stackexchange.com/a/141104
-set foldmethod=syntax
+"" Turn off folding
 set nofoldenable
 
 " http://unix.stackexchange.com/a/30757
@@ -179,6 +179,3 @@ set tabpagemax=100
 
 " https://webpack.github.io/docs/webpack-dev-server.html#working-with-editors-ides-supporting-safe-write
 set backupcopy=yes
-
-" Set up vim-zoom
-nnoremap <leader>z :call zoom#toggle()<CR>
