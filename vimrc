@@ -133,7 +133,10 @@ let test#python#nose#file_pattern = '\v(^|[\b_\.-])[Tt]est.*\.py$'
 let g:test#custom_transformations = {'honor': function('HonorTransform')}
 let g:test#transformation = 'honor'
 
-let test#runners = {'HonorJs': ['HonorRunner']}
+" Workaround for https://github.com/janko-m/vim-test/issues/306.
+if !exists("test#runners")
+    let test#runners = {'HonorJs': ['HonorRunner']}
+endif
 """"""
 
 nnoremap <leader>ts :w<CR>:TestSuite<CR>
