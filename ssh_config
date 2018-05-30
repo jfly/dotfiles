@@ -12,6 +12,10 @@ HostName kent.jflei.com
 User kent
 ForwardAgent yes
 
+Host jpi
+HostName 192.168.3.6
+User jeremy
+
 Host ccm
 HostName 54.148.223.17
 User gjcomps
