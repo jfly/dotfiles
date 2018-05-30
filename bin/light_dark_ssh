@@ -1,7 +1,11 @@
 #!/usr/bin/env bash
 
 colorscheme light &> /dev/null
+function finish {
+    colorscheme dark &> /dev/null
+}
+trap finish EXIT
+
 ssh $@
 exit_code=$?
-colorscheme dark &> /dev/null
 exit $exit_code
