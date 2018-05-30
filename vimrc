@@ -95,8 +95,8 @@ au BufRead,BufNewFile *.jy set filetype=python
 """"""
 
 """""" tcomment configuration
-call tcomment#DefineType('python', '#<<< %s')
-call tcomment#DefineType('vim', '"<<< %s')
+call tcomment#type#Define('python', '#<<< %s')
+call tcomment#type#Define('vim', '"<<< %s')
 """"""
 
 """""" FZF configuration
