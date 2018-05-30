@@ -58,6 +58,7 @@ base_stuff() {
     ## Set locale
     sudo sed -i 's/^#\(en_US.UTF-8 UTF-8\)/\1/' /etc/locale.gen
     sudo locale-gen
+    sudo bash -c "echo LANG=en_US.UTF-8 > /etc/locale.conf"
 
     ## Some hacky pre-setup before running dotbot
     # Dotbot sets up some symlinks into Dropbox, but this doesn't work if our
