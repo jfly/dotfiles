@@ -42,4 +42,6 @@ shopt -s checkwinsize
 source ~/.commonrc/commonrc
 
 # Activate direnv. See https://github.com/direnv/direnv#bash
-eval "$(direnv hook bash)"
+if [ "$(hostname)" != "jpi" ];
+    eval "$(direnv hook bash)"
+fi

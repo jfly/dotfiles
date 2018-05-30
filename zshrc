@@ -111,4 +111,6 @@ bindkey "^W" backward-kill-dir
 source ~/.commonrc/commonrc
 
 # Activate direnv. See https://github.com/direnv/direnv#zsh
-eval "$(direnv hook zsh)"
+if [ "$(hostname)" != "jpi" ]; then
+    eval "$(direnv hook zsh)"
+fi

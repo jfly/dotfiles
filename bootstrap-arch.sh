@@ -11,7 +11,7 @@ fi
 arch_package() {
     to_install=""
     for arch_package_name in $@; do
-        if [ -n "$(pacman -Qs ${arch_package_name}$)" ]; then
+        if [ -n "$(pacman -Qs '^${arch_package_name}$')" ]; then
             echo "warning: Arch package $arch_package_name is already installed -- skipping"
         else
             to_install="$to_install $arch_package_name"
@@ -26,7 +26,7 @@ arch_package() {
 THIRD_REPOS_DIR=~/thirdrepos
 aur_package() {
     for aur_package_name in $@; do
-        if [ -n "$(pacman -Qs ${aur_package_name}$)" ]; then
+        if [ -n "$(pacman -Qs '^${aur_package_name}$')" ]; then
             echo "warning: AUR package $aur_package_name is already installed -- skipping"
         else
             (
@@ -75,19 +75,21 @@ base_stuff() {
     # TODO - for some reason, symlinking this file gives a
     # "Parsing /etc/bluetooth/main.conf failed: Permission denied" error when bluetoothd
     # starts up.
-    sudo cp etc_bluetooth_main.conf /etc/bluetooth/main.conf
+    sudo mkdir -p /etc/bluetooth/ && sudo cp etc_bluetooth_main.conf /etc/bluetooth/main.conf
     ./install
 
     ## Dependencies to install stuff from the AUR
-    arch_package wget base-devel
+    arch_package wget base-devel gcc
 
     ## Python
     arch_package python-pip python-pexpect openssh
     sudo pip install setproctitle # needed by spawn-and-stuff
-    aur_package direnv
+    if [ "$(hostname)" != "jpi" ]; then # Unfortunately, direnv is not available for the 'armv6h' architecture.
+        aur_package direnv
+    fi
 
     ## Misc
-    arch_package zsh mosh the_silver_searcher fzf hub efibootmgr dnsutils screen
+    arch_package zsh mosh the_silver_searcher fzf hub efibootmgr dnsutils screen rsync
     if [ ! -d ~/.oh-my-zsh ]; then
         git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
     fi
@@ -111,7 +113,7 @@ base_stuff() {
     enable_service org.cups.cupsd.service
 
     ## Bluetooth
-    arch_package bluez bluez-utils gnome-bluetooth blueman
+    arch_package bluez bluez-utils
     enable_service bluetooth.service
 
     ## GPG stuff
@@ -140,6 +142,9 @@ laptop_stuff() {
 
     ## Install dropbox
     aur_package dropbox
+
+    ## Bluetooth stuff
+    arch_package gnome-bluetooth blueman
 
     ## Setting up X11 and xmonad
     # Install the appropriate video card driver: https://wiki.archlinux.org/index.php/xorg#Driver_installation
@@ -209,6 +214,14 @@ laptop_stuff() {
     # https://github.com/webpack/docs/wiki/troubleshooting#not-enough-watchers
     sudo bash -c "echo fs.inotify.max_user_watches=524288 > /etc/sysctl.d/99-sysctl.conf"
     sudo sysctl --system
+}
+
+jpi_stuff() {
+    install_vim vim
+
+    arch_package nodejs npm
+
+    mkdir -p ~/.config/systemd/user/
 }
 
 htpc_stuff() {
@@ -313,6 +326,8 @@ EOL
 
 if [ "$(hostname)" = "breq" ] || [ "$(hostname)" = "dalinar" ]; then
     device_specific_command=laptop_stuff
+elif [ "$(hostname)" = "jpi" ]; then
+    device_specific_command=jpi_stuff
 elif [ "$(hostname)" = "kent" ]; then
     device_specific_command=htpc_stuff
 else
