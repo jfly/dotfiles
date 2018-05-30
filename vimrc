@@ -9,18 +9,15 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-scripts/matchit.zip'
 Plug 'tomtom/tcomment_vim'
 Plug 'altercation/vim-colors-solarized'
-
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
-
 Plug 'sheerun/vim-polyglot'
 Plug 'tmhedberg/SimpylFold'
 Plug 'editorconfig/editorconfig-vim'
-
 Plug 'janko-m/vim-test'
 Plug 'kassio/neoterm'
 Plug 'xtal8/traces.vim'
-
+Plug 'majutsushi/tagbar'
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
 
