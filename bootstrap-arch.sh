@@ -11,7 +11,7 @@ fi
 arch_package() {
     to_install=""
     for arch_package_name in $@; do
-        if [ -n "$(pacman -Qs '^${arch_package_name}$')" ]; then
+        if [ -n "$(pacman -Qs "^${arch_package_name}$")" ]; then
             echo "warning: Arch package $arch_package_name is already installed -- skipping"
         else
             to_install="$to_install $arch_package_name"
@@ -26,7 +26,7 @@ arch_package() {
 THIRD_REPOS_DIR=~/thirdrepos
 aur_package() {
     for aur_package_name in $@; do
-        if [ -n "$(pacman -Qs '^${aur_package_name}$')" ]; then
+        if [ -n "$(pacman -Qs "^${aur_package_name}$")" ]; then
             echo "warning: AUR package $aur_package_name is already installed -- skipping"
         else
             (
