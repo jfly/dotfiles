@@ -63,6 +63,7 @@ ForwardAgent yes
 ControlMaster auto
 ControlPath ~/.ssh/%r@%h:%p
 ServerAliveInterval 60
+ProxyCommand 2fa-bastion %h %p
 User jeremy
 
 Host g2g

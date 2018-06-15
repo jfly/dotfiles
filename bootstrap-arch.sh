@@ -89,7 +89,7 @@ base_stuff() {
     fi
 
     ## Misc
-    arch_package zsh mosh the_silver_searcher fzf hub efibootmgr dnsutils screen rsync
+    arch_package zsh mosh the_silver_searcher fzf hub efibootmgr dnsutils screen rsync oath-toolkit
     if [ ! -d ~/.oh-my-zsh ]; then
         git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
     fi
