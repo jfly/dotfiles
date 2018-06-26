@@ -97,6 +97,7 @@ au BufRead,BufNewFile *.jy set filetype=python
 
 """""" tcomment configuration
 call tcomment#type#Define('python', '#<<< %s')
+call tcomment#type#Define('ruby', '#<<< %s')
 call tcomment#type#Define('vim', '"<<< %s')
 call tcomment#type#Define('scss', '//<<< %s')
 call tcomment#type#Define('jsx', '{/*<<< %s */}')
