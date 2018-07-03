@@ -100,6 +100,7 @@ call tcomment#type#Define('python', '#<<< %s')
 call tcomment#type#Define('ruby', '#<<< %s')
 call tcomment#type#Define('vim', '"<<< %s')
 call tcomment#type#Define('scss', '//<<< %s')
+call tcomment#type#Define('javascript', '//<<< %s')
 call tcomment#type#Define('jsx', '{/*<<< %s */}')
 """"""
 
