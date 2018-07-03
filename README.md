@@ -60,6 +60,7 @@ Note: Dualbooting with BLE is even more of a pain. See http://console.systems/20
 - `dropbox` - Need to manually start dropbox and log in.
 
 ## TODO
+- For HTPC, make sure DHCPCD keeps retrying, rather than giving up after 30 seconds: https://wiki.archlinux.org/index.php/dhcpcd#Timeout_delay.
 - Add `"detachKeys": "ctrl-^,q"` to `~/.docker/config.json`
 - Prevent autosuspend of usb mouse: https://fitzcarraldoblog.wordpress.com/2013/02/26/how-to-prevent-a-usb-mouse-auto-suspending-in-linux-when-a-laptops-power-supply-is-disconnected/
 - Headphone noise is due to power_save mode - https://bbs.archlinux.org/viewtopic.php?pid=1554497#p1554497
