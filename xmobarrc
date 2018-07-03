@@ -8,7 +8,6 @@ Config {
                     , Run Date "%a %b %_d %l:%M" "date" 10
 
                     , Run Com "get_volume.py" [] "myvolume" 10
-                    , Run Com "get_bathroom_status.sh" [] "h4bathroom" 100
                     , Run Com "trayer-padding-icon.sh" [] "trayerpad" 100
                     -- battery monitor
                     , Run Battery        [ "--template" , "Batt: <acstatus>"
@@ -30,5 +29,5 @@ Config {
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% }{ %h4bathroom%Vol: %myvolume% | %battery% | %cpu% | %memory% <fc=#ee9a00>%date%</fc> %trayerpad%"
+       , template = "%StdinReader% }{ Vol: %myvolume% | %battery% | %cpu% | %memory% <fc=#ee9a00>%date%</fc> %trayerpad%"
        }
