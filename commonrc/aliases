@@ -29,7 +29,11 @@ function h4post {
         if [ "$_og_ref" != "temp" ]; then
             git checkout -b temp
         fi
-        rbt-log-post --open --parent=HEAD~1 $@ HEAD || true
+        _extra_args=""
+        if [ "$_og_ref" = "pricing-v2" ]; then
+            _extra_args="--target-groups=pricing"
+        fi
+        rbt-log-post $_extra_args --open --parent=HEAD~1 $@ HEAD || true
         git checkout $_og_ref
         if [ "$_og_ref" != "temp" ]; then
             git branch -d temp
