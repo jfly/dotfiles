@@ -19,6 +19,7 @@ Plug 'kassio/neoterm'
 Plug 'xtal8/traces.vim'
 Plug 'majutsushi/tagbar'
 Plug 'davidhalter/jedi-vim'
+Plug 'w0rp/ale'
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
 
