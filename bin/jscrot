@@ -19,18 +19,25 @@ beep() {
 SCREENSHOTS_DIR=$HOME/screenshots
 mkdir -p $SCREENSHOTS_DIR
 
-slop=$(slop -f "%x %y %w %h %g %i") || exit 1
-read -r X Y W H G ID < <(echo $slop)
+file_noext=$SCREENSHOTS_DIR/"`date +"%Y-%m-%d_%H:%M:%S"`_$HOSTNAME"
 
-file_noext=$SCREENSHOTS_DIR/"`date +"%Y-%m-%d_%H:%M:%S"`_$W_$H_$HOSTNAME"
+ask_user_for_region() {
+    slop=$(slop -f "%x %y %w %h %g %i") || exit 1
+    read -r X Y W H G ID < <(echo $slop)
+}
 
 if [ "$1" == "--video" ]; then
     file=${file_noext}.gif
+    ask_user_for_region
     byzanz-record --verbose --cursor --exec="savepid $PID_FILE bash -c 'while true; do sleep 1; done'" --delay=0 --x=$X --y=$Y --width=$W --height=$H $file
     beep
+elif [ "$1" == "--select" ]; then
+    file=${file_noext}.png
+    ask_user_for_region
+    maim -g $G --hidecursor $file
 else
     file=${file_noext}.png
-    maim -g $G --hidecursor $file
+    maim --hidecursor $file
 fi
 
 # Copy that file to the clipboard.
