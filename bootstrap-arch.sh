@@ -83,7 +83,7 @@ base_stuff() {
 
     ## Python
     arch_package python-pip python-pexpect openssh
-    sudo pip install setproctitle # needed by spawn-and-stuff
+    arch_package python-setproctitle # needed by spawn-and-stuff
     if [ "$(hostname)" != "jpi" ]; then # Unfortunately, direnv is not available for the 'armv6h' architecture.
         aur_package direnv
     fi
