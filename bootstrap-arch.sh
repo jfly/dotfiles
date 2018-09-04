@@ -214,6 +214,10 @@ laptop_stuff() {
     # https://github.com/webpack/docs/wiki/troubleshooting#not-enough-watchers
     sudo bash -c "echo fs.inotify.max_user_watches=524288 > /etc/sysctl.d/99-sysctl.conf"
     sudo sysctl --system
+
+    ## Git stuff
+    # https://github.com/so-fancy/diff-so-fancy
+    arch_package diff-so-fancy
 }
 
 jpi_stuff() {
