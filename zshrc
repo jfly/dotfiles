@@ -108,6 +108,12 @@ bindkey "^W" backward-kill-dir
 
 #####################
 
+###
+### Fix output of time to look more like bash.
+### See https://superuser.com/a/71890.
+###
+export TIMEFMT=$'\nreal\t%E\nuser\t%U\nsys\t%S'
+
 source ~/.commonrc/commonrc
 
 ###
