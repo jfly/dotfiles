@@ -110,6 +110,21 @@ bindkey "^W" backward-kill-dir
 
 source ~/.commonrc/commonrc
 
+###
+### Set up alt-c to pick a commit
+###
+fzf-commit-widget() {
+  LBUFFER="${LBUFFER}$(pick_commit)"
+  local ret=$?
+  zle redisplay
+  typeset -f zle-line-init >/dev/null && zle zle-line-init
+  return $ret
+}
+zle     -N    fzf-commit-widget
+bindkey '\ec' fzf-commit-widget
+###################
+
+
 # Activate direnv. See https://github.com/direnv/direnv#zsh
 if [ "$(hostname)" != "jpi" ]; then
     eval "$(direnv hook zsh)"

@@ -20,25 +20,35 @@ alias rrtdb="bin/rails db:environment:set RAILS_ENV=test && bin/rake db:reset RA
 alias wcacheckmem="ssh wca 'date && ps -eo rss,comm,pid,args | grep -i unicorn | grep -v grep'"
 alias wcadeploy="ssh -A cubing@worldcubeassociation.org worldcubeassociation.org/scripts/deploy.sh pull_latest rebuild_regs rebuild_rails"
 
-# Honor specific stuff
-function h4post {
+function with_commit {
     (
         set -e
         _og_ref=$(git symbolic-ref HEAD 2> /dev/null) || _og_ref=$(git rev-parse --short HEAD 2> /dev/null)
         _og_ref=${_og_ref#refs/heads/}
-        if [ "$_og_ref" != "temp" ]; then
-            git checkout -b temp
-        fi
-        _extra_args=""
-        if [ "$_og_ref" = "pricing-v2" ]; then
-            _extra_args="--target-groups=pricing"
-        fi
-        rbt-log-post $_extra_args --open --parent=HEAD~1 $@ HEAD || true
-        git checkout $_og_ref
-        if [ "$_og_ref" != "temp" ]; then
+
+        _commit=$1; shift
+        git checkout -b temp $_commit
+        function _cleanup {
+            git checkout $_og_ref
             git branch -d temp
-        fi
+        }
+        trap _cleanup EXIT
+
+        $@
     )
+}
+
+function pick_commit {
+    glola --color=always | fzf --ansi --no-sort --reverse --multi | while read item; do
+        echo -n "${item}" | sed 's/^[ *]*//' | awk '{printf $1" "}'
+    done
+
+    echo
+}
+
+# Honor specific stuff
+function h4post {
+    rbt-log-post --open --parent=HEAD~1 $@ HEAD || true
 }
 function h4repost {
     if [ "$#" -ne 1 ]; then
