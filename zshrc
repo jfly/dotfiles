@@ -133,5 +133,14 @@ bindkey '\ec' fzf-commit-widget
 
 # Activate direnv. See https://github.com/direnv/direnv#zsh
 if [ "$(hostname)" != "jpi" ]; then
+    # Hack to force direnv to reload. See
+    # https://github.com/direnv/direnv/blob/a9be1174171b5c0f5472370c41120f770fcff91d/config.go#L133.
+    # This is useful when manually resourcing my zshrc. When resourcing my
+    # zshrc, my PATH and prompt get clobbered, and it would be really nice for
+    # direnv to fix them up. However, direnv notices that the DIRENV_DIFF
+    # environment variable is still set, so it decides to do nothing.
+    unset DIRENV_DIFF
+    unset DIRENV_WATCHES
+
     eval "$(direnv hook zsh)"
 fi
