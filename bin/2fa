@@ -3,7 +3,7 @@
 DB=/tmp/data.db
 
 echo -n "Attempting to connect to phone. You may need to answer a prompt on your phone..." &> /dev/stderr
-sudo adb -d shell "su root cat /data/data/com.google.android.apps.authenticator2/databases/databases" > "$DB" 2> /dev/null < /dev/null
+sudo adb -d shell "su root -c 'cat /data/data/com.google.android.apps.authenticator2/databases/databases'" > "$DB" 2> /dev/null < /dev/null
 if [ $? -eq 0 ]; then
     echo "success!" &> /dev/stderr
 else
