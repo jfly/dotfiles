@@ -39,6 +39,7 @@
     ~/.lolcommits: ~/Dropbox/pics/lolcommits
 
     /usr/share/themes/jfattymacs: gtk-themes/jfattymacs
+    /usr/share/polkit-1/rules.d/blueman.rules: polkit-rules/blueman.rules
 
     /etc/fuse.conf: fuse.conf
 
