@@ -40,7 +40,7 @@ function with_commit {
 
 function pick_commit {
     glola --color=always | fzf --ansi --no-sort --reverse --multi | while read item; do
-        echo -n "${item}" | sed 's/^[ *]*//' | awk '{printf $1" "}'
+        echo -n "${item}" | sed 's/^[ |/\\*]*//' | awk '{printf $1" "}'
     done
 
     echo
