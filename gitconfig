@@ -27,3 +27,8 @@
     helper = cache --timeout=3600
 [pager]
     branch = false
+[diff-so-fancy]
+	stripLeadingSymbols = false
+	changeHunkIndicators = false
+[branch]
+	sort = -authordate
