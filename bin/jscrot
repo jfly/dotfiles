@@ -31,6 +31,7 @@ if [ "$1" == "--video" ]; then
     ask_user_for_region
     byzanz-record --verbose --cursor --exec="savepid $PID_FILE bash -c 'while true; do sleep 1; done'" --delay=0 --x=$X --y=$Y --width=$W --height=$H $file
     beep
+    # TODO - copying this file doesn't work. see https://bugs.chromium.org/p/chromium/issues/detail?id=356210
 elif [ "$1" == "--select" ]; then
     file=${file_noext}.png
     ask_user_for_region
@@ -40,5 +41,7 @@ else
     maim --hidecursor $file
 fi
 
+# TODO - cleanup? see https://unix.stackexchange.com/a/247846
+# For gif, maybe generate html and data uri?
 # Copy that file to the clipboard.
 xclip -selection clipboard -t "image/${file##*.}" $file
