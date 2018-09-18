@@ -64,7 +64,7 @@ alias h4mysql="mysql -u root sonasandboxdb --binary-as-hex"
 # sudo pacman -S texlive-extra-utils
 alias pdfcrop="pdfcrop --xetex"
 
-function o {
+function open {
     if [ -e "$1" ]; then
         DROPBOX_DIR=$(readlink -f ~/Dropbox)
         if [[ "$1" = "$DROPBOX_DIR"* ]]; then
@@ -74,6 +74,7 @@ function o {
     fi
     xdg-open "$1"
 }
+alias o=open
 
 # https://stackoverflow.com/a/7305217/1739415
 relpath(){ python -c "import os.path; print(os.path.relpath('$1','${2:-$PWD}'))" ; }
