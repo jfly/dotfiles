@@ -153,7 +153,7 @@ laptop_stuff() {
     # Install everything else needed for the desktop environment.
     arch_package xorg-server xorg-xinit xorg-xsetroot xorg-xmodmap xorg-xmessage xorg-xrandr xorg-xrdb xorg-xinput xorg-xprop
     arch_package xmonad xmonad-contrib xmobar
-    arch_package feh wmname network-manager-applet alsa-utils maim xclip numlockx xsel xdotool slop byzanz dunst
+    arch_package feh network-manager-applet alsa-utils maim xclip numlockx xsel xdotool slop byzanz dunst
     arch_package termite chromium
     aur_package trayer-srg-git dmenu2 xsettingsd
     # Fonts

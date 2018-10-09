@@ -50,6 +50,10 @@ export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
 [[ -f /etc/profile.d/vte.sh ]] && source /etc/profile.d/vte.sh
 ##################################
 
+### Workaround for that ridiculous java bug on xmonad
+# https://wiki.archlinux.org/index.php/Java#Applications_not_resizing_with_WM.2C_menus_immediately_closing
+export _JAVA_AWT_WM_NONREPARENTING=1
+
 source ~/.commonrc/aliases
 
 # startx at login

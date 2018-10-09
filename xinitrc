@@ -3,10 +3,6 @@ autoperipherals
 # https://wiki.archlinux.org/index.php/HiDPI
 xrdb -merge ~/.Xresources
 
-# Hack to fix Java swing applications from http://tools.suckless.org/x/wmname
-#  https://wiki.archlinux.org/index.php/xmonad#Problems_with_Java_applications
-wmname LG3D
-
 # volnoti is a volume notification daemon
 volnoti -t 1
 
