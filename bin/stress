@@ -1,10 +1,17 @@
 #!/bin/sh
 
-count=1;
+success_count=0
+fail_count=0
 
-while "$@"; do
-    echo "Successes: $count"
-    (( count++ ))
+while true; do
+    if "$@"; then
+        (( success_count++ ))
+    else
+        (( fail_count++ ))
+    fi
+
+    echo "****************************"
+    echo "Successes: $success_count"
+    echo "Failures: $fail_count"
+    echo "****************************"
 done
-
-echo "Failed after $count runs"
