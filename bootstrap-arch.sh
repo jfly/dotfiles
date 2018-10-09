@@ -170,8 +170,7 @@ laptop_stuff() {
     enable_service NetworkManager.service
 
     ## Audio
-    arch_package pulseaudio pamixer pavucontrol paprefs bc sox
-    aur_package pasystray-gtk2
+    arch_package pulseaudio pamixer pavucontrol pasystray paprefs bc sox
     # Install [hcchu/volnoti](https://github.com/hcchu/volnoti#new-options-in-this-fork) from Github.
     # [volnoti](https://aur.archlinux.org/packages/volnoti) doesn't have the features needed for volnoti-brightness.
     if ! [ -x "$(command -v volnoti)" ]; then
