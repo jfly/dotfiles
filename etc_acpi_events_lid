@@ -1,0 +1,2 @@
+event=button/lid
+action=/home/jeremy/bin/x11-run-as jeremy lid.sh %e

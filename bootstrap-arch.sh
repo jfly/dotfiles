@@ -207,7 +207,7 @@ laptop_stuff() {
     # You can edit `/etc/laptop-mode/laptop-mode.conf` as you see fit (https://push.cx/2015/dual-booting-arch-linux-on-lenovo-x1-carbon-3rd-gen suggests changing LM_BATT_MAX_LOST_WORK_SECONDS)
     aur_package laptop-mode-tools
     arch_package acpi acpid ethtool wireless_tools
-    enable_service laptop-mode
+    enable_service laptop-mode acpid
 
     ## Increase number of inotify watchers
     # https://github.com/webpack/docs/wiki/troubleshooting#not-enough-watchers

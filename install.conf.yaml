@@ -41,6 +41,7 @@
     /usr/share/themes/jfattymacs: gtk-themes/jfattymacs
     /usr/share/polkit-1/rules.d/blueman.rules: polkit-rules/blueman.rules
 
+    /etc/acpi/events/lid: etc_acpi_events_lid
     /etc/fuse.conf: fuse.conf
 
     /etc/systemd/logind.conf.d/no-suspend-on-lidswitch.conf: no-suspend-on-lidswitch.conf
