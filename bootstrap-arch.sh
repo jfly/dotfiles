@@ -145,6 +145,9 @@ laptop_stuff() {
 
     ## Bluetooth stuff
     arch_package gnome-bluetooth blueman
+    # See https://bbs.archlinux.org/viewtopic.php?id=239697
+    # For some reason, symlinking this file doesn't seem to work.
+    sudo cp polkit-rules/blueman.rules /usr/share/polkit-1/rules.d/blueman.rules
 
     ## Setting up X11 and xmonad
     # Install the appropriate video card driver: https://wiki.archlinux.org/index.php/xorg#Driver_installation
