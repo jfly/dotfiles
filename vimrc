@@ -2,7 +2,6 @@
 call plug#begin('~/.vim/plugged')
 
 " Declare the list of plugins.
-Plug '~/.fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'Valloric/MatchTagAlways'
 Plug 'vim-airline/vim-airline'
