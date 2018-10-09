@@ -147,9 +147,9 @@ let test#custom_runners = {'HonorJs': ['HonorRunner']}
 
 nnoremap <leader>ts :w<CR>:TestSuite<CR>
 nnoremap <leader>tf :w<CR>:TestFile<CR>
-nnoremap <leader>tl :w<CR>:TestLast<CR>
 nnoremap <leader>tn :w<CR>:TestNearest<CR>
 nnoremap <leader>tv :w<CR>:TestVisit<CR>
+nnoremap <leader>tl :w<CR>:call system("fat-rerunner")<CR>
 """"""
 
 """""" ToggleTest between file and corresponding test file.
