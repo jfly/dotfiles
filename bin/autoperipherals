@@ -53,7 +53,7 @@ function main() {
     # we haven't started dunst yet, so we need to run notify-send in the background.
     notify-send "Detected environment $LAYOUT_NAME" &
 
-    # Note, we intentionally run fixkeys last, because xmodmap blocks if you're holding any keys down.
+    # Note, we intentionally run fixinputs last, because xmodmap blocks if you're holding any keys down.
     # See: https://forums.fedoraforum.org/showthread.php?296298-xmodmap-please-release-the-following-keys-within-2-seconds
     fixinputs
 }
