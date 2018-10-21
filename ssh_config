@@ -28,10 +28,6 @@ Host wca-ru
 HostName 172.104.88.210
 User root
 
-Host wca-ovh
-HostName 54.38.53.234
-User root
-
 Host staging.wca
 HostName staging.worldcubeassociation.org
 User cubing
