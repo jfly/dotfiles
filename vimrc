@@ -113,11 +113,12 @@ noremap <leader>b :Buffers<CR>
 """"""
 
 """""" vim-test configuration
-function! FatRunnerStrategy(cmd)
-    call system("fat-runner run " . shellescape("clear;" . a:cmd))
+let g:shtuff_receiver = $SHTUFF_RUNNER
+function! ShtuffStrategy(cmd)
+    call system("shtuff into " . shellescape(g:shtuff_receiver) . " " . shellescape("clear;" . a:cmd))
 endfunction
 
-let g:test#custom_strategies = {'fat_runner': function('FatRunnerStrategy')}
+let g:test#custom_strategies = {'fat_runner': function('ShtuffStrategy')}
 let g:test#strategy = "fat_runner"
 
 " vim-test transformation to run nose tests via `make singletest`.
