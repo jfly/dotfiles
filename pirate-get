@@ -1,0 +1,5 @@
+[Misc]
+; specify a custom command for opening the magnet
+; ex. myprogram --open %s
+; %s represent the magnet uri
+openCommand = bash -c 'xdg-open http://torrents.clark.jflei.com/transmission/web/ && clipit %s'
