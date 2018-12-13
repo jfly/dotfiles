@@ -47,7 +47,8 @@ windowPlacement = composeAll [
 muteAndShowVolume = "set_volume.py toggle-mute; show-volume.sh"
 changeVolume s = "set_volume.py " ++ s ++ "; show-volume.sh"
 
-toggleMicMute = "pactl set-source-mute alsa_input.pci-0000_00_1f.3.analog-stereo toggle"
+-- https://obsproject.com/forum/threads/hotkey-to-mute-mic-input.22852/
+toggleMicMute = "pactl set-source-mute $(pacmd list-sources|awk '/\\* index:/{ print $3 }') toggle"
 changeBrightness s = "sudo change-brightness.py " ++ s ++ "; show-brightness.sh"
 
 fullscreenChrome :: X ()
