@@ -11,13 +11,12 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'sheerun/vim-polyglot'
-Plug 'tmhedberg/SimpylFold'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'janko-m/vim-test'
 Plug 'kassio/neoterm'
 Plug 'xtal8/traces.vim'
 Plug 'majutsushi/tagbar'
-Plug 'davidhalter/jedi-vim'
+"<<< Plug 'davidhalter/jedi-vim'
 Plug 'w0rp/ale'
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
@@ -58,7 +57,9 @@ noremap 2<Backspace> :set background=light<CR>
 
 " Experimenting with cross file search
 " See: http://stackoverflow.com/a/25879734
-noremap <leader>f :exec "cope \| :silent Ggrep ".shellescape(input(">>> ", expand("<cword>")))." \| redraw!"<CR>
+" Copying from https://github.com/FatBoyXPC/dotfiles/commit/37b6ed80e20415fe181f4cacaa0f16bb37c19503
+noremap <Leader>/ "ay:Ag <C-r>a<Space>
+nnoremap <Leader>* :Ag<Space><C-R><C-W>
 noremap ]q :cnext<CR>
 noremap [q :cprevious<CR>
 
@@ -97,6 +98,7 @@ au BufRead,BufNewFile *.jy set filetype=python
 
 """""" tcomment configuration
 call tcomment#type#Define('bash', '#<<< %s')
+call tcomment#type#Define('sh', '#<<< %s')
 call tcomment#type#Define('conf', '#<<< %s')
 call tcomment#type#Define('zsh', '#<<< %s')
 call tcomment#type#Define('python', '#<<< %s')
@@ -185,3 +187,8 @@ set tabpagemax=100
 
 " https://webpack.github.io/docs/webpack-dev-server.html#working-with-editors-ides-supporting-safe-write
 set backupcopy=yes
+
+"""""""
+nnoremap <leader>p oimport pdb; pdb.set_trace()#<<<<Esc>
+nnoremap <leader>P Oimport pdb; pdb.set_trace()#<<<<Esc>
+"""""""
