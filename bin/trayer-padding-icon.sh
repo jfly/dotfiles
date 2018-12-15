@@ -3,7 +3,7 @@
 # Detects the width of running trayer-srg window (xprop name 'panel')
 # and creates an XPM icon of that width, 1px height, and transparent.
 # Outputs an <icon>-tag for use in xmobar to display the generated
-# XPM icon. 
+# XPM icon.
 #
 # Run script from xmobar:
 # `Run Com "/where/ever/trayer-padding-icon.sh" [] "trayerpad" 10`

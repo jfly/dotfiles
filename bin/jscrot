@@ -19,11 +19,15 @@ beep() {
 SCREENSHOTS_DIR=$HOME/screenshots
 mkdir -p $SCREENSHOTS_DIR
 
-file_noext=$SCREENSHOTS_DIR/"`date +"%Y-%m-%d_%H:%M:%S"`_$HOSTNAME"
+file_noext=$SCREENSHOTS_DIR/"`date +"%Y-%m-%d_%H-%M-%S"`_$HOSTNAME"
 
 ask_user_for_region() {
-    slop=$(slop -f "%x %y %w %h %g %i") || exit 1
-    read -r X Y W H G ID < <(echo $slop)
+    #<<< slop=$(slop -f "%w %h %x %y %i") || exit 1
+    #<<< read -r W H X Y ID < <(echo $slop)
+    # Playing around with flameshot. See https://github.com/jfly/flameshot/tree/add-gui-selection-option.
+    flameshot=$(flameshot gui --selection) || exit 1
+    read -r W H X Y < <(echo $flameshot)
+    G="${W}x${H}+${X}+${Y}"
 }
 
 if [ "$1" == "--video" ]; then
@@ -34,8 +38,14 @@ if [ "$1" == "--video" ]; then
     # TODO - copying this file doesn't work. see https://bugs.chromium.org/p/chromium/issues/detail?id=356210
 elif [ "$1" == "--select" ]; then
     file=${file_noext}.png
-    ask_user_for_region
-    maim -g $G --hidecursor $file
+    tmp_file=/tmp/$(basename $file)
+    flameshot gui --raw > $tmp_file
+    if [ $? -ne 0 ]; then
+        exit 1
+    fi
+    mv $tmp_file $file
+    #<<< ask_user_for_region
+    #<<< maim -g $G --hidecursor $file
 else
     file=${file_noext}.png
     maim --hidecursor $file
