@@ -9,7 +9,7 @@ import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Util.Run(spawnPipe)
-import XMonad.Util.EZConfig(additionalKeys)
+import XMonad.Util.EZConfig(additionalKeys, additionalMouseBindings)
 import Graphics.X11.ExtraTypes.XF86
 import System.IO
 
@@ -141,3 +141,4 @@ main = do
             -- spawnOn "play" "roxterm -e \"bash -c '(cd gitting; bash)'\""
             -- spawnOn "wca" "chromium --profile-directory='Profile 1'"
     } `additionalKeys` myKeys
+      `additionalMouseBindings` [ ((0, 9), \_ -> spawn "jscrot --select") ]
