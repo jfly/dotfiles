@@ -79,7 +79,7 @@ function size_tray() {
 
     # Kill existing trayer and start it back up to resize it.
     killall -q trayer
-    trayer -l --edge top --align right --SetDockType true --SetPartialStrut true --expand true --widthtype request --height $trayer_height --transparent true --alpha 0 --tint 0 &
+    trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --widthtype request --height $trayer_height --transparent true --alpha 0 --tint 0 &
 }
 
 # There's no way it's good to be running this command simultaneously.
