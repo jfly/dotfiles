@@ -20,6 +20,7 @@
     ~/.config/dunst: dunst
     ~/.config/gtk-3.0: gtk-3.0
     ~/.config/pirate-get: pirate-get
+    ~/.config/fontconfig/conf.d/75-noto-color-emoji.conf: fontconfig/conf.d/75-noto-color-emoji.conf
     ~/.dir_colors: dir_colors
     ~/.direnvrc: direnvrc
     ~/.gitconfig: gitconfig
