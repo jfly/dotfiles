@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+source ~/.commonrc/aliases
+
+last_commit_message=$(git log -1 --pretty=%B)
+last_commit_review_number=$(echo "$last_commit_message" | grep "^rbcommons: " | grep -o "[0-9]*")
+
+if [ -z "$last_commit_review_number" ]; then
+    # The last commit message does not contain a link to its review. Go ahead
+    # an post a brand new review.
+    echo "Creating a brand new review"
+    post_output=$(with_commit HEAD h4post)
+    review_id=$(echo "$post_output" | grep "Review request #.* posted." | grep -o "[0-9]*")
+    review_url="https://rbcommons.com/s/honor/r/$review_id/"
+    # Ammend that commit's message with a link to the review.
+    git commit --amend -m "${last_commit_message}
+
+rbcommons: ${review_url}
+"
+else
+    # The last commit does contain a link to its review! We can repost that review now.
+    echo "Reposting to $last_commit_review_number"
+    with_commit HEAD h4repost $last_commit_review_number
+fi
