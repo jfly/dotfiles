@@ -45,18 +45,6 @@ HostName 104.196.235.220
 User jeremyfleischman
 #LocalForward 8080 localhost:8080
 
-Host scottpi
-#HostName raspberrypi.orc
-HostName 0.tcp.ngrok.io
-Port 10464
-User pi
-
-### Hadron Labs stuff
-Host hadronlabs
-HostName www.hadronlabs.com
-User ec2-user
-### End Hadron Labs stuff
-
 ### Honor stuff
 Host bastion.honordev.com bastion
 Hostname bastion.honordev.com
