@@ -32,3 +32,8 @@
 	changeHunkIndicators = false
 [branch]
 	sort = -authordate
+[sendemail]
+	smtpEncryption = tls
+	smtpServer = smtp.gmail.com
+	smtpUser = jeremyfleischman@gmail.com
+	smtpServerPort = 587
