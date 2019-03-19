@@ -16,12 +16,13 @@ Plug 'janko-m/vim-test'
 Plug 'kassio/neoterm'
 Plug 'xtal8/traces.vim'
 Plug 'majutsushi/tagbar'
-"<<< Plug 'davidhalter/jedi-vim'
+Plug 'davidhalter/jedi-vim'
 Plug 'w0rp/ale'
+"<<< Plug 'pandysong/ghost-text.vim'
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
 
-let mapleader = ","
+let mapleader = " "
 " Fast reloading of .vimrc
 map <leader>r :source ~/.vimrc<cr>
 
@@ -112,6 +113,7 @@ call tcomment#type#Define('jsx', '{/*<<< %s */}')
 """""" FZF configuration
 noremap <c-p> :Files<CR>
 noremap <leader>b :Buffers<CR>
+noremap <leader><leader> <C-^>
 """"""
 
 """""" vim-test configuration
@@ -128,13 +130,13 @@ let g:test#strategy = "fat_runner"
 " "make singletest NOSEARGS='...'"
 function! HonorTransform(cmd) abort
     if a:cmd =~ '^nosetests '
-        "let a:cmd_sans_nosetests = "-s --pdb ".substitute(a:cmd, '^nosetests ', '', '')
-        let a:cmd_sans_nosetests = "-s ".substitute(a:cmd, '^nosetests ', '', '')
-        let a:new_cmd = 'make singletest TEST_PROCESSES=0 TEST_DB_COUNT=1 NOSEARGS='.shellescape(a:cmd_sans_nosetests)
+        "let l:cmd_sans_nosetests = "-s --pdb ".substitute(a:cmd, '^nosetests ', '', '')
+        let l:cmd_sans_nosetests = "-s ".substitute(a:cmd, '^nosetests ', '', '')
+        let l:new_cmd = 'make singletest TEST_PROCESSES=0 TEST_DB_COUNT=1 NOSEARGS='.shellescape(l:cmd_sans_nosetests)
     else
-        let a:new_cmd = a:cmd
+        let l:new_cmd = a:cmd
     endif
-    return a:new_cmd
+    return l:new_cmd
 endfunction
 
 " Force use of nosetest over pytest
