@@ -40,29 +40,29 @@
     ~/.gnupg: ~/Dropbox/linux-secrets/gnupg
     ~/.lolcommits: ~/Dropbox/pics/lolcommits
 
-    /usr/share/themes/jfattymacs: gtk-themes/jfattymacs
+    /usr/share/themes/jfattymacs: usr/share/themes/jfattymacs
 
-    /etc/acpi/events/lid: etc_acpi_events_lid
-    /etc/fuse.conf: fuse.conf
+    /etc/acpi/events/lid: etc/acpi/events/lid
+    /etc/fuse.conf: etc/fuse.conf
     /etc/nsswitch.conf: etc/nsswitch.conf
 
-    /etc/systemd/logind.conf.d/no-suspend-on-lidswitch.conf: no-suspend-on-lidswitch.conf
-    /etc/systemd/logind.conf.d/suspend-on-powerbutton.conf: suspend-on-powerbutton.conf
-    /etc/systemd/system/fixinputs@.path: units/fixinputs@.path
-    /etc/systemd/system/fixinputs@.service: units/fixinputs@.service
-    /etc/systemd/system/slock@.service: units/slock@.service
-    /etc/systemd/system/disable-bt-wakeup.service: units/disable-bt-wakeup.service
+    /etc/systemd/logind.conf.d/no-suspend-on-lidswitch.conf: etc/systemd/logind.conf.d/no-suspend-on-lidswitch.conf
+    /etc/systemd/logind.conf.d/suspend-on-powerbutton.conf: etc/systemd/logind.conf.d/suspend-on-powerbutton.conf
+    /etc/systemd/system/fixinputs@.path: etc/systemd/system/fixinputs@.path
+    /etc/systemd/system/fixinputs@.service: etc/systemd/system/fixinputs@.service
+    /etc/systemd/system/slock@.service: etc/systemd/system/slock@.service
+    /etc/systemd/system/disable-bt-wakeup.service: etc/systemd/system/disable-bt-wakeup.service
 
-    /etc/udev/rules.d/10-local.rules: udev/10-local.rules
-    /etc/systemd/system/monitors@.service: units/monitors@.service
+    /etc/udev/rules.d/10-local.rules: etc/udev/rules.d/10-local.rules
+    /etc/systemd/system/monitors@.service: etc/systemd/system/monitors@.service
 
-    /etc/X11/xorg.conf.d/20-intel.conf: 20-intel.conf
-    /etc/X11/xorg.conf.d/20-trackpoint.conf: 20-trackpoint.conf
+    /etc/X11/xorg.conf.d/20-intel.conf: etc/X11/xorg.conf.d/20-intel.conf
+    /etc/X11/xorg.conf.d/20-trackpoint.conf: etc/X11/xorg.conf.d/20-trackpoint.conf
 
-    /etc/modprobe.d/nobeep.conf: nobeep.conf
-    /etc/vconsole.conf: vconsole.conf
-    /etc/locale.conf: locale.conf
-    /etc/pacman.d/hooks/99-secureboot.hook: pac-hooks/99-secureboot.hook
+    /etc/modprobe.d/nobeep.conf: etc/modprobe.d/nobeep.conf
+    /etc/vconsole.conf: etc/vconsole.conf
+    /etc/locale.conf: etc/locale.conf
+    /etc/pacman.d/hooks/99-secureboot.hook: etc/pacman.d/hooks/99-secureboot.hook
 
 - shell:
   - [git update-submodules, Install/update submodules]
