@@ -43,6 +43,7 @@
 
     /etc/acpi/events/lid: etc_acpi_events_lid
     /etc/fuse.conf: fuse.conf
+    /etc/nsswitch.conf: etc/nsswitch.conf
 
     /etc/systemd/logind.conf.d/no-suspend-on-lidswitch.conf: no-suspend-on-lidswitch.conf
     /etc/systemd/logind.conf.d/suspend-on-powerbutton.conf: suspend-on-powerbutton.conf

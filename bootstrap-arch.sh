@@ -121,6 +121,10 @@ base_stuff() {
 
     ## Some FUSE stuff
     arch_package sshfs
+
+    ## MDNS stuff
+    arch_package avahi nss-mdns
+    enable_service avahi-daemon
 }
 
 install_vim() {
