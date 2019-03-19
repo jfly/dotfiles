@@ -58,7 +58,7 @@ function h4repost {
     fi
 }
 alias h4mysql="mysql -u root sonasandboxdb --binary-as-hex"
-alias h4salt="ssh bastion ssh saltmaster sudo tail -f /var/log/syslog"
+alias h4salt="ssh bastion ssh saltmaster sudo journalctl --follow --lines=25"
 
 # --xetex avoids huge file sizes when trimming pdfs.
 # See: http://alexsleat.co.uk/2011/01/25/using-pdfcrop-to-remove-white-margins-ubuntu/
@@ -84,6 +84,17 @@ function de {
     CONTAINER=$1
     shift
     CMD="docker exec -it --detach-keys='ctrl-^,q' $CONTAINER env TERM=xterm bash"
+    if [ "$#" -gt 0 ]; then
+        CMD="$CMD -c '$*'"
+    fi
+    echo $CMD
+    eval $CMD
+}
+
+function dr {
+    IMAGE=$1
+    shift
+    CMD="docker run -it --entrypoint=bash --detach-keys='ctrl-^,q' $IMAGE"
     if [ "$#" -gt 0 ]; then
         CMD="$CMD -c '$*'"
     fi
