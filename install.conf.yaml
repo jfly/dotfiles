@@ -15,12 +15,12 @@
     ~/.commonrc: commonrc
 
     ~/bin: bin
-    ~/.config/roxterm.sourceforge.net: roxterm.sourceforge.net
-    ~/.config/termite: termite
-    ~/.config/dunst: dunst
-    ~/.config/gtk-3.0: gtk-3.0
-    ~/.config/pirate-get: pirate-get
-    ~/.config/fontconfig/conf.d/75-noto-color-emoji.conf: fontconfig/conf.d/75-noto-color-emoji.conf
+    ~/.config/roxterm.sourceforge.net: config/roxterm.sourceforge.net
+    ~/.config/termite: config/termite
+    ~/.config/dunst: config/dunst
+    ~/.config/gtk-3.0: config/gtk-3.0
+    ~/.config/pirate-get: config/pirate-get
+    ~/.config/fontconfig: config/fontconfig
     ~/.dir_colors: dir_colors
     ~/.direnvrc: direnvrc
     ~/.gitconfig: gitconfig
