@@ -73,13 +73,18 @@ function size_tray() {
     trayer_height=$1
     xmobar_font_size=$2
 
+    # Kill existing trayer and start it back up to resize it.
+    # Note that we lower trayer on start. This is good, we want it below all our regular windows.
+    # We do want it below xmobar as well, which will happen for free when we
+    # restart xmobar (it lowers itself to the bottom on startup).
+    killall -q trayer
+    trayer -l --edge top --align right --SetDockType true --SetPartialStrut true --expand true --widthtype request --height $trayer_height --transparent true --alpha 0 --tint 0 &
+    sleep 0.1  # Give trayer a moment to start up and lower itself before we start up xmobar.
+
     # To resize our xmobar, we must edit our xmobarrc and then restart xmonad.
+    # We also must restart xmobar to get it below trayer (xmobar lowers itself to the bottom when it starts up).
     sed -i "s/size=[^:]*:/size=${xmobar_font_size}:/" ~/.xmobarrc
     xmonad --restart
-
-    # Kill existing trayer and start it back up to resize it.
-    killall -q trayer
-    trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --widthtype request --height $trayer_height --transparent true --alpha 0 --tint 0 &
 }
 
 # There's no way it's good to be running this command simultaneously.
