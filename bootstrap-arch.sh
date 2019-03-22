@@ -162,7 +162,7 @@ laptop_stuff() {
     aur_package trayer-srg-git dmenu2 xsettingsd
     # Fonts
     arch_package ttf-liberation ttf-bitstream-vera noto-fonts noto-fonts-emoji
-    aur_package ttf-merriweather ttf-merriweather-sans ttf-opensans ttf-oswald ttf-quintessential ttf-signika ttf-google-fonts-git
+    aur_package ttf-merriweather ttf-merriweather-sans ttf-opensans ttf-oswald ttf-quintessential ttf-signika ttf-google-fonts-git nerd-fonts-ubuntu-mono
 
     # Lock screen on suspend.
     # https://wiki.archlinux.org/index.php/Slock
