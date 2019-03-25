@@ -24,10 +24,12 @@ fi
 ###
 ### Set up nvm
 ###
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-# Apparently these completions work on both bash and zsh...
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+if false; then  # TODO - wowow loading nvm is insanely slow. See https://github.com/creationix/nvm/issues/539 and https://github.com/creationix/nvm/issues/1242
+    export NVM_DIR="$HOME/.nvm"
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+    # Apparently these completions work on both bash and zsh...
+    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+fi
 
 export VISUAL=vim
 export EDITOR=vim
