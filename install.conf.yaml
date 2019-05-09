@@ -66,5 +66,3 @@
   - [git update-submodules, Install/update submodules]
   - ["chmod -R u=rwX,og= ~/.ssh/", Fix ssh key permissions]
   - ["chmod -R u=rwX,og= ~/.gnupg/", Fix gnupg permissions]
-  - sudo cp etc/systemd/logind.conf.d/no-suspend-on-lidswitch.conf /etc/systemd/logind.conf.d/no-suspend-on-lidswitch.conf
-  - sudo cp etc/systemd/logind.conf.d/suspend-on-powerbutton.conf /etc/systemd/logind.conf.d/suspend-on-powerbutton.conf

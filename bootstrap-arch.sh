@@ -76,10 +76,16 @@ base_stuff() {
     # "Parsing /etc/bluetooth/main.conf failed: Permission denied" error when bluetoothd
     # starts up.
     sudo mkdir -p /etc/bluetooth/ && sudo cp etc_bluetooth_main.conf /etc/bluetooth/main.conf
+
+    # Copy some files as a workaround for https://github.com/systemd/systemd/issues/12410.
+    sudo mkdir -p /etc/systemd/logind.conf.d/
+    sudo cp etc/systemd/logind.conf.d/no-suspend-on-lidswitch.conf /etc/systemd/logind.conf.d/no-suspend-on-lidswitch.conf
+    sudo cp etc/systemd/logind.conf.d/suspend-on-powerbutton.conf /etc/systemd/logind.conf.d/suspend-on-powerbutton.conf
+
     ./install
 
     ## Dependencies to install stuff from the AUR
-    arch_package wget base-devel gcc
+    arch_package wget base-devel gcc make fakeroot
 
     ## Python
     arch_package python-pip python-pexpect openssh
@@ -238,7 +244,7 @@ htpc_stuff() {
     # https://wiki.archlinux.org/index.php/Kodi#Raspberry_Pi_.28all_generations.29
     # and http://blog.monkey.codes/how-to-setup-kodi-on-a-raspberry-pi/
     arch_package kodi-rbp libcec-rpi
-    sudo sed -i 's/gpu_mem=64/gpu_mem=256/' /boot/config.txt
+    sudo sed -i 's/gpu_mem=64/gpu_mem=320/' /boot/config.txt
 
     enable_service_not_now kodi
 
@@ -259,6 +265,7 @@ htpc_stuff() {
     sudo systemctl start transmission
 
     mkdir -p ~/.config/systemd/user/
+    mkdir -p $HOME/gitting/jpi.jflei.com/logs/
     cat > ~/.config/systemd/user/gatekeeper.service <<EOL
 [Unit]
 Description=gatekeeper and nginx
@@ -291,12 +298,14 @@ EOL
         read domain_name
         echo
 
-        echo "Enter the generated username for $domain_name"
+        main_domain=$(echo "$domain_name" | sed 's/.*\.\(.*\..*\)/\1/')
+        dns_url="https://domains.google.com/m/registrar/${main_domain}/dns"
+        echo "Enter the generated username for $domain_name (on $dns_url)"
         echo -n "> "
         read google_domains_username
         echo
 
-        echo "Enter the generated password for $domain_name"
+        echo "Enter the generated password for $domain_name (on $dns_url)"
         echo -n "> "
         read google_domains_password
         echo
