@@ -259,7 +259,7 @@ htpc_stuff() {
     arch_package transmission-cli
     enable_service transmission
     sudo systemctl stop transmission
-    sudo sed -i 's_\( *"download-dir: \).*_\1"/home/media/torrents",_' /var/lib/transmission/.config/transmission-daemon/settings.json
+    sudo sed -i 's_\( *"download-dir": \).*_\1"/home/media/torrents",_' /var/lib/transmission/.config/transmission-daemon/settings.json
     sudo sed -i 's_\( *"rpc-host-whitelist": \).*_\1"*",_' /var/lib/transmission/.config/transmission-daemon/settings.json
     sudo sed -i 's_\( *"rpc-host-whitelist-enabled": \).*_\1false,_' /var/lib/transmission/.config/transmission-daemon/settings.json
     sudo systemctl start transmission
