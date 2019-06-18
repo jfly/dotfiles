@@ -19,9 +19,14 @@ Plug 'xtal8/traces.vim'
 Plug 'majutsushi/tagbar'
 Plug 'davidhalter/jedi-vim'
 Plug 'w0rp/ale'
+Plug 'jesseleite/vim-agriculture'
+Plug 'vim-scripts/IndexedSearch'
 "<<< Plug 'pandysong/ghost-text.vim'
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
+
+" https://github.com/FatBoyXPC/dotfiles/commit/2f2827d822fe80b9b8d7137e5f193fa0be390255
+command! -bang -nargs=+ -complete=dir Ag call fzf#vim#ag_raw(agriculture#smart_quote_input(<q-args>), <bang>0)
 
 let mapleader = " "
 " Fast reloading of .vimrc
