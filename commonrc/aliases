@@ -20,6 +20,9 @@ alias rrtdb="bin/rails db:environment:set RAILS_ENV=test && bin/rake db:reset RA
 alias wcacheckmem="ssh wca 'date && ps -eo rss,comm,pid,args | grep -i unicorn | grep -v grep'"
 alias wcadeploy="ssh -A cubing@worldcubeassociation.org worldcubeassociation.org/scripts/deploy.sh pull_latest rebuild_regs rebuild_rails"
 
+# Home network stuff
+alias orc_dns_clear="ssh -l admin 192.168.1.1 killall -s HUP dnsmasq"
+
 function with_commit {
     (
         set -e
