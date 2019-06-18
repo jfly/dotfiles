@@ -61,8 +61,8 @@ function h4repost {
         h4post --review-request-id $1
     fi
 }
-alias h4mysql="mysql -u root sonasandboxdb --binary-as-hex"
-alias h4salt="ssh bastion ssh saltmaster sudo journalctl --follow --lines=25"
+alias h4mysql="mycli -u root sonasandboxdb"
+alias h4salt="ssh bastion ssh saltmaster sudo journalctl --follow --lines=10000 | grep pull-and-run"
 
 # --xetex avoids huge file sizes when trimming pdfs.
 # See: http://alexsleat.co.uk/2011/01/25/using-pdfcrop-to-remove-white-margins-ubuntu/
