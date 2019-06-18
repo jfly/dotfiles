@@ -1,5 +1,21 @@
 #!/usr/bin/env bash
 
+# If stdin (fd 0) is not a tty, then open up a termite gui to show the 2fa codes.
+if [ ! -t 0 ]; then
+    termite -r picker -e "bash -c '2fa | fzf > /tmp/2fa.selected'"
+    sleep 0.1
+
+    SELECTED_2FA=$(grep -Eo "[0-9]+" /tmp/2fa.selected)
+
+    if [ -z "$SELECTED_2FA" ]; then
+        exit 1
+    fi
+
+    echo -n "$SELECTED_2FA" | clipit
+    xdotool key --clearmodifiers ctrl+shift+v
+    exit 0
+fi
+
 DB=/tmp/data.db
 
 echo -n "Attempting to connect to phone. You may need to answer a prompt on your phone..." &> /dev/stderr

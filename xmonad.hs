@@ -40,7 +40,9 @@ windowPlacement = composeAll [
 
         role =? "send to play" --> doShift "play",
         role =? "send to wrk" --> doShift "wrk",
-        role =? "send to test" --> doShift "test"
+        role =? "send to test" --> doShift "test",
+
+        role =? "picker" --> doFloat
     ] where role = stringProperty "WM_WINDOW_ROLE"
 
 -- https://github.com/hcchu/dotfiles/blob/master/.xmonad/xmonad.hs
