@@ -6,3 +6,6 @@ export PATH=$PATH:$HOME/.gem/ruby/2.6.0/bin
 export PATH=$PATH:$HOME/.local/bin
 
 export PATH=$PATH:$HOME/thirdrepos/google-cloud-sdk/bin
+
+# https://rustup.rs/
+export PATH="$HOME/.cargo/bin:$PATH"
