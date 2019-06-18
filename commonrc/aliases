@@ -51,7 +51,8 @@ function pick_commit {
 
 # Honor specific stuff
 function h4post {
-    rbt-log-post --open --parent=HEAD~1 $@ HEAD || true
+    rbt post --markdown --open $@ HEAD
+    # rbt-log-post --open --parent=HEAD~1 $@ HEAD || true
 }
 function h4repost {
     if [ "$#" -ne 1 ]; then
