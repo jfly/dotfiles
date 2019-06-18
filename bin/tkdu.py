@@ -354,6 +354,7 @@ def doit(dir, files):
     else:
         c.bind("<Button-2>", ascend)
     c.tag_bind("all", "<Button-1>", descend)
+    c.tag_bind("all", "<Button-3>", ascend) # JFLY
     c.tag_bind("all", "<Enter>", schedule_tip)
     c.tag_bind("all", "<Leave>", cancel_tip)
     c.mainloop()
