@@ -22,7 +22,7 @@
     path = ~/.gitconfig_local
 [core]
     excludesfile = ~/.gitignore_global
-    # pager = diff-so-fancy | less --tabs=4 -RFX
+    pager = diff-so-fancy | less --tabs=4 -RFX
 [credential]
     helper = cache --timeout=3600
 [pager]
@@ -37,3 +37,18 @@
 	smtpServer = smtp.gmail.com
 	smtpUser = jeremyfleischman@gmail.com
 	smtpServerPort = 587
+
+[color]
+    ui = true
+[color "diff-highlight"]
+    oldNormal = 196 bold
+    oldHighlight = 196 bold 52
+    newNormal = 34 bold
+    newHighlight = 34 bold 22
+[color "diff"]
+    meta = 130
+    frag = 33 bold dim
+    commit = 172 bold
+    old = 196 bold
+    new = 34 bold
+    whitespace = red reverse
