@@ -29,7 +29,7 @@
     branch = false
 [diff-so-fancy]
 	stripLeadingSymbols = false
-	changeHunkIndicators = false
+	changeHunkIndicators = true
 [branch]
 	sort = -authordate
 [sendemail]
