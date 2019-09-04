@@ -23,7 +23,6 @@
     ~/.config/pirate-get: config/pirate-get
     ~/.config/fontconfig: config/fontconfig
     ~/.dir_colors: dir_colors
-    ~/.direnvrc: direnvrc
     ~/.gitconfig: gitconfig
     ~/.gitignore_global: gitignore_global
     ~/.jupyter/nbconfig: jupyter/nbconfig
