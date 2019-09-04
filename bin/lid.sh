@@ -4,7 +4,7 @@ case "$1" in
     button/lid)
         case "$3" in
             close)
-                if nmcli -t connection show --active | cut -d : -f 1 | grep "^\(Honor\|dagron\|Honor Ethernet\|NSA Surveillance Van 37\|Cal 3\)$" &> /dev/null; then
+                if nmcli -t connection show --active | cut -d : -f 1 | grep "^\(Honor\|dagron\|Honor Ethernet\|NSA Surveillance Van 37\|NSA Surveillance Van 37-2.4G\|Cal 3\)$" &> /dev/null; then
                     logger "Ignoring lid close event because we're connected to: $(nmcli -t connection show --active | cut -d : -f 1)"
                 else
                     slock
