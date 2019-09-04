@@ -200,6 +200,16 @@ set tabpagemax=100
 " https://webpack.github.io/docs/webpack-dev-server.html#working-with-editors-ides-supporting-safe-write
 set backupcopy=yes
 
+""""""" Enable the Prettier fixer
+let g:ale_fixers = {
+\   'javascript': ['prettier'],
+\   'typescript': ['prettier'],
+\   'css': ['prettier'],
+\}
+" Automatically run ALEFix on save.
+let g:ale_fix_on_save = 1
+"""""""
+
 """""""
 nnoremap <leader>p oimport pdb; pdb.set_trace()#<<<<Esc>
 nnoremap <leader>P Oimport pdb; pdb.set_trace()#<<<<Esc>
