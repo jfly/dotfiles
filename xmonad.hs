@@ -4,6 +4,7 @@ import XMonad.Config.Desktop
 import XMonad.Layout.LayoutCombinators -- use the one from LayoutCombinators instead
 import XMonad.Layout.ToggleLayouts
 import XMonad.Layout.ThreeColumns
+import XMonad.Actions.CycleWS
 import XMonad.Actions.SpawnOn
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
@@ -87,6 +88,9 @@ myKeys =
 
         -- Force window back to tiling mode
         ((myModMask .|. shiftMask, xK_t), withFocused $ windows . W.sink),
+
+        -- Toggle last workspace
+        ((myModMask, xK_Tab), toggleWS),
 
         -- Run demenu2 with custom font
         ((myModMask, xK_p), spawn "dmenu_run -fn 'Ubuntu Mono Regular:size=9:bold:antialias=true'"),
