@@ -87,7 +87,7 @@ relpath(){ python -c "import os.path; print(os.path.relpath('$1','${2:-$PWD}'))"
 function de {
     CONTAINER=$1
     shift
-    CMD="docker exec -it --detach-keys='ctrl-^,q' $CONTAINER env TERM=xterm bash"
+    CMD="docker exec -it $CONTAINER env TERM=xterm bash"
     if [ "$#" -gt 0 ]; then
         CMD="$CMD -c '$*'"
     fi
@@ -98,7 +98,7 @@ function de {
 function dr {
     IMAGE=$1
     shift
-    CMD="docker run -it --entrypoint=bash --detach-keys='ctrl-^,q' $IMAGE"
+    CMD="docker run -it --entrypoint=bash $IMAGE"
     if [ "$#" -gt 0 ]; then
         CMD="$CMD -c '$*'"
     fi

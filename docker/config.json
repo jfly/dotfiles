@@ -1,0 +1,10 @@
+{
+	"auths": {
+		"900965112463.dkr.ecr.us-west-2.amazonaws.com": {}
+	},
+	"HttpHeaders": {
+		"User-Agent": "Docker-Client/19.03.1-ce (linux)"
+	},
+	"detachKeys": "ctrl-^,q",
+	"credsStore": "secretservice"
+}

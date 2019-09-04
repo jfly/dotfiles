@@ -22,6 +22,7 @@
     ~/.config/gtk-3.0: config/gtk-3.0
     ~/.config/pirate-get: config/pirate-get
     ~/.config/fontconfig: config/fontconfig
+    ~/.docker/config.json: docker/config.json
     ~/.dir_colors: dir_colors
     ~/.gitconfig: gitconfig
     ~/.gitignore_global: gitignore_global

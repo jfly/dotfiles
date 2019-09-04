@@ -232,6 +232,10 @@ laptop_stuff() {
     # See https://github.com/adammurdoch/native-platform/issues/24
     # and https://discuss.gradle.org/t/how-do-i-always-force-console-auto-in-a-gradle-properties-or-environment-variable/12039/8
     aur_package ncurses5-compat-libs
+
+    ## Docker stuff
+    arch_package docker
+    aur_package docker-credential-secretservice
 }
 
 jpi_stuff() {
