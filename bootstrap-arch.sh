@@ -227,6 +227,11 @@ laptop_stuff() {
     ## Git stuff
     # https://github.com/so-fancy/diff-so-fancy
     arch_package diff-so-fancy
+
+    ## Fix rich console output in Gradle.
+    # See https://github.com/adammurdoch/native-platform/issues/24
+    # and https://discuss.gradle.org/t/how-do-i-always-force-console-auto-in-a-gradle-properties-or-environment-variable/12039/8
+    aur_package ncurses5-compat-libs
 }
 
 jpi_stuff() {
