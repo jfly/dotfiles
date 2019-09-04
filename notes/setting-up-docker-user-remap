@@ -1,0 +1,12 @@
+Following https://medium.com/@frntn/not-your-grandmother-s-docker-environment-c3c5c1a5aab
+
+First, I added `--userns-remap=jeremy"` to /etc/systemd/system/docker.service.d/override.conf:
+
+```
+➜  /tmp cat /etc/systemd/system/docker.service.d/override.conf
+[Service]
+ExecStart=
+ExecStart=/usr/bin/dockerd -H fd:// -s overlay2 --userns-remap=jeremy
+```
+
+I added `jeremy:1000:65536` to /etc/subgid and /etc/subuid
