@@ -113,7 +113,10 @@ call tcomment#type#Define('ruby', '#<<< %s')
 call tcomment#type#Define('vim', '"<<< %s')
 call tcomment#type#Define('scss', '//<<< %s')
 call tcomment#type#Define('javascript', '//<<< %s')
+call tcomment#type#Define('typescript', '//<<< %s')
 call tcomment#type#Define('jsx', '{/*<<< %s */}')
+call tcomment#type#Define('make', '#<<< %s')
+call tcomment#type#Define('dockerfile', '#<<< %s')
 """"""
 
 """""" FZF configuration
