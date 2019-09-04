@@ -13,6 +13,7 @@
     ~/.bashrc: bashrc
     ~/.zshrc: zshrc
     ~/.commonrc: commonrc
+    ~/.myclirc: myclirc
 
     ~/bin: bin
     ~/.config/roxterm.sourceforge.net: config/roxterm.sourceforge.net
