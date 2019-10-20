@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+exec dosbox -exit -c "MOUNT c $HOME/Dropbox/dosstuff" -c "C:" -C "CD SC2000" -C "SC2000.BAT"
