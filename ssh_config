@@ -45,7 +45,7 @@ HostName ssh.ocf.berkeley.edu
 User jfly
 
 Host moria
-HostName 104.196.235.220
+HostName 34.82.48.146
 User jeremyfleischman
 #LocalForward 8080 localhost:8080
 
