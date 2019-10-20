@@ -141,9 +141,11 @@ let g:test#strategy = "fat_runner"
 " "make singletest NOSEARGS='...'"
 function! HonorTransform(cmd) abort
     if a:cmd =~ '^nosetests '
-        "let l:cmd_sans_nosetests = "-s --pdb ".substitute(a:cmd, '^nosetests ', '', '')
         let l:cmd_sans_nosetests = "-s ".substitute(a:cmd, '^nosetests ', '', '')
-        let l:new_cmd = 'make singletest TEST_PROCESSES=0 TEST_DB_COUNT=1 NOSEARGS='.shellescape(l:cmd_sans_nosetests)
+        let l:new_cmd = 'make singletest TEST_PROCESSES=0 NOSEARGS='.shellescape(l:cmd_sans_nosetests)
+    elseif a:cmd =~ '^pipenv run pytest '
+        let l:cmd_sans_nosetests = "-s ".substitute(a:cmd, '^pipenv run pytest ', '', '')
+        let l:new_cmd = 'make singletest TEST_PROCESSES=0 PYTESTARGS='.shellescape(l:cmd_sans_nosetests)
     else
         let l:new_cmd = a:cmd
     endif
@@ -151,8 +153,7 @@ function! HonorTransform(cmd) abort
 endfunction
 
 " Force use of nosetest over pytest
-let test#python#pytest#file_pattern = '\vMATCH_NOTHING_AT_ALL$'
-let test#python#nose#file_pattern = '\v(^|[\b_\.-])[Tt]est.*\.py$'
+let test#python#runner = 'nose'
 
 let g:test#custom_transformations = {'honor': function('HonorTransform')}
 let g:test#transformation = 'honor'
