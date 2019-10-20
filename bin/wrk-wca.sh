@@ -10,8 +10,7 @@ function terminalOn() {
 
 sudo systemctl start mysqld
 
-export SHTUFF_RUNNER="wca-runner"
-cd ~/gitting/worldcubeassociation.org/WcaOnRails/
+cd ~/wca/worldcubeassociation.org/WcaOnRails/
 terminalOn "bin/rails s" "wrk"
-terminalOn "shtuff as $SHTUFF_RUNNER" "wrk"
+terminalOn "shtuff as $(pwd)" "wrk"
 terminalOn "vim" "wrk"

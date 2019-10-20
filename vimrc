@@ -126,9 +126,8 @@ noremap <leader><leader> <C-^>
 """"""
 
 """""" vim-test configuration
-let g:shtuff_receiver = $SHTUFF_RUNNER
 function! ShtuffStrategy(cmd)
-    call system("shtuff into " . shellescape(g:shtuff_receiver) . " " . shellescape("clear;" . a:cmd))
+    call system("shtuff into " . shellescape(getcwd()) . " " . shellescape("clear;" . a:cmd))
 endfunction
 
 let g:test#custom_strategies = {'fat_runner': function('ShtuffStrategy')}
