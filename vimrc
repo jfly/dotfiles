@@ -18,7 +18,7 @@ Plug 'kassio/neoterm'
 Plug 'xtal8/traces.vim'
 Plug 'majutsushi/tagbar'
 Plug 'davidhalter/jedi-vim'
-Plug 'w0rp/ale'
+Plug 'jfly/ale', { 'branch': 'skip-fix-hook' } " Contains a hack to not run fixers if <<< shows up in a file.
 Plug 'jesseleite/vim-agriculture'
 Plug 'vim-scripts/IndexedSearch'
 "<<< Plug 'pandysong/ghost-text.vim'
@@ -206,6 +206,7 @@ let g:ale_fixers = {
 \   'javascript': ['prettier'],
 \   'typescript': ['prettier'],
 \   'css': ['prettier'],
+\   'python': ['black', 'isort'],
 \}
 " Automatically run ALEFix on save.
 let g:ale_fix_on_save = 1
