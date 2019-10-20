@@ -6,6 +6,7 @@ import XMonad.Layout.ToggleLayouts
 import XMonad.Layout.ThreeColumns
 import XMonad.Actions.CycleWS
 import XMonad.Actions.SpawnOn
+import XMonad.Actions.SwapWorkspaces
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.EwmhDesktops
@@ -59,6 +60,9 @@ fullscreenChrome = do
     sendMessage ToggleStruts
     spawn "sleep 0.1 && xdotool key --clearmodifiers F11"
     return ()
+
+myWorkspaces = ["`", "web", "play", "wrk", "test", "video", "todo", "7", "8", "9", "0", "-", "=", "<="]
+myWorkspaceKeys = [xK_grave] ++ [xK_1 .. xK_9] ++ [xK_0, xK_minus, xK_equal, xK_BackSpace]
 
 altMask = mod1Mask
 myKeys =
@@ -126,6 +130,18 @@ myKeys =
 
         ((myModMask, xK_a), spawn "autoperipherals"),
         ((myModMask .|. shiftMask, xK_a), spawn "mobile.sh")
+    ] ++
+    -- mod-[1..9] %! Switch to workspace N
+    -- mod-shift-[1..9] %! Move client to workspace N
+    [((m .|. myModMask, k), windows $ f i)
+        | (i, k) <- zip myWorkspaces myWorkspaceKeys
+        , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]]
+    ++
+    -- Swap workspaces
+    [
+        ((myModMask .|. controlMask, k), windows $ swapWorkspaces "web" "play")
+        -- ((myModMask .|. controlMask, k), sequence_ [windows $ swapWithCurrent i, windows $ W.greedyView "web"])
+        | (i, k) <- zip myWorkspaces myWorkspaceKeys
     ]
 
 main = do
@@ -141,7 +157,7 @@ main = do
         modMask = myModMask,
         XMonad.terminal = myTerminal,
         XMonad.borderWidth = myBorderWidth,
-        workspaces = ["web", "play", "wrk", "test", "video", "todo", "7", "8", "9"]
+        workspaces = myWorkspaces
         -- startupHook = do
             -- spawnOn "web" "chromium"
             -- spawnOn "play" "roxterm -e \"bash -c '(cd gitting; bash)'\""
