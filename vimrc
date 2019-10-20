@@ -22,6 +22,8 @@ Plug 'jfly/ale', { 'branch': 'skip-fix-hook' } " Contains a hack to not run fixe
 Plug 'jesseleite/vim-agriculture'
 Plug 'vim-scripts/IndexedSearch'
 "<<< Plug 'pandysong/ghost-text.vim'
+"<<< TODO: figure out how to get only one of coc/ale to run pylint... >>>
+"<<< Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
 
@@ -216,3 +218,17 @@ let g:ale_fix_on_save = 1
 nnoremap <leader>p oimport pdb; pdb.set_trace()#<<<<Esc>
 nnoremap <leader>P Oimport pdb; pdb.set_trace()#<<<<Esc>
 """""""
+
+"<<< """"""" Configure some coc extensions
+"<<< let g:coc_global_extensions = ['coc-tsserver']
+"<<< nnoremap <silent> K :call <SID>show_documentation()<CR>
+"<<< function! s:show_documentation()
+"<<<   if &filetype == 'vim'
+"<<<     execute 'h '.expand('<cword>')
+"<<<   else
+"<<<     call CocAction('doHover')
+"<<<   endif
+"<<< endfunction
+"<<< nmap <silent> gd <Plug>(coc-definition)
+"<<< nmap <silent> gr <Plug>(coc-references)
+"<<< """""""
