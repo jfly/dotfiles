@@ -174,6 +174,8 @@ function! ToggleTest(path)
         let l:other_path = substitute(expand('%'), "\.test\.js$", ".js", "")
     elseif a:path =~ "\.js$"
         let l:other_path = substitute(expand('%'), "\.js$", ".test.js", "")
+    elseif a:path =~ "\.tsx$"
+        let l:other_path = substitute(expand('%'), "\.tsx$", ".test.js", "")
     else
         echo "I'm not sure how to toggle " . a:path
         return
