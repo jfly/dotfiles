@@ -162,7 +162,7 @@ nnoremap <leader>ts :w<CR>:TestSuite<CR>
 nnoremap <leader>tf :w<CR>:TestFile<CR>
 nnoremap <leader>tn :w<CR>:TestNearest<CR>
 nnoremap <leader>tv :w<CR>:TestVisit<CR>
-nnoremap <Leader>tl :w<CR>:call system("fat-rerunner " . shellescape(g:shtuff_receiver))<CR>
+nnoremap <Leader>tl :w<CR>:call system("shtuff into " . shellescape(getcwd()) . " \x1BOA")<CR>
 """"""
 
 """""" ToggleTest between file and corresponding test file.
