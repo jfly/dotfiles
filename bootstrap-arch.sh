@@ -238,17 +238,7 @@ laptop_stuff() {
     aur_package docker-credential-secretservice
 }
 
-jpi_stuff() {
-    install_vim vim
-
-    arch_package nodejs npm
-
-    mkdir -p ~/.config/systemd/user/
-}
-
-htpc_stuff() {
-    install_vim vim
-
+pi_htpc_stuff() {
     ## Install kodi
     # https://wiki.archlinux.org/index.php/Kodi#Raspberry_Pi_.28all_generations.29
     # and http://blog.monkey.codes/how-to-setup-kodi-on-a-raspberry-pi/
@@ -256,6 +246,26 @@ htpc_stuff() {
     sudo sed -i 's/gpu_mem=64/gpu_mem=320/' /boot/config.txt
 
     enable_service_not_now kodi
+
+    htpc_stuff
+}
+
+nuc_htpc_stuff() {
+    ## Install kodi
+    # https://wiki.archlinux.org/index.php/Kodi#kodi-standalone_service
+    arch_package kodi
+    aur_package kodi-standalone-service
+    enable_service kodi
+
+    # TODO: install + configure resilio sync
+    # TODO: investigate seafile as a truely free alternative
+    #       https://www.reddit.com/r/torrents/comments/5xpfy9/is_there_any_free_alternative_to_resilio_sync/demq52s/
+
+    htpc_stuff
+}
+
+htpc_stuff() {
+    install_vim vim
 
     if [ ! -d ~/gitting/jpi.jflei.com ]; then
         mkdir -p ~/gitting/
@@ -275,9 +285,9 @@ htpc_stuff() {
 
     mkdir -p ~/.config/systemd/user/
     mkdir -p ~/gitting/jpi.jflei.com/logs/
-    cat > ~/.config/systemd/user/gatekeeper.service <<EOL
+    cat > ~/.config/systemd/user/webui.service <<EOL
 [Unit]
-Description=gatekeeper and nginx
+Description=nginx
 
 [Service]
 ExecStart=$HOME/gitting/jpi.jflei.com/runall.sh
@@ -287,7 +297,7 @@ RemainAfterExit=yes
 [Install]
 WantedBy=default.target
 EOL
-    systemctl enable --now --user gatekeeper.service
+    systemctl enable --now --user webui.service
 
     if [ ! -f ~/gitting/jpi.jflei.com/htpasswd ]; then
         echo "Enter the password you want to use for HTTP basic access from the outside word."
@@ -350,12 +360,12 @@ EOL
     enable_service ddclient.service
 }
 
-if [ "$(hostname)" = "breq" ] || [ "$(hostname)" = "dalinar" ]; then
+if [ "$(hostname)" = "dalinar" ]; then
     device_specific_command=laptop_stuff
-elif [ "$(hostname)" = "jpi" ]; then
-    device_specific_command=jpi_stuff
 elif [ "$(hostname)" = "kent" ]; then
-    device_specific_command=htpc_stuff
+    device_specific_command=pi_htpc_stuff
+elif [ "$(hostname)" = "clark" ]; then
+    device_specific_command=nuc_htpc_stuff
 else
     echo "Unrecognized hostname '$(hostname)'"
     exit 2
