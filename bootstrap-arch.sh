@@ -274,6 +274,12 @@ nuc_htpc_stuff() {
 htpc_stuff() {
     install_vim vim
 
+    # Configure kodi
+    sudo cp kodi/userdata/guisettings.xml /var/lib/kodi/.kodi/userdata/guisettings.xml
+    sudo cp kodi/userdata/sources.xml /var/lib/kodi/.kodi/userdata/sources.xml
+    sudo cp -r kodi/userdata/keymaps /var/lib/kodi/.kodi/userdata/keymaps
+    sudo chown -R kodi:kodi /var/lib/kodi/.kodi/userdata/
+
     if [ ! -d ~/gitting/jpi.jflei.com ]; then
         mkdir -p ~/gitting/
         git clone https://github.com/jfly/jpi.jflei.com.git ~/gitting/jpi.jflei.com
@@ -287,8 +293,11 @@ htpc_stuff() {
     # Install and configure transmission.
     arch_package transmission-cli
     enable_service transmission
-    sudo systemctl stop transmission
-    sudo sed -i 's_\( *"download-dir": \).*_\1"/home/media/torrents",_' /var/lib/transmission/.config/transmission-daemon/settings.json
+    # Annoyingly, if transmission seems to clobber any changes to its config
+    # files when it exists. That means we need to stop it (and wait for it to
+    # shut down) before we start tweaking its settings.
+    sudo systemctl stop transmission && sleep 1
+    sudo sed -i 's_\( *"download-dir": \).*_\1"/mnt/media/torrents",_' /var/lib/transmission/.config/transmission-daemon/settings.json
     sudo sed -i 's_\( *"rpc-host-whitelist": \).*_\1"*",_' /var/lib/transmission/.config/transmission-daemon/settings.json
     sudo sed -i 's_\( *"rpc-host-whitelist-enabled": \).*_\1false,_' /var/lib/transmission/.config/transmission-daemon/settings.json
     sudo systemctl start transmission
