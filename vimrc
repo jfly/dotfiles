@@ -118,7 +118,7 @@ call tcomment#type#Define('javascript', '//<<< %s')
 call tcomment#type#Define('typescript', '//<<< %s')
 call tcomment#type#Define('jsx', '{/*<<< %s */}')
 call tcomment#type#Define('make', '#<<< %s')
-call tcomment#type#Define('dockerfile', '#<<< %s')
+call tcomment#type#Define('Dockerfile', '#<<< %s')
 call tcomment#type#Define('yaml', '#<<< %s')
 """"""
 
