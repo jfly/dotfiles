@@ -19,7 +19,7 @@ arch_package() {
     done
 
     if [ -n "$to_install" ]; then
-        sudo pacman -S --noconfirm --needed "$to_install"
+        sudo pacman -S --noconfirm --needed $to_install
     fi
 }
 
@@ -77,10 +77,14 @@ base_stuff() {
     # starts up.
     sudo mkdir -p /etc/bluetooth/ && sudo cp etc_bluetooth_main.conf /etc/bluetooth/main.conf
 
-    # Copy some files as a workaround for https://github.com/systemd/systemd/issues/12410.
-    sudo mkdir -p /etc/systemd/logind.conf.d/
-    sudo cp etc/systemd/logind.conf.d/no-suspend-on-lidswitch.conf /etc/systemd/logind.conf.d/no-suspend-on-lidswitch.conf
-    sudo cp etc/systemd/logind.conf.d/suspend-on-powerbutton.conf /etc/systemd/logind.conf.d/suspend-on-powerbutton.conf
+    # This file must be copied, not symlinked. See https://github.com/systemd/systemd/issues/12410 for more information.
+    sudo mkdir -p /etc/systemd/system/systemd-logind.service.d/
+    sudo cp etc/systemd/system/systemd-logind.service.d/override.conf /etc/systemd/system/systemd-logind.service.d/override.conf
+    #<<< TODO test >>>
+    sudo systemctl daemon-reload
+    sudo systemctl restart systemd-logind
+    sudo systemctl daemon-reexec
+    #<<< >>>
 
     ./install
 
@@ -89,7 +93,6 @@ base_stuff() {
 
     ## Python
     arch_package python-pip python-pexpect openssh
-    arch_package python-setproctitle # needed by spawn-and-stuff
     if [ "$(hostname)" != "jpi" ]; then # Unfortunately, direnv is not available for the 'armv6h' architecture.
         aur_package direnv
     fi

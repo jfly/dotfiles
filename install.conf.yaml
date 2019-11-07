@@ -55,6 +55,8 @@
     /etc/systemd/system/fixinputs@.service: etc/systemd/system/fixinputs@.service
     /etc/systemd/system/slock@.service: etc/systemd/system/slock@.service
     /etc/systemd/system/disable-bt-wakeup.service: etc/systemd/system/disable-bt-wakeup.service
+    /etc/systemd/logind.conf.d/no-suspend-on-lidswitch.conf: etc/systemd/logind.conf.d/no-suspend-on-lidswitch.conf
+    /etc/systemd/logind.conf.d/suspend-on-powerbutton.conf: etc/systemd/logind.conf.d/suspend-on-powerbutton.conf
 
     /etc/udev/rules.d/10-local.rules: etc/udev/rules.d/10-local.rules
     /etc/systemd/system/monitors@.service: etc/systemd/system/monitors@.service
