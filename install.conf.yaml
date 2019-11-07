@@ -50,6 +50,7 @@
     /etc/acpi/events/lid: etc/acpi/events/lid
     /etc/fuse.conf: etc/fuse.conf
     /etc/nsswitch.conf: etc/nsswitch.conf
+    /etc/ssh/sshd_config: etc/ssh/sshd_config
 
     /etc/systemd/system/fixinputs@.path: etc/systemd/system/fixinputs@.path
     /etc/systemd/system/fixinputs@.service: etc/systemd/system/fixinputs@.service

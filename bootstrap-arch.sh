@@ -3,6 +3,8 @@
 set -e
 cd "$(dirname "$0")"
 
+HOSTNAME=$(cat /etc/hostname)
+
 if [ "$EUID" -eq 0 ]; then
     echo "Do not rush this script as root, instead run it as the non-root user you want to set up."
     exit 1
@@ -30,11 +32,12 @@ aur_package() {
             echo "warning: AUR package $aur_package_name is already installed -- skipping"
         else
             (
-                wrk_dir=$THIRD_REPOS_DIR/$aur_package_name
-                rm -rf "$wrk_dir"
-                mkdir -p "$wrk_dir"
-                cd "$wrk_dir"
-                curl -o PKGBUILD "https://aur.archlinux.org/cgit/aur.git/plain/PKGBUILD?h=$aur_package_name"
+                cd "$THIRD_REPOS_DIR"
+                tar_name="${aur_package_name}.tar.gz"
+                curl -o "$tar_name" "https://aur.archlinux.org/cgit/aur.git/snapshot/$tar_name"
+                tar xvf "$tar_name"
+                cd "${aur_package_name}"
+
                 makepkg --syncdeps --noconfirm --needed --install PKGBUILD
             )
         fi
@@ -70,8 +73,11 @@ base_stuff() {
     sudo mkdir -p /root/Dropbox/pics/lolcommits
 
     ## Install dotfiles
-    arch_package python
+    arch_package which python
+    git submodule update --init
     sudo ./install
+    ./install
+
     # TODO - for some reason, symlinking this file gives a
     # "Parsing /etc/bluetooth/main.conf failed: Permission denied" error when bluetoothd
     # starts up.
@@ -86,19 +92,17 @@ base_stuff() {
     sudo systemctl daemon-reexec
     #<<< >>>
 
-    ./install
-
     ## Dependencies to install stuff from the AUR
     arch_package wget base-devel gcc make fakeroot
 
     ## Python
     arch_package python-pip python-pexpect openssh
-    if [ "$(hostname)" != "jpi" ]; then # Unfortunately, direnv is not available for the 'armv6h' architecture.
+    if [ "$HOSTNAME" != "jpi" ]; then # Unfortunately, direnv is not available for the 'armv6h' architecture.
         aur_package direnv
     fi
 
     ## Misc
-    arch_package zsh mosh the_silver_searcher fzf hub efibootmgr dnsutils screen rsync oath-toolkit
+    arch_package zsh mosh the_silver_searcher fzf hub efibootmgr dnsutils screen rsync oath-toolkit inetutils
     if [ ! -d ~/.oh-my-zsh ]; then
         git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
     fi
@@ -277,6 +281,9 @@ htpc_stuff() {
 
     arch_package nginx nodejs npm
 
+    # Enable sshd
+    enable_service sshd
+
     # Install and configure transmission.
     arch_package transmission-cli
     enable_service transmission
@@ -363,14 +370,14 @@ EOL
     enable_service ddclient.service
 }
 
-if [ "$(hostname)" = "dalinar" ]; then
+if [ "$HOSTNAME" = "dalinar" ]; then
     device_specific_command=laptop_stuff
-elif [ "$(hostname)" = "kent" ]; then
+elif [ "$HOSTNAME" = "kent" ]; then
     device_specific_command=pi_htpc_stuff
-elif [ "$(hostname)" = "clark" ]; then
+elif [ "$HOSTNAME" = "clark" ]; then
     device_specific_command=nuc_htpc_stuff
 else
-    echo "Unrecognized hostname '$(hostname)'"
+    echo "Unrecognized hostname: '$HOSTNAME'"
     exit 2
 fi
 
