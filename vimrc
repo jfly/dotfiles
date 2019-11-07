@@ -24,6 +24,8 @@ Plug 'vim-scripts/IndexedSearch'
 "<<< Plug 'pandysong/ghost-text.vim'
 "<<< TODO: figure out how to get only one of coc/ale to run pylint... >>>
 "<<< Plug 'neoclide/coc.nvim', {'branch': 'release'}
+"<<< Plug 'glacambre/firenvim', { 'do': function('firenvim#install') }
+Plug 'metakirby5/codi.vim'
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
 

@@ -169,5 +169,20 @@ function gnpr {
     o "https://github.com/${upstream}/compare/master...${origin_repo}:${current_branch}?expand=1"
 }
 
+# Copied from https://github.com/metakirby5/codi.vim#shell-wrapper
+# Codi
+# Usage: codi [filetype] [filename]
+codi() {
+  local syntax="${1:-python}"
+  shift
+  vim -c \
+    "let g:startify_disable_at_vimenter = 1 |\
+    set bt=nofile ls=0 noru nonu nornu |\
+    hi ColorColumn ctermbg=NONE |\
+    hi VertSplit ctermbg=NONE |\
+    hi NonText ctermfg=0 |\
+    Codi $syntax" "$@"
+}
+
 # At the bottom because it screws up syntax highlighting =(
 alias wcacheckgbot="ssh wca 'bash -c \"tail -f /var/log/nginx/access.log | grep /search.*Googlebot\"'"
