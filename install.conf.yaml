@@ -29,6 +29,7 @@
     ~/.gitignore_global: gitignore_global
     ~/.jupyter/nbconfig: jupyter/nbconfig
     ~/.mplayer: mplayer
+    ~/.ssh/config: ssh/config
     ~/.vim: vim
     ~/.vimrc: vimrc
     ~/.xmonad/xmonad.hs: xmonad.hs
@@ -37,7 +38,6 @@
     ~/.Xresources: Xresources
     ~/.xinitrc: xinitrc
 
-    ~/.ssh/config: ssh_config
     ~/.ssh: ~/Dropbox/linux-secrets/kaladin-ssh
     ~/.gnupg: ~/Dropbox/linux-secrets/gnupg
     ~/.lolcommits: ~/Dropbox/pics/lolcommits
