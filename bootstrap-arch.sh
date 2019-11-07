@@ -10,7 +10,7 @@ fi
 
 arch_package() {
     to_install=""
-    for arch_package_name in $@; do
+    for arch_package_name in "$@"; do
         if [ -n "$(pacman -Qs "^${arch_package_name}$")" ]; then
             echo "warning: Arch package $arch_package_name is already installed -- skipping"
         else
@@ -19,21 +19,21 @@ arch_package() {
     done
 
     if [ -n "$to_install" ]; then
-        sudo pacman -S --noconfirm --needed $to_install
+        sudo pacman -S --noconfirm --needed "$to_install"
     fi
 }
 
 THIRD_REPOS_DIR=~/thirdrepos
 aur_package() {
-    for aur_package_name in $@; do
+    for aur_package_name in "$@"; do
         if [ -n "$(pacman -Qs "^${aur_package_name}$")" ]; then
             echo "warning: AUR package $aur_package_name is already installed -- skipping"
         else
             (
                 wrk_dir=$THIRD_REPOS_DIR/$aur_package_name
-                rm -rf $wrk_dir
-                mkdir -p $wrk_dir
-                cd $wrk_dir
+                rm -rf "$wrk_dir"
+                mkdir -p "$wrk_dir"
+                cd "$wrk_dir"
                 curl -o PKGBUILD "https://aur.archlinux.org/cgit/aur.git/plain/PKGBUILD?h=$aur_package_name"
                 makepkg --syncdeps --noconfirm --needed --install PKGBUILD
             )
@@ -42,11 +42,11 @@ aur_package() {
 }
 
 enable_service() {
-    sudo systemctl enable --now $@
+    sudo systemctl enable --now "$@"
 }
 
 enable_service_not_now() {
-    sudo systemctl enable $@
+    sudo systemctl enable "$@"
 }
 
 base_stuff() {
@@ -112,7 +112,7 @@ base_stuff() {
 
     ## Keyboard stuff
     # Run xmodmap every time a keyboard appears.
-    enable_service fixinputs@$(whoami).path
+    enable_service "fixinputs@$(whoami).path"
 
     ## Printer
     arch_package cups ghostscript
@@ -135,10 +135,10 @@ base_stuff() {
 
 install_vim() {
     ## Vim
-    arch_package $1 editorconfig-core-c ctags
+    arch_package "$1" editorconfig-core-c ctags
     vim +PlugInstall +qall
     # Symlink vi to vim if it has not been symlinked already.
-    if [ `readlink /usr/bin/vi` != "/usr/bin/vim" ]; then
+    if [ "$(readlink /usr/bin/vi)" != "/usr/bin/vim" ]; then
         sudo mv /usr/bin/vi /usr/bin/vi.bak
         sudo ln -s /usr/bin/vim /usr/bin/vi
     fi
@@ -173,7 +173,7 @@ laptop_stuff() {
     # Lock screen on suspend.
     # https://wiki.archlinux.org/index.php/Slock
     arch_package slock
-    enable_service_not_now slock@$(whoami).service
+    enable_service_not_now "slock@$(whoami).service"
 
     ## Setting up wireless with network manager
     arch_package networkmanager network-manager-applet networkmanager-vpnc gnome-keyring
@@ -274,7 +274,7 @@ htpc_stuff() {
     sudo systemctl start transmission
 
     mkdir -p ~/.config/systemd/user/
-    mkdir -p $HOME/gitting/jpi.jflei.com/logs/
+    mkdir -p ~/gitting/jpi.jflei.com/logs/
     cat > ~/.config/systemd/user/gatekeeper.service <<EOL
 [Unit]
 Description=gatekeeper and nginx
@@ -292,7 +292,7 @@ EOL
     if [ ! -f ~/gitting/jpi.jflei.com/htpasswd ]; then
         echo "Enter the password you want to use for HTTP basic access from the outside word."
         echo -n "> "
-        read -s password
+        read -r -s password
         echo
         echo "kent:{PLAIN}$password" > ~/gitting/jpi.jflei.com/htpasswd
     fi
@@ -304,19 +304,20 @@ EOL
 
         echo "Enter the domain name you want to update via Google Domains"
         echo -n "> "
-        read domain_name
+        read -r domain_name
         echo
 
+        # shellcheck disable=SC2001
         main_domain=$(echo "$domain_name" | sed 's/.*\.\(.*\..*\)/\1/')
         dns_url="https://domains.google.com/m/registrar/${main_domain}/dns"
         echo "Enter the generated username for $domain_name (on $dns_url)"
         echo -n "> "
-        read google_domains_username
+        read -r google_domains_username
         echo
 
         echo "Enter the generated password for $domain_name (on $dns_url)"
         echo -n "> "
-        read google_domains_password
+        read -r google_domains_password
         echo
 
         sudo bash -c "cat > /etc/ddclient/ddclient.conf" <<EOL
