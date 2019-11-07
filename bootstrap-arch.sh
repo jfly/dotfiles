@@ -299,8 +299,8 @@ EOL
 
     # Install and configure ddclient for dynamic dns
     arch_package ddclient
-	if [ ! -f /etc/ddclient/ddclient.conf.bak ]; then
-		sudo cp /etc/ddclient/ddclient.conf /etc/ddclient/ddclient.conf.before
+    if [ ! -f /etc/ddclient/ddclient.conf.bak ]; then
+        sudo cp /etc/ddclient/ddclient.conf /etc/ddclient/ddclient.conf.before
 
         echo "Enter the domain name you want to update via Google Domains"
         echo -n "> "
@@ -319,14 +319,14 @@ EOL
         read google_domains_password
         echo
 
-		sudo bash -c "cat > /etc/ddclient/ddclient.conf" <<EOL
-daemon=600              # check every 600 seconds
-syslog=yes              # log update msgs to syslog
-mail=root               # mail all msgs to root
-mail-failure=root           # mail failed update msgs to root
-pid=/var/run/ddclient.pid       # record PID in file.
-ssl=yes                 # use ssl-support.  Works with
-                    # ssl-library
+        sudo bash -c "cat > /etc/ddclient/ddclient.conf" <<EOL
+daemon=600                # check every 600 seconds
+syslog=yes                # log update msgs to syslog
+mail=root                 # mail all msgs to root
+mail-failure=root         # mail failed update msgs to root
+pid=/var/run/ddclient.pid # record PID in file.
+ssl=yes                   # use ssl-support.  Works with
+                          # ssl-library
 
 ## To obtain an IP address from Web status page (using the proxy if defined)
 ## by default, checkip.dyndns.org is used if you use the dyndns protocol.
@@ -344,8 +344,8 @@ login=$google_domains_username
 password=$google_domains_password
 $domain_name
 EOL
-		sudo mv /etc/ddclient/ddclient.conf.before /etc/ddclient/ddclient.conf.bak
-	fi
+        sudo mv /etc/ddclient/ddclient.conf.before /etc/ddclient/ddclient.conf.bak
+    fi
     enable_service ddclient.service
 }
 
