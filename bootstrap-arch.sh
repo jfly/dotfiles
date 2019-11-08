@@ -285,8 +285,6 @@ htpc_stuff() {
         git clone https://github.com/jfly/jpi.jflei.com.git ~/gitting/jpi.jflei.com
     fi
 
-    arch_package nginx nodejs npm
-
     # Enable sshd
     enable_service sshd
 
@@ -302,29 +300,19 @@ htpc_stuff() {
     sudo sed -i 's_\( *"rpc-host-whitelist-enabled": \).*_\1false,_' /var/lib/transmission/.config/transmission-daemon/settings.json
     sudo systemctl start transmission
 
-    mkdir -p ~/.config/systemd/user/
-    mkdir -p ~/gitting/jpi.jflei.com/logs/
-    cat > ~/.config/systemd/user/webui.service <<EOL
-[Unit]
-Description=nginx
-
-[Service]
-ExecStart=$HOME/gitting/jpi.jflei.com/runall.sh
-Type=oneshot
-RemainAfterExit=yes
-
-[Install]
-WantedBy=default.target
-EOL
-    systemctl enable --now --user webui.service
-
-    if [ ! -f ~/gitting/jpi.jflei.com/htpasswd ]; then
-        echo "Enter the password you want to use for HTTP basic access from the outside word."
-        echo -n "> "
-        read -r -s password
-        echo
-        echo "kent:{PLAIN}$password" > ~/gitting/jpi.jflei.com/htpasswd
-    fi
+    # Configure and start HTPC webui docker container.
+    (
+        set -e
+        cd ~/.dotfiles/containers/htpc-ui/
+        if [ ! -f etc/nginx/basic_auth_file ]; then
+            echo "Enter the password you want to use for HTTP basic access from the outside word."
+            echo -n "> "
+            read -r -s password
+            echo
+            echo "$HOSTNAME:{PLAIN}$password" > etc/nginx/basic_auth_file
+        fi
+        docker-compose up --detach
+    )
 
     # Install and configure ddclient for dynamic dns
     arch_package ddclient
@@ -377,6 +365,10 @@ EOL
         sudo mv /etc/ddclient/ddclient.conf.before /etc/ddclient/ddclient.conf.bak
     fi
     enable_service ddclient.service
+
+    ## Docker stuff
+    arch_package docker docker-compose
+    enable_service docker
 }
 
 if [ "$HOSTNAME" = "dalinar" ]; then

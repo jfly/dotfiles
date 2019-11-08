@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+<link rel="shortcut icon" sizes="128x128" href="images/superman.png"> 
+<link rel="apple-touch-icon-precomposed" sizes="128x128" href="images/superman.png"> 
+
+<link rel="icon" type="image/png" href="images/superman.png" />
+
+<style>
+    html, body {
+        height: 100%;
+    }
+
+    body {
+        margin: 0 auto;
+        font-family: sans-serif;
+        background-image: url("images/daily-planet.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+    .boxTextBottom, .boxTextTop {
+        position: absolute;
+        left: 0;
+        right: 0;
+
+        color: white;
+        background: rgba(0, 0, 0, 0.5);
+        padding: 1px;
+        text-align: center;
+    }
+
+    .boxTextBottom {
+        bottom: 0;
+    }
+
+    .boxTextTop {
+        top: 0;
+    }
+
+    .wrap {
+    }
+
+    .boxInner img {
+        width: 100%;
+        height: 100%;
+    }
+
+    .boxInner.kodi {
+        background-image: url("images/kodi.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+    .box {
+        width: 20%;
+        padding-bottom: 20%;
+        position: relative;
+        float: left;
+    }
+
+    .boxInner {
+        position: absolute;
+        left: 5px;
+        right: 5px;
+        top: 5px;
+        bottom: 5px;
+        background: rgba(255, 255, 255, 0.4);
+        border: 1px solid black;
+        overflow: hidden;
+        text-align: center;
+    }
+
+    @media only screen and (max-width : 480px) {
+       /* Smartphone view */
+       .box {
+          width: 33.3%;
+          padding-bottom: 33.3%;
+       }
+    }
+    @media only screen and (max-width : 650px) and (min-width : 481px) {
+       /* Tablet view */
+       .box {
+          width: 33.3%;
+          padding-bottom: 33.3%;
+       }
+    }
+    @media only screen and (max-width : 1050px) and (min-width : 651px) {
+       /* Small desktop / ipad view */
+       .box {
+          width: 33.3%;
+          padding-bottom: 33.3%;
+       }
+    }
+    @media only screen and (max-width : 1290px) and (min-width : 1051px) {
+       /* Medium desktop */
+       .box {
+          width: 33.3%;
+          padding-bottom: 33.3%;
+       }
+    }
+</style>
+
+</head>
+<body>
+
+<div class="wrap">
+    <div class="box">
+        <a href="#" data-subdomain="kodi">
+            <div class="boxInner kodi">
+            </div>
+        </a>
+    </div>
+    <div class="box">
+        <a href="#" data-subdomain="sync">
+            <div class="boxInner">
+                <img src="images/sync.png"></img>
+                <div class="boxTextBottom">Sync</div>
+            </div>
+        </a>
+    </div>
+    <div class="box">
+        <a href="#" data-subdomain="media">
+            <div class="boxInner">
+                <img src="images/media.png"></img>
+                <div class="boxTextBottom">Media</div>
+            </div>
+        </a>
+    </div>
+    <div class="box">
+        <a href="#" data-subdomain="torrents">
+            <div class="boxInner">
+                <img src="images/transmission.png"></img>
+                <div class="boxTextBottom">Torrents</div>
+            </div>
+        </a>
+    </div>
+    <div class="box">
+        <a href="/instructions.html">
+            <div class="boxInner">
+                <img src="images/transmission.png"></img>
+                <div class="boxTextBottom">Instructions</div>
+            </div>
+        </a>
+    </div>
+    <div class="box">
+        <a href="#" data-subdomain="cups">
+            <div class="boxInner">
+                <img src="images/printer.png"></img>
+            </div>
+        </a>
+    </div>
+</div>
+
+<script>
+    (function() {
+        let links = document.querySelectorAll("a[data-subdomain]");
+        links.forEach(link => {
+            link.href = location.protocol + "//" + link.dataset.subdomain + "." + location.host;
+        });
+    })();
+</script>
+
+</body>
+</html>
