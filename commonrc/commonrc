@@ -3,6 +3,12 @@
 source ~/.commonrc/path.sh
 
 ###
+### Set up asdf-vm
+###
+source $HOME/.asdf/asdf.sh
+source $HOME/.asdf/completions/asdf.bash
+
+###
 ### Set up pyenv
 ###
 # https://github.com/pyenv/pyenv#basic-github-checkout
@@ -13,22 +19,13 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 if [ -n "$PYENV_LOADING" ]; then
     true
 else
-    if which pyenv > /dev/null 2>&1; then
+    if command -v pyenv > /dev/null 2>&1; then
         export PYENV_LOADING="true"
-        eval "$(pyenv init -)"
+        # --no-rehash as a workaround for https://github.com/pyenv/pyenv/issues/784
+        eval "$(pyenv init - --no-rehash)"
         eval "$(pyenv virtualenv-init -)"
         unset PYENV_LOADING
     fi
-fi
-
-###
-### Set up nvm
-###
-if false; then  # TODO - wowow loading nvm is insanely slow. See https://github.com/creationix/nvm/issues/539 and https://github.com/creationix/nvm/issues/1242
-    export NVM_DIR="$HOME/.nvm"
-    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-    # Apparently these completions work on both bash and zsh...
-    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 fi
 
 export VISUAL=vim
@@ -58,7 +55,7 @@ export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
 export GOPATH=~/go
 ##################################
 
-### Workaround for that ridiculous java bug on xmonad
+### Workaround for that ridiculous Java bug on xmonad
 # https://wiki.archlinux.org/index.php/Java#Applications_not_resizing_with_WM.2C_menus_immediately_closing
 export _JAVA_AWT_WM_NONREPARENTING=1
 
