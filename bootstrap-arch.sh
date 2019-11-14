@@ -86,11 +86,6 @@ base_stuff() {
     # This file must be copied, not symlinked. See https://github.com/systemd/systemd/issues/12410 for more information.
     sudo mkdir -p /etc/systemd/system/systemd-logind.service.d/
     sudo cp etc/systemd/system/systemd-logind.service.d/override.conf /etc/systemd/system/systemd-logind.service.d/override.conf
-    #<<< TODO test >>>
-    sudo systemctl daemon-reload
-    sudo systemctl restart systemd-logind
-    sudo systemctl daemon-reexec
-    #<<< >>>
 
     ## Dependencies to install stuff from the AUR
     arch_package wget base-devel gcc make fakeroot
