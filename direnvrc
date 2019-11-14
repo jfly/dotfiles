@@ -1,0 +1,26 @@
+# Copied from
+# https://blog.adam-uhlir.me/python-virtual-environments-made-super-easy-with-direnv-307611c3a49a.
+# Modified to use asdf instead of pyenv.
+asdf_python() {
+    local find_python_command
+    find_python_command="asdf where python $1"
+    local python_root
+    python_root=$($find_python_command)
+    if test $? -ne 0; then
+        echo "I got an error while searching for Python $1 installed with asdf. Here's the command I used:"
+        echo ""
+        echo "    $find_python_command"
+        echo ""
+        echo "Maybe you need to install that version of Python? Here's how:"
+        echo ""
+        echo "    asdf install python $1"
+        exit 1
+    fi
+    load_prefix "$python_root"
+    if test -x "$python_root/bin/python"; then
+        layout python "$python_root/bin/python"
+    else
+        echo "Error: $python_root/bin/python can't be executed."
+        exit 1
+    fi
+}
