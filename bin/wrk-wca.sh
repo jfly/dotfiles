@@ -12,5 +12,5 @@ sudo systemctl start mysqld
 
 cd ~/wca/worldcubeassociation.org/WcaOnRails/
 terminalOn "bin/rails s" "wrk"
-terminalOn "shtuff as $(pwd)" "wrk"
+terminalOn 'shtuff as $(pwd)' "wrk"
 terminalOn "vim" "wrk"

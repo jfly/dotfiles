@@ -7,9 +7,6 @@ export PATH=$PATH:$HOME/.local/bin
 
 export PATH=$PATH:$HOME/thirdrepos/google-cloud-sdk/bin
 
-# https://rustup.rs/
-export PATH="$HOME/.cargo/bin:$PATH"
-
 # add Pulumi to the PATH
 export PATH=$PATH:$HOME/.pulumi/bin
 

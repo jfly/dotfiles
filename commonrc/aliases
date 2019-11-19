@@ -61,7 +61,10 @@ function h4repost {
         h4post --review-request-id $1
     fi
 }
-alias h4mysql="mycli -u root sonasandboxdb"
+function h4mysql {
+    echo ${1:=sonasandboxdb}
+    mycli -u root ${1:=sonasandboxdb}
+}
 alias h4salt="ssh bastion ssh saltmaster sudo journalctl --follow --lines=10000 | grep pull-and-run"
 
 # --xetex avoids huge file sizes when trimming pdfs.
