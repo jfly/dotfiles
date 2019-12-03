@@ -8,6 +8,7 @@ source ~/.commonrc/path.sh
 if test -d $HOME/.asdf; then
     # In order to bypass asdf shims. We *only* add the `ASDF_DIR/bin`
     # directory to PATH, since we still want to use `asdf` but not its shims.
+    export ASDF_DIR="$HOME/.asdf"
     export PATH="$PATH:$ASDF_DIR/bin"
     source $HOME/.asdf/completions/asdf.bash
 fi
