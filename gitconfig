@@ -28,15 +28,15 @@
 [pager]
     branch = false
 [diff-so-fancy]
-	stripLeadingSymbols = false
-	changeHunkIndicators = true
+    stripLeadingSymbols = false
+    changeHunkIndicators = true
 [branch]
-	sort = -authordate
+    sort = -authordate
 [sendemail]
-	smtpEncryption = tls
-	smtpServer = smtp.gmail.com
-	smtpUser = jeremyfleischman@gmail.com
-	smtpServerPort = 587
+    smtpEncryption = tls
+    smtpServer = smtp.gmail.com
+    smtpUser = jeremyfleischman@gmail.com
+    smtpServerPort = 587
 
 [color]
     ui = true
@@ -52,3 +52,5 @@
     old = 196 bold
     new = 34 bold
     whitespace = red reverse
+[tag]
+    sort = version:refname
