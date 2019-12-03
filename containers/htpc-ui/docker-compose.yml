@@ -3,7 +3,6 @@
 version: '2'
 services:
     nginx:
-        build: .
         image: umputun/nginx-le:latest
         hostname: nginx
         restart: always
