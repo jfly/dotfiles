@@ -214,6 +214,7 @@ let g:ale_fixers = {
 \}
 " Automatically run ALEFix on save.
 let g:ale_fix_on_save = 1
+let g:ale_haskell_ghc_options = '-fno-code -v0 -dynamic'
 """""""
 
 """""""
