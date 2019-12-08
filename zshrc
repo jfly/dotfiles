@@ -95,6 +95,9 @@ zle -N forward-word forward-word-match
 zstyle ':zle:*' skip-whitespace-first true
 zstyle ':zle:*' word-chars ''
 
+# Hide files from make autocompletion suggestions.
+zstyle ':completion:*:*:make:*' tag-order 'targets'
+
 # Bind alt-backspace to delete one not so aggressive word backwards.
 bindkey '^[^?' backward-kill-word
 
