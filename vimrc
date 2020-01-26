@@ -21,8 +21,8 @@ Plug 'davidhalter/jedi-vim'
 Plug 'jfly/ale', { 'branch': 'skip-fix-hook' } " Contains a hack to not run fixers if <<< shows up in a file.
 Plug 'jesseleite/vim-agriculture'
 Plug 'vim-scripts/IndexedSearch'
-"<<< TODO: figure out how to get only one of coc/ale to run pylint... >>>
-"<<< Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" TODO: figure out how to get only one of coc/ale to run pylint... >>>
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'metakirby5/codi.vim'
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
