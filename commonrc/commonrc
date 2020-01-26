@@ -10,7 +10,11 @@ if test -d $HOME/.asdf; then
     # directory to PATH, since we still want to use `asdf` but not its shims.
     export ASDF_DIR="$HOME/.asdf"
     export PATH="$PATH:$ASDF_DIR/bin"
-    source $HOME/.asdf/completions/asdf.bash
+    # TODO: For some reason, this command is causing the following error when starting a new shell:
+    #  /home/jeremy/.asdf/completions/asdf.bash:70: command not found: complete
+    # This feels like a bash vs zsh thing, but if you run this command in a
+    # fully started zsh shell, it works fine.
+    # source $HOME/.asdf/completions/asdf.bash
 fi
 
 export VISUAL=vim
