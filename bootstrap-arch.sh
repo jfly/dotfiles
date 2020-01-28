@@ -6,7 +6,7 @@ cd "$(dirname "$0")"
 HOSTNAME=$(cat /etc/hostname)
 
 if [ "$EUID" -eq 0 ]; then
-    echo "Do not rush this script as root, instead run it as the non-root user you want to set up."
+    echo "Do not run this script as root, instead run it as the non-root user you want to set up."
     exit 1
 fi
 
@@ -304,7 +304,7 @@ htpc_stuff() {
         set -e
         cd ~/.dotfiles/containers/htpc-ui/
         if [ ! -f etc/nginx/basic_auth_file ]; then
-            echo "Enter the password you want to use for HTTP basic access from the outside word."
+            echo "Enter the password you want to use for HTTP basic access from the outside world."
             echo -n "> "
             read -r -s password
             echo
