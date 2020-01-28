@@ -302,10 +302,6 @@ htpc_stuff() {
     sudo sed -i 's_\( *"rpc-host-whitelist-enabled": \).*_\1false,_' /var/lib/transmission/.config/transmission-daemon/settings.json
     sudo systemctl start transmission
 
-    ## Docker stuff
-    arch_package docker docker-compose
-    enable_service docker
-
     # Configure and start HTPC webui docker container.
     (
         set -e
