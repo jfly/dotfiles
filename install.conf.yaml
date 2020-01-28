@@ -16,12 +16,13 @@
     ~/.myclirc: myclirc
 
     ~/bin: bin
-    ~/.config/roxterm.sourceforge.net: config/roxterm.sourceforge.net
-    ~/.config/termite: config/termite
     ~/.config/dunst: config/dunst
+    ~/.config/fontconfig: config/fontconfig
     ~/.config/gtk-3.0: config/gtk-3.0
     ~/.config/pirate-get: config/pirate-get
-    ~/.config/fontconfig: config/fontconfig
+    ~/.config/roxterm.sourceforge.net: config/roxterm.sourceforge.net
+    ~/.config/rslsync: config/rslsync
+    ~/.config/termite: config/termite
     ~/.direnvrc: direnvrc
     ~/.dir_colors: dir_colors
     ~/.docker/config.json: docker/config.json
@@ -31,13 +32,13 @@
     ~/.jupyter/nbconfig: jupyter/nbconfig
     ~/.mplayer: mplayer
     ~/.ssh/config: ssh/config
-    ~/.vim: vim
     ~/.vimrc: vimrc
-    ~/.xmonad/xmonad.hs: xmonad.hs
+    ~/.vim: vim
+    ~/.xinitrc: xinitrc
     ~/.xmobarrc: xmobarrc
     ~/.Xmodmap: Xmodmap
+    ~/.xmonad/xmonad.hs: xmonad.hs
     ~/.Xresources: Xresources
-    ~/.xinitrc: xinitrc
 
     ~/.ssh: ~/Dropbox/linux-secrets/kaladin-ssh
     ~/.gnupg: ~/Dropbox/linux-secrets/gnupg

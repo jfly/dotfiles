@@ -88,7 +88,7 @@ base_stuff() {
     sudo cp etc/systemd/system/systemd-logind.service.d/override.conf /etc/systemd/system/systemd-logind.service.d/override.conf
 
     ## Dependencies to install stuff from the AUR
-    arch_package wget base-devel gcc make fakeroot
+    arch_package wget base-devel gcc make fakeroot patch autoconf automake
 
     ## Python
     arch_package python-pip python-pexpect openssh
@@ -259,15 +259,22 @@ nuc_htpc_stuff() {
     aur_package kodi-standalone-service
     enable_service kodi
 
-    # TODO: install + configure resilio sync
-    # TODO: investigate seafile as a truely free alternative
-    #       https://www.reddit.com/r/torrents/comments/5xpfy9/is_there_any_free_alternative_to_resilio_sync/demq52s/
-
     htpc_stuff
 }
 
 htpc_stuff() {
     install_vim vim
+
+    ## Docker stuff
+    arch_package docker docker-compose
+    enable_service docker
+
+    ## Resilio Sync stuff
+    # TODO: investigate seafile as a truely free alternative
+    #       https://www.reddit.com/r/torrents/comments/5xpfy9/is_there_any_free_alternative_to_resilio_sync/demq52s/
+    aur_package rslsync
+    mkdir -p ~/var/lib/rslsync ~/run/resilio
+    systemctl --user --now enable rslsync
 
     # Configure kodi
     sudo cp kodi/userdata/guisettings.xml /var/lib/kodi/.kodi/userdata/guisettings.xml
