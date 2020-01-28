@@ -1,0 +1,19 @@
+version: '2'
+services:
+  roomba:
+    build: .
+    hostname: roomba
+    restart: always
+    container_name: roomba
+
+    ports:
+      - "8084:3000"
+
+    env_file:
+      - ./env.secret
+
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "5"

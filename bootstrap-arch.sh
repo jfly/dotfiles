@@ -313,6 +313,12 @@ htpc_stuff() {
         docker-compose up --detach
     )
 
+    # Start the roomba docker container
+    (
+        cd ~/.dotfiles/containers/roomba
+        docker-compose up --detach
+    )
+
     # Install and configure ddclient for dynamic dns
     arch_package ddclient
     if [ ! -f /etc/ddclient/ddclient.conf.bak ]; then
