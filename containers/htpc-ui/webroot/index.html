@@ -24,6 +24,7 @@
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center;
+        background-attachment: fixed;
     }
 
     .boxTextBottom, .boxTextTop {
@@ -49,15 +50,9 @@
     }
 
     .boxInner img {
-        width: 100%;
         height: 100%;
-    }
-
-    .boxInner.kodi {
-        background-image: url("images/kodi.png");
-        background-size: contain;
-        background-repeat: no-repeat;
-        background-position: center;
+        box-sizing: border-box;
+        padding: 20px;
     }
 
     .box {
@@ -65,6 +60,13 @@
         padding-bottom: 20%;
         position: relative;
         float: left;
+    }
+
+    .box .help {
+        position: absolute;
+        right: 10px;
+        top: 5px;
+        font-size: 50px;
     }
 
     .boxInner {
@@ -115,7 +117,8 @@
 <div class="wrap">
     <div class="box">
         <a href="#" data-subdomain="kodi">
-            <div class="boxInner kodi">
+            <div class="boxInner">
+                <img src="images/kodi.png"></img>
             </div>
         </a>
     </div>
@@ -142,12 +145,12 @@
                 <div class="boxTextBottom">Torrents</div>
             </div>
         </a>
+        <a class="help" href="/instructions.html">?</a>
     </div>
     <div class="box">
-        <a href="/instructions.html">
+        <a href="#" data-subdomain="roomba">
             <div class="boxInner">
-                <img src="images/transmission.png"></img>
-                <div class="boxTextBottom">Instructions</div>
+                <img src="images/roomba.svg"></img>
             </div>
         </a>
     </div>
@@ -155,13 +158,6 @@
         <a href="#" data-subdomain="cups">
             <div class="boxInner">
                 <img src="images/printer.png"></img>
-            </div>
-        </a>
-    </div>
-    <div class="box">
-        <a href="#" data-subdomain="roomba">
-            <div class="boxInner">
-                <img src="images/roomba.svg"></img>
             </div>
         </a>
     </div>
