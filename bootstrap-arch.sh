@@ -133,6 +133,9 @@ base_stuff() {
     ## MDNS stuff
     arch_package avahi nss-mdns
     enable_service avahi-daemon
+
+    ## Keep mirrorlist up to date
+    arch_package reflector
 }
 
 install_vim() {

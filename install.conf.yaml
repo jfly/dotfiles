@@ -68,6 +68,7 @@
     /etc/vconsole.conf: etc/vconsole.conf
     /etc/locale.conf: etc/locale.conf
     /etc/pacman.d/hooks/99-secureboot.hook: etc/pacman.d/hooks/99-secureboot.hook
+    /etc/pacman.d/hooks/mirrorupgrade.hook: etc/pacman.d/hooks/mirrorupgrade.hook
 
 - shell:
   - [git update-submodules, Install/update submodules]
