@@ -5,4 +5,4 @@
 openCommand = bash -c 'xdg-open http://torrents.clark.jflei.com/transmission/web/ && clipit %s'
 
 ; Skip trying thepiratebay.org, since it never seems to work =(
-mirror = ""
+; mirror = ""
