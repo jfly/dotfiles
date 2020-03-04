@@ -1,6 +1,6 @@
 " Returns true if the given file belongs to your test runner
 function! test#honorjs#honorrunner#test_file(file) abort
-    return a:file =~ "\.test\.js"
+    return a:file =~ "\.test\.js" || a:file =~ "\.test\.tsx"
 endfunction
 
 function! test#honorjs#honorrunner#build_position(type, position) abort
