@@ -9,3 +9,6 @@ home-assistant   |     raise HomeAssistantError(msg)
 home-assistant   | homeassistant.exceptions.HomeAssistantError: Entity id already exists: person.jeremy. Platform person does not generate unique IDs
 
 maybe some conflict between the first user i created and the person i'm defining in yaml?
+
+
+# Getting a sqlite exception when i try to place the config folder on /mnt/media. it works over at /home/clark/tmp/ha-config/, though!
