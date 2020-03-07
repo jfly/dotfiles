@@ -149,6 +149,12 @@ install_vim() {
     fi
 }
 
+install_docker() {
+    ## Docker stuff
+    arch_package docker docker-compose gnome-keyring
+    aur_package docker-credential-secretservice
+}
+
 laptop_stuff() {
     ln -sf ~/.ssh ~/Dropbox/linux-secrets/kaladin-ssh
     ln -sf ~/.gnupg ~/Dropbox/linux-secrets/gnupg
@@ -242,9 +248,7 @@ laptop_stuff() {
     # and https://discuss.gradle.org/t/how-do-i-always-force-console-auto-in-a-gradle-properties-or-environment-variable/12039/8
     aur_package ncurses5-compat-libs
 
-    ## Docker stuff
-    arch_package docker
-    aur_package docker-credential-secretservice
+    install_docker
 }
 
 pi_htpc_stuff() {
@@ -266,16 +270,14 @@ nuc_htpc_stuff() {
     aur_package kodi-standalone-service
     enable_service kodi
 
+    install_docker
+    enable_service docker
+
     htpc_stuff
 }
 
 htpc_stuff() {
     install_vim vim
-
-    ## Docker stuff
-    arch_package docker docker-compose
-    aur_package docker-credential-secretservice
-    enable_service docker
 
     ## Resilio Sync stuff
     # TODO: investigate seafile as a truely free alternative
