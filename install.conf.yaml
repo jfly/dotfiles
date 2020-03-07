@@ -40,10 +40,6 @@
     ~/.xmonad/xmonad.hs: xmonad.hs
     ~/.Xresources: Xresources
 
-    ~/.ssh: ~/Dropbox/linux-secrets/kaladin-ssh
-    ~/.gnupg: ~/Dropbox/linux-secrets/gnupg
-    ~/.lolcommits: ~/Dropbox/pics/lolcommits
-
     /usr/share/themes/jfattymacs: usr/share/themes/jfattymacs
 
     /etc/acpi/events/lid: etc/acpi/events/lid

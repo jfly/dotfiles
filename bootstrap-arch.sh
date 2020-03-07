@@ -150,6 +150,10 @@ install_vim() {
 }
 
 laptop_stuff() {
+    ln -sf ~/.ssh ~/Dropbox/linux-secrets/kaladin-ssh
+    ln -sf ~/.gnupg ~/Dropbox/linux-secrets/gnupg
+    ln -sf ~/.lolcommits ~/Dropbox/pics/lolcommits
+
     install_vim gvim
 
     ## MTP stuff (see https://wiki.archlinux.org/index.php/MTP#simple-mtpfs)
@@ -270,6 +274,7 @@ htpc_stuff() {
 
     ## Docker stuff
     arch_package docker docker-compose
+    aur_package docker-credential-secretservice
     enable_service docker
 
     ## Resilio Sync stuff
