@@ -7,14 +7,6 @@ HostName kent.jflei.com
 User kent
 ForwardAgent yes
 
-Host jpi
-HostName 192.168.3.6
-User jeremy
-
-Host ccm
-HostName 54.148.223.17
-User gjcomps
-
 Host wca
 HostName worldcubeassociation.org
 User cubing
@@ -31,18 +23,9 @@ Host staging.wca
 HostName staging.worldcubeassociation.org
 User cubing
 
-Host cusa
-HostName 54.203.118.173
-User ubuntu
-
 Host ocf
 HostName ssh.ocf.berkeley.edu
 User jfly
-
-Host moria
-HostName 34.82.48.146
-User jeremyfleischman
-#LocalForward 8080 localhost:8080
 
 Host sonic
 User jfly
@@ -61,6 +44,13 @@ User jeremy
 Host g2g
 Hostname g2g.honordev.com
 User pi
+
+Host h4-interview
+Hostname bugs.honor-projects.com
+IdentityFile ~/Downloads/experimental-eng-interview.pem
+User ubuntu
+RemoteCommand tmux attach
+RequestTTY yes
 ###
 
 ### Snowdon stuff
@@ -74,7 +64,14 @@ HostName clark.jflei.com
 User clark
 ForwardAgent yes
 
+Host jpi
+HostName jpi
+User pi
+
+Host thermometer
+HostName thermometer
+User root
+
 Host thermostat
 HostName thermostat
-User pi
-ForwardAgent yes
+User root
