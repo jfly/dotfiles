@@ -1,22 +1,7 @@
 #!/usr/bin/env bash
 
-CLIPBOARD=$(xclip -select clipboard -out)
-OPTIONS=$(echo "$CLIPBOARD" | python -c "
-import sys, uuid
-clip = sys.stdin.read().strip()
-clip = clip.replace('0x', '')
-
-pretty = str(uuid.UUID(hex=clip))
-formats = [
-    pretty,
-    pretty.replace('-', ''),
-    pretty.upper(),
-    pretty.upper().replace('-', ''),
-    '0x' + pretty.upper().replace('-', ''),
-]
-
-print('\n'.join(formats))
-")
+xclip -select clipboard -out > /tmp/clip.out
+OPTIONS=$(cat /tmp/clip.out | format-uuid.py)
 rm -f /tmp/uu.selected
 termite -r picker -e "bash -c 'echo \"$OPTIONS\" | fzf > /tmp/uu.selected'"
 sleep 0.1
