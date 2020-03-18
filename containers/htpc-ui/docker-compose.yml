@@ -33,4 +33,4 @@ services:
             - TZ=America/Los_Angeles
             - LETSENCRYPT=true
             - LE_EMAIL=jeremyfleischma@gmail.com
-            - LE_FQDN=clark.jflei.com,kodi.clark.jflei.com,sync.clark.jflei.com,media.clark.jflei.com,torrents.clark.jflei.com,cups.clark.jflei.com,roomba.clark.jflei.com,home-assistant.clark.jflei.com
+            - LE_FQDN=clark.jflei.com,kodi.clark.jflei.com,sync.clark.jflei.com,media.clark.jflei.com,torrents.clark.jflei.com,cups.clark.jflei.com,home-assistant.clark.jflei.com

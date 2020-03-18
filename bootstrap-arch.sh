@@ -326,12 +326,6 @@ htpc_stuff() {
         docker-compose up --detach
     )
 
-    # Start the roomba docker container
-    (
-        cd ~/.dotfiles/containers/roomba
-        docker-compose up --detach
-    )
-
     # Start the home-assistant docker container
     (
         cd ~/.dotfiles/containers/home-assistant
