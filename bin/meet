@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+URL=https://meet.google.com/ijq-nnfc-div
+
+# For some reason, my "Honor" profile is actually set up as "Profile 1"? I
+# found this by navigating to chrome://version/.
+chromium --profile-directory="Profile 1" --app="$URL"
+echo -n "$URL" | clipit
