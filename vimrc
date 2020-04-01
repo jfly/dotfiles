@@ -222,16 +222,16 @@ nnoremap <leader>p oimport pdb; pdb.set_trace()#<<<<Esc>
 nnoremap <leader>P Oimport pdb; pdb.set_trace()#<<<<Esc>
 """""""
 
-"<<< """"""" Configure some coc extensions
+""""""" Configure coc
 "<<< let g:coc_global_extensions = ['coc-tsserver']
-"<<< nnoremap <silent> K :call <SID>show_documentation()<CR>
-"<<< function! s:show_documentation()
-"<<<   if &filetype == 'vim'
-"<<<     execute 'h '.expand('<cword>')
-"<<<   else
-"<<<     call CocAction('doHover')
-"<<<   endif
-"<<< endfunction
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+function! s:show_documentation()
+  if &filetype == 'vim'
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
 "<<< nmap <silent> gd <Plug>(coc-definition)
 "<<< nmap <silent> gr <Plug>(coc-references)
-"<<< """""""
+"""""""
