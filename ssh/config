@@ -75,3 +75,7 @@ User root
 Host thermostat
 HostName thermostat
 User root
+
+Host garage
+HostName garage
+User root
