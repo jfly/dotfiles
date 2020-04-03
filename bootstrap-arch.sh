@@ -248,6 +248,10 @@ laptop_stuff() {
     # and https://discuss.gradle.org/t/how-do-i-always-force-console-auto-in-a-gradle-properties-or-environment-variable/12039/8
     aur_package ncurses5-compat-libs
 
+    ## Interception tools + space2meta
+    aur_package interception-tools interception-space2meta
+    enable_service udevmon
+
     install_docker
 }
 

@@ -79,10 +79,14 @@ myKeys =
         ((myModMask, xK_semicolon), windows W.swapMaster),
 
         -- Toggle between.
-        ((myModMask, xK_space), sendMessage ToggleLayout),
+        ((myModMask, xK_z), sendMessage ToggleLayout),
 
         -- Go to next layout.
         ((myModMask, xK_t), sendMessage NextLayout),
+
+        -- Reset to default layout
+        -- WIP: https://github.com/xmonad/xmonad/blob/master/src/XMonad/Config.hs#L193
+        -- ((myModMask .|. shiftMask, xK_t), setLayout $ myLayout),
 
         -- We stole this shortcut above (to emulate DWM's monocle shortcut)
         -- Lets add a shift modifier.
