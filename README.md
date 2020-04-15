@@ -55,6 +55,10 @@ Note: Dualbooting with BLE is even more of a pain. See http://console.systems/20
     Apr 05 09:33:59 dalinar bluetoothd[25157]: gap-profile profile accept failed for EF:F6:DE:0B:14:00
     Apr 05 09:33:59 dalinar bluetoothd[25157]: input-hog profile accept failed for EF:F6:DE:0B:14:00
 
+    cd /var/lib/bluetooth/F8\:94\:C2\:2F\:A9\:7B/
+    vi 28\:11\:A5\:36\:83\:33/info
+    # Replace [LinkKey] > Key with Windows value (`sudo inspect-windows-registry.sh`, `cd ControlSet001\Service\BTHPORT\Parameters\Keys`, `cd f894c22fa97b`, `hex 2811a5368333`)
+    sudo systemctl restart bluetooth
 
 ## Dropbox
 - `dropbox` - Need to manually start dropbox and log in.
