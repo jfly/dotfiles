@@ -14,6 +14,7 @@ if test -d $HOME/.asdf; then
     #  /home/jeremy/.asdf/completions/asdf.bash:70: command not found: complete
     # This feels like a bash vs zsh thing, but if you run this command in a
     # fully started zsh shell, it works fine.
+    # Long thread about this here: https://github.com/asdf-vm/asdf/issues/97
     # source $HOME/.asdf/completions/asdf.bash
 fi
 
