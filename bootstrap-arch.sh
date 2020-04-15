@@ -250,7 +250,7 @@ laptop_stuff() {
 
     ## Interception tools + space2meta
     aur_package interception-tools interception-space2meta
-    enable_service udevmon
+    #<<<enable_service udevmon # seems to be slowing down boot by a while?
 
     install_docker
 }

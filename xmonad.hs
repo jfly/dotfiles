@@ -79,7 +79,7 @@ myKeys =
         ((myModMask, xK_semicolon), windows W.swapMaster),
 
         -- Toggle between.
-        ((myModMask, xK_z), sendMessage ToggleLayout),
+        ((myModMask, xK_space), sendMessage ToggleLayout),
 
         -- Go to next layout.
         ((myModMask, xK_t), sendMessage NextLayout),
