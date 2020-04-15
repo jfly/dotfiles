@@ -61,7 +61,7 @@ function h4repost {
         h4post --review-request-id $1
     fi
 }
-function mycli {
+function mcli {
     mycli --user $MYSQL_USER --host $MYSQL_HOST --port $MYSQL_PORT ${1:=$DEFAULT_MYSQL_DATABASE}
 }
 alias h4salt="ssh bastion ssh saltmaster sudo journalctl --follow --lines=10000 | grep pull-and-run"
