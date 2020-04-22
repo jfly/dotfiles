@@ -1,0 +1,16 @@
+Neat notes here: https://www.omgubuntu.co.uk/2018/10/hardware-acceleration-chrome-linux
+
+tl;dr:
+    chrome://gpu/ saying hardware accelerated doesn't mean much
+
+https://wiki.archlinux.org/index.php/Chromium#Hardware_video_acceleration is the real way to do this
+
+instructions for adding the archlinuxcn repo here: https://github.com/archlinuxcn/repo/blob/master/README.md
+
+    sudo pacman -Syy && sudo pacman -S archlinuxcn-keyring
+    sudo pacman -S chromium-vaapi
+
+
+https://wiki.archlinux.org/index.php/Lenovo_ThinkPad_X1_Carbon_(Gen_6)#Tools
+
+    sudo pacman -S intel-gpu-tools
