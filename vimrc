@@ -17,8 +17,7 @@ Plug 'janko-m/vim-test'
 Plug 'kassio/neoterm'
 Plug 'xtal8/traces.vim'
 Plug 'majutsushi/tagbar'
-Plug 'davidhalter/jedi-vim'
-Plug 'jfly/ale', { 'branch': 'skip-fix-hook' } " Contains a hack to not run fixers if <<< shows up in a file.
+Plug 'dense-analysis/ale'
 Plug 'jesseleite/vim-agriculture'
 Plug 'vim-scripts/IndexedSearch'
 " TODO: figure out how to get only one of coc/ale to run pylint... >>>
@@ -218,8 +217,8 @@ let g:ale_haskell_ghc_options = '-fno-code -v0 -dynamic'
 """""""
 
 """""""
-nnoremap <leader>p oimport pdb; pdb.set_trace()#<<<<Esc>
-nnoremap <leader>P Oimport pdb; pdb.set_trace()#<<<<Esc>
+nnoremap <leader>p o__import__('pdb').set_trace()#<<<<Esc>
+nnoremap <leader>P O__import__('pdb').set_trace()#<<<<Esc>
 """""""
 
 """"""" Configure coc
@@ -232,8 +231,9 @@ function! s:show_documentation()
     call CocAction('doHover')
   endif
 endfunction
-"<<< nmap <silent> gd <Plug>(coc-definition)
-"<<< nmap <silent> gr <Plug>(coc-references)
+nmap <silent> <leader>g <Plug>(coc-definition)
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gr <Plug>(coc-references)
 """""""
 
 """""""
