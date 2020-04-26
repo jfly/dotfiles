@@ -242,3 +242,13 @@ command! MFiles call fzf#run(fzf#wrap({
     \ 'source': 'git ls-files --exclude-standard --others --modified',
     \ 'options': ['--multi', '--bind', 'alt-a:select-all,alt-d:deselect-all'] }))
 """""""
+
+"""""""
+" Copied from https://github.com/FatBoyXPC/dotfiles/commit/1bae9190f0d4291d08850bf5483986f185bc26fd
+command! Mapsn call fzf#vim#maps('n', 0)
+command! Mapsx call fzf#vim#maps('x', 0)
+command! Mapso call fzf#vim#maps('o', 0)
+command! Mapsi call fzf#vim#maps('i', 0)
+command! Mapsv call fzf#vim#maps('v', 0)
+command! Mapsa call fzf#vim#maps('a', 0)
+"""""""
