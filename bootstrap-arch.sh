@@ -270,23 +270,27 @@ pi_htpc_stuff() {
 
     enable_service_not_now kodi
 
-    htpc_stuff
+    kodi_stuff
+    nas_stuff
 }
 
-nuc_htpc_stuff() {
-    ## Install kodi
-    # https://wiki.archlinux.org/index.php/Kodi#kodi-standalone_service
-    arch_package kodi
-    aur_package kodi-standalone-service
-    enable_service kodi
-
+nuc_nas_stuff() {
     install_docker
     enable_service docker
 
-    htpc_stuff
+    kodi_stuff
+    nas_stuff
 }
 
-htpc_stuff() {
+kodi_stuff() {
+    # Configure kodi
+    sudo cp kodi/userdata/guisettings.xml /var/lib/kodi/.kodi/userdata/guisettings.xml
+    sudo cp kodi/userdata/sources.xml /var/lib/kodi/.kodi/userdata/sources.xml
+    sudo cp -r kodi/userdata/keymaps /var/lib/kodi/.kodi/userdata/keymaps
+    sudo chown -R kodi:kodi /var/lib/kodi/.kodi/userdata/
+}
+
+nas_stuff() {
     install_vim vim
 
     ## Resilio Sync stuff
@@ -295,17 +299,6 @@ htpc_stuff() {
     aur_package rslsync
     mkdir -p ~/var/lib/rslsync ~/run/resilio
     systemctl --user --now enable rslsync
-
-    # Configure kodi
-    sudo cp kodi/userdata/guisettings.xml /var/lib/kodi/.kodi/userdata/guisettings.xml
-    sudo cp kodi/userdata/sources.xml /var/lib/kodi/.kodi/userdata/sources.xml
-    sudo cp -r kodi/userdata/keymaps /var/lib/kodi/.kodi/userdata/keymaps
-    sudo chown -R kodi:kodi /var/lib/kodi/.kodi/userdata/
-
-    if [ ! -d ~/gitting/jpi.jflei.com ]; then
-        mkdir -p ~/gitting/
-        git clone https://github.com/jfly/jpi.jflei.com.git ~/gitting/jpi.jflei.com
-    fi
 
     # Enable sshd
     enable_service sshd
@@ -400,7 +393,7 @@ if [ "$HOSTNAME" = "dalinar" ]; then
 elif [ "$HOSTNAME" = "kent" ]; then
     device_specific_command=pi_htpc_stuff
 elif [ "$HOSTNAME" = "clark" ]; then
-    device_specific_command=nuc_htpc_stuff
+    device_specific_command=nuc_nas_stuff
 else
     echo "Unrecognized hostname: '$HOSTNAME'"
     exit 2
