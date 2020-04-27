@@ -136,6 +136,12 @@ base_stuff() {
 
     ## Keep mirrorlist up to date
     arch_package reflector
+
+    ## Install delta (used by git diff)
+    cd ~/thirdrepos
+    git clone https://aur.archlinux.org/git-delta.git
+    cd git-delta
+    makepkg -csri
 }
 
 install_vim() {
