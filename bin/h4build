@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+# Folowing the instructions from:
+#  https://wiki.jenkins.io/display/JENKINS/Remote+access+API#RemoteaccessAPI-Submittingjobs
+
+JENKINS_USERNAME=jfly
+JENKINS_TOKEN=$(cat ~/.config/h4-jenkins-token | tr -d '\n') # Created at https://build.honordev.com/user/jfly/configure
+JENKINS_URL=https://build.honordev.com
+
+# Build + parameters
+JOB_NAME=external-api-build-bot
+SOURCE_REPO_OWNER=jfly
+SOURCE_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+PUSH_TO_DEST=${PUSH_TO_DEST:-false}
+
+curl -X POST --user $JENKINS_USERNAME:$JENKINS_TOKEN \
+    "$JENKINS_URL/job/$JOB_NAME/buildWithParameters?delay=10sec&SOURCE_REPO_OWNER=${SOURCE_REPO_OWNER}&SOURCE_BRANCH=${SOURCE_BRANCH}&PUSH_TO_DEST=${PUSH_TO_DEST}"
+
+echo "Just kicked off a build of ${SOURCE_REPO_OWNER}/${SOURCE_BRANCH}. Check on it over at ${JENKINS_URL}/job/${JOB_NAME}/"
