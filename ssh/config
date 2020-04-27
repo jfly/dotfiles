@@ -64,6 +64,10 @@ HostName clark.jflei.com
 User clark
 ForwardAgent yes
 
+Host kodi
+HostName kodi
+User root
+
 Host jpi
 HostName jpi
 User pi
