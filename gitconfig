@@ -16,10 +16,6 @@
     gpgsign = true
 [push]
     default = simple
-
-# Allow local customizations in the .gitconfig_local file
-[include]
-    path = ~/.gitconfig_local
 [core]
     excludesfile = ~/.gitignore_global
     pager = delta --dark
@@ -54,3 +50,7 @@
     whitespace = red reverse
 [tag]
     sort = version:refname
+
+# Allow local customizations in the .gitconfig_local file
+[include]
+    path = ~/.gitconfig_local
