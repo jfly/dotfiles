@@ -216,9 +216,9 @@ let g:ale_fix_on_save = 1
 let g:ale_haskell_ghc_options = '-fno-code -v0 -dynamic'
 """""""
 
-"""""""
-nnoremap <leader>p o__import__('pdb').set_trace()#<<<<Esc>
-nnoremap <leader>P O__import__('pdb').set_trace()#<<<<Esc>
+""""""" Easy breakpoints.
+autocmd FileType python nnoremap <leader>p o__import__('pdb').set_trace()#<<<<Esc>
+autocmd FileType python nnoremap <leader>P O__import__('pdb').set_trace()#<<<<Esc>
 """""""
 
 """"""" Configure coc
