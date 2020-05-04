@@ -214,6 +214,9 @@ let g:ale_fixers = {
 " Automatically run ALEFix on save.
 let g:ale_fix_on_save = 1
 let g:ale_haskell_ghc_options = '-fno-code -v0 -dynamic'
+" I haven't fully investigated this, but without this setting, black fails to
+" import our generated thrift files.
+let g:ale_python_black_change_directory = 0
 """""""
 
 """"""" Easy breakpoints.
