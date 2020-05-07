@@ -32,6 +32,7 @@
     ~/.jupyter/nbconfig: jupyter/nbconfig
     ~/.mplayer: mplayer
     ~/.ssh/config: ssh/config
+    ~/.tmux.conf: tmux.conf
     ~/.vimrc: vimrc
     ~/.vim: vim
     ~/.xinitrc: xinitrc
