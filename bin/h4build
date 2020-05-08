@@ -4,12 +4,23 @@
 #  https://wiki.jenkins.io/display/JENKINS/Remote+access+API#RemoteaccessAPI-Submittingjobs
 
 JENKINS_USERNAME=jfly
-JENKINS_TOKEN=$(cat ~/.config/h4-jenkins-token | tr -d '\n') # Created at https://build.honordev.com/user/jfly/configure
+JENKINS_TOKEN=$(tr -d '\n' < ~/.config/h4-jenkins-token) # Created at https://build.honordev.com/user/jfly/configure
 JENKINS_URL=https://build.honordev.com
 
-# Build + parameters
-JOB_NAME=external-api-build-bot
-SOURCE_REPO_OWNER=jfly
+# Parse 'git remote -v' to figure out what we're trying to push where. The output looks something like this:
+#
+#    origin	git@github.com:jfly/external-web.git (fetch)
+#    origin	git@github.com:jfly/external-web.git (push)
+#    upstream	git@github.com:joinhonor/external-web.git (fetch)
+#    upstream	git@github.com:joinhonor/external-web.git (push)
+#
+# Figure out the origin github owner (the bit between the ":" and the "/").
+SOURCE_REPO_OWNER=$(git remote -v | grep 'origin.*push' | grep -Po '(?<=:).*(?=/)')
+# Figure out the destination repository name (the bit between the "/" and the ".git").
+DEST_REPO_NAME=$(git remote -v | grep 'upstream.*push' | grep -Po '(?<=/).*(?=.git)')
+
+# The build bot job is the project name suffixed with "-build-bot"
+JOB_NAME=${DEST_REPO_NAME}-build-bot
 SOURCE_BRANCH=$(git rev-parse --abbrev-ref HEAD)
 PUSH_TO_DEST=${PUSH_TO_DEST:-false}
 
