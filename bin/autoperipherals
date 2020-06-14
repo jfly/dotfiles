@@ -3,6 +3,7 @@
 function main() {
     HDMI1_STATUS=$(</sys/class/drm/card0/card0-HDMI-A-1/status)
     DP1_STATUS=$(</sys/class/drm/card0/card0-DP-1/status)
+    DP2_STATUS=$(</sys/class/drm/card0/card0-DP-2/status)
     DP4_STATUS=$(</sys/class/drm/card0/card0-DP-4/status)
     DP5_STATUS=$(</sys/class/drm/card0/card0-DP-5/status)
 
@@ -34,7 +35,7 @@ function main() {
         # TODO - only do this at honor, not at SF desk...
         # sudo nmcli device disconnect wlp4s0
         # sudo nmcli device connect eth0
-    elif [ "$DP4_STATUS" == "connected" ] || [ "$DP5_STATUS" == "connected" ]; then
+    elif [ "$DP2_STATUS" == "connected" ] || [ "$DP4_STATUS" == "connected" ] || [ "$DP5_STATUS" == "connected" ]; then
         LAYOUT_NAME=dp4
         TRAYER_HEIGHT=19
         XMOBAR_FONT_SIZE=6
@@ -43,8 +44,8 @@ function main() {
         xrandr --output DP1-2 --preferred --pos 0x0 --rotate normal --output VIRTUAL1 --off --output HDMI1 --off --output eDP1 --off --output DP2 --off
         # Switch to HDMI audio.
         # TODO - for some reason, only one of these profiles is available, but it seems to change randomly.
-        #<<< pactl set-card-profile alsa_card.pci-0000_00_1f.3 output:hdmi-stereo+input:analog-stereo
-        #<<< pactl set-card-profile alsa_card.pci-0000_00_1f.3 output:hdmi-stereo+input:stereo-fallback
+        pactl set-card-profile alsa_card.pci-0000_00_1f.3 output:hdmi-stereo+input:analog-stereo
+        pactl set-card-profile alsa_card.pci-0000_00_1f.3 output:hdmi-stereo+input:stereo-fallback
 
         # Disable wifi and connect to ethernet.
         # TODO - only do this at honor, not at SF desk...
