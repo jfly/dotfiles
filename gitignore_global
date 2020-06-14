@@ -2,3 +2,4 @@
 *.swo
 .envrc
 .direnv
+.venv
