@@ -64,8 +64,8 @@ HostName clark.jflei.com
 User clark
 ForwardAgent yes
 
-Host kodi
-HostName kodi
+Host dallben
+HostName dallben
 User root
 
 Host jpi
