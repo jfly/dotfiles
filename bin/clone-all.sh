@@ -11,7 +11,7 @@ if [ -z "$GITHUB_AT" ]; then
     echo '3. Give it a name (such as "clone all repos"), check the box for "repo", and click "Generate new token".'
     echo '4. Copy the new token to your clipboard, and re-invoke this script:'
     echo "    GITHUB_AT=... $0 $@"
-    echo "5. Remember to remove personal access token when you're done with it!"
+    echo "5. Remember to remove the personal access token when you're done with it!"
     exit 1
 fi
 
