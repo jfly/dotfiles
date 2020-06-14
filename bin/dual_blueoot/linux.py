@@ -2,7 +2,8 @@ import configparser
 import os
 from typing import List
 
-from .types import BluetoothDevice, MacAddress
+from .types import (BleKey, BluetoothDevice, IdentityResolvingKey,
+                    LocalSignatureKey, LongTermKey, MacAddress)
 from .util import chunkify
 
 BLUETOOTH_DIR = "/var/lib/bluetooth"
@@ -25,18 +26,33 @@ def get_devices(adapter: MacAddress) -> BluetoothDevice:
             continue
 
         config = configparser.ConfigParser()
-        with open(os.path.join(adapter_dir, mac_address, "info"), "r") as f:
+        config.optionxform = str  # Preserve the case of the option names
+        info_path = os.path.join(adapter_dir, mac_address, "info")
+        with open(info_path, "r") as f:
             config.read_file(f)
+
+
+        general_section = config['General']
+        description = general_section['Name']
 
         link_key = None
         if 'LinkKey' in config:
             link_key_section = config['LinkKey']
-            link_key = to_bytes(link_key_section['key'])
-
-        description = None
-        if 'General' in config:
-            general_section = config['General']
-            description = general_section['Name']
+            link_key = to_bytes(link_key_section['Key'])
+        elif general_section['SupportedTechnologies'] == 'LE;':
+            long_term_key_section = config['LongTermKey']
+            link_key = BleKey(
+                long_term_key=LongTermKey(
+                    key=to_bytes(long_term_key_section['Key']),
+                    key_length=int(long_term_key_section['EncSize']),
+                    rand=int(long_term_key_section['Rand']),
+                    e_div=int(long_term_key_section['EDiv']),
+                ),
+                identity_resolving_key=IdentityResolvingKey(key=to_bytes(config['IdentityResolvingKey']['Key'])),
+                local_signature_key=LocalSignatureKey(key=to_bytes(config['LocalSignatureKey']['Key']))
+            )
+        else:
+            link_key = None  # :shrug:
 
         devices.append(BluetoothDevice(
             mac_address=MacAddress(mac_address),

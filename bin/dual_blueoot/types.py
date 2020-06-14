@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from typing import Union
 
 from .util import chunkify
 
@@ -38,8 +39,28 @@ class MacAddress:
         formatted = separator.join("".join(pair) for pair in chunkify(formatted, 2))
         return formatted
 
+# More or less inspired by https://gist.github.com/Mygod/f390aabf53cf1406fc71166a47236ebf#file-export-ble-infos-py-L137-L143
+@dataclass
+class LongTermKey:
+    key: bytes
+    key_length: int
+    rand: int
+    e_div: int
+@dataclass
+class IdentityResolvingKey:
+    key: bytes
+@dataclass
+class LocalSignatureKey:
+    key: bytes
+@dataclass
+class BleKey:
+    long_term_key: LongTermKey
+    identity_resolving_key: IdentityResolvingKey
+    local_signature_key: LocalSignatureKey
+
+
 @dataclass
 class BluetoothDevice:
     mac_address: MacAddress
-    link_key: bytes
+    link_key: Union[bytes, BleKey]
     description: str

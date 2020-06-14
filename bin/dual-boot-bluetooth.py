@@ -5,9 +5,10 @@ import os
 import sys
 from typing import List
 
-from dual_blueoot import linux, windows
+from dual_blueoot import linux
 from dual_blueoot.types import BluetoothDevice, MacAddress
 from dual_blueoot.util import group_by
+from dual_blueoot.windows import Windows
 
 
 def require_root():
@@ -31,16 +32,18 @@ def diff_devices(left_description: str, left_devices: List[BluetoothDevice], rig
 
     intersection = right_device_by_mac.keys() & left_device_by_mac.keys()
 
+    print(f"Found these devices in {right_description}, but not in {left_description}:")
     for mac in left_missing:
         found_diff = True
         right_device = right_device_by_mac[mac]
-        print(f"Found this device in {right_description}, but not in {left_description}: {right_device}")
+        print(f"\t{right_device}")
 
     print("")
+    print(f"Found these devices in {left_description}, but not in {right_description}:")
     for mac in right_missing:
         found_diff = True
         left_device = left_device_by_mac[mac]
-        print(f"Found this device in {left_description}, but not in {right_description}: {left_device}")
+        print(f"\t{left_device}")
 
     print("")
     for mac in intersection:
@@ -56,7 +59,9 @@ def diff_devices(left_description: str, left_devices: List[BluetoothDevice], rig
 def main():
     require_root()
     adapter = MacAddress("F8:94:C2:2F:A9:7B") # TODO: make this a command line parameter
+    path_to_windows_registry = "/mnt/Windows/System32/config/SYSTEM" # TODO: make this a command line parameter
     linux_devices = linux.get_devices(adapter)
+    windows = Windows(path_to_windows_registry)
     windows_devices = windows.get_devices(adapter)
     diff_devices("Windows", windows_devices, "Linux", linux_devices)
 
