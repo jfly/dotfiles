@@ -167,6 +167,6 @@ main = do
             -- spawnOn "wca" "chromium --profile-directory='Profile 1'"
     } `additionalKeys` myKeys
       `additionalMouseBindings` [
-        ((0, 9), \_ -> spawn "jscrot --select"),
-        ((0, 8), \_ -> spawn "center-mouse.sh")
+        -- ((0, 9), \_ -> spawn "jscrot --select"),
+        -- ((0, 8), \_ -> spawn "center-mouse.sh")
         ]
