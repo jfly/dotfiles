@@ -208,6 +208,7 @@ set backupcopy=yes
 let g:ale_fixers = {
 \   'javascript': ['prettier'],
 \   'typescript': ['prettier'],
+\   'typescriptreact': ['prettier'],
 \   'css': ['prettier'],
 \   'python': ['black', 'isort'],
 \}
@@ -222,6 +223,9 @@ let g:ale_python_black_change_directory = 0
 """"""" Easy breakpoints.
 autocmd FileType python nnoremap <leader>p o__import__('pdb').set_trace()#<<<<Esc>
 autocmd FileType python nnoremap <leader>P O__import__('pdb').set_trace()#<<<<Esc>
+
+autocmd FileType python nnoremap <leader>o o__import__('os').environ['JFLY'] = '1'#<<<<Esc>
+autocmd FileType python nnoremap <leader>l oif __import__('os').environ.get('JFLY'): __import__('pdb').set_trace()#<<<<Esc>
 """""""
 
 """"""" Configure coc
