@@ -23,6 +23,7 @@ Plug 'vim-scripts/IndexedSearch'
 " TODO: figure out how to get only one of coc/ale to run pylint... >>>
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'metakirby5/codi.vim'
+Plug 'samoshkin/vim-mergetool'
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
 
@@ -103,13 +104,25 @@ set nostartofline
 set wildchar=<Tab> wildmenu wildmode=full
 set wildcharm=<C-Z>
 
-"""""" filetypes
+"""""" filetypes {{{
 au BufRead,BufNewFile *.md set filetype=markdown
 au BufRead,BufNewFile Vagrantfile set filetype=ruby
 au BufRead,BufNewFile *.jy set filetype=python
-""""""
+"""""" }}}
 
-"""""" tcomment configuration
+"""""" mergetool configuration {{{
+let g:mergetool_layout = 'mr'
+let g:mergetool_prefer_revision = 'local'
+" Turn off syntax and spell checking highlighting for all splits, so it doesn't distract me from diff highlighting.
+function s:on_mergetool_set_layout(split)
+    set syntax=off
+    set nospell
+endfunction
+let g:MergetoolSetLayoutCallback = function('s:on_mergetool_set_layout')
+nmap <leader>mt <plug>(MergetoolToggle)
+"""""" }}}
+
+"""""" tcomment configuration {{{
 call tcomment#type#Define('bash', '#<<< %s')
 call tcomment#type#Define('sh', '#<<< %s')
 call tcomment#type#Define('conf', '#<<< %s')
