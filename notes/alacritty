@@ -1,0 +1,17 @@
+2020-07-12
+    - had to install from AUR to get vi mode + regex search: https://aur.archlinux.org/packages/alacritty-git/?O=70&PP=10
+    - vte style ctrl+shift+t
+        - https://github.com/alacritty/alacritty/issues/808
+        - https://github.com/schischi/xcwd
+    - wrk-* scripts aren't working because --command doesn't take arguments?
+        - aha! https://github.com/alacritty/alacritty/issues/1266
+
+
+TODO:
+    - shift + click to select multiple lines
+    - configuration reloading to change from dark to light (via keyboard and when ssh-ing?)
+        - urg, you can turn off reloading entirely, or turn it on for *everything*: https://github.com/alacritty/alacritty/issues/472
+    - ok, did some digging. there is definitely no support for the vimperator style link number hints yet. it sounds like something one of the maintainers (chrisduerr) is interested in, but just hasn't gotten around to yet: https://github.com/alacritty/alacritty/issues/1725#issuecomment-647495435
+    - dpi changes
+    - copy paste while searching
+    - $ doesn't work in vi mode =(

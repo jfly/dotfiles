@@ -16,6 +16,7 @@
     ~/.myclirc: myclirc
 
     ~/bin: bin
+    ~/.config/alacritty: config/alacritty
     ~/.config/dunst: config/dunst
     ~/.config/fontconfig: config/fontconfig
     ~/.config/gtk-3.0: config/gtk-3.0

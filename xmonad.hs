@@ -23,7 +23,7 @@ import XMonad.Layout.NoBorders
 -- Rebind Mod to the Windows key
 myModMask = mod4Mask
 
-myTerminal = "termite"
+myTerminal = "alacritty"
 tall = Tall 1 (3/100) (1/2)
 threeCol = ThreeCol 1 (3/100) (0.36) -- just enough space for 100 columns wide in vim
 myLayout = avoidStruts $ smartBorders $ toggleLayouts Full tall ||| toggleLayouts Full threeCol ||| toggleLayouts Full (Mirror tall)
@@ -42,6 +42,11 @@ windowPlacement = composeAll [
         role =? "send to play" --> doShift "play",
         role =? "send to wrk" --> doShift "wrk",
         role =? "send to test" --> doShift "test",
+
+        -- Experimenting with Alacritty
+        appName =? "send to play" --> doShift "play",
+        appName =? "send to wrk" --> doShift "wrk",
+        appName =? "send to test" --> doShift "test",
 
         role =? "picker" --> doFloat
     ] where role = stringProperty "WM_WINDOW_ROLE"
@@ -71,7 +76,7 @@ myKeys =
         ((myModMask, xK_F11), fullscreenChrome),
 
         -- Launch a terminal (changed from return to semicolon)
-        ((myModMask .|. shiftMask, xK_semicolon), spawn myTerminal),
+        ((myModMask .|. shiftMask, xK_semicolon), spawn $ "cd $(xcwd); exec " ++ myTerminal),
 
         -- Swap the focused window and the master window
         -- The default uses return, but semicolon is easier, and
@@ -132,7 +137,10 @@ myKeys =
         ((myModMask .|. shiftMask, xK_d), spawn "sleep 0.1 && xdotool key --clearmodifiers XF86AudioPrev"),
 
         ((myModMask, xK_a), spawn "autoperipherals"),
-        ((myModMask .|. shiftMask, xK_a), spawn "mobile.sh")
+        ((myModMask .|. shiftMask, xK_a), spawn "mobile.sh"),
+        -- <<< >>>
+        -- ((controlMask .|. shiftMask, xK_t), spawn "xdotool key ctrl+shift+t")
+        ((myModMask, xK_i), spawn "sleep 0.1 && xdotool key --clearmodifiers ctrl+shift+t")
     ] ++
     -- mod-[1..9] %! Switch to workspace N
     -- mod-shift-[1..9] %! Move client to workspace N

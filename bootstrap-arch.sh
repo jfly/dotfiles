@@ -139,9 +139,14 @@ base_stuff() {
 
     ## Install delta (used by git diff)
     cd ~/thirdrepos
-    git clone https://aur.archlinux.org/git-delta.git
-    cd git-delta
-    makepkg -csri
+    if [ -n "$(pacman -Qs "^git-delta$")" ]; then
+        echo "warning: Arch package git-delta is already installed -- skipping"
+    else
+        rm -rf git-delta
+        git clone https://aur.archlinux.org/git-delta.git
+        cd git-delta
+        makepkg -csri
+    fi
 }
 
 install_vim() {
@@ -185,7 +190,11 @@ laptop_stuff() {
     arch_package xorg-server xorg-xinit xorg-xsetroot xorg-xmodmap xorg-xmessage xorg-xrandr xorg-xrdb xorg-xinput xorg-xprop
     arch_package xmonad xmonad-contrib xmobar
     arch_package feh network-manager-applet alsa-utils maim xclip numlockx xsel xdotool slop byzanz dunst
-    arch_package termite chromium
+    arch_package chromium
+    arch_package termite
+    # 2020-07-12: i'm experimenting with alacritty
+    arch_package alacritty-git
+    aur_package xcwd-git
     aur_package trayer-srg-git dmenu2 xsettingsd
     # Fonts
     arch_package ttf-liberation ttf-bitstream-vera noto-fonts noto-fonts-emoji

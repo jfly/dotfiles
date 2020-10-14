@@ -34,12 +34,6 @@ export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
 ##################################
 
 ###
-### Set up ctrl-shift-n for VTE
-###
-[[ -f /etc/profile.d/vte.sh ]] && source /etc/profile.d/vte.sh
-##################################
-
-###
 ### Set up Go
 ###
 export GOPATH=~/go

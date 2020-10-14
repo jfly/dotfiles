@@ -6,7 +6,7 @@ function terminalOn() {
     CMD=$1
     WORKSPACE=$2
 
-    termite -r "send to $WORKSPACE" -e "shtuff new \"$CMD\"" &
+    alacritty --class "send to $WORKSPACE" -e "shtuff" new "$CMD" &
     sleep 0.1 # slow down spawning termites so things don't behave intermittently
 }
 
