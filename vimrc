@@ -160,12 +160,21 @@ let g:test#strategy = "fat_runner"
 " If a command looks like "nosetests ...", transform it to
 " "make singletest NOSEARGS='...'"
 function! HonorTransform(cmd) abort
+    if a:cmd =~ '.py:'
+        " We're probably running a single single test, and therefore we set
+        " the amount of parallelism to 1, so pdb and other stuff works well.
+        " There might be a better way of detecting if we're inside of
+        " `TestFile`...
+        let l:parallelism="PARALLELISM=1"
+    else
+        let l:parallelism=""
+    endif
     if a:cmd =~ '^nosetests '
         let l:cmd_sans_nosetests = "-s ".substitute(a:cmd, '^nosetests ', '', '')
-        let l:new_cmd = 'make singletest TEST_PROCESSES=0 NOSEARGS='.shellescape(l:cmd_sans_nosetests)
+        let l:new_cmd = 'make singletest '.l:parallelism.' NOSEARGS='.shellescape(l:cmd_sans_nosetests)
     elseif a:cmd =~ '^pipenv run pytest '
         let l:cmd_sans_nosetests = "-s ".substitute(a:cmd, '^pipenv run pytest ', '', '')
-        let l:new_cmd = 'make singletest TEST_PROCESSES=0 PYTESTARGS='.shellescape(l:cmd_sans_nosetests)
+        let l:new_cmd = 'make singletest '.l:parallelism.' PYTESTARGS='.shellescape(l:cmd_sans_nosetests)
     else
         let l:new_cmd = a:cmd
     endif
