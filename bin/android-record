@@ -23,7 +23,7 @@ function do_and_log {
 do_and_log "Enabling touch indicator" adb shell settings put system show_touches 1
 
 function finish {
-    sleep 0.5 #<<< >>>
+    sleep 0.5 # Hmm... if we try to immediately grab the file it's empty? Sleeping seems to help...
     echo ""
     do_and_log "Disabling touch indicator" adb shell settings put system show_touches 0
     do_and_log "Copying recorded video to $OUTPUT_FILENAME" adb pull "$TMP_REMOTE_FILENAME" "$OUTPUT_FILENAME"
