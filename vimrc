@@ -63,6 +63,11 @@ silent! colorscheme solarized
 noremap 1<Backspace> :set background=dark<CR>
 noremap 2<Backspace> :set background=light<CR>
 
+" vim-gutter tweak
+" Copied from
+" https://github.com/FatBoyXPC/dotfiles/commit/53815a4009884dcf04b3f009de9d1bf458bed32f
+highlight! link SignColumn LineNr
+
 " Experimenting with cross file search
 " See: http://stackoverflow.com/a/25879734
 " Copying from https://github.com/FatBoyXPC/dotfiles/commit/37b6ed80e20415fe181f4cacaa0f16bb37c19503
