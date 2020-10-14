@@ -33,6 +33,10 @@
     smtpServer = smtp.gmail.com
     smtpUser = jeremyfleischman@gmail.com
     smtpServerPort = 587
+[merge]
+    conflictStyle = diff3
+[diff]
+    renameLimit = 906
 
 [color]
     ui = true
