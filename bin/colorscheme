@@ -15,7 +15,7 @@ function reload_termite_config() {
     # If there isn't an ancestor termite process, then look at the currently focused window,
     # but make sure it's a termite process and not some poor other process that we're going to
     # accidentally kill.
-    TERMITE_PID=`xdotool getwindowpid $(xdotool getwindowfocus)`
+    TERMITE_PID=$(xdotool getwindowpid $(xdotool getwindowfocus))
     exe_name=$(basename $(readlink /proc/${TERMITE_PID}/exe))
     if [ "$exe_name" != "termite" ]; then
       echo "The currently focused window is: '${exe_name}', but I expected 'termite'"
