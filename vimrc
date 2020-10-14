@@ -140,11 +140,13 @@ call tcomment#type#Define('Dockerfile', '#<<< %s')
 call tcomment#type#Define('yaml', '#<<< %s')
 """""" }}}
 
-"""""" FZF configuration
+"""""" FZF configuration {{{
 noremap <c-p> :Files<CR>
 noremap <leader>b :Buffers<CR>
 noremap <leader><leader> <C-^>
-""""""
+let g:fzf_layout = { 'down': '~40%' }
+let g:fzf_preview_window = ''
+"""""" }}}
 
 """""" vim-test configuration
 function! ShtuffStrategy(cmd)
