@@ -8,6 +8,9 @@ PID_FILE=jscrot.pid
 if [ -e $PID_FILE ]; then
     kill `cat $PID_FILE`
     echo "I see an ongoing jscrot, I'm going to kill it and exit"
+    # Just in case that process doesn't exist, or never got to clean up after
+    # itself, nuke that file so we at least can run next time.
+    rm -f "$PID_FILE"
     exit 1
 fi
 
