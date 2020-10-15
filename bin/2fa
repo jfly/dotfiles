@@ -1,10 +1,9 @@
 #!/usr/bin/env bash
 
-rm -f /tmp/2fa.selected
-termite -r picker -e "bash -c '2fa-cli | fzf > /tmp/2fa.selected'"
-sleep 0.1
+OPTIONS=$(2fa-cli)
+SELECTED=$(picker-popup "$OPTIONS")
 
-SELECTED_2FA=$(grep -Eo "[0-9]+" /tmp/2fa.selected)
+SELECTED_2FA=$(echo "$SELECTED" | grep -Eo "[0-9]+")
 
 if [ -z "$SELECTED_2FA" ]; then
     exit 1

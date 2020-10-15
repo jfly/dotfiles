@@ -1,12 +1,7 @@
 #!/usr/bin/env bash
 
-xclip -select clipboard -out > /tmp/clip.out
-OPTIONS=$(cat /tmp/clip.out | format-uuid.py)
-rm -f /tmp/uu.selected
-termite -r picker -e "bash -c 'echo \"$OPTIONS\" | fzf > /tmp/uu.selected'"
-sleep 0.1
-
-SELECTED=$(cat /tmp/uu.selected)
+OPTIONS=$(xclip -select clipboard -out | format-uuid.py)
+SELECTED=$(picker-popup "$OPTIONS")
 
 if [ -z "$SELECTED" ]; then
     exit 1

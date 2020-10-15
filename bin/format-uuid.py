@@ -18,6 +18,7 @@ formats = [
     pretty.replace("-", ""),
     pretty.upper(),
     pretty.upper().replace("-", ""),
+    repr(parsed.bytes),
     "0x" + pretty.upper().replace("-", ""),
 ]
 
