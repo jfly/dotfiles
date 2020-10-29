@@ -20,6 +20,7 @@
     ~/.config/chromium-flags.conf: config/chromium-flags.conf
     ~/.config/dunst: config/dunst
     ~/.config/fontconfig: config/fontconfig
+    ~/.config/git: config/git
     ~/.config/gtk-3.0: config/gtk-3.0
     ~/.config/pirate-get: config/pirate-get
     ~/.config/roxterm.sourceforge.net: config/roxterm.sourceforge.net
