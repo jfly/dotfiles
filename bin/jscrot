@@ -25,9 +25,6 @@ mkdir -p $SCREENSHOTS_DIR
 file_noext=$SCREENSHOTS_DIR/"`date +"%Y-%m-%d_%H-%M-%S"`_$HOSTNAME"
 
 ask_user_for_region() {
-    #<<< slop=$(slop -f "%w %h %x %y %i") || exit 1
-    #<<< read -r W H X Y ID < <(echo $slop)
-    # Playing around with flameshot. See https://github.com/jfly/flameshot/tree/add-gui-selection-option.
     flameshot=$(flameshot gui --selection) || exit 1
     read -r W H X Y < <(echo $flameshot)
     G="${W}x${H}+${X}+${Y}"
@@ -47,8 +44,6 @@ elif [ "$1" == "--select" ]; then
         exit 1
     fi
     mv $tmp_file $file
-    #<<< ask_user_for_region
-    #<<< maim -g $G --hidecursor $file
 else
     file=${file_noext}.png
     maim --hidecursor $file

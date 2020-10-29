@@ -10,11 +10,11 @@ volnoti -t 1
 numlockx on
 
 # Gross hack to disable audio powersave, which causes awful noise
-# (https://bbs.archlinux.org/viewtopic.php?pid=1554497#p1554497)
+# (https://bbs.archlinux.org/viewtopic.php?pid=1554497#p1554497).
 sudo rmmod -f snd_hda_intel && sudo modprobe snd_hda_intel power_save=0
 
-# start dropbox if it's installed (we do it here rather than via systemd
-# because the icon won't show up otherwise)
+# Start dropbox if it's installed (we do it here rather than via systemd
+# because the icon won't show up otherwise).
 if [ -x /usr/bin/dropboxd ]; then
     /usr/bin/dropboxd &
 fi
@@ -40,13 +40,18 @@ if [ -x /usr/bin/xsettingsd ]; then
     /usr/bin/xsettingsd &
 fi
 
-# From https://wiki.archlinux.org/index.php/GNOME/Keyring#xinitrc_method
+if [ -x /usr/local/bin/flameshot ]; then
+    # See https://wiki.archlinux.org/index.php/Flameshot#Option_2:_Run_as_background_process
+    /usr/local/bin/flameshot &
+fi
+
+# From https://wiki.archlinux.org/index.php/GNOME/Keyring#xinitrc_method.
 if [ -x /usr/bin/gnome-keyring-daemon ]; then
     dbus-update-activation-environment --systemd DISPLAY
     eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
     export SSH_AUTH_SOCK
 fi
 
-# xmonad doesn't set a cursor
+# xmonad doesn't set a cursor.
 xsetroot -cursor_name left_ptr
 exec xmonad
