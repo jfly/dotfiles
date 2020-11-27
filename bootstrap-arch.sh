@@ -118,7 +118,7 @@ base_stuff() {
 
     ## Printer
     arch_package cups ghostscript
-    enable_service org.cups.cupsd.service
+    enable_service cups.service
 
     ## Bluetooth
     arch_package bluez bluez-utils
