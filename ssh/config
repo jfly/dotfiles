@@ -1,12 +1,13 @@
 ServerAliveInterval 120
 AddKeysToAgent yes
 
-Host kent
-HostName kent.jflei.com
-#HostName kent
-User kent
-ForwardAgent yes
+### jfly stuff
+Host ocf
+HostName ssh.ocf.berkeley.edu
+User jfly
+###
 
+### WCA stuff
 Host wca
 HostName worldcubeassociation.org
 User cubing
@@ -22,14 +23,7 @@ User ubuntu
 Host staging.wca
 HostName staging.worldcubeassociation.org
 User cubing
-
-Host ocf
-HostName ssh.ocf.berkeley.edu
-User jfly
-
-Host sonic
-User jfly
-HostName sh.sonic.net
+###
 
 ### Honor stuff
 Host bastion.honordev.com bastion
@@ -51,6 +45,13 @@ IdentityFile ~/Downloads/experimental-eng-interview.pem
 User ubuntu
 RemoteCommand tmux attach
 RequestTTY yes
+
+Host h4-webhook-tunnel
+IdentityFile ~/.aws/key-pairs/experimental-hackday.pem
+IdentitiesOnly yes
+Hostname 34.219.121.184
+User ubuntu
+RemoteForward 4001 localhost:5050
 ###
 
 ### Snowdon stuff
@@ -83,3 +84,20 @@ User root
 Host garage
 HostName garage
 User root
+
+Host sonic
+User jfly
+HostName sh.sonic.net
+
+### San Clemente stuff
+Host kent
+#HostName kent.jflei.com
+HostName kent
+User kent
+ForwardAgent yes
+
+Host sc-router
+User root
+HostName 192.168.11.1
+KexAlgorithms diffie-hellman-group14-sha1
+###
