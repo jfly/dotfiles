@@ -1,3 +1,12 @@
+2020-11-30
+
+    - TODO: investigate "Use the working directory of the terminal foreground process, instead of the shell's working directory, for SpawnNewInstance action" (from 0.6.0 changelog: https://github.com/alacritty/alacritty/blob/master/CHANGELOG.md)
+
+    - DPI investigation
+        - https://github.com/alacritty/alacritty/issues/2886
+        - https://github.com/rust-windowing/winit/issues/1228
+
+
 2020-07-12
     - had to install from AUR to get vi mode + regex search: https://aur.archlinux.org/packages/alacritty-git/?O=70&PP=10
     - vte style ctrl+shift+t
