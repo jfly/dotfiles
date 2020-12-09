@@ -53,6 +53,14 @@ def diff_devices(left_description: str, left_devices: List[BluetoothDevice], rig
         if left_device.link_key != right_device.link_key:
             print(f"Differing link keys!: {left_description} {left_device} which is not the same as {right_description} {right_device}")
 
+    print("")
+    for mac in intersection:
+        found_diff = True
+        left_device = left_device_by_mac[mac]
+        right_device = right_device_by_mac[mac]
+        if left_device.link_key == right_device.link_key:
+            print(f"Matching link keys!: {left_description} {left_device} which is the same as {right_description} {right_device}")
+
     if not found_diff:
         print("No devices missing or differing between {left_description} and {right_description}!")
 

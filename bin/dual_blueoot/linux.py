@@ -39,7 +39,7 @@ def get_devices(adapter: MacAddress) -> BluetoothDevice:
         if 'LinkKey' in config:
             link_key_section = config['LinkKey']
             link_key = to_bytes(link_key_section['Key'])
-        elif general_section['SupportedTechnologies'] == 'LE;':
+        elif general_section['SupportedTechnologies'] == 'LE;' and 'LongTermKey' in config:
             long_term_key_section = config['LongTermKey']
             link_key = BleKey(
                 long_term_key=LongTermKey(
