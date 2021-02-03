@@ -186,6 +186,10 @@ laptop_stuff() {
     # Install the appropriate video card driver: https://wiki.archlinux.org/index.php/xorg#Driver_installation
     # driconf is supposed to help with video tearing (see http://www.apolitech.com/2017/04/20how-to-solve-video-tearing-on-intel.html)
     arch_package xf86-video-intel driconf
+    # Needed for hardware acceleration on Parsec and Chrome. See
+    # https://github.com/jfly/dotfiles/commit/eef1e079114aaee1fe0740151a5340e1574b4659
+    # for details.
+    arch_package libva-intel-driver intel-gpu-tools
     # Install everything else needed for the desktop environment.
     arch_package xorg-server xorg-xinit xorg-xsetroot xorg-xmodmap xorg-xmessage xorg-xrandr xorg-xrdb xorg-xinput xorg-xprop
     arch_package xmonad xmonad-contrib xmobar
