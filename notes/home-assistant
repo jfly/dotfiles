@@ -1,3 +1,10 @@
+change password
+
+ssh clark
+de home-assistant
+hass --script auth --config /config change_password USERNAME PASSWORD
+
+----------------------------------
 https://www.home-assistant.io/docs/configuration/secrets/
 
 Getting this error on startup, but I can't figure out why:
