@@ -288,3 +288,7 @@ command! Mapsi call fzf#vim#maps('i', 0)
 command! Mapsv call fzf#vim#maps('v', 0)
 command! Mapsa call fzf#vim#maps('a', 0)
 """""""
+
+""""""" Misc shortcuts
+nnoremap <leader>a ggVG
+"""""""
