@@ -152,19 +152,67 @@ function dr {
 
 # Copied from https://gist.github.com/jfly/7b94cba17c04d344d62a7bea916bb55a
 function start_screen {
+    function print_usage {
+        echo "Usage: $0 [NAME] [title1] [cmd1] [title2] [cmd2] ..."
+    }
+    if test $# -eq 0; then
+        print_usage > /dev/stderr
+        return
+    fi
     NAME=$1
     shift
-    screen -dmS "$NAME" -s bash # start screen
+    if test $(( $# % 2 )) -ne 0; then
+        echo "You must specify an equal number of titles and commands." > /dev/stderr
+        echo "" > /dev/stderr
+        print_usage > /dev/stderr
+        return
+    fi
 
-    while test $# -gt 0
-    do
+    screen -dmS "$NAME" -s "$SHELL" # start screen
+
+    while test $# -gt 0; do
         TITLE="$1"
         shift
         CMD="$1"$'\n'
         shift
         screen -S "$NAME" -X title "$TITLE" # set title of window
         screen -S "$NAME" -X stuff "$CMD" # run command in window
-        screen -S "$NAME" -X screen # add new window
+        if test $# -gt 0; then
+            screen -S "$NAME" -X screen # add new window
+        fi
+    done
+}
+
+# Note: copied from start_screen above. There's got to be a clever way of sharing this logic...
+function start_tmux {
+    function print_usage {
+        echo "Usage: $0 [NAME] [title1] [cmd1] [title2] [cmd2] ..."
+    }
+    if test $# -eq 0; then
+        print_usage > /dev/stderr
+        return
+    fi
+    NAME=$1
+    shift
+    if test $(( $# % 2 )) -ne 0; then
+        echo "You must specify an equal number of titles and commands." > /dev/stderr
+        echo "" > /dev/stderr
+        print_usage > /dev/stderr
+        return
+    fi
+
+    tmux new-session -d -s "$NAME" # start tmux
+
+    while test $# -gt 0; do
+        TITLE="$1"
+        shift
+        CMD="$1"$'\n'
+        shift
+        tmux rename-window -t "$NAME" "$TITLE" # set title of window
+        tmux send-keys -t "$NAME" "$CMD" # run command in window
+        if test $# -gt 0; then
+            tmux new-window -t "$NAME"
+        fi
     done
 }
 
