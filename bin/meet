@@ -2,7 +2,7 @@
 
 URL=https://meet.google.com/ijq-nnfc-div
 
-# For some reason, my "Honor" profile is actually set up as "Profile 1"? I
+# For some reason, my "Honor" profile is actually set up as "Profile 9"? I
 # found this by navigating to chrome://version/.
-chromium --profile-directory="Profile 1" --app="$URL"
+chromium --profile-directory="Profile 9" --app="$URL"
 echo -n "$URL" | clipit
