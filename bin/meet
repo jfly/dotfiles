@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-URL=https://meet.google.com/ijq-nnfc-div
+URL=https://meet.google.com/zhw-huyd-oam
 
 # For some reason, my "Honor" profile is actually set up as "Profile 9"? I
 # found this by navigating to chrome://version/.
