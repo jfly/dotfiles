@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 success_count=0
 fail_count=0
