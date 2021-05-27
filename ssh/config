@@ -89,9 +89,12 @@ Host sonic
 User jfly
 HostName sh.sonic.net
 
+Host ramscan
+User alarm
+
 ### San Clemente stuff
 Host kent
-#HostName kent.jflei.com
+# HostName kent.jflei.com
 HostName kent
 User kent
 ForwardAgent yes
