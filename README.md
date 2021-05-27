@@ -64,6 +64,7 @@ Note: Dualbooting with BLE is even more of a pain. See http://console.systems/20
 - `dropbox` - Need to manually start dropbox and log in.
 
 ## TODO
+- Look into https://gitlab.com/tozd/docker/nginx-proxy
 - Have to install `coc-python`, `coc-json`, `coc-tsserver`: https://github.com/neoclide/coc-python#install
 - For HTPC, make sure DHCPCD keeps retrying, rather than giving up after 30 seconds: https://wiki.archlinux.org/index.php/dhcpcd#Timeout_delay.
 - Add `"detachKeys": "ctrl-^,q"` to `~/.docker/config.json`
