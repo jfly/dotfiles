@@ -15,7 +15,7 @@ if test -d $HOME/.asdf; then
     # This feels like a bash vs zsh thing, but if you run this command in a
     # fully started zsh shell, it works fine.
     # Long thread about this here: https://github.com/asdf-vm/asdf/issues/97
-    # source $HOME/.asdf/completions/asdf.bash
+    source $HOME/.asdf/completions/asdf.bash
 fi
 
 export VISUAL=vim
