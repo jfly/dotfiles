@@ -29,7 +29,8 @@ fi
 
 GH_ORG="$1"
 DEST_DIR="$2"
-cd $DEST_DIR
+mkdir -p "$DEST_DIR"
+cd "$DEST_DIR"
 
 expected_repos=$(curl -s "https://$GITHUB_AT:@api.github.com/orgs/$GH_ORG/repos?per_page=200" | jq --raw-output '.[].ssh_url' | sort)
 found_repos=$(grep -Pho "(?<=url = ).*"  */.git/config | sort)
