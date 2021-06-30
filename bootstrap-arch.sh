@@ -197,7 +197,7 @@ laptop_stuff() {
     arch_package chromium
     arch_package termite
     # 2020-07-12: i'm experimenting with alacritty
-    arch_package alacritty-git
+    arch_package alacritty
     aur_package xcwd-git
     aur_package trayer-srg-git dmenu2 xsettingsd
     # Fonts
