@@ -48,6 +48,9 @@ windowPlacement = composeAll [
         appName =? "send to wrk" --> doShift "wrk",
         appName =? "send to test" --> doShift "test",
 
+        -- Music stuff
+        className =? "Mcg" --> doShift "music",
+
         role =? "picker" --> doFloat
     ] where role = stringProperty "WM_WINDOW_ROLE"
 
@@ -65,8 +68,9 @@ fullscreenChrome = do
     spawn "sleep 0.1 && xdotool key --clearmodifiers F11"
     return ()
 
-myWorkspaces = ["`", "web", "play", "wrk", "test", "video", "todo", "7", "8", "9", "0", "-", "=", "<="]
-myWorkspaceKeys = [xK_grave] ++ [xK_1 .. xK_9] ++ [xK_0, xK_minus, xK_equal, xK_BackSpace]
+myWorkspaces = ["`", "web", "play", "wrk", "test", "video", "todo", "7", "8", "9", "0", "-", "=", "<=", "music"]
+myWorkspaceKeys = [xK_grave] ++ [xK_1 .. xK_9] ++ [xK_0, xK_minus, xK_equal, xK_BackSpace, xK_m]
+
 
 altMask = mod1Mask
 myKeys =
@@ -93,10 +97,9 @@ myKeys =
         -- WIP: https://github.com/xmonad/xmonad/blob/master/src/XMonad/Config.hs#L193
         -- ((myModMask .|. shiftMask, xK_t), setLayout $ myLayout),
 
-        -- We stole this shortcut above (to emulate DWM's monocle shortcut)
-        -- Lets add a shift modifier.
+        -- We stole this shortcut to emulate DWM's monocle shortcut
         -- Move focus to the master window
-        ((myModMask .|. shiftMask, xK_m), windows W.focusMaster),
+        ((myModMask, xK_n), windows W.focusMaster),
 
         -- Force window back to tiling mode
         ((myModMask .|. shiftMask, xK_t), withFocused $ windows . W.sink),
@@ -132,9 +135,9 @@ myKeys =
         ((controlMask .|. altMask, xK_Up), spawn "xrandr -o inverted && setbg"),
 
         -- Create our own play/pause button.
-        ((myModMask, xK_s), spawn "sleep 0.1 && xdotool key --clearmodifiers XF86AudioPlay"),
-        ((myModMask, xK_d), spawn "sleep 0.1 && xdotool key --clearmodifiers XF86AudioNext"),
-        ((myModMask .|. shiftMask, xK_d), spawn "sleep 0.1 && xdotool key --clearmodifiers XF86AudioPrev"),
+        ((myModMask, xK_s), spawn "mpc toggle"),
+        ((myModMask, xK_d), spawn "mpc next"),
+        ((myModMask .|. shiftMask, xK_d), spawn "mpc prev"),
 
         ((myModMask, xK_a), spawn "autoperipherals"),
         ((myModMask .|. shiftMask, xK_a), spawn "mobile.sh"),

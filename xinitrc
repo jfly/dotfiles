@@ -52,6 +52,10 @@ if [ -x /usr/bin/gnome-keyring-daemon ]; then
     export SSH_AUTH_SOCK
 fi
 
+if [ -x /usr/bin/mcg ]; then
+    /usr/bin/mcg &
+fi
+
 # xmonad doesn't set a cursor.
 xsetroot -cursor_name left_ptr
 exec xmonad

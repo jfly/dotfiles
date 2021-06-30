@@ -272,6 +272,25 @@ laptop_stuff() {
     #<<<enable_service udevmon # seems to be slowing down boot by a while?
 
     install_docker
+
+    music_stuff
+}
+
+music_stuff() {
+    arch_package mpd
+    systemctl enable --now --user mpd
+
+    # This was a pain to get installed.
+    # I had to run
+    #   gpg --keyserver 'hkps://keyserver.ubuntu.com' --recv-keys 0392335A78083894A4301C43236E8A58C6DB4512
+    # (see https://aur.archlinux.org/packages/mpdscribble/)
+    aur_package mpdscribble
+    systemctl enable --now --user mpdscribble
+
+    # I couldn't install this without manually removing the "gmock>=1.10" from
+    # the PKGBUILD file.
+    #  https://aur.archlinux.org/packages/ashuffle/#comment-815297
+    aur_package ashuffle
 }
 
 pi_htpc_stuff() {
