@@ -114,6 +114,9 @@ myKeys =
         ((0, xF86XK_AudioRaiseVolume), spawn $ changeVolume "5+"),
         ((0, xF86XK_AudioLowerVolume), spawn $ changeVolume "5-"),
         ((0, xF86XK_AudioMicMute), spawn toggleMicMute),
+        ((0, xF86XK_AudioPlay), spawn "mpc toggle"),
+        ((0, xF86XK_AudioPrev), spawn "mpc prev"),
+        ((0, xF86XK_AudioNext), spawn "mpc next"),
 
         ((0, xF86XK_MonBrightnessDown), spawn $ changeBrightness "5%-"),
         ((0, xF86XK_MonBrightnessUp), spawn $ changeBrightness "5%+"),
@@ -134,16 +137,13 @@ myKeys =
         ((controlMask .|. altMask, xK_Down), spawn "xrandr -o normal && setbg"),
         ((controlMask .|. altMask, xK_Up), spawn "xrandr -o inverted && setbg"),
 
-        -- Create our own play/pause button.
-        ((myModMask, xK_s), spawn "mpc toggle"),
-        ((myModMask, xK_d), spawn "mpc next"),
-        ((myModMask .|. shiftMask, xK_d), spawn "mpc prev"),
+        -- Create our own play/pause and prev/next buttons.
+        ((myModMask, xK_s), spawn "xdotool key --clearmodifiers XF86AudioPlay"),
+        ((myModMask, xK_d), spawn "xdotool key --clearmodifiers XF86AudioNext"),
+        ((myModMask .|. shiftMask, xK_d), spawn "xdotool key --clearmodifiers XF86AudioPrev"),
 
         ((myModMask, xK_a), spawn "autoperipherals"),
-        ((myModMask .|. shiftMask, xK_a), spawn "mobile.sh"),
-        -- <<< >>>
-        -- ((controlMask .|. shiftMask, xK_t), spawn "xdotool key ctrl+shift+t")
-        ((myModMask, xK_i), spawn "sleep 0.1 && xdotool key --clearmodifiers ctrl+shift+t")
+        ((myModMask .|. shiftMask, xK_a), spawn "mobile.sh")
     ] ++
     -- mod-[1..9] %! Switch to workspace N
     -- mod-shift-[1..9] %! Move client to workspace N

@@ -49,6 +49,7 @@
     /usr/share/themes/jfattymacs: usr/share/themes/jfattymacs
 
     /etc/acpi/events/lid: etc/acpi/events/lid
+    /etc/acpi/events/cd_play: etc/acpi/events/cd_play
     /etc/fuse.conf: etc/fuse.conf
     /etc/nsswitch.conf: etc/nsswitch.conf
     /etc/ssh/sshd_config: etc/ssh/sshd_config
