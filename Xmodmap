@@ -1,6 +1,9 @@
-! 66 is the keycode of Caps_Lock
 clear Lock
-keycode 66 = Escape Escape
+clear control
+! 66 is the keycode of Caps_Lock
+keycode 66 = Control_L Control_L
+add control = Control_L Control_R
 
+! 9 is the keycode of Escape
 ! Make regular escape key do escape, and shift escape do capslock.
 keycode 9 = Escape Caps_Lock Escape

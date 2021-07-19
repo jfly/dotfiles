@@ -56,6 +56,10 @@ if [ -x /usr/bin/mcg ]; then
     /usr/bin/mcg &
 fi
 
+if [ -x /usr/bin/xcape ]; then
+    xcape
+fi
+
 # xmonad doesn't set a cursor.
 xsetroot -cursor_name left_ptr
 exec xmonad
