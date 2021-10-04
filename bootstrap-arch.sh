@@ -180,7 +180,7 @@ laptop_stuff() {
     aur_package dropbox
 
     ## Bluetooth stuff
-    arch_package gnome-bluetooth blueman
+    arch_package blueman
 
     ## Setting up X11 and xmonad
     # Install the appropriate video card driver: https://wiki.archlinux.org/index.php/xorg#Driver_installation
@@ -214,7 +214,8 @@ laptop_stuff() {
     enable_service NetworkManager.service
 
     ## Audio
-    arch_package pulseaudio pamixer pavucontrol pasystray paprefs bc sox
+    arch_package pipewire pipewire-{alsa,jack,media-session,pulse}
+    arch_package pamixer pavucontrol pasystray paprefs bc sox
     # Install [hcchu/volnoti](https://github.com/hcchu/volnoti#new-options-in-this-fork) from Github.
     # [volnoti](https://aur.archlinux.org/packages/volnoti) doesn't have the features needed for volnoti-brightness.
     if ! [ -x "$(command -v volnoti)" ]; then
@@ -236,14 +237,6 @@ laptop_stuff() {
             make
             sudo make install
         )
-    fi
-    # Automatically switch to Bluetooth or USB headset when connected
-    # See https://wiki.archlinux.org/index.php/PulseAudio/Troubleshooting#Automatically_switch_to_Bluetooth_or_USB_headset
-    # and https://wiki.archlinux.org/index.php/PulseAudio#Switch_on_connect.
-    if ! grep 'load-module module-switch-on-connect' /etc/pulse/default.pa &> /dev/null; then
-        sudo bash -c "echo 'load-module module-switch-on-connect' >> /etc/pulse/default.pa"
-        pulseaudio -k
-        pulseaudio --start
     fi
 
     ## Power stuff
