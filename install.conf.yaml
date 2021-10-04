@@ -30,7 +30,6 @@
     ~/.direnvrc: direnvrc
     ~/.dir_colors: dir_colors
     ~/.docker/config.json: docker/config.json
-    ~/.dosbox: dosbox
     ~/.gitconfig: gitconfig
     ~/.gitignore_global: gitignore_global
     ~/.jupyter/nbconfig: jupyter/nbconfig
