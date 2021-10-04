@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
-from subprocess import check_output, check_call, CalledProcessError
+from subprocess import CalledProcessError, check_call, check_output
+
 
 def _pamixer(args):
     output = None
@@ -10,14 +11,6 @@ def _pamixer(args):
         output = e.output
 
     return output.decode('utf-8')
-
-def _pamixer_with_sink(args):
-    return _pamixer(args)
-
-    # With this fresh install of Arch on breq (x1 carbon gen5), I'm only
-    # seeing 1 sink at a time, and you select the output via profiles instead.
-    # This makes this code simpler =)
-    #<<<return _pamixer(['--sink', _sink()] + args)
 
 def _sink():
     sinks_precedence = [
@@ -31,22 +24,22 @@ def _sink():
     return None
 
 def volume():
-    return int(_pamixer_with_sink(['--get-volume']).strip())
+    return int(_pamixer(['--get-volume']).strip())
 
 def set_volume(new_volume):
-    _pamixer_with_sink(['--set-volume', str(new_volume)])
+    _pamixer(['--set-volume', str(new_volume)])
 
 def increase_volume(delta):
-    _pamixer_with_sink(['--increase', str(delta)])
+    _pamixer(['--increase', str(delta)])
 
 def decrease_volume(delta):
-    _pamixer_with_sink(['--decrease', str(delta)])
+    _pamixer(['--decrease', str(delta)])
 
 def is_muted():
-    return _pamixer_with_sink(['--get-mute']).strip() == "true"
+    return _pamixer(['--get-mute']).strip() == "true"
 
 def set_mute(mute):
-    _pamixer_with_sink(['--mute' if mute else '--unmute'])
+    _pamixer(['--mute' if mute else '--unmute'])
 
 def toggle_mute():
-    _pamixer_with_sink(['--toggle-mute'])
+    _pamixer(['--toggle-mute'])
