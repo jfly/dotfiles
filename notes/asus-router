@@ -6,3 +6,6 @@ bin/open-home-router  # if not on the network
 nvram show | grep -i raspberry
 nvram unset custom_clientlist
 nvram commit
+
+# To clear dns cache
+service restart_dnsmasq
