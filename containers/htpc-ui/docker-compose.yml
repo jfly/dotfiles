@@ -3,7 +3,7 @@
 version: '2'
 services:
     nginx:
-        image: umputun/nginx-le:latest
+        build: .
         hostname: nginx
         restart: always
         container_name: nginx
@@ -20,17 +20,15 @@ services:
         volumes:
             - /etc/clark/nginx/ssl:/etc/nginx/ssl
             - ./etc/nginx/nginx.conf:/etc/nginx/nginx.conf
-            - ./etc/nginx/htpc.conf:/etc/nginx/service-htpc.conf
-            - ./etc/nginx/basic_auth_file:/etc/nginx/basic_auth_file
+            - ./etc/nginx/service-htpc.conf:/etc/nginx/service-htpc.conf
+            - /mnt/media/.build-secrets/htpc-ui/auth:/etc/nginx/auth
             - ./webroot:/webroot
             - /mnt/media:/mnt/media
-
-        ports:
-            - "80:80"
-            - "443:443"
 
         environment:
             - TZ=America/Los_Angeles
             - LETSENCRYPT=true
-            - LE_EMAIL=jeremyfleischma@gmail.com
-            - LE_FQDN=clark.jflei.com,kodi.clark.jflei.com,sync.clark.jflei.com,media.clark.jflei.com,torrents.clark.jflei.com,cups.clark.jflei.com,home-assistant.clark.jflei.com
+            - LE_EMAIL=jeremyfleischman@gmail.com
+            # Note: No need to set LE_FQDN because we're doing something
+            # clever. See our Dockerfile and the autogen-lefqdn-entrypoint.sh
+            # script.
