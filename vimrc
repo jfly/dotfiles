@@ -305,7 +305,9 @@ let g:ale_python_black_change_directory = 0
 autocmd FileType python nnoremap <leader>d o__import__('pdb').set_trace()#<<<<Esc>
 autocmd FileType python nnoremap <leader>D O__import__('pdb').set_trace()#<<<<Esc>
 autocmd FileType sh nnoremap <leader>d oecho -n "paused..." && read -r #<<<<Esc>
-autocmd FileType sh nnoremap <leader>D oecho -n "paused..." && read -r #<<<<Esc>
+autocmd FileType sh nnoremap <leader>D Oecho -n "paused..." && read -r #<<<<Esc>
+autocmd FileType ruby nnoremap <leader>d odebugger  #<<<<Esc>
+autocmd FileType ruby nnoremap <leader>D Odebugger  #<<<<Esc>
 
 autocmd FileType python nnoremap <leader>o o__import__('os').environ['JFLY'] = '1'#<<<<Esc>
 autocmd FileType python nnoremap <leader>l oif __import__('os').environ.get('JFLY'): __import__('pdb').set_trace()#<<<<Esc>
