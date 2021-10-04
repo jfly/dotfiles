@@ -98,13 +98,12 @@ User alarm
 
 ### San Clemente stuff
 Host kent
-# HostName kent.jflei.com
-HostName kent
+HostName kent.sc.jflei.com
 User kent
-ForwardAgent yes
+#ForwardAgent yes
 
 Host sc-router
 User root
-HostName 192.168.11.1
+HostName router.sc.jflei.com
 KexAlgorithms diffie-hellman-group14-sha1
 ###
