@@ -280,3 +280,5 @@ codi() {
 
 # At the bottom because it screws up syntax highlighting =(
 alias wcacheckgbot="ssh wca 'bash -c \"tail -f /var/log/nginx/access.log | grep /search.*Googlebot\"'"
+
+alias cdk='npx cdk'
