@@ -19,7 +19,6 @@ Plug 'xtal8/traces.vim'
 Plug 'majutsushi/tagbar'
 Plug 'dense-analysis/ale'
 Plug 'jesseleite/vim-agriculture'
-Plug 'vim-scripts/IndexedSearch'
 " TODO: figure out how to get only one of coc/ale to run pylint... >>>
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'metakirby5/codi.vim'
