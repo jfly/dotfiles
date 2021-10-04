@@ -156,3 +156,8 @@ if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-clou
 
 # Experimenting with nix.
 # if [ -e /home/jeremy/.nix-profile/etc/profile.d/nix.sh ]; then . /home/jeremy/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+# From https://nix.dev/tutorials/towards-reproducibility-pinning-nixpkgs
+#  > Channels are a way of distributing Nix software, but they are being phased
+#  > out. Even though they are still used by default, it is recommended to avoid
+#  > channels and <nixpkgs> by always setting NIX_PATH= to be empty.
+# export NIX_PATH=""
