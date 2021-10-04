@@ -42,7 +42,7 @@
     ~/.xinitrc: xinitrc
     ~/.xmobarrc: xmobarrc
     ~/.Xmodmap: Xmodmap
-    ~/.xmonad/xmonad.hs: xmonad.hs
+    ~/.xmonad/xmonad.hs: xmonad/xmonad.hs
     ~/.Xresources: Xresources
 
     /usr/share/themes/jfattymacs: usr/share/themes/jfattymacs
