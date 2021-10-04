@@ -28,5 +28,18 @@ use_asdf_python() {
 use_asdf() {
     local plugin=$1
     local version=$2
+    local where_command="asdf where $plugin $version"
+    local prefix
+    prefix=$($where_command)
+    if test $? -ne 0; then
+        echo "I got an error while searching for $plugin $version installed with asdf. Here's the command I used:"
+        echo ""
+        echo "    $where_command"
+        echo ""
+        echo "Maybe you need to install that version of $plugin? Here's how:"
+        echo ""
+        echo "    asdf install $plugin $version"
+        exit 1
+    fi
     load_prefix $(asdf where $plugin $version)
 }
