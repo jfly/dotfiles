@@ -52,6 +52,10 @@ IdentitiesOnly yes
 Hostname 34.219.121.184
 User ubuntu
 RemoteForward 4001 localhost:5050
+
+Host h4-*
+ProxyCommand h4-bastion-proxy %h %p %n
+User jeremy
 ###
 
 ### Snowdon stuff
