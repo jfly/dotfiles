@@ -65,7 +65,7 @@ HostName strider
 User admin
 
 Host clark
-HostName clark.jflei.com
+HostName clark.snowdon.jflei.com
 User clark
 ForwardAgent yes
 
