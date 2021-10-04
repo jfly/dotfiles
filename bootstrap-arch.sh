@@ -325,13 +325,6 @@ kodi_stuff() {
 nas_stuff() {
     install_vim vim
 
-    ## Resilio Sync stuff
-    # TODO: investigate seafile as a truely free alternative
-    #       https://www.reddit.com/r/torrents/comments/5xpfy9/is_there_any_free_alternative_to_resilio_sync/demq52s/
-    aur_package rslsync
-    mkdir -p ~/var/lib/rslsync ~/run/resilio
-    systemctl --user --now enable rslsync
-
     # Enable sshd
     enable_service sshd
 
