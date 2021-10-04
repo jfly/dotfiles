@@ -216,6 +216,8 @@ function start_tmux {
     done
 }
 
+alias glola="git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --branches --glob='refs/remotes/origin' --glob='refs/remotes/upstream/*_release' --glob='refs/remotes/upstream/jfly/*' HEAD upstream/master"
+
 function cgl {
     hub browse -u -- commit/$1 | clipit
 }
