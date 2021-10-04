@@ -351,13 +351,13 @@ nas_stuff() {
             echo
             echo "$HOSTNAME:{PLAIN}$password" > etc/nginx/basic_auth_file
         fi
-        docker-compose up --detach
+        docker compose up --detach
     )
 
     # Start the home-assistant docker container
     (
         cd ~/.dotfiles/containers/home-assistant
-        docker-compose up --detach
+        docker compose up --detach
     )
 
     # Install and configure ddclient for dynamic dns
