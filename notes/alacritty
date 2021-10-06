@@ -5,6 +5,7 @@
     - DPI investigation
         - https://github.com/alacritty/alacritty/issues/2886
         - https://github.com/rust-windowing/winit/issues/1228
+        - https://github.com/alacritty/alacritty/issues/4797
 
 
 2020-07-12
