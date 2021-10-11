@@ -1,0 +1,21 @@
+version: '3'
+services:
+    kodi-headless:
+        container_name: kodi-headless
+        image: milaq/kodi-headless:leia
+        volumes:
+            - /mnt/media/:/mnt/media/
+        restart: always
+
+        environment:
+            - KODI_DBHOST=clark
+            - KODI_DBUSER=kodi
+            - KODI_DBPASS=${KODI_DBPASS}
+
+        # This is only exposed so sonarr can talk to it. TODO: containerize sonarr, remove this.
+        ports:
+            - '8080:8080'
+
+networks:
+    default:
+        name: clark

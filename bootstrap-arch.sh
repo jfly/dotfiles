@@ -331,27 +331,15 @@ nas_stuff() {
     sudo sed -i 's_\( *"download-dir": \).*_\1"/mnt/media/torrents",_' /var/lib/transmission/.config/transmission-daemon/settings.json
     sudo sed -i 's_\( *"rpc-host-whitelist": \).*_\1"*",_' /var/lib/transmission/.config/transmission-daemon/settings.json
     sudo sed -i 's_\( *"rpc-host-whitelist-enabled": \).*_\1false,_' /var/lib/transmission/.config/transmission-daemon/settings.json
+    sudo sed -i 's_\( *"rpc-whitelist": \).*_\1"*",_' /var/lib/transmission/.config/transmission-daemon/settings.json
+    sudo sed -i 's_\( *"rpc-whitelist-enabled": \).*_\1false,_' /var/lib/transmission/.config/transmission-daemon/settings.json
     sudo systemctl start transmission
 
     # Configure and start HTPC webui docker container.
-    (
-        set -e
-        cd ~/.dotfiles/containers/htpc-ui/
-        if [ ! -f etc/nginx/basic_auth_file ]; then
-            echo "Enter the password you want to use for HTTP basic access from the outside world."
-            echo -n "> "
-            read -r -s password
-            echo
-            echo "$HOSTNAME:{PLAIN}$password" > etc/nginx/basic_auth_file
-        fi
-        docker compose up --detach
-    )
+    docker compose -f ~/.dotfiles/containers/htpc-ui/docker-compose.yml up --detach
 
     # Start the home-assistant docker container
-    (
-        cd ~/.dotfiles/containers/home-assistant
-        docker compose up --detach
-    )
+    docker compose -f ~/.dotfiles/containers/home-assistant/docker-compose.yml up --detach
 }
 
 if [ "$HOSTNAME" = "dalinar" ]; then

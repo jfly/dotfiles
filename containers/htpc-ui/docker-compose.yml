@@ -1,15 +1,11 @@
 # Copied from https://github.com/umputun/nginx-le
 
-version: '2'
+version: '3'
 services:
     nginx:
-        build: .
-        hostname: nginx
-        restart: always
         container_name: nginx
-        # In order for proxy_pass to other services running on this server to
-        # work, we need to run in "host" network mode.
-        network_mode: host
+        build: .
+        restart: always
 
         logging:
           driver: json-file
@@ -32,3 +28,13 @@ services:
             # Note: No need to set LE_FQDN because we're doing something
             # clever. See our Dockerfile and the autogen-lefqdn-entrypoint.sh
             # script.
+
+        ports:
+            - '80:80'
+            - '443:443'
+            - '9090:9090'
+
+
+networks:
+    default:
+        name: clark
