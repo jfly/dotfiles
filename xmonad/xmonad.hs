@@ -51,7 +51,7 @@ windowPlacement = composeAll [
         -- Music stuff
         className =? "Mcg" --> doShift "music",
 
-        role =? "picker" --> doFloat
+        appName =? "picker" --> doFloat
     ] where role = stringProperty "WM_WINDOW_ROLE"
 
 -- https://github.com/hcchu/dotfiles/blob/master/.xmonad/xmonad.hs
