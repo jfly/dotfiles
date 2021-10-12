@@ -23,6 +23,6 @@ terminalOn "shtuff-as-pwd" "play"
 terminalOn "./pythonenv vim" "play"
 
 cd ~/honor/external-web
-terminalOn "make run" "wrk"
+# terminalOn "make run" "wrk"
 terminalOn "shtuff-as-pwd" "wrk"
 terminalOn "./pythonenv vim" "wrk"
