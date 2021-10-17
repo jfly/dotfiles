@@ -153,11 +153,6 @@ install_vim() {
     ## Vim
     arch_package "$1" editorconfig-core-c ctags
     vim +PlugInstall +qall
-    # Symlink vi to vim if it has not been symlinked already.
-    if [ "$(readlink /usr/bin/vi)" != "/usr/bin/vim" ]; then
-        sudo mv /usr/bin/vi /usr/bin/vi.bak
-        sudo ln -s /usr/bin/vim /usr/bin/vi
-    fi
 }
 
 install_docker() {
