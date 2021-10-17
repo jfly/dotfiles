@@ -1,5 +1,7 @@
 # Music
 AddPackage beets # Flexible music library manager and tagger
+AddPackage python-pyacoustid # Bindings for Chromaprint acoustic fingerprinting and the Acoustid API
+AddPackage python-eyed3 # A Python module and program for processing information about mp3 files
 AddPackage abcde # Frontend command-line utility that grabs tracks off a CD, encodes them to ogg or mp3 format, and tags them, all in one go
 AddPackage mpc # Minimalist command line interface to MPD
 AddPackage mpd # Flexible, powerful, server-side application for playing music

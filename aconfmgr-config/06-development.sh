@@ -60,22 +60,9 @@ AddPackage shellcheck # Shell script analysis tool
 
 ### Python
 AddPackage python # Next generation of the python high-level scripting language
-AddPackage python-eyed3 # A Python module and program for processing information about mp3 files
-AddPackage python-pexpect # For controlling and automating applications
 AddPackage python-pip # The PyPA recommended tool for installing Python packages
 AddPackage python-pipenv # Sacred Marriage of Pipfile, Pip, & Virtualenv.
-AddPackage python-poetry # Python dependency management and packaging made easy
-AddPackage python-pyacoustid # Bindings for Chromaprint acoustic fingerprinting and the Acoustid API
-AddPackage python-pylint # Analyzes Python code looking for bugs and signs of poor quality
-AddPackage python-setproctitle # Allows a python process to change its process title
-AddPackage python-tqdm # Fast, Extensible Progress Meter
-AddPackage python-websockets # Python implementation of the WebSocket Protocol (RFC 6455)
-AddPackage python-wxpython # Cross-platform GUI toolkit
-AddPackage python2-pip # The PyPA recommended tool for installing Python packages
-AddPackage --foreign python2-distutils-extra # Enhancements to the Python build system
-AddPackage --foreign python2-pybluez # Python wrapper for the BlueZ Bluetooth stack
-AddPackage --foreign python2-pycryptodomex # A self-contained Python package of low-level cryptographic primitives
-AddPackage --foreign python2-simplejson # Simple, fast, extensible JSON encoder/decoder for Python
+IgnorePath '*.pyc' # There's a surprising number of these files scattered around. I guess a lot of tools like to use Python somewhere internally.
 
 ### Node/Javascript
 AddPackage yarn # Fast, reliable, and secure dependency management
@@ -87,9 +74,6 @@ AddPackage jre-openjdk-headless
 CreateLink /usr/lib/jvm/default java-17-openjdk
 CreateLink /usr/lib/jvm/default-runtime java-17-openjdk
 AddPackage maven # Java project management and project comprehension tool
-
-### Ruby
-AddPackage ruby-irb # Interactive Ruby command-line tool for REPL (Read Eval Print Loop).
 
 ### Perl
 AddPackage perl # A highly capable, feature-rich programming language
