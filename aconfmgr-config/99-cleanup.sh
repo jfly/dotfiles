@@ -11,7 +11,6 @@ CreateLink /etc/X11/xorg.conf.d/20-intel.conf /home/jeremy/gitting/dotfiles/etc/
 CreateLink /etc/X11/xorg.conf.d/20-trackpoint.conf /home/jeremy/gitting/dotfiles/etc/X11/xorg.conf.d/20-trackpoint.conf
 CreateLink /etc/acpi/events/cd_play /home/jeremy/gitting/dotfiles/etc/acpi/events/cd_play
 CreateLink /etc/acpi/events/lid /home/jeremy/gitting/dotfiles/etc/acpi/events/lid
-CreateLink /etc/locale.conf /home/jeremy/gitting/dotfiles/etc/locale.conf
 CreateLink /etc/modprobe.d/nobeep.conf /home/jeremy/gitting/dotfiles/etc/modprobe.d/nobeep.conf
 CreateLink /etc/pacman.d/hooks/99-secureboot.hook /home/jeremy/gitting/dotfiles/etc/pacman.d/hooks/99-secureboot.hook
 CreateLink /etc/pacman.d/hooks/mirrorupgrade.hook /home/jeremy/gitting/dotfiles/etc/pacman.d/hooks/mirrorupgrade.hook

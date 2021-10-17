@@ -56,6 +56,9 @@ function EnableLocale() {
     sed -i "s/#${locale}/${locale}/" "${locale_gen}"
 }
 EnableLocale "en_US.UTF-8 UTF-8"
+cat > "$(CreateFile /etc/locale.conf)" <<EOF
+LANG=en_US.UTF-8
+EOF
 IgnorePath '/usr/lib/locale/locale-archive' # https://man7.org/linux/man-pages/man1/localedef.1.html
 
 ### Users/shadow
