@@ -47,8 +47,6 @@
     ~/.themes: themes
     ~/.config/gtk-3.0: config/gtk-3.0
 
-    /etc/systemd/system/fixinputs@.path: etc/systemd/system/fixinputs@.path
-    /etc/systemd/system/fixinputs@.service: etc/systemd/system/fixinputs@.service
     /etc/systemd/system/disable-bt-wakeup.service: etc/systemd/system/disable-bt-wakeup.service
 
 - shell:

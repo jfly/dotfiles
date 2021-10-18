@@ -124,6 +124,33 @@ EOF
 # Enable udevmon
 CreateLink /etc/systemd/system/multi-user.target.wants/udevmon.service /usr/lib/systemd/system/udevmon.service
 
+### Run fixinputs whenever devices are added
+cat > "$(CreateFile /etc/systemd/system/fixinputs@.path)" <<EOF
+# Inspired by http://jasonwryan.com/blog/2014/01/20/udev/
+# and http://www.ocsmag.com/2015/09/02/monitoring-file-access-for-dummies/
+[Unit]
+Description=Triggers the service that sets up external keyboard
+
+[Path]
+PathChanged=/dev/input/
+
+[Install]
+WantedBy=multi-user.target
+EOF
+cat > "$(CreateFile /etc/systemd/system/fixinputs@.service)" <<EOF
+# Inspired by http://jasonwryan.com/blog/2014/01/20/udev/
+# and http://www.ocsmag.com/2015/09/02/monitoring-file-access-for-dummies/
+[Unit]
+Description=Configure external keyboard for user %i
+
+[Service]
+Type=oneshot
+
+ExecStart=/home/%i/bin/x11-run-as %i fixinputs
+EOF
+CreateLink /etc/systemd/system/fixinputs@jeremy.path /etc/systemd/system/fixinputs@.path
+CreateLink /etc/systemd/system/multi-user.target.wants/fixinputs@jeremy.path /etc/systemd/system/fixinputs@jeremy.path
+
 ### Video card drivers
 AddPackage xf86-video-intel # X.org Intel i810/i830/i915/945G/G965+ video drivers
 AddPackage libva-intel-driver # VA-API implementation for Intel G45 and HD Graphics family

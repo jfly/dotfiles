@@ -1,9 +1,0 @@
-# Inspired by http://jasonwryan.com/blog/2014/01/20/udev/
-# and http://www.ocsmag.com/2015/09/02/monitoring-file-access-for-dummies/
-[Unit]
-Description=Configure external keyboard for user %i
-
-[Service]
-Type=oneshot
-
-ExecStart=/home/%i/bin/x11-run-as %i fixinputs
