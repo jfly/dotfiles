@@ -38,6 +38,25 @@ AddPackage xclip # Command line interface to the X11 clipboard
 AddPackage gnome-keyring # Stores passwords and encryption keys
 AddPackage --foreign trayer-srg-git # trayer fork with multi monitor support, cleaned up codebase and other fancy stuff (git-version)
 
+### Run autoperipherals when hardware changes
+cat > "$(CreateFile /etc/udev/rules.d/10-autoperipherals.rules)" <<EOF
+SUBSYSTEM=="drm", ACTION=="change", RUN+="/usr/bin/systemctl start autoperipherals@jeremy.service"
+EOF
+cat > "$(CreateFile /etc/systemd/system/autoperipherals@.service)" <<EOF
+[Unit]
+Description=Refresh autoperipherals for user %i
+
+[Service]
+Type=simple
+# Don't kill child processes started by autoperipherals
+KillMode=none
+
+ExecStart=/home/%i/bin/x11-run-as %i autoperipherals
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
 ### Trackpoint
 cat > "$(CreateFile /etc/X11/xorg.conf.d/20-trackpoint.conf)" <<EOF
 Section "InputClass"

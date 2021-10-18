@@ -54,9 +54,6 @@
     /etc/systemd/logind.conf.d/no-suspend-on-lidswitch.conf: etc/systemd/logind.conf.d/no-suspend-on-lidswitch.conf
     /etc/systemd/logind.conf.d/suspend-on-powerbutton.conf: etc/systemd/logind.conf.d/suspend-on-powerbutton.conf
 
-    /etc/udev/rules.d/10-local.rules: etc/udev/rules.d/10-local.rules
-    /etc/systemd/system/monitors@.service: etc/systemd/system/monitors@.service
-
 - shell:
   - [git update-submodules, Install/update submodules]
   - ["chmod -R u=rwX,og= ~/.ssh/", Fix ssh key permissions]

@@ -17,9 +17,7 @@ CreateLink /etc/systemd/system/fixinputs@.service /home/jeremy/gitting/dotfiles/
 CreateLink /etc/systemd/system/fixinputs@jeremy.path /home/jeremy/gitting/dotfiles/etc/systemd/system/fixinputs@.path
 CreateLink /etc/systemd/system/multi-user.target.wants/disable-bt-wakeup.service /home/jeremy/gitting/dotfiles/etc/systemd/system//disable-bt-wakeup.service
 CreateLink /etc/systemd/system/multi-user.target.wants/fixinputs@jeremy.path /home/jeremy/gitting/dotfiles/etc/systemd/system/fixinputs@.path
+
 CreateLink /etc/systemd/system/sleep.target.wants/slock@jeremy.service /home/jeremy/gitting/dotfiles/etc/systemd/system/slock@.service
 CreateLink /etc/systemd/system/slock@.service /home/jeremy/gitting/dotfiles/etc/systemd/system/slock@.service
 CreateLink /etc/systemd/system/slock@jeremy.service /home/jeremy/gitting/dotfiles/etc/systemd/system/slock@.service
-
-CreateLink /etc/udev/rules.d/10-local.rules /home/jeremy/gitting/dotfiles/etc/udev/rules.d/10-local.rules
-CreateLink /etc/systemd/system/monitors@.service /home/jeremy/gitting/dotfiles/etc/systemd/system/monitors@.service
