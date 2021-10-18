@@ -32,7 +32,7 @@ AddPackage gawk # GNU version of awk
 AddPackage sed # GNU stream editor
 AddPackage grep # A string search utility
 AddPackage jq # Command-line JSON processor
-AddPackage the_silver_searcher # Code searching tool similar to Ack, but faster
+AddPackage ripgrep # A search tool that combines the usability of ag with the raw speed of grep
 
 ### Homies
 ## bin/inspect-windows-registry.sh

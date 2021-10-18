@@ -26,9 +26,6 @@ Plug 'samoshkin/vim-mergetool'
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
 
-" https://github.com/FatBoyXPC/dotfiles/commit/2f2827d822fe80b9b8d7137e5f193fa0be390255
-command! -bang -nargs=+ -complete=dir Ag call fzf#vim#ag_raw(agriculture#smart_quote_input(<q-args>), <bang>0)
-
 let mapleader = " "
 " Fast reloading of .vimrc
 map <leader>r :source ~/.vimrc<cr>
@@ -68,11 +65,8 @@ noremap 2<Backspace> :set background=light<CR>
 " https://github.com/FatBoyXPC/dotfiles/commit/53815a4009884dcf04b3f009de9d1bf458bed32f
 highlight! link SignColumn LineNr
 
-" Experimenting with cross file search
-" See: http://stackoverflow.com/a/25879734
-" Copying from https://github.com/FatBoyXPC/dotfiles/commit/37b6ed80e20415fe181f4cacaa0f16bb37c19503
-noremap <Leader>/ "ay:Ag <C-r>a<Space>
-nnoremap <Leader>* :Ag<Space><C-R><C-W>
+" Cross file search
+nnoremap <Leader>* :Rg<Space><C-R><C-W>
 noremap ]q :cnext<CR>
 noremap [q :cprevious<CR>
 
