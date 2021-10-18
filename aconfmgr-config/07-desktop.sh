@@ -38,6 +38,29 @@ AddPackage xclip # Command line interface to the X11 clipboard
 AddPackage gnome-keyring # Stores passwords and encryption keys
 AddPackage --foreign trayer-srg-git # trayer fork with multi monitor support, cleaned up codebase and other fancy stuff (git-version)
 
+### Trackpoint
+cat > "$(CreateFile /etc/X11/xorg.conf.d/20-trackpoint.conf)" <<EOF
+Section "InputClass"
+  Identifier "Trackpoint Acceleration"
+  MatchDriver "libinput"
+  MatchProduct "TPPS/2 IBM TrackPoint|TPPS/2 Elan TrackPoint|ThinkPad Compact Bluetooth Keyboard with TrackPoint"
+
+  # See https://wiki.archlinux.org/index.php/Mouse_acceleration#with_libinput.
+  MatchIsPointer "yes"
+  Option "AccelProfile" "flat"
+  Option "AccelSpeed" "1"
+EndSection
+
+Section "InputClass"
+  Identifier "TouchPad Acceleration"
+  MatchDriver "libinput"
+  MatchProduct "Synaptics TM3289-002"
+  Option "AccelSpeed" "0.0"
+  Option "Tapping" "yes"
+  Option "TappingDragLock" "yes"
+EndSection
+EOF
+
 ### Misc ignore
 IgnorePath '/usr/share/applications/mimeinfo.cache' # https://specifications.freedesktop.org/desktop-entry-spec/0.9.5/ar01s07.html
 IgnorePath '/usr/local/share/applications/mimeinfo.cache' # https://specifications.freedesktop.org/desktop-entry-spec/0.9.5/ar01s07.html
@@ -57,6 +80,13 @@ AddPackage xf86-video-intel # X.org Intel i810/i830/i915/945G/G965+ video driver
 AddPackage libva-intel-driver # VA-API implementation for Intel G45 and HD Graphics family
 AddPackage libva-utils # Intel VA-API Media Applications and Scripts for libva
 AddPackage libvdpau-va-gl # VDPAU driver with OpenGL/VAAPI backend
+cat > "$(CreateFile /etc/X11/xorg.conf.d/20-intel.conf)" <<EOF
+Section "Device"
+    Identifier "Intel Graphics"
+    Driver "intel"
+    Option "TearFree" "true"
+EndSection
+EOF
 
 ### Movie player
 AddPackage mplayer # Media player for Linux

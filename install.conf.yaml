@@ -62,9 +62,6 @@
     /etc/udev/rules.d/10-local.rules: etc/udev/rules.d/10-local.rules
     /etc/systemd/system/monitors@.service: etc/systemd/system/monitors@.service
 
-    /etc/X11/xorg.conf.d/20-intel.conf: etc/X11/xorg.conf.d/20-intel.conf
-    /etc/X11/xorg.conf.d/20-trackpoint.conf: etc/X11/xorg.conf.d/20-trackpoint.conf
-
     /etc/modprobe.d/nobeep.conf: etc/modprobe.d/nobeep.conf
     /etc/pacman.d/hooks/99-secureboot.hook: etc/pacman.d/hooks/99-secureboot.hook
     /etc/pacman.d/hooks/mirrorupgrade.hook: etc/pacman.d/hooks/mirrorupgrade.hook
