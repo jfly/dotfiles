@@ -20,11 +20,6 @@ base_stuff() {
 
     ## Install homies
     ./install
-
-    ## oh-my-zsh
-    if [ ! -d ~/.oh-my-zsh ]; then
-        git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
-    fi
 }
 
 laptop_stuff() {
@@ -43,8 +38,7 @@ laptop_stuff() {
     # [volnoti](https://aur.archlinux.org/packages/volnoti) doesn't have the features needed for volnoti-brightness.
     if ! [ -x "$(command -v volnoti)" ]; then
         (
-            THIRD_REPOS_DIR=~/thirdrepos
-            cd "$THIRD_REPOS_DIR"
+            cd ~/thirdrepos
             rm -rf volnoti
             git clone https://github.com/hcchu/volnoti.git
             cd volnoti
