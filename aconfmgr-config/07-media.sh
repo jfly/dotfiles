@@ -9,9 +9,13 @@ AddPackage abcde # Frontend command-line utility that grabs tracks off a CD, enc
 AddPackage mpd # Flexible, powerful, server-side application for playing music
 # TODO: figure out why mpd is so messy
 IgnorePath '/var/lib/mpd/*'
+
+# I couldn't install this without manually removing the "gmock>=1.10" from
+# the PKGBUILD file.
+#  https://aur.archlinux.org/packages/ashuffle/#comment-815297
 AddPackage --foreign ashuffle # Automatic library-wide shuffle for mpd.
+
 AddPackage mpc # Minimalist command line interface to MPD
-AddPackage --foreign mpdscribble # MPD client which submits track info to {Libre,Last}.fm
 AddPackage ncmpcpp # Almost exact clone of ncmpc with some new features
 AddPackage --foreign mcg # A covergrid for the Music Player Daemon.
 AddPackage --foreign vimpc-git # Vi/vim inspired client for Music Player Daemon (MPD)

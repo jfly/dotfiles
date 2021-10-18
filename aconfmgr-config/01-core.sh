@@ -31,7 +31,6 @@ IgnorePath '/usr/lib/modules/*'
 IgnorePath '/var/lib/dkms/*'
 AddPackage linux-firmware # Firmware files for Linux
 AddPackage base # Minimal package set to define a basic Arch Linux installation
-AddPackage intel-gpu-tools # Tools for development and testing of the Intel DRM driver
 AddPackage intel-ucode # Microcode update files for Intel CPUs
 AddPackage squashfs-tools # Tools for squashfs, a highly compressed read-only filesystem for Linux.
 AddPackage util-linux # Miscellaneous system utilities for Linux
@@ -57,6 +56,7 @@ CreateLink /etc/systemd/system/multi-user.target.wants/laptop-mode.service /usr/
 IgnorePath '/var/log/*'
 
 ### Timezone
+# https://wiki.archlinux.org/index.php/installation_guide#Time_zone
 CreateLink /etc/localtime /usr/share/zoneinfo/America/Los_Angeles
 
 ### Locale

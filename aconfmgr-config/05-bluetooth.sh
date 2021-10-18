@@ -14,3 +14,4 @@ CreateLink /etc/systemd/system/dbus-org.bluez.service /usr/lib/systemd/system/bl
 
 # Ignore various files
 IgnorePath '/var/lib/bluetooth/*'
+IgnorePath '/var/lib/blueman/network.state'

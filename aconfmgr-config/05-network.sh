@@ -47,7 +47,6 @@ CreateLink /etc/systemd/system/dbus-org.freedesktop.nm-dispatcher.service /usr/l
 IgnorePath '/var/lib/systemd/rfkill/*'
 IgnorePath '/etc/resolv.conf'
 IgnorePath '/etc/resolv.conf.bak'
-IgnorePath '/var/lib/blueman/network.state'
 IgnorePath '/etc/dhcpcd.duid'
 IgnorePath '/etc/dhcpcd.secret'
 IgnorePath '/var/lib/misc/dnsmasq.leases'

@@ -22,6 +22,8 @@ HandlePowerKey=suspend
 EOF
 
 ### Prevent unintended wakeups from suspend.
+# Without this, suspending with bluetooth devices connected would cause us to
+# immediately wake from sleep.
 cat > "$(CreateFile /etc/systemd/system/disable-bt-wakeup.service)" <<EOF
 # Inspired by https://bbs.archlinux.org/viewtopic.php?pid=1575617#p1575617
 # and https://www.reddit.com/r/archlinux/comments/3zxg65/how_to_permanently_change_procacpiwakeup_or/

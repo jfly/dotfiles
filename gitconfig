@@ -18,14 +18,11 @@
     default = simple
 [core]
     excludesfile = ~/.gitignore_global
-    #<<<pager = delta --dark
+    pager = delta --diff-so-fancy --dark
 [credential]
     helper = cache --timeout=3600
 [pager]
     branch = false
-[diff-so-fancy]
-    stripLeadingSymbols = false
-    changeHunkIndicators = true
 [branch]
     sort = -authordate
 [sendemail]

@@ -30,12 +30,10 @@ AddPackage eog # Eye of Gnome
 AddPackage feh # Fast and light imlib2-based image viewer
 AddPackage guvcview # Simple GTK+ interface for capturing and viewing video from v4l2 devices
 AddPackage --foreign trayer-srg-git # trayer fork with multi monitor support, cleaned up codebase and other fancy stuff (git-version)
-AddPackage --foreign xcwd-git # xcwd is a simple tool that prints the current working directory of the currently focused window.
 AddPackage numlockx # Turns on the numlock key in X11.
 AddPackage xdotool # Command-line X11 automation tool
 AddPackage xclip # Command line interface to the X11 clipboard
 AddPackage gnome-keyring # Stores passwords and encryption keys
-AddPackage --foreign trayer-srg-git # trayer fork with multi monitor support, cleaned up codebase and other fancy stuff (git-version)
 
 ### Run autoperipherals when hardware changes
 cat > "$(CreateFile /etc/udev/rules.d/10-autoperipherals.rules)" <<EOF
@@ -152,7 +150,13 @@ CreateLink /etc/systemd/system/fixinputs@jeremy.path /etc/systemd/system/fixinpu
 CreateLink /etc/systemd/system/multi-user.target.wants/fixinputs@jeremy.path /etc/systemd/system/fixinputs@jeremy.path
 
 ### Video card drivers
+# Install the appropriate video card driver: https://wiki.archlinux.org/index.php/xorg#Driver_installation
+# driconf is supposed to help with video tearing (see http://www.apolitech.com/2017/04/20how-to-solve-video-tearing-on-intel.html)
 AddPackage xf86-video-intel # X.org Intel i810/i830/i915/945G/G965+ video drivers
+# Needed for hardware acceleration on Parsec and Chrome. See
+# https://github.com/jfly/dotfiles/commit/eef1e079114aaee1fe0740151a5340e1574b4659
+# for details.
+AddPackage intel-gpu-tools # Tools for development and testing of the Intel DRM driver
 AddPackage libva-intel-driver # VA-API implementation for Intel G45 and HD Graphics family
 AddPackage libva-utils # Intel VA-API Media Applications and Scripts for libva
 AddPackage libvdpau-va-gl # VDPAU driver with OpenGL/VAAPI backend
@@ -232,6 +236,7 @@ AddPackage redshift # Adjusts the color temperature of your screen according to 
 IgnorePath '/var/lib/geoclue' # redshift depends on geoclue, which seems to be intent upon creating this folder.
 
 ### Screenshots
+AddPackage maim # Utility to take a screenshot using imlib2
 AddPackage screenkey # A screencast tool to display your keys inspired by Screenflick
 AddPackage byzanz # Record what's happening on your desktop
 # TODO: get all this flameshot stuff into a package

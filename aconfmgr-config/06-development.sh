@@ -14,8 +14,6 @@ AddPackage git-delta # Syntax-highlighting pager for git and diff output
 AddPackage github-cli # The GitHub CLI
 AddPackage hub # cli interface for Github
 AddPackage git # the fast distributed version control system
-AddPackage patch # A utility to apply patch files to original sources
-AddPackage patchutils # A small collection of programs that operate on patch files
 
 ### Docker
 AddPackage docker # Pack, ship and run any application as a lightweight container
@@ -56,9 +54,6 @@ AddPackage openbsd-netcat # TCP/IP swiss army knife. OpenBSD variant.
 AddPackage traceroute # Tracks the route taken by packets over an IP network
 AddPackage whois # Intelligent WHOIS client
 AddPackage wireshark-qt # Network traffic and protocol analyzer/sniffer - Qt GUI
-
-### Buildroot
-AddPackage fakeroot # Tool for simulating superuser privileges
 
 ### Shell
 AddPackage shellcheck # Shell script analysis tool
@@ -104,17 +99,21 @@ AddPackage meson # High productivity build system
 AddPackage php # A general-purpose scripting language that is especially suited to web development
 AddPackage imake # X.Org imake program and related utilities
 AddPackage --foreign cmake-format # Source code formatter for CMake listfiles
-AddPackage autoconf # A GNU tool for automatically configuring source code
 AddPackage autoconf2.13 # A GNU tool for automatically configuring source code (Legacy 2.1x version)
-AddPackage automake # A GNU tool for automatically creating Makefiles
 AddPackage binutils # A set of programs to assemble and manipulate binary and object files
 AddPackage bison # The GNU general-purpose parser generator
 AddPackage boost # Free peer-reviewed portable C++ source libraries (development headers)
-AddPackage gcc # The GNU Compiler Collection - C and C++ frontends
 AddPackage llvm # Collection of modular and reusable compiler and toolchain technologies
 AddPackage extra-cmake-modules # Extra modules and scripts for CMake
-AddPackage make # GNU make utility to maintain groups of programs
 AddPackage ctags # Generates an index file of language objects found in source files
+
+### Dependencies to install stuff from the AUR
+AddPackage gcc
+AddPackage fakeroot
+AddPackage patch # A utility to apply patch files to original sources
+AddPackage autoconf
+AddPackage automake
+AddPackage make # GNU make utility to maintain groups of programs
 
 ### cubing/icons
 AddPackage potrace # Utility for tracing a bitmap (input
@@ -129,6 +128,7 @@ AddPackage doxygen # Documentation system for C++, C, Java, IDL and PHP
 AddPackage expect # A tool for automating interactive applications
 AddPackage diffstat # Display a histogram of diff changes
 AddPackage diffutils # Utility programs used for creating patch files
+AddPackage patchutils # A small collection of programs that operate on patch files
 AddPackage wkhtmltopdf # Command line tools to render HTML into PDF and various image formats
 
 ### Graphviz
