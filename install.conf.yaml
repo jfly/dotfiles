@@ -47,9 +47,4 @@
     ~/.themes: themes
     ~/.config/gtk-3.0: config/gtk-3.0
 
-    /etc/systemd/system/disable-bt-wakeup.service: etc/systemd/system/disable-bt-wakeup.service
-
 - shell:
-  - [git update-submodules, Install/update submodules]
-  - ["chmod -R u=rwX,og= ~/.ssh/", Fix ssh key permissions]
-  - ["chmod -R u=rwX,og= ~/.gnupg/", Fix gnupg permissions]

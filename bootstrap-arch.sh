@@ -63,19 +63,9 @@ base_stuff() {
     sudo locale-gen
     sudo bash -c "echo LANG=en_US.UTF-8 > /etc/locale.conf"
 
-    ## Some hacky pre-setup before running dotbot
-    # Dotbot sets up some symlinks into Dropbox, but this doesn't work if our
-    # Dropbox has not yet sync-ed. We hack around this by creating the expected
-    # folders if they don't yet exist.
-    mkdir -p ~/Dropbox/linux-secrets/{kaladin-ssh,gnupg}
-    mkdir -p ~/Dropbox/pics/lolcommits
-    sudo mkdir -p /root/Dropbox/linux-secrets/{kaladin-ssh,gnupg}
-    sudo mkdir -p /root/Dropbox/pics/lolcommits
-
     ## Install dotfiles
     arch_package which python
     git submodule update --init
-    sudo ./install
     ./install
 
     # TODO - for some reason, symlinking this file gives a
@@ -162,8 +152,15 @@ install_docker() {
 }
 
 laptop_stuff() {
+    # Here we're setting up some symlinks into Dropbox, but this doesn't work
+    # if our Dropbox has not yet sync-ed. We hack around this by creating the
+    # expected folders if they don't yet exist.
+    mkdir -p ~/Dropbox/linux-secrets/{kaladin-ssh,gnupg}
+    mkdir -p ~/Dropbox/pics/lolcommits
     ln -sf ~/.ssh ~/Dropbox/linux-secrets/kaladin-ssh
+    chmod -R u=rwX,og= ~/.ssh/ # Fix ssh key permissions
     ln -sf ~/.gnupg ~/Dropbox/linux-secrets/gnupg
+    chmod -R u=rwX,og= ~/.gnupg # Fix gnupg permissions
     ln -sf ~/.lolcommits ~/Dropbox/pics/lolcommits
 
     install_vim gvim
