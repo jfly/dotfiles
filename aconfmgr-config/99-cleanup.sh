@@ -30,6 +30,5 @@ CreateLink /etc/systemd/system/slock@.service /home/jeremy/gitting/dotfiles/etc/
 CreateLink /etc/systemd/system/slock@jeremy.service /home/jeremy/gitting/dotfiles/etc/systemd/system/slock@.service
 CreateLink /etc/udev/rules.d/10-local.rules /home/jeremy/gitting/dotfiles/etc/udev/rules.d/10-local.rules
 CreateLink /etc/udevmon.yaml /home/jeremy/gitting/dotfiles/etc/udevmon.yaml
-CreateLink /etc/vconsole.conf /home/jeremy/gitting/dotfiles/etc/vconsole.conf
 CreateLink /usr/lib/systemd/system/monitors.service /home/jeremy/gitting/dotfiles/units/monitors.service
 CreateLink /usr/share/themes/jfattymacs /home/jeremy/gitting/dotfiles/usr/share/themes/jfattymacs

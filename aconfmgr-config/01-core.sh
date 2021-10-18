@@ -90,3 +90,9 @@ IgnorePath '/etc/adjtime'
 IgnorePath '/usr/share/info/dir' # Index of all the info files. https://bbs.archlinux.org/viewtopic.php?id=55268
 IgnorePath '/etc/ld.so.cache' # "File containing an ordered list of libraries found in the directories specified in /etc/ld.so.conf, as well as those found in the trusted directories."
 IgnorePath '/etc/xml/catalog' # This comes from libxml2, which a number of packages depend on. http://xmlsoft.org/catalog.html
+
+### Console
+# Use a larger font.
+cat > "$(CreateFile /etc/vconsole.conf)" <<EOF
+FONT=LatGrkCyr-12x22
+EOF

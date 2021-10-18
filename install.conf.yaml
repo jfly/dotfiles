@@ -66,7 +66,6 @@
     /etc/X11/xorg.conf.d/20-trackpoint.conf: etc/X11/xorg.conf.d/20-trackpoint.conf
 
     /etc/modprobe.d/nobeep.conf: etc/modprobe.d/nobeep.conf
-    /etc/vconsole.conf: etc/vconsole.conf
     /etc/pacman.d/hooks/99-secureboot.hook: etc/pacman.d/hooks/99-secureboot.hook
     /etc/pacman.d/hooks/mirrorupgrade.hook: etc/pacman.d/hooks/mirrorupgrade.hook
 
