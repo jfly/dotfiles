@@ -61,8 +61,6 @@
     /etc/udev/rules.d/10-local.rules: etc/udev/rules.d/10-local.rules
     /etc/systemd/system/monitors@.service: etc/systemd/system/monitors@.service
 
-    /etc/modprobe.d/nobeep.conf: etc/modprobe.d/nobeep.conf
-
 - shell:
   - [git update-submodules, Install/update submodules]
   - ["chmod -R u=rwX,og= ~/.ssh/", Fix ssh key permissions]
