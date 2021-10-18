@@ -29,7 +29,12 @@ IgnorePath '/etc/docker/key.json' # https://stackoverflow.com/questions/47573820
 echo "jeremy:1000:65536" > "$(CreateFile /etc/subgid)"
 echo "jeremy:1000:65536" > "$(CreateFile /etc/subuid)"
 # Enable the service.
-CopyFile /etc/systemd/system/docker.service.d/override.conf
+cat > "$(CreateFile /etc/systemd/system/docker.service.d/override.conf)" <<EOF
+[Service]
+ExecStart=
+# ExecStart=/usr/bin/dockerd -H fd:// -s overlay2 --userns-remap=jeremy
+ExecStart=/usr/bin/dockerd -H fd:// -s overlay2
+EOF
 IgnorePath '/opt/containerd/*' # containerd likes to create this folder on startup. See https://github.com/containerd/containerd/blob/main/docs/managed-opt.md for more details.
 IgnorePath '/var/lib/containerd/*'
 
