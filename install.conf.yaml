@@ -21,7 +21,6 @@
     ~/.config/dunst: config/dunst
     ~/.config/fontconfig: config/fontconfig
     ~/.config/git: config/git
-    ~/.config/gtk-3.0: config/gtk-3.0
     ~/.config/mpd/mpd.conf: config/mpd/mpd.conf
     ~/.config/pirate-get: config/pirate-get
     ~/.config/roxterm.sourceforge.net: config/roxterm.sourceforge.net
@@ -45,7 +44,9 @@
     ~/.xmonad/xmonad.hs: xmonad/xmonad.hs
     ~/.Xresources: Xresources
 
-    /usr/share/themes/jfattymacs: usr/share/themes/jfattymacs
+    # Create and set a custom GTK theme.
+    ~/.themes: themes
+    ~/.config/gtk-3.0: config/gtk-3.0
 
     /etc/acpi/events/lid: etc/acpi/events/lid
     /etc/acpi/events/cd_play: etc/acpi/events/cd_play
