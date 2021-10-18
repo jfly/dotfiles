@@ -341,3 +341,16 @@ noremap <leader>y "+y
 noremap <leader>p "+p
 noremap <leader>P "+P
 """""""
+
+""""""" Easily move blocks of code around.
+" Trick copied from https://vi.stackexchange.com/a/2363
+execute "set <M-j>=\ej"
+execute "set <M-k>=\ek"
+" Copied from https://vim.fandom.com/wiki/Moving_lines_up_or_down#Mappings_to_move_lines
+nnoremap <M-j> :m .+1<CR>==
+nnoremap <M-k> :m .-2<CR>==
+inoremap <M-j> <Esc>:m .+1<CR>==gi
+inoremap <M-k> <Esc>:m .-2<CR>==gi
+vnoremap <M-j> :m '>+1<CR>gv=gv
+vnoremap <M-k> :m '<-2<CR>gv=gv
+"""""""
