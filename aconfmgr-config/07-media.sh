@@ -19,10 +19,6 @@ cat > "$(CreateFile /etc/acpi/events/cd_play)" <<EOF
 event=cd/play
 action=xdotool key --clearmodifiers XF86AudioPlay
 EOF
-cat > "$(CreateFile /etc/acpi/events/lid)" <<EOF
-event=button/lid
-action=/home/jeremy/bin/x11-run-as jeremy lid.sh %e
-EOF
 
 ### Media editing (images, audio, video)
 AddPackage gimp # GNU Image Manipulation Program

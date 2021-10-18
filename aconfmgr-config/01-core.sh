@@ -109,9 +109,3 @@ IgnorePath '/etc/xml/catalog' # This comes from libxml2, which a number of packa
 cat > "$(CreateFile /etc/vconsole.conf)" <<EOF
 FONT=LatGrkCyr-12x22
 EOF
-
-### Disable the obnoxious PC speaker beep
-# Trick from https://wiki.archlinux.org/title/PC_speaker#Disable_PC_Speaker
-cat > "$(CreateFile /etc/modprobe.d/nobeep.conf)" << EOF
-blacklist pcspkr
-EOF

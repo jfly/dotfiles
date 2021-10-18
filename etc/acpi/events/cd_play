@@ -1,2 +1,0 @@
-event=cd/play
-action=xdotool key --clearmodifiers XF86AudioPlay

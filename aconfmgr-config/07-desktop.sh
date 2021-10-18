@@ -31,7 +31,6 @@ AddPackage feh # Fast and light imlib2-based image viewer
 AddPackage guvcview # Simple GTK+ interface for capturing and viewing video from v4l2 devices
 AddPackage --foreign trayer-srg-git # trayer fork with multi monitor support, cleaned up codebase and other fancy stuff (git-version)
 AddPackage --foreign xcwd-git # xcwd is a simple tool that prints the current working directory of the currently focused window.
-AddPackage slock # A simple screen locker for X
 AddPackage numlockx # Turns on the numlock key in X11.
 AddPackage xdotool # Command-line X11 automation tool
 AddPackage xclip # Command line interface to the X11 clipboard
@@ -56,6 +55,27 @@ ExecStart=/home/%i/bin/x11-run-as %i autoperipherals
 [Install]
 WantedBy=multi-user.target
 EOF
+
+### slock
+AddPackage slock # A simple screen locker for X
+# Lock the screen on suspend. Trick copied from
+# https://wiki.archlinux.org/title/Slock#Lock_on_suspend.
+cat > "$(CreateFile /etc/systemd/system/slock@.service)" <<EOF
+[Unit]
+Description=Lock X session using slock for user %i
+Before=sleep.target
+
+[Service]
+User=%i
+Environment=DISPLAY=:0
+ExecStartPre=/usr/bin/xset dpms force suspend
+ExecStart=/usr/bin/slock
+
+[Install]
+WantedBy=sleep.target
+EOF
+CreateLink /etc/systemd/system/sleep.target.wants/slock@jeremy.service /etc/systemd/system/slock@.service
+CreateLink /etc/systemd/system/slock@jeremy.service /etc/systemd/system/slock@.service
 
 ### Trackpoint
 cat > "$(CreateFile /etc/X11/xorg.conf.d/20-trackpoint.conf)" <<EOF
