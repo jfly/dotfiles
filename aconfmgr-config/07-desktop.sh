@@ -112,6 +112,14 @@ IgnorePath '/etc/dbus-1/system.d'
 AddPackage interception-tools # A minimal composable infrastructure on top of libudev and libevdev
 AddPackage interception-caps2esc # Interception plugin that transforms the most useless key ever in the most useful one
 AddPackage --foreign interception-space2meta # space2meta: turn space into meta when chorded to another key (on release)
+# Hacky workaround for https://gitlab.com/interception/linux/tools/-/issues/50
+# On my system, systemd-udev-settle causes all sorts of noise trying to start
+# up various services that aren't eligible to run, then they all hit some
+# systemd start limit, and then systemd-udev-settle then has to wait 3 minutes
+# before letting the boot process continue.
+f="$(GetPackageOriginalFile interception-tools /usr/lib/systemd/system/udevmon.service)"
+sed -i 's/Wants=systemd-udev-settle.service/#Wants=systemd-udev-settle.service/' "$f"
+sed -i 's/After=systemd-udev-settle.service/#After=systemd-udev-settle.service/' "$f"
 # udevmon config from https://gitlab.com/interception/linux/plugins/space2meta
 cat > "$(CreateFile /etc/interception/udevmon.yaml)" <<EOF
 - JOB: intercept -g \$DEVNODE | caps2esc -m 1 | space2meta | uinput -d \$DEVNODE
