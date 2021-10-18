@@ -14,7 +14,3 @@ capslockx off
 
 # Speed up keyrepeat
 xset r rate 200 30
-
-# First reset keys before running xmodmap.
-setxkbmap
-xmodmap ~/.Xmodmap

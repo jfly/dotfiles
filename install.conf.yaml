@@ -40,7 +40,6 @@
     ~/.vim: vim
     ~/.xinitrc: xinitrc
     ~/.xmobarrc: xmobarrc
-    ~/.Xmodmap: Xmodmap
     ~/.xmonad/xmonad.hs: xmonad/xmonad.hs
     ~/.Xresources: Xresources
 
@@ -59,7 +58,6 @@
     /etc/systemd/logind.conf.d/no-suspend-on-lidswitch.conf: etc/systemd/logind.conf.d/no-suspend-on-lidswitch.conf
     /etc/systemd/logind.conf.d/suspend-on-powerbutton.conf: etc/systemd/logind.conf.d/suspend-on-powerbutton.conf
 
-    /etc/udevmon.yaml: etc/udevmon.yaml
     /etc/udev/rules.d/10-local.rules: etc/udev/rules.d/10-local.rules
     /etc/systemd/system/monitors@.service: etc/systemd/system/monitors@.service
 

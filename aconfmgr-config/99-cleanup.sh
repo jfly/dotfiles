@@ -25,5 +25,4 @@ CreateLink /etc/systemd/system/sleep.target.wants/slock@jeremy.service /home/jer
 CreateLink /etc/systemd/system/slock@.service /home/jeremy/gitting/dotfiles/etc/systemd/system/slock@.service
 CreateLink /etc/systemd/system/slock@jeremy.service /home/jeremy/gitting/dotfiles/etc/systemd/system/slock@.service
 CreateLink /etc/udev/rules.d/10-local.rules /home/jeremy/gitting/dotfiles/etc/udev/rules.d/10-local.rules
-CreateLink /etc/udevmon.yaml /home/jeremy/gitting/dotfiles/etc/udevmon.yaml
 CreateLink /usr/lib/systemd/system/monitors.service /home/jeremy/gitting/dotfiles/units/monitors.service

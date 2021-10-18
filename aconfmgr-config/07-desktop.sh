@@ -72,8 +72,18 @@ IgnorePath '/usr/share/icons/*/icon-theme.cache'
 IgnorePath '/etc/dbus-1/system.d'
 
 ### Keyboard
-AddPackage xcape # Configure modifier keys to act as other keys when pressed and released on their own
-AddPackage --foreign interception-space2meta # space2meta
+AddPackage interception-tools # A minimal composable infrastructure on top of libudev and libevdev
+AddPackage interception-caps2esc # Interception plugin that transforms the most useless key ever in the most useful one
+AddPackage --foreign interception-space2meta # space2meta: turn space into meta when chorded to another key (on release)
+# udevmon config from https://gitlab.com/interception/linux/plugins/space2meta
+cat > "$(CreateFile /etc/interception/udevmon.yaml)" <<EOF
+- JOB: intercept -g \$DEVNODE | caps2esc -m 1 | space2meta | uinput -d \$DEVNODE
+  DEVICE:
+    EVENTS:
+      EV_KEY: [KEY_CAPSLOCK, KEY_ESC, KEY_SPACE]
+EOF
+# Enable udevmon
+CreateLink /etc/systemd/system/multi-user.target.wants/udevmon.service /usr/lib/systemd/system/udevmon.service
 
 ### Video card drivers
 AddPackage xf86-video-intel # X.org Intel i810/i830/i915/945G/G965+ video drivers
