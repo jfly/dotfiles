@@ -11,44 +11,44 @@
 - link:
     ~/.dotfiles: ""
 
-    ~/.bash_profile: bash_profile
-    ~/.bashrc: bashrc
-    ~/.zshrc: zshrc
-    ~/.commonrc: commonrc
-    ~/.myclirc: myclirc
+    ~/.bash_profile: homies/bash_profile
+    ~/.bashrc: homies/bashrc
+    ~/.zshrc: homies/zshrc
+    ~/.commonrc: homies/commonrc
+    ~/.myclirc: homies/myclirc
 
-    ~/bin: bin
-    ~/.config/alacritty: config/alacritty
-    ~/.config/chromium-flags.conf: config/chromium-flags.conf
-    ~/.config/dunst: config/dunst
-    ~/.config/fontconfig: config/fontconfig
-    ~/.config/git: config/git
-    ~/.config/mpd/mpd.conf: config/mpd/mpd.conf
-    ~/.config/systemd: config/systemd
-    ~/.direnvrc: direnvrc
-    ~/.dir_colors: dir_colors
-    ~/.docker/config.json: docker/config.json
-    ~/.gitconfig: gitconfig
-    ~/.gitignore_global: gitignore_global
-    ~/.jupyter/nbconfig: jupyter/nbconfig
-    ~/.mplayer: mplayer
-    ~/.ssh/config: ssh/config
-    ~/.tmux.conf: tmux.conf
-    ~/.vimrc: vimrc
-    ~/.vim: vim
-    ~/.xinitrc: xinitrc
-    ~/.xmobarrc: xmobarrc
-    ~/.xmonad/xmonad.hs: xmonad/xmonad.hs
-    ~/.Xresources: Xresources
+    ~/bin: homies/bin
+    ~/.config/alacritty: homies/config/alacritty
+    ~/.config/chromium-flags.conf: homies/config/chromium-flags.conf
+    ~/.config/dunst: homies/config/dunst
+    ~/.config/fontconfig: homies/config/fontconfig
+    ~/.config/git: homies/config/git
+    ~/.config/mpd/mpd.conf: homies/config/mpd/mpd.conf
+    ~/.config/systemd: homies/config/systemd
+    ~/.direnvrc: homies/direnvrc
+    ~/.dir_colors: homies/dir_colors
+    ~/.docker/config.json: homies/docker/config.json
+    ~/.gitconfig: homies/gitconfig
+    ~/.gitignore_global: homies/gitignore_global
+    ~/.jupyter/nbconfig: homies/jupyter/nbconfig
+    ~/.mplayer: homies/mplayer
+    ~/.ssh/config: homies/ssh/config
+    ~/.tmux.conf: homies/tmux.conf
+    ~/.vimrc: homies/vimrc
+    ~/.vim: homies/vim
+    ~/.xinitrc: homies/xinitrc
+    ~/.xmobarrc: homies/xmobarrc
+    ~/.xmonad/xmonad.hs: homies/xmonad/xmonad.hs
+    ~/.Xresources: homies/Xresources
 
     # Create and set a custom GTK theme.
-    ~/.themes: themes
-    ~/.config/gtk-3.0: config/gtk-3.0
+    ~/.themes: homies/themes
+    ~/.config/gtk-3.0: homies/config/gtk-3.0
 
     # clark specific
     ~/.config/pirate-get:
         if: '[ hostname = "clark" ]'
-        path: config/pirate-get
+        path: homies/config/pirate-get
 
 - shell:
     - command: test -d ~/.oh-my-zsh || git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
