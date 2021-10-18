@@ -47,8 +47,6 @@
     ~/.themes: themes
     ~/.config/gtk-3.0: config/gtk-3.0
 
-    /etc/ssh/sshd_config: etc/ssh/sshd_config
-
     /etc/systemd/system/fixinputs@.path: etc/systemd/system/fixinputs@.path
     /etc/systemd/system/fixinputs@.service: etc/systemd/system/fixinputs@.service
     /etc/systemd/system/slock@.service: etc/systemd/system/slock@.service

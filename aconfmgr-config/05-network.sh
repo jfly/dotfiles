@@ -24,8 +24,7 @@ CreateLink /etc/systemd/system/dbus-org.freedesktop.Avahi.service /usr/lib/syste
 
 ### SSH
 AddPackage openssh # Premier connectivity tool for remote login with the SSH protocol
-# TODO: ignore less of this directory
-IgnorePath '/etc/ssh/*'
+IgnorePath '/etc/ssh/ssh_host_*'
 
 ### Certificates
 AddPackage openssl-1.0 # The Open Source toolkit for Secure Sockets Layer and Transport Layer Security
