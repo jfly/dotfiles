@@ -1,8 +1,6 @@
 - clean:
     ~/:
         force: true
-    ~/.config:
-        recursive: true
 
 - defaults:
     link:
@@ -48,4 +46,6 @@
     ~/.config/gtk-3.0: config/gtk-3.0
 
     # clark specific
-    ~/.config/pirate-get: config/pirate-get
+    ~/.config/pirate-get:
+        if: '[ hostname = "clark" ]'
+        path: config/pirate-get
