@@ -10,8 +10,6 @@ EOF
 CreateLink /etc/acpi/events/cd_play /home/jeremy/gitting/dotfiles/etc/acpi/events/cd_play
 CreateLink /etc/acpi/events/lid /home/jeremy/gitting/dotfiles/etc/acpi/events/lid
 CreateLink /etc/modprobe.d/nobeep.conf /home/jeremy/gitting/dotfiles/etc/modprobe.d/nobeep.conf
-CreateLink /etc/pacman.d/hooks/99-secureboot.hook /home/jeremy/gitting/dotfiles/etc/pacman.d/hooks/99-secureboot.hook
-CreateLink /etc/pacman.d/hooks/mirrorupgrade.hook /home/jeremy/gitting/dotfiles/etc/pacman.d/hooks/mirrorupgrade.hook
 CreateLink /etc/systemd/logind.conf.d/no-suspend-on-lidswitch.conf /home/jeremy/gitting/dotfiles/etc/systemd/logind.conf.d/no-suspend-on-lidswitch.conf
 CreateLink /etc/systemd/logind.conf.d/suspend-on-powerbutton.conf /home/jeremy/gitting/dotfiles/etc/systemd/logind.conf.d/suspend-on-powerbutton.conf
 CreateLink /etc/systemd/system/disable-bt-wakeup.service /home/jeremy/gitting/dotfiles/etc/systemd/system/disable-bt-wakeup.service

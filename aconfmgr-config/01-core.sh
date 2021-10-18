@@ -5,6 +5,19 @@ IgnorePath '/boot/*'
 IgnorePath '/etc/refind.d/keys/refind_local.cer'
 IgnorePath '/etc/refind.d/keys/refind_local.crt'
 IgnorePath '/etc/refind.d/keys/refind_local.key'
+cat > "$(CreateFile /etc/pacman.d/hooks/99-secureboot.hook)" <<EOF
+[Trigger]
+Operation = Install
+Operation = Upgrade
+Type = Package
+Target = linux
+
+[Action]
+Description = Signing Kernel for SecureBoot
+When = PostTransaction
+Exec = /usr/bin/sbsign --key /etc/refind.d/keys/refind_local.key --cert /etc/refind.d/keys/refind_local.crt --output /boot/vmlinuz-linux /boot/vmlinuz-linux
+Depends = sbsigntools
+EOF
 
 ### Full disk encryption
 AddPackage --foreign shim-signed # Initial UEFI bootloader that handles chaining to a trusted full bootloader under secure boot environments.

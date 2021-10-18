@@ -1,5 +1,4 @@
 ### pacman configuration
-AddPackage reflector # A Python 3 module and script to retrieve and filter the latest Pacman mirror list.
 AddPackage pacman-contrib # Contributed scripts and tools for pacman systems
 
 IgnorePath '/etc/pacman.d/mirrorlist'
@@ -28,3 +27,18 @@ CreateLink /etc/systemd/user/sockets.target.wants/gpg-agent-browser.socket /usr/
 CreateLink /etc/systemd/user/sockets.target.wants/gpg-agent-extra.socket /usr/lib/systemd/user/gpg-agent-extra.socket
 CreateLink /etc/systemd/user/sockets.target.wants/gpg-agent-ssh.socket /usr/lib/systemd/user/gpg-agent-ssh.socket
 CreateLink /etc/systemd/user/sockets.target.wants/gpg-agent.socket /usr/lib/systemd/user/gpg-agent.socket
+
+### Auto update pacman mirrorlist
+AddPackage reflector # A Python 3 module and script to retrieve and filter the latest Pacman mirror list.
+cat > "$(CreateFile /etc/pacman.d/hooks/mirrorupgrade.hook)" <<EOF
+[Trigger]
+Operation = Upgrade
+Type = Package
+Target = pacman-mirrorlist
+
+[Action]
+Description = Updating pacman-mirrorlist with reflector and removing pacnew.
+When = PostTransaction
+Depends = reflector
+Exec = /bin/sh -c "reflector --country 'United States' --latest 200 --age 24 --sort rate --save /etc/pacman.d/mirrorlist; rm -f /etc/pacman.d/mirrorlist.pacnew"
+EOF
