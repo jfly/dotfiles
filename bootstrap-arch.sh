@@ -10,27 +10,6 @@ if [ "$EUID" -eq 0 ]; then
     exit 1
 fi
 
-arch_package() {
-    to_install=""
-    for arch_package_name in "$@"; do
-        if [ -n "$(pacman -Qs "^${arch_package_name}$")" ]; then
-            echo "warning: Arch package $arch_package_name is already installed -- skipping"
-        else
-            to_install="$to_install $arch_package_name"
-        fi
-    done
-
-    if [ -n "$to_install" ]; then
-        sudo pacman -S --noconfirm --needed $to_install
-    fi
-}
-
-THIRD_REPOS_DIR=~/thirdrepos
-
-enable_service() {
-    sudo systemctl enable --now "$@"
-}
-
 base_stuff() {
     git submodule update --init
 
@@ -46,9 +25,6 @@ base_stuff() {
     if [ ! -d ~/.oh-my-zsh ]; then
         git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
     fi
-
-    ## Enable NTP
-    sudo timedatectl set-ntp true
 }
 
 laptop_stuff() {
@@ -67,7 +43,8 @@ laptop_stuff() {
     # [volnoti](https://aur.archlinux.org/packages/volnoti) doesn't have the features needed for volnoti-brightness.
     if ! [ -x "$(command -v volnoti)" ]; then
         (
-            cd $THIRD_REPOS_DIR
+            THIRD_REPOS_DIR=~/thirdrepos
+            cd "$THIRD_REPOS_DIR"
             rm -rf volnoti
             git clone https://github.com/hcchu/volnoti.git
             cd volnoti
