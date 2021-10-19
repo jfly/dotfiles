@@ -10,7 +10,7 @@ function main() {
     if [ "$HDMI1_STATUS" == "connected" ]; then
         LAYOUT_NAME=hdmi
         TRAYER_HEIGHT=19
-        XMOBAR_FONT_SIZE=6
+        XMOBAR_FONT_SIZE=7
         XFT_DPI=$((1024*96))
 
         xrandr --output HDMI1 --preferred --pos 0x0 --rotate normal --output VIRTUAL1 --off --output DP1 --off --output eDP1 --off --output DP2 --off
@@ -22,7 +22,7 @@ function main() {
     elif [ "$DP1_STATUS" == "connected" ]; then
         LAYOUT_NAME=dp1
         TRAYER_HEIGHT=19
-        XMOBAR_FONT_SIZE=6
+        XMOBAR_FONT_SIZE=7
         XFT_DPI=$((1024*96))
 
         xrandr --output DP1 --preferred --pos 0x0 --rotate normal --output VIRTUAL1 --off --output HDMI1 --off --output eDP1 --off --output DP2 --off
@@ -38,7 +38,7 @@ function main() {
     elif [ "$DP2_STATUS" == "connected" ] || [ "$DP4_STATUS" == "connected" ] || [ "$DP5_STATUS" == "connected" ]; then
         LAYOUT_NAME=dp4
         TRAYER_HEIGHT=19
-        XMOBAR_FONT_SIZE=6
+        XMOBAR_FONT_SIZE=7
         XFT_DPI=$((1024*96))
 
         xrandr --output DP1-2 --preferred --pos 0x0 --rotate normal --output VIRTUAL1 --off --output HDMI1 --off --output eDP1 --off --output DP2 --off
@@ -54,7 +54,7 @@ function main() {
     else
         LAYOUT_NAME=mobile
         TRAYER_HEIGHT=25
-        XMOBAR_FONT_SIZE=9
+        XMOBAR_FONT_SIZE=10
         XFT_DPI=$((1024*133))
 
         xrandr --output HDMI1 --off --output VIRTUAL1 --off --output DP1 --off --output eDP1 --primary --mode 2560x1440 --pos 0x0 --rotate normal --output DP2 --off

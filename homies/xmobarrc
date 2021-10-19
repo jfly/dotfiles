@@ -1,5 +1,5 @@
 Config {
-       font = "xft:Ubuntu Mono Regular:size=6:bold:antialias=true"
+       font = "xft:Monospace:size=7:bold:antialias=true"
        , bgColor = "black"
        , fgColor = "grey"
        , position = TopW L 100
