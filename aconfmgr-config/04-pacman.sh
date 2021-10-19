@@ -17,8 +17,9 @@ function IgnorePkg() {
 echo "[multilib]
 Include = /etc/pacman.d/mirrorlist" >> "$pacman_conf"
 
-### aconfmgr
+### bootstrapping/aconfmgr
 AddPackage pacutils
+AddPackage --foreign alma # Create Arch Linux based live USB
 
 ### GPG
 AddPackage gnupg
