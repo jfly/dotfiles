@@ -53,3 +53,5 @@
 - shell:
     - command: test -d ~/.oh-my-zsh || git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
       description: Install oh-my-zsh
+    - command: vim +PlugInstall +qall
+      description: Install vim plugins

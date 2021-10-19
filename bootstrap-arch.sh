@@ -28,16 +28,17 @@ laptop_stuff() {
     # expected folders if they don't yet exist.
     mkdir -p ~/Dropbox/linux-secrets/{kaladin-ssh,gnupg}
     mkdir -p ~/Dropbox/pics/lolcommits
-    ln -sf ~/.ssh ~/Dropbox/linux-secrets/kaladin-ssh
+    ln -sf ~/Dropbox/linux-secrets/kaladin-ssh ~/.ssh
     chmod -R u=rwX,og= ~/.ssh/ # Fix ssh key permissions
-    ln -sf ~/.gnupg ~/Dropbox/linux-secrets/gnupg
+    ln -sf ~/Dropbox/linux-secrets/gnupg/ ~/.gnupg
     chmod -R u=rwX,og= ~/.gnupg # Fix gnupg permissions
-    ln -sf ~/.lolcommits ~/Dropbox/pics/lolcommits
+    ln -sf ~/Dropbox/pics/lolcommits ~/.lolcommits
 
     # Install [hcchu/volnoti](https://github.com/hcchu/volnoti#new-options-in-this-fork) from Github.
     # [volnoti](https://aur.archlinux.org/packages/volnoti) doesn't have the features needed for volnoti-brightness.
     if ! [ -x "$(command -v volnoti)" ]; then
         (
+            mkdir -p ~/thirdrepos
             cd ~/thirdrepos
             rm -rf volnoti
             git clone https://github.com/hcchu/volnoti.git
