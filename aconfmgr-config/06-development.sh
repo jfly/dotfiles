@@ -38,6 +38,9 @@ IgnorePath '/var/lib/containerd/*'
 
 ### Virtualization
 AddPackage vagrant # Build and distribute virtualized development environments
+# https://wiki.archlinux.org/title/VirtualBox#Install_the_core_packages says:
+# for the linux kernel, choose virtualbox-host-modules-arch
+AddPackage virtualbox-host-modules-arch
 AddPackage virtualbox # Powerful x86 virtualization for enterprise as well as home use
 
 ### Cloud hosting
@@ -70,7 +73,8 @@ AddPackage nodejs # Evented I/O for V8 javascript
 AddPackage npm # A package manager for javascript
 
 ### Java
-AddPackage jre-openjdk-headless
+AddPackage jdk-openjdk # OpenJDK Java 17 development kit
+AddPackage jre-openjdk-headless # OpenJDK Java 17 headless runtime environment
 CreateLink /usr/lib/jvm/default java-17-openjdk
 CreateLink /usr/lib/jvm/default-runtime java-17-openjdk
 AddPackage maven # Java project management and project comprehension tool

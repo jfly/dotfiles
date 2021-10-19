@@ -213,7 +213,6 @@ AddPackage noto-fonts-emoji # Google Noto emoji fonts
 AddPackage ttf-bitstream-vera # Bitstream Vera fonts.
 AddPackage ttf-liberation # Font family which aims at metric compatibility with Arial, Times New Roman, and Courier New
 AddPackage xorg-xfd # Displays all the characters in a font using either the X11 core protocol or libXft2
-AddPackage --foreign font-manager # A simple font management application for GTK+ Desktop Environments
 AddPackage --foreign nerd-fonts-ubuntu-mono # Patched font UbuntuMono from the nerd-fonts library
 AddPackage --foreign ttf-google-fonts-git # TrueType fonts from the Google Fonts project (git version)
 AddPackage --foreign ttf-merriweather # A typeface that is pleasant to read on screens by Sorkin Type Co
@@ -228,9 +227,7 @@ IgnorePath '/etc/fonts/conf.d/*'
 IgnorePath '/usr/share/fonts/*'
 
 ### Windows compatibility
-AddPackage steam # Valve's digital software delivery system
 AddPackage dos2unix # Text file format converter
-AddPackage dosbox # Emulator with builtin DOS for running DOS Games
 AddPackage wine # A compatibility layer for running Windows programs
 AddPackage wine-gecko # Wine's built-in replacement for Microsoft's Internet Explorer
 AddPackage wine-mono # Wine's built-in replacement for Microsoft's .NET Framework

@@ -13,7 +13,7 @@ fi
 base_stuff() {
     git submodule update --init
 
-    ./aconfmgr apply
+    ./aconfmgr apply --yes
 
     ## Generate locales
     sudo locale-gen
