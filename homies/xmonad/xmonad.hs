@@ -143,6 +143,10 @@ myKeys =
         ((myModMask, xK_d), spawn "xdotool key --clearmodifiers XF86AudioNext"),
         ((myModMask .|. shiftMask, xK_d), spawn "xdotool key --clearmodifiers XF86AudioPrev"),
 
+        -- Dunst shortcuts
+        ((controlMask, xK_space), spawn "dunstctl close"),
+        ((controlMask, xK_grave), spawn "dunstctl history-pop"),
+
         ((myModMask, xK_a), spawn "autoperipherals"),
         ((myModMask .|. shiftMask, xK_a), spawn "mobile.sh")
     ] ++
