@@ -3,16 +3,15 @@
 set -e
 cd "$(dirname "$0")"
 
-HOSTNAME=$(cat /etc/hostname)
-
 if [ "$EUID" -eq 0 ]; then
     echo "Do not run this script as root, instead run it as the non-root user you want to set up."
     exit 1
 fi
 
-base_stuff() {
+doit() {
     git submodule update --init
 
+    ## Install and configure most things.
     ./aconfmgr apply --yes
 
     ## Generate locales
@@ -22,18 +21,8 @@ base_stuff() {
     ./install
 }
 
-laptop_stuff() {
-    # Here we're setting up some symlinks into Dropbox, but this doesn't work
-    # if our Dropbox has not yet sync-ed. We hack around this by creating the
-    # expected folders if they don't yet exist.
-    mkdir -p ~/Dropbox/linux-secrets/{kaladin-ssh,gnupg}
-    mkdir -p ~/Dropbox/pics/lolcommits
-    ln -sf ~/Dropbox/linux-secrets/kaladin-ssh ~/.ssh
-    chmod -R u=rwX,og= ~/.ssh/ # Fix ssh key permissions
-    ln -sf ~/Dropbox/linux-secrets/gnupg/ ~/.gnupg
-    chmod -R u=rwX,og= ~/.gnupg # Fix gnupg permissions
-    ln -sf ~/Dropbox/pics/lolcommits ~/.lolcommits
-
+install_volnoti() {
+    # TODO: package this up in some useful way or find an alternative?
     # Install [hcchu/volnoti](https://github.com/hcchu/volnoti#new-options-in-this-fork) from Github.
     # [volnoti](https://aur.archlinux.org/packages/volnoti) doesn't have the features needed for volnoti-brightness.
     if ! [ -x "$(command -v volnoti)" ]; then
@@ -59,6 +48,7 @@ laptop_stuff() {
     fi
 }
 
+# TODO: port to aconfmgr.
 nuc_nas_stuff() {
     # Enable sshd
     enable_service sshd
@@ -84,17 +74,7 @@ nuc_nas_stuff() {
     docker compose -f ~/.dotfiles/containers/home-assistant/docker-compose.yml up --detach
 }
 
-if [ "$HOSTNAME" = "dalinar" ]; then
-    device_specific_command=laptop_stuff
-elif [ "$HOSTNAME" = "clark" ]; then
-    device_specific_command=nuc_nas_stuff
-else
-    echo "Unrecognized hostname: '$HOSTNAME'"
-    exit 2
-fi
-
-base_stuff
-$device_specific_command
+doit
 
 echo ""
 echo "Successfully bootstrapped your new Arch system. Happy Linuxing!"

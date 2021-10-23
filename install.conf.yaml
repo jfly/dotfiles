@@ -8,6 +8,14 @@
         relink: true
         force: true
 
+# Later, we set up some symlinks into Dropbox, but this doesn't work if our
+# Dropbox has not yet sync-ed. We hack around this by creating the expected
+# folders if they don't yet exist.
+- create:
+    - ~/Dropbox/linux-secrets/kaladin-ssh
+    - ~/Dropbox/linux-secrets/gnupg
+    - ~/Dropbox/pics/lolcommits
+
 - link:
     ~/.dotfiles: ""
 
@@ -50,8 +58,14 @@
         if: '[ hostname = "clark" ]'
         path: homies/config/pirate-get
 
+    ~/.ssh: ~/Dropbox/linux-secrets/kaladin-ssh
+    ~/.gnupg: ~/Dropbox/linux-secrets/gnupg/
+    ~/.lolcommits: ~/Dropbox/pics/lolcommits
+
 - shell:
     - command: test -d ~/.oh-my-zsh || git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
       description: Install oh-my-zsh
     - command: vim +PlugInstall +qall
       description: Install vim plugins
+    - command: chmod -R u=rwX,og= ~/.ssh/ ~/.gnupg/
+      description: Fix ssh and gnupg permissions
