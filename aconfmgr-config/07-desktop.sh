@@ -207,22 +207,13 @@ AddPackage --foreign dropbox # A free service that lets you bring your photos, d
 echo "fs.inotify.max_user_watches=524288" > "$(CreateFile /etc/sysctl.d/99-sysctl.conf)"
 
 ### Fonts
+AddPackage xorg-xfd # Displays all the characters in a font using either the X11 core protocol or libXft2
 AddPackage ttf-opensans # Sans-serif typeface commissioned by Google
 AddPackage gnu-free-fonts # A free family of scalable outline fonts
 AddPackage noto-fonts-emoji # Google Noto emoji fonts
 AddPackage ttf-bitstream-vera # Bitstream Vera fonts.
 AddPackage ttf-liberation # Font family which aims at metric compatibility with Arial, Times New Roman, and Courier New
-AddPackage xorg-xfd # Displays all the characters in a font using either the X11 core protocol or libXft2
 AddPackage --foreign nerd-fonts-ubuntu-mono # Patched font UbuntuMono from the nerd-fonts library
-AddPackage --foreign ttf-google-fonts-git # TrueType fonts from the Google Fonts project (git version)
-AddPackage --foreign ttf-merriweather # A typeface that is pleasant to read on screens by Sorkin Type Co
-AddPackage --foreign ttf-merriweather-sans # A sans-serif typeface that is pleasant to read on screens by Sorkin Type Co
-AddPackage --foreign ttf-ms-win10 # Microsoft Windows 10 TrueType fonts
-AddPackage --foreign ttf-oswald # Sans-serif typeface from Google by Vernon Adams
-AddPackage --foreign ttf-quintessential # Calligraphic typeface from Google by Brian J. Bonislawsky
-AddPackage --foreign ttf-signika # Sans-serif typeface from Google by Anna Giedryś
-AddPackage --foreign ttf-twemoji # Twitter Emoji for everyone.
-AddPackage --foreign ttf-twemoji-color # A color and B&W emoji SVG-in-OpenType font by Twitter with support for ZWJ, skin tone modifiers and country flags.
 IgnorePath '/etc/fonts/conf.d/*'
 IgnorePath '/usr/share/fonts/*'
 

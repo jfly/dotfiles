@@ -57,6 +57,7 @@ AddPackage openbsd-netcat # TCP/IP swiss army knife. OpenBSD variant.
 AddPackage traceroute # Tracks the route taken by packets over an IP network
 AddPackage whois # Intelligent WHOIS client
 AddPackage wireshark-qt # Network traffic and protocol analyzer/sniffer - Qt GUI
+AddPackage bind # Provides nslookup
 
 ### Shell
 AddPackage shellcheck # Shell script analysis tool

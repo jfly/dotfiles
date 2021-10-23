@@ -41,10 +41,11 @@ AddPackage chntpw # Offline NT Password Editor - reset passwords in a Windows NT
 AddPackage oath-toolkit # OATH one-time password toolkit
 ## bin/gurgi-go.sh
 AddPackage wol # Wake On LAN functionality in a small program. It wakes up hardware that is Magic Packet compliant
+## bin/h4-temp-aws.sh
+AddPackage zenity # Display graphical dialog boxes from shell scripts
 ## aliases::pdfcrop
 # AddPackage texlive-core
 AddPackage pdftk # Command-line tool for working with PDFs
 ## aliases::allprocs
 AddPackage sysdig # Open source system-level exploration and troubleshooting tool
 AddPackage sysdig-dkms # DKMS kernel module for sysdig
-
