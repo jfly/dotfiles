@@ -7,6 +7,7 @@
     web = "!xdg-open `git ls-remote --get-url origin | sed 's_.*[/:]\\(.\\+/.\\+\\)\\.git$_https://github.com/\\1_'`"
     x = "grep -I '<<<'"
     rium = rebase -i --autosquash upstream/master
+    riom = rebase -i --autosquash origin/master
     modify-files = ! git grep -I -z --full-name -l '.' ':(exclude).gitmodules' | xargs -0 modify-files.py
     sed = ! git grep -I -z --full-name -l '.' ':(exclude).gitmodules' | xargs -0 sed
 [user]
