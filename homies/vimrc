@@ -134,8 +134,12 @@ call tcomment#type#Define('dockerfile', '#<<< %s')
 call tcomment#type#Define('yaml', '#<<< %s')
 """""" }}}
 
-"""""" FZF configuration {{{
+"""""" Git stuff {{{
 noremap <leader>mf :GFiles?<CR>
+noremap <leader>gb :Git blame<CR>
+"""""" }}}
+
+"""""" FZF configuration {{{
 noremap <c-p> :Files<CR>
 noremap <leader>b :Buffers<CR>
 noremap <leader><leader> <C-^>
