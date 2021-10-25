@@ -164,15 +164,9 @@ myKeys =
     ]
 
 main = do
-    xmproc <- spawnPipe "xmobar"
     xmonad $ ewmh desktopConfig {
         manageHook = manageDocks <+> manageSpawn <+> windowPlacement <+> manageHook desktopConfig,
         layoutHook = myLayout,
-        logHook = logHook desktopConfig <+> dynamicLogWithPP xmobarPP {
-            ppOutput = hPutStrLn xmproc,
-            ppTitle = xmobarColor "green" "" . shorten 100
-        },
-
         modMask = myModMask,
         XMonad.terminal = myTerminal,
         XMonad.borderWidth = myBorderWidth,

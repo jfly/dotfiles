@@ -45,7 +45,6 @@
     ~/.vimrc: homies/vimrc
     ~/.vim: homies/vim
     ~/.xinitrc: homies/xinitrc
-    ~/.xmobarrc: homies/xmobarrc
     ~/.xmonad/xmonad.hs: homies/xmonad/xmonad.hs
     ~/.Xresources: homies/Xresources
 

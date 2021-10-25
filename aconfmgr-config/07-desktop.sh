@@ -1,7 +1,7 @@
 ### Desktop/gui
-AddPackage xmobar # Minimalistic Text Based Status Bar
 AddPackage xmonad # Lightweight X11 tiled window manager written in Haskell
 AddPackage xmonad-contrib # Add-ons for xmonad
+AddPackage --foreign polybar-git # Status bar (need the -git version to get support for wm-restart=generic: https://github.com/polybar/polybar/pull/2404#issuecomment-864411636)
 AddPackage dunst # Customizable and lightweight notification-daemon
 AddPackage xorg-server # Xorg X server
 AddPackage xorg-server-xvfb # Virtual framebuffer X server
@@ -29,7 +29,6 @@ AddPackage freerdp # Free implementation of the Remote Desktop Protocol (RDP)
 AddPackage eog # Eye of Gnome
 AddPackage feh # Fast and light imlib2-based image viewer
 AddPackage guvcview # Simple GTK+ interface for capturing and viewing video from v4l2 devices
-AddPackage --foreign trayer-srg-git # trayer fork with multi monitor support, cleaned up codebase and other fancy stuff (git-version)
 AddPackage numlockx # Turns on the numlock key in X11.
 AddPackage xdotool # Command-line X11 automation tool
 AddPackage xclip # Command line interface to the X11 clipboard
