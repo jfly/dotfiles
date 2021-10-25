@@ -49,7 +49,7 @@ windowPlacement = composeAll [
         appName =? "send to test" --> doShift "test",
 
         -- Music stuff
-        className =? "Mcg" --> doShift "music",
+        className =? "Mcg" --> doShift "🎵",
 
         appName =? "picker" --> doFloat
     ] where role = stringProperty "WM_WINDOW_ROLE"
@@ -68,7 +68,7 @@ fullscreenChrome = do
     spawn "sleep 0.1 && xdotool key --clearmodifiers F11"
     return ()
 
-myWorkspaces = ["`", "web", "play", "wrk", "test", "video", "todo", "7", "8", "9", "0", "-", "=", "<=", "music"]
+myWorkspaces = ["`", "wrk", "be", "fe", "test", "📹", "6", "7", "8", "9", "0", "-", "=", "<=", "🎵"]
 myWorkspaceKeys = [xK_grave] ++ [xK_1 .. xK_9] ++ [xK_0, xK_minus, xK_equal, xK_BackSpace, xK_m]
 
 
