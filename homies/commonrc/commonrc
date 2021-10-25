@@ -16,6 +16,8 @@ if test -d $HOME/.asdf; then
     # fully started zsh shell, it works fine.
     # Long thread about this here: https://github.com/asdf-vm/asdf/issues/97
     source $HOME/.asdf/completions/asdf.bash
+
+    export ASDF_PYTHON_PATCHES_DIRECTORY="$HOME/.dotfiles/asdf-python-patches"
 fi
 
 export VISUAL=vim
