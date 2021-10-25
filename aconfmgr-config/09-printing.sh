@@ -14,6 +14,7 @@ function PrinterConfFilter() {
 }
 AddFileContentFilter '/etc/cups/printers.conf' PrinterConfFilter
 CopyFile /etc/cups/printers.conf 600
+IgnorePath '/etc/cups/printers.conf.O' # https://askubuntu.com/a/1106572
 
 # Wow, this is a mess of services.
 CreateLink /etc/systemd/system/multi-user.target.wants/cups.path /usr/lib/systemd/system/cups.path
