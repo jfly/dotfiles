@@ -134,6 +134,7 @@ AddPackage expect # A tool for automating interactive applications
 AddPackage diffstat # Display a histogram of diff changes
 AddPackage diffutils # Utility programs used for creating patch files
 AddPackage patchutils # A small collection of programs that operate on patch files
+AddPackage pkgconf # Package compiler and linker metadata toolkit
 AddPackage wkhtmltopdf # Command line tools to render HTML into PDF and various image formats
 
 ### Graphviz
