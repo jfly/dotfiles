@@ -28,7 +28,8 @@ myBorderWidth = 2
 
 musicWs = "🎵"
 videoWs = "📹"
-myWorkspaces = ["`", "wrk", "be", "fe", "test", videoWs, "6", "7", "8", "9", "0", "-", "=", "<=", musicWs]
+backspaceWs = "⌫"
+myWorkspaces = ["`", "wrk", "be", "fe", "test", videoWs, "6", "7", "8", "9", "0", "-", "=", backspaceWs, musicWs]
 myWorkspaceKeys = [xK_grave] ++ [xK_1 .. xK_9] ++ [xK_0, xK_minus, xK_equal, xK_BackSpace, xK_m]
 
 workspaceSenders = [ appName =? ("send to " ++ wsName) --> doShift wsName | wsName <- myWorkspaces ]
