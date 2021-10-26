@@ -17,10 +17,16 @@ Plug 'janko-m/vim-test'
 Plug 'kassio/neoterm'
 Plug 'xtal8/traces.vim'
 Plug 'majutsushi/tagbar'
-Plug 'dense-analysis/ale'
 Plug 'jesseleite/vim-agriculture'
-" TODO: figure out how to get only one of coc/ale to run pylint... >>>
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'dense-analysis/ale'
+if has('nvim')
+    Plug 'neovim/nvim-lspconfig'
+    Plug 'hrsh7th/cmp-nvim-lsp', {'branch': 'main'}
+    Plug 'hrsh7th/cmp-buffer', {'branch': 'main'}
+    Plug 'hrsh7th/nvim-cmp', {'branch': 'main'}
+else
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
+endif
 Plug 'metakirby5/codi.vim'
 Plug 'samoshkin/vim-mergetool'
 " List ends here. Plugins become visible to Vim after this call.
@@ -285,6 +291,9 @@ set tabpagemax=100
 set backupcopy=yes
 
 """"""" Enable the Prettier fixer
+" Disable all linters.
+let g:ale_linters_explicit=1
+
 let g:ale_fixers = {
 \   'javascript': ['prettier'],
 \   'typescript': ['prettier'],
@@ -312,20 +321,108 @@ autocmd FileType python nnoremap <leader>o o__import__('os').environ['JFLY'] = '
 autocmd FileType python nnoremap <leader>l oif __import__('os').environ.get('JFLY'): __import__('pdb').set_trace()#<<<<Esc>
 """""""
 
-""""""" Configure coc
-"<<< let g:coc_global_extensions = ['coc-tsserver']
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-function! s:show_documentation()
-  if &filetype == 'vim'
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
-nmap <silent> <leader>g <Plug>(coc-definition)
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gr <Plug>(coc-references)
-"""""""
+if has('nvim')
+    " Configuration modified from
+    " https://github.com/neovim/nvim-lspconfig/wiki/Autocompletion and
+    " https://github.com/hrsh7th/nvim-cmp/#recommended-configuration
+    lua << EOF
+    local nvim_lsp = require('lspconfig')
+
+    -- Use an on_attach function to only map the following keys
+    -- after the language server attaches to the current buffer
+    local on_attach = function(client, bufnr)
+      local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+      local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+
+      -- Mappings.
+      local opts = { noremap=true, silent=true }
+
+      -- See `:help vim.lsp.*` for documentation on any of the below functions
+      buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+      buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+      buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+      buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+
+      buf_set_keymap('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+
+      buf_set_keymap('n', '<leader>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+      buf_set_keymap('n', '<leader>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+      buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
+      buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
+    end
+
+    local capabilities = vim.lsp.protocol.make_client_capabilities()
+    capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+
+    -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
+    local servers = { 'pyright' }
+    for _, lsp in ipairs(servers) do
+      nvim_lsp[lsp].setup {
+        on_attach = on_attach,
+        capabilities = capabilities,
+        flags = {
+          debounce_text_changes = 150,
+        }
+      }
+    end
+
+    -- Set completeopt to have a better completion experience
+    vim.o.completeopt = 'menuone,noselect'
+
+    -- nvim-cmp setup
+    local cmp = require 'cmp'
+    cmp.setup {
+      mapping = {
+        ['<C-p>'] = cmp.mapping.select_prev_item(),
+        ['<C-n>'] = cmp.mapping.select_next_item(),
+        ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+        ['<C-f>'] = cmp.mapping.scroll_docs(4),
+        ['<C-Space>'] = cmp.mapping.complete(),
+        ['<C-e>'] = cmp.mapping.close(),
+        ['<CR>'] = cmp.mapping.confirm {
+          behavior = cmp.ConfirmBehavior.Replace,
+          select = true,
+        },
+        ['<Tab>'] = function(fallback)
+          if cmp.visible() then
+            cmp.select_next_item()
+          elseif luasnip.expand_or_jumpable() then
+            luasnip.expand_or_jump()
+          else
+            fallback()
+          end
+        end,
+        ['<S-Tab>'] = function(fallback)
+          if cmp.visible() then
+            cmp.select_prev_item()
+          elseif luasnip.jumpable(-1) then
+            luasnip.jump(-1)
+          else
+            fallback()
+          end
+        end,
+      },
+      sources = {
+        { name = 'nvim_lsp' },
+      },
+  }
+EOF
+else
+    """"""" Configure coc
+    "<<< let g:coc_global_extensions = ['coc-tsserver']
+    nnoremap <silent> K :call <SID>show_documentation()<CR>
+    function! s:show_documentation()
+      if &filetype == 'vim'
+        execute 'h '.expand('<cword>')
+      else
+        call CocAction('doHover')
+      endif
+    endfunction
+    nmap <silent> <leader>g <Plug>(coc-definition)
+    nmap <silent> gd <Plug>(coc-definition)
+    nmap <silent> gr <Plug>(coc-references)
+    """""""
+endif
 
 """""""
 " Copied from https://github.com/FatBoyXPC/dotfiles/commit/1bae9190f0d4291d08850bf5483986f185bc26fd

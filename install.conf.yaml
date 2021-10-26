@@ -32,6 +32,7 @@
     ~/.config/fontconfig: homies/config/fontconfig
     ~/.config/git: homies/config/git
     ~/.config/mpd/mpd.conf: homies/config/mpd/mpd.conf
+    ~/.config/nvim: homies/config/nvim
     ~/.config/systemd: homies/config/systemd
     ~/.direnvrc: homies/direnvrc
     ~/.dir_colors: homies/dir_colors
