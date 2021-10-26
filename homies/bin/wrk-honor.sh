@@ -18,11 +18,11 @@ sql_mode=TRADITIONAL" > $CUSTOM_MYSQL_DIR/sql_mode.cnf
 docker start mysql-5_7 || docker run --name mysql-5_7 -v $CUSTOM_MYSQL_DIR:/etc/mysql/conf.d -e MYSQL_ALLOW_EMPTY_PASSWORD=yes -d --publish=3357:3306 mysql:5.7
 
 cd ~/honor/external-api
-terminalOn "make run" "play"
-terminalOn "shtuff-as-pwd" "play"
-terminalOn "./pythonenv vim" "play"
+terminalOn "make run" "be"
+terminalOn "shtuff-as-pwd" "be"
+terminalOn "./pythonenv vim" "be"
 
 cd ~/honor/external-web
-# terminalOn "make run" "wrk"
-terminalOn "shtuff-as-pwd" "wrk"
-terminalOn "./pythonenv vim" "wrk"
+# terminalOn "make run" "fe"
+terminalOn "shtuff-as-pwd" "fe"
+terminalOn "./pythonenv vim" "fe"

@@ -1,24 +1,20 @@
+import Data.Map
 import Data.List
+import System.Exit
+import Graphics.X11.ExtraTypes.XF86
+
 import XMonad hiding ( (|||) ) -- don't use the normal ||| operator
-import XMonad.Config.Desktop
 import XMonad.Layout.LayoutCombinators -- use the one from LayoutCombinators instead
+import XMonad.Config.Desktop
 import XMonad.Layout.ToggleLayouts
 import XMonad.Layout.ThreeColumns
 import XMonad.Actions.CycleWS
 import XMonad.Actions.SpawnOn
-import XMonad.Actions.SwapWorkspaces
-import XMonad.Hooks.DynamicLog
+import XMonad.Layout.NoBorders
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Util.Run(spawnPipe)
-import XMonad.Util.EZConfig(additionalKeys, additionalMouseBindings)
-import Graphics.X11.ExtraTypes.XF86
-import System.IO
-
 import qualified XMonad.StackSet as W
--- http://xmonad.org/xmonad-docs/xmonad-contrib/XMonad-Layout-NoBorders.html
-import XMonad.Layout.NoBorders
--- http://xmonad.org/xmonad-docs/xmonad-contrib/XMonad-Layout-LayoutCombinators.html
 
 -- Rebind Mod to the Windows key
 myModMask = mod4Mask
@@ -30,29 +26,28 @@ myLayout = avoidStruts $ smartBorders $ toggleLayouts Full tall ||| toggleLayout
 
 myBorderWidth = 2
 
-windowPlacement = composeAll [
-        -- use `xprop` to get window information
+musicWs = "🎵"
+videoWs = "📹"
+myWorkspaces = ["`", "wrk", "be", "fe", "test", videoWs, "6", "7", "8", "9", "0", "-", "=", "<=", musicWs]
+myWorkspaceKeys = [xK_grave] ++ [xK_1 .. xK_9] ++ [xK_0, xK_minus, xK_equal, xK_BackSpace, xK_m]
 
-        className =? "Chromium" <&&> fmap (isInfixOf "Google Play Music") title --> doShift "9",
-        appName =? "meet.google.com__zhw-huyd-oam" <&&> className =? "Chromium" --> doShift "video",
+workspaceSenders = [ appName =? ("send to " ++ wsName) --> doShift wsName | wsName <- myWorkspaces ]
+
+windowPlacement = composeAll ([
+        -- use `xprop` to get window information:
+        -- https://wiki.haskell.org/Xmonad/Frequently_asked_questions#A_handy_script_to_print_out_window_information
+
+        className =? "Chromium" <&&> fmap (isInfixOf "Google Play Music") title --> doShift musicWs,
+        appName =? "meet.google.com__zhw-huyd-oam" <&&> className =? "Chromium" --> doShift videoWs,
 
         -- Fix for GIMP windows
         className =? "Gimp" --> doFloat,
 
-        role =? "send to play" --> doShift "play",
-        role =? "send to wrk" --> doShift "wrk",
-        role =? "send to test" --> doShift "test",
-
-        -- Experimenting with Alacritty
-        appName =? "send to play" --> doShift "play",
-        appName =? "send to wrk" --> doShift "wrk",
-        appName =? "send to test" --> doShift "test",
-
         -- Music stuff
-        className =? "Mcg" --> doShift "🎵",
+        className =? "Mcg" --> doShift musicWs,
 
         appName =? "picker" --> doFloat
-    ] where role = stringProperty "WM_WINDOW_ROLE"
+    ] ++ workspaceSenders) where role = stringProperty "WM_WINDOW_ROLE"
 
 -- https://github.com/hcchu/dotfiles/blob/master/.xmonad/xmonad.hs
 muteAndShowVolume = "set_volume.py toggle-mute; show-volume.sh"
@@ -68,100 +63,104 @@ fullscreenChrome = do
     spawn "sleep 0.1 && xdotool key --clearmodifiers F11"
     return ()
 
-myWorkspaces = ["`", "wrk", "be", "fe", "test", "📹", "6", "7", "8", "9", "0", "-", "=", "<=", "🎵"]
-myWorkspaceKeys = [xK_grave] ++ [xK_1 .. xK_9] ++ [xK_0, xK_minus, xK_equal, xK_BackSpace, xK_m]
-
 
 altMask = mod1Mask
-myKeys =
-    [
-        -- http://xmonad.org/xmonad-docs/xmonad-contrib/XMonad-Hooks-ManageDocks.html
-        ((myModMask, xK_b), sendMessage ToggleStruts),
-        ((myModMask, xK_F11), fullscreenChrome),
+myKeys conf@(XConfig {XMonad.modMask = modMask}) = Data.Map.fromList $
+    [ ((modMask .|. shiftMask, xK_c     ), kill) -- %! Close the focused window
 
-        -- Launch a terminal (changed from return to semicolon)
-        ((myModMask .|. shiftMask, xK_semicolon), spawn $ "cd $(xcwd); exec " ++ myTerminal),
+    -- move focus up or down the window stack
+    , ((modMask,               xK_j     ), windows W.focusDown) -- %! Move focus to the next window
+    , ((modMask,               xK_k     ), windows W.focusUp  ) -- %! Move focus to the previous window
+    , ((modMask,               xK_m     ), windows W.focusMaster  )
+    , ((modMask, xK_n), windows W.focusMaster) -- %! Move focus to the master window
 
-        -- Swap the focused window and the master window
-        -- The default uses return, but semicolon is easier, and
-        -- doesn't conflict with browers =)
-        ((myModMask, xK_semicolon), windows W.swapMaster),
+    -- modifying the window order
+    , ((modMask .|. shiftMask, xK_j     ), windows W.swapDown  ) -- %! Swap the focused window with the next window
+    , ((modMask .|. shiftMask, xK_k     ), windows W.swapUp    ) -- %! Swap the focused window with the previous window
+    -- Swap the focused window and the master window The default uses
+    -- return, but semicolon is easier to reach =)
+    , ((modMask, xK_semicolon), windows W.swapMaster)
 
-        -- Toggle between.
-        ((myModMask, xK_space), sendMessage ToggleLayout),  -- Note: this doesn't work great with space as meta
-        ((myModMask, xK_g), sendMessage ToggleLayout), -- Added as an alternative when using space as meta
+    -- resizing the split
+    , ((modMask,               xK_h     ), sendMessage Shrink) -- %! Shrink the main area
+    , ((modMask,               xK_l     ), sendMessage Expand) -- %! Expand the main area
 
-        -- Go to next layout.
-        ((myModMask, xK_t), sendMessage NextLayout),
+    -- increase or decrease number of windows in the master area
+    , ((modMask              , xK_comma ), sendMessage (IncMasterN 1)) -- %! Increment the number of windows in the master area
+    , ((modMask              , xK_period), sendMessage (IncMasterN (-1))) -- %! Deincrement the number of windows in the master area
 
-        -- Reset to default layout
-        -- WIP: https://github.com/xmonad/xmonad/blob/master/src/XMonad/Config.hs#L193
-        -- ((myModMask .|. shiftMask, xK_t), setLayout $ myLayout),
+    -- quit, or restart
+    , ((modMask .|. shiftMask, xK_q     ), io (exitWith ExitSuccess)) -- %! Quit xmonad
+    , ((modMask              , xK_q     ), spawn "if type xmonad; then xmonad --recompile && xmonad --restart; else xmessage xmonad not in \\$PATH: \"$PATH\"; fi") -- %! Restart xmonad
 
-        -- We stole this shortcut to emulate DWM's monocle shortcut
-        -- Move focus to the master window
-        ((myModMask, xK_n), windows W.focusMaster),
+    -- http://xmonad.org/xmonad-docs/xmonad-contrib/XMonad-Hooks-ManageDocks.html
+    , ((modMask, xK_b), sendMessage ToggleStruts)
+    , ((modMask, xK_F11), fullscreenChrome)
 
-        -- Force window back to tiling mode
-        ((myModMask .|. shiftMask, xK_t), withFocused $ windows . W.sink),
+    -- Launch a terminal
+    , ((modMask .|. shiftMask, xK_semicolon), spawn $ "cd $(xcwd); exec " ++ myTerminal)
 
-        -- Toggle last workspace
-        ((myModMask, xK_Tab), toggleWS),
+    -- Toggle layout.
+    , ((modMask, xK_space), sendMessage ToggleLayout) -- Note: this doesn't work great with space as meta
+    , ((modMask, xK_g), sendMessage ToggleLayout) -- Added as an alternative when using space as meta
 
-        -- Run demenu2 with custom font
-        ((myModMask, xK_p), spawn "dmenu_run -fn 'Monospace:size=11:bold:antialias=true'"),
+    -- Go to next layout.
+    , ((modMask, xK_t), sendMessage NextLayout)
 
-        ((0, xF86XK_AudioMute), spawn muteAndShowVolume),
-        ((0, xF86XK_AudioRaiseVolume), spawn $ changeVolume "5+"),
-        ((0, xF86XK_AudioLowerVolume), spawn $ changeVolume "5-"),
-        ((0, xF86XK_AudioMicMute), spawn toggleMicMute),
-        ((0, xF86XK_AudioPlay), spawn "mpc toggle"),
-        ((0, xF86XK_AudioPrev), spawn "mpc prev"),
-        ((0, xF86XK_AudioNext), spawn "mpc next"),
+    -- Reset to default layout
+    , ((modMask .|. shiftMask, xK_g), setLayout $ XMonad.layoutHook conf)
 
-        ((0, xF86XK_MonBrightnessDown), spawn $ changeBrightness "5%-"),
-        ((0, xF86XK_MonBrightnessUp), spawn $ changeBrightness "5%+"),
-        ((0, xF86XK_HomePage), spawn $ changeBrightness "5%-"),
-        ((0, xF86XK_Search), spawn $ changeBrightness "5%+"),
-        ((shiftMask, xK_F5), spawn "colorscheme dark"),
-        ((shiftMask, xK_F6), spawn "colorscheme light"),
+    -- Force window back to tiling mode
+    , ((modMask .|. shiftMask, xK_t), withFocused $ windows . W.sink)
 
-        -- Prompt the user for an area of the screen
-        -- note the sleep 0.2 as a workaround for the ancient:
-        --  https://code.google.com/p/xmonad/issues/detail?id=476
-        ((0, xK_Print), spawn "sleep 0.2; jscrot --select"),
-        ((controlMask, xK_Print), spawn "jscrot --video"),
-        ((shiftMask, xK_Print), spawn "jscrot"),
+    -- Toggle last workspace
+    , ((modMask, xK_Tab), toggleWS)
 
-        ((controlMask .|. altMask, xK_Left), spawn "xrandr -o right && setbg"),
-        ((controlMask .|. altMask, xK_Right), spawn "xrandr -o left && setbg"),
-        ((controlMask .|. altMask, xK_Down), spawn "xrandr -o normal && setbg"),
-        ((controlMask .|. altMask, xK_Up), spawn "xrandr -o inverted && setbg"),
+    -- Run demenu2 with custom font
+    , ((modMask, xK_p), spawn "dmenu_run -fn 'Monospace:size=11:bold:antialias=true'")
 
-        -- Create our own play/pause and prev/next buttons.
-        ((myModMask, xK_s), spawn "xdotool key --clearmodifiers XF86AudioPlay"),
-        ((myModMask, xK_d), spawn "xdotool key --clearmodifiers XF86AudioNext"),
-        ((myModMask .|. shiftMask, xK_d), spawn "xdotool key --clearmodifiers XF86AudioPrev"),
+    , ((0, xF86XK_AudioMute), spawn muteAndShowVolume)
+    , ((0, xF86XK_AudioRaiseVolume), spawn $ changeVolume "5+")
+    , ((0, xF86XK_AudioLowerVolume), spawn $ changeVolume "5-")
+    , ((0, xF86XK_AudioMicMute), spawn toggleMicMute)
+    , ((0, xF86XK_AudioPlay), spawn "mpc toggle")
+    , ((0, xF86XK_AudioPrev), spawn "mpc prev")
+    , ((0, xF86XK_AudioNext), spawn "mpc next")
 
-        -- Dunst shortcuts
-        ((controlMask, xK_space), spawn "dunstctl close"),
-        ((controlMask, xK_grave), spawn "dunstctl history-pop"),
+    , ((0, xF86XK_MonBrightnessDown), spawn $ changeBrightness "5%-")
+    , ((0, xF86XK_MonBrightnessUp), spawn $ changeBrightness "5%+")
+    , ((0, xF86XK_HomePage), spawn $ changeBrightness "5%-")
+    , ((0, xF86XK_Search), spawn $ changeBrightness "5%+")
+    , ((shiftMask, xK_F5), spawn "colorscheme dark")
+    , ((shiftMask, xK_F6), spawn "colorscheme light")
+    -- Create our own play/pause and prev/next buttons.
+    , ((modMask, xK_s), spawn "xdotool key --clearmodifiers XF86AudioPlay")
+    , ((modMask, xK_d), spawn "xdotool key --clearmodifiers XF86AudioNext")
+    , ((modMask .|. shiftMask, xK_d), spawn "xdotool key --clearmodifiers XF86AudioPrev")
 
-        ((myModMask, xK_a), spawn "autoperipherals"),
-        ((myModMask .|. shiftMask, xK_a), spawn "mobile.sh")
+    -- Prompt the user for an area of the screen
+    -- note the sleep 0.2 as a workaround for the ancient:
+    --  https://code.google.com/p/xmonad/issues/detail?id=476
+    , ((0, xK_Print), spawn "sleep 0.2; jscrot --select")
+    , ((controlMask, xK_Print), spawn "jscrot --video")
+    , ((shiftMask, xK_Print), spawn "jscrot")
+
+    , ((controlMask .|. altMask, xK_Left), spawn "xrandr -o right && setbg")
+    , ((controlMask .|. altMask, xK_Right), spawn "xrandr -o left && setbg")
+    , ((controlMask .|. altMask, xK_Down), spawn "xrandr -o normal && setbg")
+    , ((controlMask .|. altMask, xK_Up), spawn "xrandr -o inverted && setbg")
+
+    -- Dunst shortcuts
+    , ((controlMask, xK_space), spawn "dunstctl close")
+    , ((controlMask, xK_grave), spawn "dunstctl history-pop")
+
+    , ((modMask, xK_a), spawn "autoperipherals")
     ] ++
     -- mod-[1..9] %! Switch to workspace N
     -- mod-shift-[1..9] %! Move client to workspace N
-    [((m .|. myModMask, k), windows $ f i)
+    [((m .|. modMask, k), windows $ f i)
         | (i, k) <- zip myWorkspaces myWorkspaceKeys
         , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]]
-    ++
-    -- Swap workspaces
-    [
-        ((myModMask .|. controlMask, k), windows $ swapWorkspaces "web" "play")
-        -- ((myModMask .|. controlMask, k), sequence_ [windows $ swapWithCurrent i, windows $ W.greedyView "web"])
-        | (i, k) <- zip myWorkspaces myWorkspaceKeys
-    ]
 
 main = do
     xmonad $ ewmh desktopConfig {
@@ -170,13 +169,6 @@ main = do
         modMask = myModMask,
         XMonad.terminal = myTerminal,
         XMonad.borderWidth = myBorderWidth,
+        XMonad.keys = myKeys,
         workspaces = myWorkspaces
-        -- startupHook = do
-            -- spawnOn "web" "chromium"
-            -- spawnOn "play" "roxterm -e \"bash -c '(cd gitting; bash)'\""
-            -- spawnOn "wca" "chromium --profile-directory='Profile 1'"
-    } `additionalKeys` myKeys
-      `additionalMouseBindings` [
-        -- ((0, 9), \_ -> spawn "jscrot --select"),
-        -- ((0, 8), \_ -> spawn "center-mouse.sh")
-        ]
+    }
