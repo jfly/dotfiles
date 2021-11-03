@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -e
+
 # Folowing the instructions from:
 #  https://wiki.jenkins.io/display/JENKINS/Remote+access+API#RemoteaccessAPI-Submittingjobs
 
@@ -47,7 +49,7 @@ function get_tracking_info() {
     # In this case, we'd return 'upstream/jfly/dockering', where 'upstream' is
     # the remote name, and 'jfly/dockering' is the remote branch.
     # In general, this looks like 'REMOTE_NAME/BRANCH_NAME'
-    tracking_info=$(git status -sb | grep -Po '(?<=\.\.\.).*$')
+    tracking_info=$(git status -sb | grep -Po '(?<=\.\.\.)[^ ]*')
     remote_name=$(echo "$tracking_info" | grep -o '^[^/]*')
     branch_name=$(echo "$tracking_info" | grep -Po '(?<=/).*')
     echo "$remote_name" "$branch_name"
