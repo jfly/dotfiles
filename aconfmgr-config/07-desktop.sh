@@ -157,11 +157,9 @@ CreateLink /etc/systemd/system/fixinputs@jeremy.path /etc/systemd/system/fixinpu
 CreateLink /etc/systemd/system/multi-user.target.wants/fixinputs@jeremy.path /etc/systemd/system/fixinputs@jeremy.path
 
 ### Video card drivers
-# Lots of distros recommend *not* installing xf86-video-intel because it's so
-# out of date. See https://wiki.archlinux.org/title/intel_graphics#Installation
-# for more details.
-AddPackage mesa
-AddPackage vulkan-intel # Intel's Vulkan mesa driver
+# Install the appropriate video card driver: https://wiki.archlinux.org/index.php/xorg#Driver_installation
+# driconf is supposed to help with video tearing (see http://www.apolitech.com/2017/04/20how-to-solve-video-tearing-on-intel.html)
+AddPackage xf86-video-intel # X.org Intel i810/i830/i915/945G/G965+ video drivers
 # Needed for hardware acceleration on Parsec and Chrome. See
 # https://github.com/jfly/dotfiles/commit/eef1e079114aaee1fe0740151a5340e1574b4659
 # for details.
@@ -169,6 +167,13 @@ AddPackage intel-gpu-tools # Tools for development and testing of the Intel DRM 
 AddPackage libva-intel-driver # VA-API implementation for Intel G45 and HD Graphics family
 AddPackage libva-utils # Intel VA-API Media Applications and Scripts for libva
 AddPackage libvdpau-va-gl # VDPAU driver with OpenGL/VAAPI backend
+cat > "$(CreateFile /etc/X11/xorg.conf.d/20-intel.conf)" <<EOF
+Section "Device"
+    Identifier "Intel Graphics"
+    Driver "intel"
+    Option "TearFree" "true"
+EndSection
+EOF
 
 ### Movie player
 AddPackage mplayer # Media player for Linux
