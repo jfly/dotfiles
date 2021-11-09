@@ -43,6 +43,8 @@ AddPackage oath-toolkit # OATH one-time password toolkit
 AddPackage wol # Wake On LAN functionality in a small program. It wakes up hardware that is Magic Packet compliant
 ## bin/h4-temp-aws.sh
 AddPackage zenity # Display graphical dialog boxes from shell scripts
+## bin/q
+AddPackage sox # The Swiss Army knife of sound processing tools. Provides `play`
 ## aliases::pdfcrop
 # AddPackage texlive-core
 AddPackage pdftk # Command-line tool for working with PDFs

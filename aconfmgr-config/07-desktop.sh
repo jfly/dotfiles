@@ -175,7 +175,8 @@ Section "Device"
 EndSection
 EOF
 
-### Movie player
+### Movie players
+AddPackage kodi # A software media player and entertainment hub for digital media
 AddPackage mplayer # Media player for Linux
 AddPackage mpv # a free, open source, and cross-platform media player
 AddPackage vlc # Multi-platform MPEG, VCD/DVD, and DivX player
