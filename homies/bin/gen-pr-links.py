@@ -20,7 +20,7 @@ def generate_branch_pairs():
         branch = get_branchname(branch_ref)
         parent_branch = get_branchname(branch_ref + "^")
         pairs.append((parent_branch, branch))
-        if "upstream/master" in parent_branch:
+        if "origin/master" in parent_branch:
             break
 
         i += 1

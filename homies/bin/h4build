@@ -55,8 +55,8 @@ function get_tracking_info() {
     echo "$remote_name" "$branch_name"
 }
 
-# We assume the user is trying to push code to their 'upstream' remote.
-DEST_REPO_NAME="$(get_remote_repo_name 'upstream')"
+# We assume the user is trying to push code to their 'origin' remote.
+DEST_REPO_NAME="$(get_remote_repo_name 'origin')"
 
 # Figure out the remote name and branch name our local branch is tracking.
 read -r SOURCE_REMOTE_NAME SOURCE_BRANCH <<< "$(get_tracking_info)"
