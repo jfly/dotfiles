@@ -300,6 +300,7 @@ let g:ale_fixers = {
 \   'typescriptreact': ['prettier'],
 \   'css': ['prettier'],
 \   'python': ['black', 'isort'],
+\   'rust': ['rustfmt'],
 \}
 " Automatically run ALEFix on save.
 let g:ale_fix_on_save = 1
@@ -355,7 +356,7 @@ if has('nvim')
     capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
     -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
-    local servers = { 'pyright' }
+    local servers = { 'pyright', 'rust_analyzer' }
     for _, lsp in ipairs(servers) do
       nvim_lsp[lsp].setup {
         on_attach = on_attach,

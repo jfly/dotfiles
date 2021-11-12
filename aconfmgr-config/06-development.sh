@@ -94,12 +94,16 @@ AddPackage perl-net-dbus # Binding for DBus messaging protocol
 IgnorePath '/usr/lib/ghc-*/package.conf.d/*.conf'
 IgnorePath '/usr/lib/ghc-*/package.conf.d/package.cache'
 
+### Rust
+AddPackage rust-analyzer # Rust compiler front-end for IDEs
+AddPackage rustup # The Rust toolchain installer
+AddPackage cbindgen # A tool for generating C bindings to Rust code
+
 ### Misc programming languages
 AddPackage go # Core compiler tools for the Go programming language
 AddPackage gtest # Google Test - C++ testing utility
 AddPackage bash-bats # Bash Automated Testing System
 AddPackage check # A unit testing framework for C
-AddPackage cbindgen # A tool for generating C bindings to Rust code
 AddPackage gdb # The GNU Debugger
 AddPackage nasm # 80x86 assembler designed for portability and modularity
 AddPackage m4 # The GNU macro processor

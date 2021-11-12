@@ -8,6 +8,3 @@ export PATH=$PATH:$HOME/thirdrepos/google-cloud-sdk/bin
 
 # add Pulumi to the PATH
 export PATH=$PATH:$HOME/.pulumi/bin
-
-# Rust's cargo installs binaries here.
-export PATH=$PATH:$HOME/.cargo/bin
