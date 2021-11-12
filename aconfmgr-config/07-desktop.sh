@@ -1,6 +1,4 @@
 ### Desktop/gui
-AddPackage xmonad # Lightweight X11 tiled window manager written in Haskell
-AddPackage xmonad-contrib # Add-ons for xmonad
 AddPackage --foreign polybar-git # Status bar (need the -git version to get support for wm-restart=generic: https://github.com/polybar/polybar/pull/2404#issuecomment-864411636)
 AddPackage dunst # Customizable and lightweight notification-daemon
 AddPackage xorg-server # Xorg X server
@@ -33,6 +31,13 @@ AddPackage numlockx # Turns on the numlock key in X11.
 AddPackage xdotool # Command-line X11 automation tool
 AddPackage xclip # Command line interface to the X11 clipboard
 AddPackage gnome-keyring # Stores passwords and encryption keys
+
+### xmonad
+# TODO: add back once xmonad 0.17 is provided by Arch
+# AddPackage xmonad # Lightweight X11 tiled window manager written in Haskell
+# AddPackage xmonad-contrib # Add-ons for xmonad
+AddPackage pkgconf # Package compiler and linker metadata toolkit
+AddPackage stack # The Haskell Tool Stack
 
 ### Run autoperipherals when hardware changes
 cat > "$(CreateFile /etc/udev/rules.d/10-autoperipherals.rules)" <<EOF

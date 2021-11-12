@@ -34,6 +34,7 @@
     ~/.config/mpd/mpd.conf: homies/config/mpd/mpd.conf
     ~/.config/nvim: homies/config/nvim
     ~/.config/systemd: homies/config/systemd
+    ~/.config/xmonad: homies/config/xmonad
     ~/.direnvrc: homies/direnvrc
     ~/.dir_colors: homies/dir_colors
     ~/.docker/config.json: homies/docker/config.json
@@ -46,7 +47,6 @@
     ~/.vimrc: homies/vimrc
     ~/.vim: homies/vim
     ~/.xinitrc: homies/xinitrc
-    ~/.xmonad/xmonad.hs: homies/xmonad/xmonad.hs
     ~/.Xresources: homies/Xresources
 
     # Create and set a custom GTK theme.

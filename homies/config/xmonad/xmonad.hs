@@ -15,6 +15,8 @@ import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Util.Run(spawnPipe)
 import qualified XMonad.StackSet as W
+import qualified XMonad.Util.Hacks as Hacks
+import XMonad.Hooks.WindowSwallowing
 
 -- Rebind Mod to the Windows key
 myModMask = mod4Mask
@@ -164,8 +166,9 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = Data.Map.fromList $
         , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]]
 
 main = do
-    xmonad $ ewmh desktopConfig {
+    xmonad $ docks $ ewmh desktopConfig {
         manageHook = manageDocks <+> manageSpawn <+> windowPlacement <+> manageHook desktopConfig,
+        handleEventHook = handleEventHook def <+> Hacks.windowedFullscreenFixEventHook <+> swallowEventHook (className =? "Alacritty") (return True),
         layoutHook = myLayout,
         modMask = myModMask,
         XMonad.terminal = myTerminal,
