@@ -16,6 +16,9 @@ function IgnorePkg() {
 
 echo "[multilib]
 Include = /etc/pacman.d/mirrorlist" >> "$pacman_conf"
+# Pinning to 0.7.1 until https://github.com/christophgysin/pasystray/issues/151
+# is fixed.
+IgnorePkg pasystray
 
 ### bootstrapping/aconfmgr
 AddPackage pacutils
