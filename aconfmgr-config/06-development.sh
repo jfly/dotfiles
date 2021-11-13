@@ -69,7 +69,7 @@ AddPackage shellcheck # Shell script analysis tool
 ### Python
 AddPackage python # Next generation of the python high-level scripting language
 AddPackage python-pip # The PyPA recommended tool for installing Python packages
-AddPackage python-pipenv # Sacred Marriage of Pipfile, Pip, & Virtualenv.
+AddPackage python-virtualenv # Virtual Python Environment builder
 IgnorePath '*.pyc' # There's a surprising number of these files scattered around. I guess a lot of tools like to use Python somewhere internally.
 
 ### Node/Javascript
