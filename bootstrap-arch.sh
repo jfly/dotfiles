@@ -21,33 +21,6 @@ doit() {
     ./install
 }
 
-install_volnoti() {
-    # TODO: package this up in some useful way or find an alternative?
-    # Install [hcchu/volnoti](https://github.com/hcchu/volnoti#new-options-in-this-fork) from Github.
-    # [volnoti](https://aur.archlinux.org/packages/volnoti) doesn't have the features needed for volnoti-brightness.
-    if ! [ -x "$(command -v volnoti)" ]; then
-        (
-            mkdir -p ~/thirdrepos
-            cd ~/thirdrepos
-            rm -rf volnoti
-            git clone https://github.com/hcchu/volnoti.git
-            cd volnoti
-            ./prepare.sh
-            ./configure --prefix=/usr
-            (
-                # See https://ubuntuforums.org/showthread.php?t=2215264&p=12978792#post12978792
-                cd src;
-                rm value-client-stub.h && make value-client-stub.h
-                dbus-binding-tool --prefix=volume_object --mode=glib-client specs.xml > value-client-stub.h
-                rm value-daemon-stub.h && make value-daemon-stub.h
-                dbus-binding-tool --prefix=volume_object --mode=glib-server specs.xml > value-daemon-stub.h
-            )
-            make
-            sudo make install
-        )
-    fi
-}
-
 # TODO: port to aconfmgr.
 nuc_nas_stuff() {
     # Enable sshd

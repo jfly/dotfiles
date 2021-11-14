@@ -3,8 +3,3 @@ export PATH=$PATH:$HOME/bin
 
 # `pip install --user` installs binaries here.
 export PATH=$PATH:$HOME/.local/bin
-
-export PATH=$PATH:$HOME/thirdrepos/google-cloud-sdk/bin
-
-# add Pulumi to the PATH
-export PATH=$PATH:$HOME/.pulumi/bin

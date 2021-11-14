@@ -262,6 +262,32 @@ IgnorePath '/usr/local/share/zsh/site-functions/_flameshot'
 
 ### volnoti
 # TODO: get this into a package
+# install_volnoti() {
+#     # TODO: package this up in some useful way or find an alternative?
+#     # Install [hcchu/volnoti](https://github.com/hcchu/volnoti#new-options-in-this-fork) from Github.
+#     # [volnoti](https://aur.archlinux.org/packages/volnoti) doesn't have the features needed for volnoti-brightness.
+#     if ! [ -x "$(command -v volnoti)" ]; then
+#         (
+#             mkdir -p ~/code/aur
+#             cd ~/code/aur
+#             rm -rf volnoti
+#             git clone https://github.com/hcchu/volnoti.git
+#             cd volnoti
+#             ./prepare.sh
+#             ./configure --prefix=/usr
+#             (
+#                 # See https://ubuntuforums.org/showthread.php?t=2215264&p=12978792#post12978792
+#                 cd src;
+#                 rm value-client-stub.h && make value-client-stub.h
+#                 dbus-binding-tool --prefix=volume_object --mode=glib-client specs.xml > value-client-stub.h
+#                 rm value-daemon-stub.h && make value-daemon-stub.h
+#                 dbus-binding-tool --prefix=volume_object --mode=glib-server specs.xml > value-daemon-stub.h
+#             )
+#             make
+#             sudo make install
+#         )
+#     fi
+# }
 IgnorePath '/usr/bin/volnoti'
 IgnorePath '/usr/bin/volnoti-show'
 IgnorePath '/usr/share/pixmaps/volnoti/display-brightness-symbolic.svg'
