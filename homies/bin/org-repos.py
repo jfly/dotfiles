@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import re
+from gitlib import parse_remote
 import sys
 import argparse
 import configparser
@@ -31,23 +31,6 @@ def find_remote(git_config: configparser.ConfigParser):
         section = f'remote "{remote}"'
         if section in git_config:
             return git_config[section]
-
-    return None
-
-def parse_remote(remote: str):
-    regexps = [
-        re.compile(r"git@(?P<service>github).com:(?P<org>.+)/(?P<repo>[^/]+).git"),
-        re.compile(r"https://(?P<service>github).com/(?P<org>[^/]+)/(?P<repo>[^/]+)(.git)?"),
-        re.compile(r"https://(?P<service>gitlab).(?P<instance>[^/]+)/(?P<org>[^/]+)/(?P<repo>[^/]+)(.git)?"),
-    ]
-
-    for regexp in regexps:
-        if match := regexp.match(remote):
-            service = match.group('service')
-            instance = match.group('instance')
-            org = match.group('org')
-            repo = match.group('repo')
-            return filter(None, [service, instance, org, repo])
 
     return None
 
