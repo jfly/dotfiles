@@ -40,6 +40,7 @@
     ~/.docker/config.json: homies/docker/config.json
     ~/.gitconfig: homies/gitconfig
     ~/.gitignore_global: homies/gitignore_global
+    ~/.local/share/icons/jfly-icons: homies/.local/share/icons/jfly-icons
     ~/.jupyter/nbconfig: homies/jupyter/nbconfig
     ~/.mplayer: homies/mplayer
     ~/.ssh/config: homies/ssh/config

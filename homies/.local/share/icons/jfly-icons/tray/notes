@@ -1,0 +1,2 @@
+pacman -Ql blueman | grep /usr/share/icons/hicolor/scalable/status/
+ls -alh /usr/share/icons/Adwaita/scalable/status/bluetooth-*

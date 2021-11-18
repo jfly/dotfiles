@@ -24,7 +24,7 @@ if [ -x /usr/bin/pasystray ]; then
 fi
 
 if [ -x /usr/bin/nm-applet ]; then
-    nm-applet &
+    nm-applet --indicator &
 fi
 
 if [ -x /usr/bin/blueman-applet ]; then
