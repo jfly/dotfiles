@@ -7,7 +7,7 @@ import configparser
 from pathlib import Path
 
 def main():
-    parser = argparse.ArgumentParser(description="Reorganize a directory of git repos under a ~/code/ directory.")
+    parser = argparse.ArgumentParser(description="Reorganize a directory of git repos under a ~/src/ directory.")
     parser.add_argument('--dry-run', action='store_true', help="do nothing, just print what would happen")
     args = parser.parse_args()
 
@@ -77,7 +77,7 @@ def try_git(p: Path, dry_run: bool):
     if heirarchy is None:
         return False, f"Skipping {p}: couldn't understand {remote_section['url']}"
 
-    target = Path(Path.home(), "code").joinpath(*heirarchy)
+    target = Path(Path.home(), "src").joinpath(*heirarchy)
     if not dry_run:
         target.parent.mkdir(parents=True, exist_ok=True)
         p.rename(target)
@@ -90,7 +90,7 @@ def try_aur(p: Path, dry_run: bool):
     if not pkgbuild.is_file():
         return False, f"Skipping {p}: Couldn't find {pkgbuild}"
 
-    target = Path(Path.home(), "code", "aur", p.name)
+    target = Path(Path.home(), "src", "aur", p.name)
     if not dry_run:
         target.parent.mkdir(parents=True, exist_ok=True)
         p.rename(target)

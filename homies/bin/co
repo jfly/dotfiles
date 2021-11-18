@@ -27,7 +27,7 @@ def clone(remote: str, dry_run: bool):
     if heirarchy is None:
         assert False, f"couldn't understand {remote}"
 
-    target = Path(Path.home(), "code").joinpath(*heirarchy)
+    target = Path(Path.home(), "src").joinpath(*heirarchy)
     target.parent.mkdir(parents=True, exist_ok=True)
     if not dry_run:
         subprocess.check_call(['git', 'clone', remote], cwd=target.parent, stdout=subprocess.DEVNULL)
