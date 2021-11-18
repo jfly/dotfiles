@@ -99,7 +99,7 @@ AddPackage rust-analyzer # Rust compiler front-end for IDEs
 AddPackage rustup # The Rust toolchain installer
 AddPackage cbindgen # A tool for generating C bindings to Rust code
 
-### Misc programming languages
+### Misc
 AddPackage go # Core compiler tools for the Go programming language
 AddPackage gtest # Google Test - C++ testing utility
 AddPackage bash-bats # Bash Automated Testing System
@@ -119,6 +119,15 @@ AddPackage boost # Free peer-reviewed portable C++ source libraries (development
 AddPackage llvm # Collection of modular and reusable compiler and toolchain technologies
 AddPackage extra-cmake-modules # Extra modules and scripts for CMake
 AddPackage ctags # Generates an index file of language objects found in source files
+AddPackage coreutils # The basic file, shell and text manipulation utilities of the GNU operating system
+AddPackage doxygen # Documentation system for C++, C, Java, IDL and PHP
+AddPackage expect # A tool for automating interactive applications
+AddPackage diffstat # Display a histogram of diff changes
+AddPackage diffutils # Utility programs used for creating patch files
+AddPackage patchutils # A small collection of programs that operate on patch files
+AddPackage wkhtmltopdf # Command line tools to render HTML into PDF and various image formats
+AddPackage gobject-introspection # Introspection system for GObject-based libraries
+AddPackage python-sphinx # Python documentation generator
 
 ### Dependencies to install stuff from the AUR
 AddPackage gcc
@@ -134,15 +143,6 @@ AddPackage potrace # Utility for tracing a bitmap (input
 ### Debug utils
 AddPackage strace # A diagnostic, debugging and instructional userspace tracer
 AddPackage ghidra # Software reverse engineering framework
-
-### Misc
-AddPackage coreutils # The basic file, shell and text manipulation utilities of the GNU operating system
-AddPackage doxygen # Documentation system for C++, C, Java, IDL and PHP
-AddPackage expect # A tool for automating interactive applications
-AddPackage diffstat # Display a histogram of diff changes
-AddPackage diffutils # Utility programs used for creating patch files
-AddPackage patchutils # A small collection of programs that operate on patch files
-AddPackage wkhtmltopdf # Command line tools to render HTML into PDF and various image formats
 
 ### Graphviz
 AddPackage graphviz # Graph visualization software
