@@ -55,6 +55,9 @@ IgnorePath '/nix/*'
 
 ### Network
 AddPackage nginx # Lightweight HTTP server and IMAP/POP3 proxy server
+    CreateDir /var/lib/nginx/fastcgi
+    CreateDir /var/lib/nginx/scgi
+    CreateDir /var/lib/nginx/uwsgi
 AddPackage curl # An URL retrieval utility and library
 AddPackage wget # Network utility to retrieve files from the Web
 AddPackage openbsd-netcat # TCP/IP swiss army knife. OpenBSD variant.
@@ -70,6 +73,7 @@ AddPackage shellcheck # Shell script analysis tool
 AddPackage python # Next generation of the python high-level scripting language
 AddPackage python-pip # The PyPA recommended tool for installing Python packages
 AddPackage python-virtualenv # Virtual Python Environment builder
+AddPackage socat # Multipurpose relay (useful with remote-pdb!)
 IgnorePath '*.pyc' # There's a surprising number of these files scattered around. I guess a lot of tools like to use Python somewhere internally.
 
 ### Node/Javascript
