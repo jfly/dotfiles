@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 
+from gitlib import parse_gitconfig
 from gitlib import parse_remote
+from gitlib import InvalidGitRepo
 import sys
 import argparse
 import configparser
@@ -61,13 +63,10 @@ def analyze(p: Path, dry_run: bool):
 
 
 def try_git(p: Path, dry_run: bool):
-    git_config = p.joinpath(".git", "config")
-    if not git_config.is_file():
-        return False, f"Skipping {p}: Couldn't find {git_config}"
-
-    config = configparser.ConfigParser()
-    with git_config.open() as f:
-        config.read_string(f.read())
+    try:
+        config = parse_gitconfig(p)
+    except InvalidGitRepo as e:
+        return False, f"Skipping {p}: {str(e)}"
 
     remote_section = find_remote(config)
     if remote_section is None:
