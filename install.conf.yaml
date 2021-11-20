@@ -33,6 +33,7 @@
     ~/.config/git: homies/config/git
     ~/.config/mpd/mpd.conf: homies/config/mpd/mpd.conf
     ~/.config/nvim: homies/config/nvim
+    ~/.config/polybar: homies/config/polybar
     ~/.config/systemd: homies/config/systemd
     ~/.config/xmonad: homies/config/xmonad
     ~/.direnvrc: homies/direnvrc
