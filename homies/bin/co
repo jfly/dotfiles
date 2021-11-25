@@ -37,7 +37,7 @@ def clone(remote: str, dry_run: bool):
 
     target = Path(Path.home(), "src").joinpath(*heirarchy)
     target.parent.mkdir(parents=True, exist_ok=True)
-    if target.exists:
+    if target.exists():
         print(f"I found a folder {target}, I'm going to optimistically assume it is a git repo set up for {remote}", file=sys.stderr)
         print(target)
         return
