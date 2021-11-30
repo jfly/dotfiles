@@ -72,7 +72,6 @@ AddPackage shellcheck # Shell script analysis tool
 ### Python
 AddPackage python # Next generation of the python high-level scripting language
 AddPackage python-pip # The PyPA recommended tool for installing Python packages
-AddPackage python-virtualenv # Virtual Python Environment builder
 AddPackage socat # Multipurpose relay (useful with remote-pdb!)
 IgnorePath '*.pyc' # There's a surprising number of these files scattered around. I guess a lot of tools like to use Python somewhere internally.
 

@@ -19,6 +19,18 @@ use_asdf() {
     # If we're dealing with Python, make sure we're working inside of a virtual
     # environment.
     if test "$plugin" = "python"; then
+        # Copied from https://github.com/direnv/direnv/blob/02b6d383f9680c29b9c09b0950c43c0ef4569bec/stdlib.sh
+        # to provide a more useful error message.
+        read -r python_version ve <<<$(python -c "import pkgutil as u, platform as p;ve='venv' if u.find_loader('venv') else ('virtualenv' if u.find_loader('virtualenv') else '');print(p.python_version()+' '+ve)")
+        if test -z "$ve"; then
+            echo "" > /dev/stderr
+            echo "Could not find venv nor virtualenv. If you're trying to use Python 2, you'll need to install virtualenv:" > /dev/stderr
+            echo "" > /dev/stderr
+            echo "pip install virtualenv" > /dev/stderr
+            echo "direnv reload" > /dev/stderr
+            echo "" > /dev/stderr
+            exit 0
+        fi
         # Prevent pipenv from printing a courtesy notice about detecting that
         # we're inside of a virtual environment.
         export PIPENV_VERBOSITY=-1
