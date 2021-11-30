@@ -21,6 +21,9 @@ Include = /etc/pacman.d/mirrorlist" >> "$pacman_conf"
 AddPackage pacutils
 AddPackage --foreign alma # Create Arch Linux based live USB
 
+### pacaur
+AddPackage --foreign pacaur # An AUR helper that minimizes user interaction
+
 ### GPG
 AddPackage gnupg
 CreateLink /etc/systemd/user/sockets.target.wants/dirmngr.socket /usr/lib/systemd/user/dirmngr.socket

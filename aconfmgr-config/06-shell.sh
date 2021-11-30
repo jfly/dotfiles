@@ -1,5 +1,5 @@
 ### Shell
-AddPackage --foreign direnv # a shell extension that manages your environment
+AddPackage direnv # a shell extension that manages your environment
 AddPackage file # File type identification utility
 AddPackage findutils # GNU utilities to locate files
 AddPackage tree # A directory listing program displaying a depth indented list of files

@@ -113,6 +113,7 @@ IgnorePath '/usr/local/share/applications/mimeinfo.cache' # https://specificatio
 IgnorePath '/usr/share/mime/application/*'
 IgnorePath '/usr/share/mime/*'
 IgnorePath '/usr/share/icons/*/icon-theme.cache'
+IgnorePath '/etc/dconf/db/ibus'
 
 ### D-Bus
 IgnorePath '/etc/dbus-1/system.d'
@@ -212,6 +213,7 @@ AddPackage firefox # Standalone web browser from mozilla.org
 AddPackage elinks # An advanced and well-established feature-rich text mode web browser.
 
 ### Dropbox
+AddPackage gendesk # This is a makedepends of `dropbox`, but due to https://github.com/E5ten/pacaur/issues/14, `pacaur` needs it explicitly installed.
 AddPackage --foreign dropbox # A free service that lets you bring your photos, docs, and videos anywhere and share them easily.
 # When you have enough files, Dropbox asks for this.
 echo "fs.inotify.max_user_watches=524288" > "$(CreateFile /etc/sysctl.d/99-sysctl.conf)"

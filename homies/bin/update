@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
-sudo pacman -Syuu
+set -e
+
+pacaur -Syuu
 sudo ghc-pkg recache
 xmonad --recompile
