@@ -1,10 +1,5 @@
 ### Desktop/gui
-# TODO: add polybar back once https://github.com/christophgysin/pasystray/issues/151 has been released.
-# AddPackage --foreign polybar-git # Status bar (need the -git version to get support for wm-restart=generic: https://github.com/polybar/polybar/pull/2404#issuecomment-864411636)
-CreateLink /usr/bin/polybar /home/jeremy/src/github.com/polybar/polybar/build/bin/polybar
-AddPackage xcb-util-xrm  # TODO: remove once we're using aur provided polybar again
-AddPackage xcb-util-cursor  # TODO: remove once we're using aur provided polybar again
-
+AddPackage --foreign polybar-git # Status bar (need the -git version to get support for wm-restart=generic: https://github.com/polybar/polybar/pull/2404#issuecomment-864411636 and https://github.com/christophgysin/pasystray/issues/151)
 AddPackage dunst # Customizable and lightweight notification-daemon
 AddPackage xorg-server # Xorg X server
 AddPackage xorg-server-xvfb # Virtual framebuffer X server
