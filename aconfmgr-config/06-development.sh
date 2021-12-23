@@ -102,6 +102,14 @@ AddPackage rust-analyzer # Rust compiler front-end for IDEs
 AddPackage rustup # The Rust toolchain installer
 AddPackage cbindgen # A tool for generating C bindings to Rust code
 
+### PHP
+AddPackage php # A general-purpose scripting language that is especially suited to web development
+AddPackage composer # Dependency Manager for PHP
+
+### .NET
+AddPackage aspnet-runtime # The ASP.NET Core runtime
+AddPackage dotnet-sdk # The .NET Core SDK
+
 ### Misc
 AddPackage go # Core compiler tools for the Go programming language
 AddPackage gtest # Google Test - C++ testing utility
@@ -112,7 +120,6 @@ AddPackage nasm # 80x86 assembler designed for portability and modularity
 AddPackage m4 # The GNU macro processor
 AddPackage mercurial # A scalable distributed SCM tool
 AddPackage meson # High productivity build system
-AddPackage php # A general-purpose scripting language that is especially suited to web development
 AddPackage imake # X.Org imake program and related utilities
 AddPackage --foreign cmake-format # Source code formatter for CMake listfiles
 AddPackage autoconf2.13 # A GNU tool for automatically configuring source code (Legacy 2.1x version)
@@ -141,7 +148,7 @@ AddPackage automake
 AddPackage make # GNU make utility to maintain groups of programs
 
 ### cubing/icons
-AddPackage potrace # Utility for tracing a bitmap (input
+AddPackage potrace # Utility for tracing a bitmap (input: PBM,PGM,PPM,BMP; output: EPS,PS,PDF,SVG,DXF,PGM,Gimppath,XFig)
 
 ### Debug utils
 AddPackage strace # A diagnostic, debugging and instructional userspace tracer

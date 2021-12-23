@@ -26,3 +26,9 @@ CreateLink /etc/systemd/system/sockets.target.wants/org.cups.cupsd.socket /usr/l
 
 # Ignore various files.
 IgnorePath '/var/spool/*'
+
+## Scanning
+# Following instructions from https://wiki.archlinux.org/title/SANE#Installation
+AddPackage ipp-usb # allows using the IPP protocol, normally designed for network printers, to be used with USB printers as well
+AddPackage sane-airscan # SANE - SANE backend for AirScan (eSCL) and WSD document scanners
+IgnorePath '/var/ipp-usb/*'

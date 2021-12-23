@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 
+set -e
+
 # Built from https://wiki.archlinux.org/index.php/SANE#Verification
 
 # Got this device name from `scanimage -L`
-DEVICE=pixma:MG5400_192.168.1.7
-DEVICE=pixma:04A91764_00BA32
+DEVICE="airscan:e0:Canon LiDE 300 (USB)"
 
 SCANS_DIR=$HOME/scans
 mkdir -p "$SCANS_DIR"
