@@ -77,7 +77,9 @@ User clark
 ForwardAgent yes
 
 Host dallben
-HostName dallben
+User dallben
+
+Host fflewddur
 User root
 
 Host jpi
