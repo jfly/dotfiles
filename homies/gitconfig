@@ -14,6 +14,7 @@
     email = jeremyfleischman@gmail.com
 [commit]
     gpgsign = true
+    verbose = true
 [push]
     default = simple
 [core]
