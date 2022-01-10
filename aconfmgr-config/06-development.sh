@@ -51,7 +51,14 @@ AddPackage virtualbox # Powerful x86 virtualization for enterprise as well as ho
 AddPackage --foreign aws-cli-v2-bin # Universal Command Line Interface for Amazon Web Services version 2
 
 ### nix
+AddPackage nix # A purely functional package manager
+CopyFile /etc/nix/nix.conf
+CreateLink /etc/systemd/system/multi-user.target.wants/nix-daemon.service /usr/lib/systemd/system/nix-daemon.service
 IgnorePath '/nix/*'
+# QEMU emulation is used for compiling for other architectures.
+AddPackage --foreign binfmt-qemu-static # Register qemu-static interpreters for various binary formats
+AddPackage --foreign glib2-static # Low level core library: Static library
+AddPackage --foreign qemu-user-static-bin # A generic and open source machine emulator, statically linked
 
 ### Network
 AddPackage nginx # Lightweight HTTP server and IMAP/POP3 proxy server
