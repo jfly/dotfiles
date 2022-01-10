@@ -1,5 +1,6 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 
+# Copied from https://github.com/zeehio/tkdu/blob/master/tkdu.py
 #    This is tkdu.py, an interactive program to display disk usage
 #    Copyright 2004 Jeff Epler <jepler@unpythonic.net>
 #
@@ -17,8 +18,22 @@
 #    along with this program; if not, write to the Free Software
 #    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
-import math, Tkinter, sys, os, stat, string, time, gzip, FileDialog
-from tkFileDialog import askdirectory
+import sys
+import os
+import stat
+import time
+import gzip
+
+import tkinter
+from tkinter.filedialog import LoadFileDialog
+from tkinter.filedialog import askdirectory
+
+# Limit the number of printed error messages from parsing `du -ak` output
+ERRORS_FOUND_THRESHOLD = 10 # type: Optional[int]
+# Limit the graphical representation of directories/files nested more than
+# LEVELS_DEEP_THRESHOLD to reduce tkdu memory usage.
+LEVELS_DEEP_THRESHOLD = None # type: Optional[int]
+
 
 MIN_PSZ = 1000
 MIN_IPSZ = 240
@@ -35,40 +50,48 @@ FONT_HEIGHT2 = 20
 dircolors = ['#ff7070', '#70ff70', '#7070ff']
 leafcolors = ['#bf5454', '#54bf54', '#5454bf']
 
+
 def allocate(path, files, canvas, x, y, w, h, first, depth):
     tk_call = canvas.tk.call
-    if w < MIN_W or h < MIN_H: return
+    if w < MIN_W or h < MIN_H:
+        return
     psz = w*h
-    if psz < MIN_PSZ: return
+    if psz < MIN_PSZ:
+        return
     if path and path[-1] == "/":
         basename_idx = len(path)
-        nslashes = string.count(path, os.sep) - 1
+        nslashes = path.count(os.sep) - 1
     else:
         basename_idx = len(path) + 1
-        nslashes = string.count(path, os.sep)
+        nslashes = path.count(os.sep)
     dircolor = dircolors[nslashes % len(dircolors)]
     leafcolor = leafcolors[nslashes % len(dircolors)]
     colors = (leafcolor, dircolor)
     totsz = 0
     ff = getkids(files, path)
-    if not ff: return
-    if ff[0][1] == '/': del ff[0]
+    if not ff:
+        return
+    if ff[0][1] == '/':
+        del ff[0]
     ff = ff[first:]
     for item in ff:
         totsz = totsz + item[0]
         item[2] = None
 
-    if totsz == 0: return
+    if totsz == 0:
+        return
 
     i = 0
     ratio = psz*1./totsz
 
-    while i < len(ff) and w>2*BORDER and h>2*BORDER:
+    while i < len(ff) and w > 2*BORDER and h > 2*BORDER:
         if w > h:
             orient = VERTICAL
             usew = w - h*2./3
-            if usew < 50: usew = 50
-            if usew > 200: usew = 200
+            if usew < 50:
+                usew = 50
+            if usew > 200:
+                usew = 200
             first_height = ff[i][0]/usew*ratio
             while first_height < .65 * usew:
                 usew = usew / 1.5
@@ -78,8 +101,10 @@ def allocate(path, files, canvas, x, y, w, h, first, depth):
         else:
             orient = HORIZONTAL
             useh = h - w*2./3
-            if useh < 50: useh = 50
-            if useh > 100: useh = 100
+            if useh < 50:
+                useh = 50
+            if useh > 100:
+                useh = 100
             first_width = ff[i][0]/useh*ratio
             while first_width < .65 * useh:
                 useh = useh / 1.5
@@ -87,16 +112,16 @@ def allocate(path, files, canvas, x, y, w, h, first, depth):
             want = useh * w / ratio
             maxcnt = w/30
 
-
         j = i+1
         use = ff[i][0]
-        while j < len(ff) and use < want: #and j < i + maxcnt:
+        while j < len(ff) and use < want:  # and j < i + maxcnt:
             use = use + ff[j][0]
-            j=j+1
+            j = j+1
 
         if orient is VERTICAL:
             usew = use * ratio / h
-            if usew <= 2*BORDER: break
+            if usew <= 2*BORDER:
+                break
             y0 = y
             for item in ff[i:j]:
                 dy = item[0]/usew*ratio
@@ -106,7 +131,8 @@ def allocate(path, files, canvas, x, y, w, h, first, depth):
             w = w - usew
         else:
             useh = use * ratio / w
-            if useh <= 2*BORDER: break
+            if useh <= 2*BORDER:
+                break
             x0 = x
             for item in ff[i:j]:
                 dx = item[0]/useh*ratio
@@ -121,19 +147,20 @@ def allocate(path, files, canvas, x, y, w, h, first, depth):
         name = item[1]
         haskids = bool(getkids(files, name))
         color = colors[haskids]
-        if item[2] is None: continue
+        if item[2] is None:
+            continue
         x, y, w, h = pos = item[2]
         if w > 3*BORDER and h > 3*BORDER:
             tk_call(canvas._w,
-                "create", "rectangle",
-                x+BORDER+2, y+BORDER+2, x+w-BORDER+1, y+h-BORDER+1,
-                "-fill", "#3f3f3f",
-                "-outline", "#3f3f3f")
+                    "create", "rectangle",
+                    x+BORDER+2, y+BORDER+2, x+w-BORDER+1, y+h-BORDER+1,
+                    "-fill", "#3f3f3f",
+                    "-outline", "#3f3f3f")
 
         i = tk_call(canvas._w,
-            "create", "rectangle",
-            x+BORDER, y+BORDER, x+w-BORDER, y+h-BORDER,
-            "-fill", color)
+                    "create", "rectangle",
+                    x+BORDER, y+BORDER, x+w-BORDER, y+h-BORDER,
+                    "-fill", color)
         canvas.map[int(i)] = name
 
         if h > FONT_HEIGHT+2*BORDER:
@@ -150,37 +177,39 @@ def allocate(path, files, canvas, x, y, w, h, first, depth):
                     if tw < w1:
                         text = "%s\n%s" % (stem, ssz)
                         i = tk_call(canvas._w, "create", "text",
-                            x+BORDER+2, y+BORDER,
-                            "-text", text,
-                            "-font", FONT_FACE, "-anchor", "nw")
+                                    x+BORDER+2, y+BORDER,
+                                    "-text", text,
+                                    "-font", FONT_FACE, "-anchor", "nw")
                         canvas.map[int(i)] = name
                         y = y + FONT_HEIGHT2
                         h = h - FONT_HEIGHT2
                         if w*h > MIN_PSZ and haskids and depth != 1:
                             queue(canvas, allocate, name, files, canvas,
-                                x+2*BORDER, y+2*BORDER,
-                                w-4*BORDER, h-4*BORDER, 0, depth-1)
+                                  x+2*BORDER, y+2*BORDER,
+                                  w-4*BORDER, h-4*BORDER, 0, depth-1)
                         continue
                 text = stem
                 tw = int(tk_call("font", "measure", FONT_FACE, text))
             if tw < w1:
                 i = tk_call(canvas._w, "create", "text",
-                        x+BORDER+2, y+BORDER,
-                        "-text", text,
-                        "-font", FONT_FACE, "-anchor", "nw")
+                            x+BORDER+2, y+BORDER,
+                            "-text", text,
+                            "-font", FONT_FACE, "-anchor", "nw")
                 canvas.map[int(i)] = name
                 y = y + FONT_HEIGHT
                 h = h - FONT_HEIGHT
         if w*h > MIN_PSZ and haskids and depth != 1:
             queue(canvas, allocate, name, files, canvas,
-                x+2*BORDER, y+2*BORDER,
-                w-4*BORDER, h-4*BORDER, 0, depth-1)
+                  x+2*BORDER, y+2*BORDER,
+                  w-4*BORDER, h-4*BORDER, 0, depth-1)
+
 
 def queue(c, *args):
     if c.aid is None:
         c.aid = c.after_idle(run_queue, c)
         c.configure(cursor="watch")
     c.queue.append(args)
+
 
 def run_queue(c):
     queue = c.queue
@@ -190,18 +219,21 @@ def run_queue(c):
             c.aid = None
             c.configure(cursor="")
             break
-        if time.time() > end: break
+        if time.time() > end:
+            break
         item = queue[0]
         del queue[0]
-        apply(item[0], item[1:])
+        item[0](*item[1:])
     if queue:
         c.aid = c.after_idle(run_queue, c)
+
 
 def chroot(e, r):
     c = e.widget
     if not getkids(c.files, r):
         r = os.path.dirname(r)
-        if r == c.cur: return
+        if r == c.cur:
+            return
     if r is None:
         return
     if not r.startswith(c.root):
@@ -213,23 +245,27 @@ def chroot(e, r):
     e.height = c.winfo_height()
     reconfigure(e)
 
+
 def item_under_cursor(e):
     c = e.widget
     try:
         item = c.find_overlapping(e.x, e.y, e.x, e.y)[-1]
     except IndexError:
         return None
-    return  c.map.get(item, None)
+    return c.map.get(item, None)
+
 
 def descend(e):
     c = e.widget
     item = item_under_cursor(e)
     chroot(e, item)
 
+
 def ascend(e):
     c = e.widget
     parent = os.path.dirname(c.cur)
     chroot(e, parent)
+
 
 def size(n):
     if n > 1024*1024*1024:
@@ -240,25 +276,31 @@ def size(n):
         return "%.1fKB" % (n/1024.)
     return "%d" % n
 
+
 def scroll(e, dir):
     c = e.widget
     offset = c.first + 5*dir
     l = len(getkids(c.files, c.cur))
-    if offset + 5 > l: offset = l-5
-    if offset < 0: offset = 0
+    if offset + 5 > l:
+        offset = l-5
+    if offset < 0:
+        offset = 0
     if offset != c.first:
         c.first = offset
         e.width = c.winfo_width()
         e.height = c.winfo_height()
         reconfigure(e)
 
+
 def schedule_tip(e):
     c = e.widget
     s = item_under_cursor(e)
-    if not s: return
+    if not s:
+        return
     sz = getname(c.files, s)
     s = "%s (%s)" % (s, size(sz))
     c.tipa = c.after(500, make_tip, e, s)
+
 
 def make_tip(e, s):
     c = e.widget
@@ -266,6 +308,7 @@ def make_tip(e, s):
     c.tipl.configure(text=s)
     c.tip.wm_geometry("+%d+%d" % (e.x_root+5, e.y_root+5))
     c.tip.wm_deiconify()
+
 
 def cancel_tip(e, c=None):
     if c is None:
@@ -275,6 +318,7 @@ def cancel_tip(e, c=None):
         c.tipa = None
     else:
         c.tip.wm_withdraw()
+
 
 def reconfigure(e):
     c = e.widget
@@ -292,18 +336,20 @@ def reconfigure(e):
     if c.cur == "/":
         nslashes = -1
     else:
-        nslashes = string.count(c.cur, os.sep) - 1
+        nslashes = c.cur.count(os.sep) - 1
     parent = os.path.dirname(c.cur)
     color = dircolors[nslashes % len(dircolors)]
     c.configure(background=color)
     c.queue = [(allocate, c.cur, c.files, c, 0, 0, w, h, c.first, c.depth)]
     run_queue(c)
 
+
 def putname_base(dict, name, base, size):
     try:
         dict[base][name] = size
     except:
         dict[base] = {name: size}
+
 
 def putname(dict, name, size):
     base = os.path.dirname(name)
@@ -312,26 +358,29 @@ def putname(dict, name, size):
     except:
         dict[base] = {name: size}
 
+
 def getname(dict, name):
     base = os.path.dirname(name)
     return dict[base][0][name]
 
+
 def getkids(dict, path):
     return dict.get(path, ((), {}))[1]
+
 
 def doit(dir, files):
     sorted_files = {}
     for k, v in files.items():
-        sv = map(lambda (k, v): [v, k, None], v.items())
+        sv = list(map(lambda k_v: [k_v[1], k_v[0], None], v.items()))
         sv.sort()
         sv.reverse()
         sorted_files[k] = (v, sv)
 
-    t = Tkinter.Tk()
-    c = Tkinter.Canvas(t, width=1024, height=768)
-    c.tip = Tkinter.Toplevel(t)
+    t = tkinter.Tk()
+    c = tkinter.Canvas(t, width=1024, height=768)
+    c.tip = tkinter.Toplevel(t)
     c.tip.wm_overrideredirect(1)
-    c.tipl = Tkinter.Label(c.tip)
+    c.tipl = tkinter.Label(c.tip)
     c.tipl.pack()
     c.pack(expand="yes", fill="both")
     c.files = sorted_files
@@ -349,15 +398,14 @@ def doit(dir, files):
         t.bind("<Key-%d>" % i, lambda e, c=c, i=i: setdepth(e, c, i))
     c.bind("<Button-4>", lambda e: scroll(e, -1))
     c.bind("<Button-5>", lambda e: scroll(e, 1))
-    if os.name == 'nt':
-        c.bind("<Button-3>", ascend)
-    else:
-        c.bind("<Button-2>", ascend)
+    # Map both middle click and right click to zoom out:
+    c.bind("<Button-3>", ascend)
+    c.bind("<Button-2>", ascend)
     c.tag_bind("all", "<Button-1>", descend)
-    c.tag_bind("all", "<Button-3>", ascend) # JFLY
     c.tag_bind("all", "<Enter>", schedule_tip)
     c.tag_bind("all", "<Leave>", cancel_tip)
     c.mainloop()
+
 
 def setdepth(e, c, i):
     e.widget = c
@@ -366,23 +414,47 @@ def setdepth(e, c, i):
     c.depth = i
     reconfigure(e)
 
-def main(f = sys.stdin):
+
+def main(f=sys.stdin):
     files = {}
     firstfile = None
-    for line in f.readlines():
-        sz, name = string.split(line[:-1], None, 1)
-#       name = name.split("/")
-        sz = long(sz)*1024
-        putname(files, name, sz)
+    errors_found = 0
+    for linenum, line in enumerate(f.readlines()):
+        try:
+            sz, name = line[:-1].split(None, 1)
+        except ValueError:
+            errors_found += 1
+            if ERRORS_FOUND_THRESHOLD is None or errors_found < ERRORS_FOUND_THRESHOLD:
+                print("Skip line " + str(linenum+1) + ". Content: " + line[:-1])
+            elif errors_found == ERRORS_FOUND_THRESHOLD:
+                print("Further skip line errors are silenced")
+            continue
+        levels_deep = name.count("/")
+        # Skip representation of nested directories beyond LEVELS_DEEP_THRESHOLD
+        if LEVELS_DEEP_THRESHOLD is not None and levels_deep > LEVELS_DEEP_THRESHOLD:
+            continue
+        try: # For normal lines of du output
+            sz = int(sz)*1024
+            putname(files, name, sz)
+        except ValueError: # For error lines of du output, which is caused by 'Permission denied' when accessing certain folders of other users.
+            pass # do nothing (if met with permission error)!
+            #print "Something went wrong {!s}".format(line)   # the problem value
+
     doit(name, files)
 
-def du(dir, files, fs=0, ST_MODE=stat.ST_MODE, ST_SIZE = stat.ST_SIZE, S_IFMT = 0170000, S_IFDIR = 0040000, lstat = os.lstat, putname_base = putname_base, fmt="%%s%s%%s" % os.sep):
+
+def du(dir, files, fs=0, ST_MODE=stat.ST_MODE, ST_SIZE=stat.ST_SIZE,
+       S_IFMT=0o170000, S_IFDIR=0o040000, lstat=os.lstat,
+       putname_base=putname_base, fmt="%%s%s%%s" % os.sep):
     tsz = 0
 
-    try: fns = os.listdir(dir)
-    except: return 0
+    try:
+        fns = os.listdir(dir)
+    except:
+        return 0
 
-    if not files.has_key(dir): files[dir] = {}
+    if dir not in files.keys():
+        files[dir] = {}
     d = files[dir]
 
     for fn in fns:
@@ -394,19 +466,21 @@ def du(dir, files, fs=0, ST_MODE=stat.ST_MODE, ST_SIZE = stat.ST_SIZE, S_IFMT = 
             continue
 
         if info[ST_MODE] & S_IFMT == S_IFDIR:
-            sz = du(fn, files) + long(info[ST_SIZE])
+            sz = du(fn, files) + int(info[ST_SIZE])
         else:
             sz = info[ST_SIZE]
         d[fn] = sz
         tsz = tsz + sz
     return tsz
 
+
 def abspath(p):
     return os.path.normpath(os.path.join(os.getcwd(), p))
 
-class DirDialog(FileDialog.LoadFileDialog):
+
+class DirDialog(LoadFileDialog):
     def __init__(self, master, title=None):
-        FileDialog.LoadFileDialog.__init__(self, master, title)
+        LoadFileDialog.__init__(self, master, title)
         self.files.destroy()
         self.filesbar.destroy()
 
@@ -418,7 +492,7 @@ class DirDialog(FileDialog.LoadFileDialog):
             self.quit(file)
 
     def filter_command(self, event=None):
-        END="end"
+        END = "end"
         dir, pat = self.get_filter()
         try:
             names = os.listdir(dir)
@@ -438,19 +512,20 @@ class DirDialog(FileDialog.LoadFileDialog):
         for name in subdirs:
             self.dirs.insert(END, name)
         head, tail = os.path.split(self.get_selection())
-        if tail == os.curdir: tail = ''
+        if tail == os.curdir:
+            tail = ''
         self.set_selection(tail)
 
+
 def main_builtin_du(args):
-    import sys
     if len(args) > 1:
         p = args[1]
     else:
-        t = Tkinter.Tk()
+        t = tkinter.Tk()
         t.wm_withdraw()
         p = askdirectory()
-        if Tkinter._default_root is t:
-            Tkinter._default_root = None
+        if tkinter._default_root is t:
+            tkinter._default_root = None
         t.destroy()
         if p is None:
             return
@@ -458,19 +533,19 @@ def main_builtin_du(args):
 
     if p == '-h' or p == '--help' or p == '-?':
         base = os.path.basename(args[0])
-        print 'Usage:'
-        print ' ', base, '<file.gz>     interpret file as gzipped du -ak output and visualize it'
-        print ' ', base, '<file>        interpret file as du -ak output and visualize it'
-        print ' ', base, '<folder>      analyze disk usage in that folder'
-        print ' ', base, '-             interpret stdin input as du -ak output and visualize it'
-        print ' ', base, '              ask for folder to analyze'
-        print
-        print 'Controls:'
-        print '  * Press `q` to quit'
-        print '  * LMB: zoom in to item'
-        print '  * RMB: zoom out one level'
-        print '  * Press `1`..`9`: Show that many nested levels'
-        print '  * Press `0`: Show man nested levels'
+        print('Usage:')
+        print(' ', base, '<file.gz>     interpret file as gzipped du -ak output and visualize it')
+        print(' ', base, '<file>        interpret file as du -ak output and visualize it')
+        print(' ', base, '<folder>      analyze disk usage in that folder')
+        print(' ', base, '-             interpret stdin input as du -ak output and visualize it')
+        print(' ', base, '              ask for folder to analyze')
+        print()
+        print('Controls:')
+        print('  * Press `q` to quit')
+        print('  * LMB: zoom in to item')
+        print('  * RMB: zoom out one level')
+        print('  * Press `1`..`9`: Show that many nested levels')
+        print('  * Press `0`: Show man nested levels')
         return
 
     if p == "-":
@@ -479,10 +554,9 @@ def main_builtin_du(args):
         p = abspath(p)
         if os.path.isfile(p):
             if p.endswith('.gz'):
-                # gzipped file
-                main(gzip.open(p, 'r'))
+                main(gzip.open(p, 'rt', encoding="utf-8", errors='replace'))
             else:
-                main(open(p, 'r'))
+                main(open(p, 'rt', encoding="utf-8", errors='replace'))
         else:
             putname(files, p, du(p, files))
             doit(p, files)

@@ -45,6 +45,8 @@ AddPackage wol # Wake On LAN functionality in a small program. It wakes up hardw
 AddPackage zenity # Display graphical dialog boxes from shell scripts
 ## bin/q
 AddPackage sox # The Swiss Army knife of sound processing tools. Provides `play`
+## bin/tkdu.py
+AddPackage tk # A windowing toolkit for use with tcl
 ## aliases::pdfcrop
 # AddPackage texlive-core
 AddPackage pdftk # Command-line tool for working with PDFs
