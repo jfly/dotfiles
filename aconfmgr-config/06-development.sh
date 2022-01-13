@@ -13,7 +13,6 @@ AddPackage kakoune # Multiple-selection, UNIX-flavored modal editor
 
 ### Git
 AddPackage diff-so-fancy # Good-looking diffs with diff-highlight and more
-AddPackage git-crypt # Transparent file encryption in Git
 AddPackage git-delta # Syntax-highlighting pager for git and diff output
 AddPackage github-cli # The GitHub CLI
 AddPackage hub # cli interface for Github
