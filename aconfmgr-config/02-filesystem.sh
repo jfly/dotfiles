@@ -15,6 +15,7 @@ AddPackage libnfs # client library for accessing NFS shares
 AddPackage nfs-utils # Support programs for Network File Systems
 IgnorePath '/var/lib/rpcbind' # nfs-utils depends on rpcbind, which is intent upon creating this file.
 IgnorePath '/var/lib/gssproxy/default.sock' # nfs-utils depends on gssproxy, which is intent upon creating this file.
+IgnorePath /var/lib/nfs/state
 
 ### NTFS
 AddPackage ntfs-3g # NTFS filesystem driver and utilities

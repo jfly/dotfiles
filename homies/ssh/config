@@ -82,6 +82,9 @@ User dallben
 Host fflewddur
 User root
 
+Host fflam
+User root
+
 Host jpi
 HostName jpi
 User pi

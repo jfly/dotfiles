@@ -46,9 +46,6 @@ AddPackage vagrant # Build and distribute virtualized development environments
 AddPackage virtualbox-host-modules-arch
 AddPackage virtualbox # Powerful x86 virtualization for enterprise as well as home use
 
-### Cloud hosting
-AddPackage --foreign aws-cli-v2-bin # Universal Command Line Interface for Amazon Web Services version 2
-
 ### nix
 AddPackage nix # A purely functional package manager
 CopyFile /etc/nix/nix.conf
