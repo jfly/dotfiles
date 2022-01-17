@@ -31,6 +31,7 @@ AddPackage numlockx # Turns on the numlock key in X11.
 AddPackage xdotool # Command-line X11 automation tool
 AddPackage xclip # Command line interface to the X11 clipboard
 AddPackage gnome-keyring # Stores passwords and encryption keys
+AddPackage steam # Valve's digital software delivery system
 
 ### xmonad
 # TODO: add back once xmonad 0.17 is provided by Arch
