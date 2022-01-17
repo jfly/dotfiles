@@ -73,7 +73,7 @@ User admin
 
 Host clark
 HostName clark.snowdon.jflei.com
-User clark
+User root
 ForwardAgent yes
 
 Host dallben
