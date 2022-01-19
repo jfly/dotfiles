@@ -243,25 +243,6 @@ IgnorePath '/var/lib/geoclue' # redshift depends on geoclue, which seems to be i
 AddPackage maim # Utility to take a screenshot using imlib2
 AddPackage screenkey # A screencast tool to display your keys inspired by Screenflick
 AddPackage byzanz # Record what's happening on your desktop
-# TODO: get all this flameshot stuff into a package
-IgnorePath '/usr/local/bin/flameshot'
-IgnorePath '/usr/local/share/applications/flameshot.desktop'
-IgnorePath '/usr/local/share/applications/org.flameshot.Flameshot.desktop'
-IgnorePath '/usr/local/share/bash-completion/completions/flameshot'
-IgnorePath '/usr/local/share/dbus-1/interfaces/org.dharkael.Flameshot.xml'
-IgnorePath '/usr/local/share/dbus-1/interfaces/org.flameshot.Flameshot.xml'
-IgnorePath '/usr/local/share/dbus-1/services/org.dharkael.Flameshot.service'
-IgnorePath '/usr/local/share/dbus-1/services/org.flameshot.Flameshot.service'
-IgnorePath '/usr/local/share/flameshot/*'
-IgnorePath '/usr/local/share/icons/hicolor/128x128/apps/flameshot.png'
-IgnorePath '/usr/local/share/icons/hicolor/128x128/apps/org.flameshot.Flameshot.png'
-IgnorePath '/usr/local/share/icons/hicolor/48x48/apps/flameshot.png'
-IgnorePath '/usr/local/share/icons/hicolor/48x48/apps/org.flameshot.Flameshot.png'
-IgnorePath '/usr/local/share/icons/hicolor/scalable/apps/flameshot.svg'
-IgnorePath '/usr/local/share/icons/hicolor/scalable/apps/org.flameshot.Flameshot.svg'
-IgnorePath '/usr/local/share/metainfo/flameshot.appdata.xml'
-IgnorePath '/usr/local/share/metainfo/org.flameshot.Flameshot.metainfo.xml'
-IgnorePath '/usr/local/share/zsh/site-functions/_flameshot'
 
 ### volnoti
 # TODO: get this into a package

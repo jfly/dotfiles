@@ -3,3 +3,6 @@ export PATH=$PATH:$HOME/bin
 
 # `pip install --user` installs binaries here.
 export PATH=$PATH:$HOME/.local/bin
+
+# nix-env installs binaries here.
+export PATH=$PATH:$HOME/.nix-profile/bin

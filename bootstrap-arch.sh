@@ -14,6 +14,9 @@ doit() {
     ## Install and configure most things.
     ./aconfmgr apply --yes
 
+    ## Install some more things
+    nix-env --file my-nix -i '.*'
+
     ## Generate locales
     sudo locale-gen
 

@@ -13,51 +13,45 @@ numlockx on
 # (https://bbs.archlinux.org/viewtopic.php?pid=1554497#p1554497).
 sudo rmmod -f snd_hda_intel && sudo modprobe snd_hda_intel power_save=0
 
-# Start dropbox if it's installed (we do it here rather than via systemd
-# because the icon won't show up otherwise).
-if [ -x /usr/bin/dropboxd ]; then
-    /usr/bin/dropboxd &
-fi
-
-if [ -x /usr/bin/pasystray ]; then
+if [ -x "$(which pasystray 2>/dev/null)" ]; then
     pasystray &
 fi
 
-if [ -x /usr/bin/nm-applet ]; then
+if [ -x "$(which nm-applet 2>/dev/null)" ]; then
     nm-applet --indicator &
 fi
 
-if [ -x /usr/bin/blueman-applet ]; then
+if [ -x "$(which blueman-applet 2>/dev/null)" ]; then
     blueman-applet &
 fi
 
-if [ -x /usr/bin/dunst ]; then
+if [ -x "$(which dunst 2>/dev/null)" ]; then
     dunst &
 fi
 
-if [ -x /usr/bin/xsettingsd ]; then
+if [ -x "$(which xsettingsd 2>/dev/null)" ]; then
     touch ~/.xsettingsd
-    /usr/bin/xsettingsd &
+    xsettingsd &
 fi
 
-if [ -x /usr/local/bin/flameshot ]; then
+if [ -x "$(which flameshot 2>/dev/null)" ]; then
     # See https://wiki.archlinux.org/index.php/Flameshot#Option_2:_Run_as_background_process
-    /usr/local/bin/flameshot &
+    flameshot &
 fi
 
 # From https://wiki.archlinux.org/index.php/GNOME/Keyring#xinitrc_method.
-if [ -x /usr/bin/gnome-keyring-daemon ]; then
+if [ -x "$(which gnome-keyring-daemon 2>/dev/null)" ]; then
     dbus-update-activation-environment --systemd DISPLAY
-    eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
+    eval $(gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
     export SSH_AUTH_SOCK
 fi
 
-if [ -x /usr/bin/mcg ]; then
-    /usr/bin/mcg &
+if [ -x "$(which mcg 2>/dev/null)" ]; then
+    mcg &
 fi
 
-if [ -x /usr/bin/polybar ]; then
-    /usr/bin/polybar &
+if [ -x "$(which polybar 2>/dev/null)" ]; then
+    polybar &
 fi
 
 # xmonad doesn't set a cursor.
