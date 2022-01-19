@@ -29,6 +29,7 @@
     ~/.config/alacritty: homies/config/alacritty
     ~/.config/chromium-flags.conf: homies/config/chromium-flags.conf
     ~/.config/dunst: homies/config/dunst
+    ~/.config/flameshot: homies/config/flameshot
     ~/.config/fontconfig: homies/config/fontconfig
     ~/.config/git: homies/config/git
     ~/.config/mpd/mpd.conf: homies/config/mpd/mpd.conf
