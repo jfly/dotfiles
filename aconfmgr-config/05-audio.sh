@@ -8,7 +8,6 @@ AddPackage pamixer # Pulseaudio command-line mixer like amixer
 AddPackage paprefs # Configuration dialog for PulseAudio
 AddPackage pasystray # PulseAudio system tray (a replacement for padevchooser)
 AddPackage pavucontrol # PulseAudio Volume Control
-AddPackage jack2 # The JACK low-latency audio server
 
 # Start various services
 CreateLink /etc/systemd/user/pipewire-session-manager.service /usr/lib/systemd/user/pipewire-media-session.service
