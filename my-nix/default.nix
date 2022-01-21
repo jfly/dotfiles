@@ -2,4 +2,5 @@
 
 {
   flameshot = pkgs.callPackage ./flameshot {};
+  knock = import ./knock;
 }
