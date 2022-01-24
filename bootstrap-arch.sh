@@ -15,7 +15,7 @@ doit() {
     ./aconfmgr apply --yes
 
     ## Install some more things
-    nix-env --file my-nix -i '.*'
+    nix-env -irf my-nix '.*'
 
     ## Generate locales
     sudo locale-gen
