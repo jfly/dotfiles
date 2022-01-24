@@ -16,4 +16,11 @@ in
     neovim = pkgs.neovim;
     vi = symlink (pkgs.neovim + /bin/nvim) "vi";
     vim = symlink (pkgs.neovim + /bin/nvim) "vim";
+    pyright = pkgs.pyright;
+    vscode = pkgs.vscodium;
+    editorconfig-core-c = pkgs.editorconfig-core-c;
+
+    ### Git
+    git = pkgs.git;
+    github-cli = pkgs.github-cli;
 }

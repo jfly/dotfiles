@@ -5,4 +5,4 @@ export PATH=$PATH:$HOME/bin
 export PATH=$PATH:$HOME/.local/bin
 
 # nix-env installs binaries here.
-export PATH=$PATH:$HOME/.nix-profile/bin
+export PATH=$HOME/.nix-profile/bin:$PATH
