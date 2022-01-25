@@ -1,43 +1,7 @@
-" Plugins will be downloaded under the specified directory.
-call plug#begin('~/.vim/plugged')
-
-" Declare the list of plugins.
-Plug 'junegunn/fzf.vim'
-Plug 'Valloric/MatchTagAlways'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-scripts/matchit.zip'
-Plug 'tomtom/tcomment_vim'
-Plug 'altercation/vim-colors-solarized'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-rhubarb'
-Plug 'sheerun/vim-polyglot'
-Plug 'editorconfig/editorconfig-vim'
-Plug 'janko-m/vim-test'
-Plug 'kassio/neoterm'
-Plug 'xtal8/traces.vim'
-Plug 'majutsushi/tagbar'
-Plug 'jesseleite/vim-agriculture'
-Plug 'dense-analysis/ale'
-if has('nvim')
-    Plug 'neovim/nvim-lspconfig'
-    Plug 'hrsh7th/cmp-nvim-lsp', {'branch': 'main'}
-    Plug 'hrsh7th/cmp-buffer', {'branch': 'main'}
-    Plug 'hrsh7th/nvim-cmp', {'branch': 'main'}
-else
-    Plug 'neoclide/coc.nvim', {'branch': 'release'}
-endif
-Plug 'metakirby5/codi.vim'
-Plug 'samoshkin/vim-mergetool'
-" List ends here. Plugins become visible to Vim after this call.
-call plug#end()
-
 let mapleader = " "
-" Fast reloading of .vimrc
-map <leader>r :source ~/.vimrc<cr>
 
 " Easy copying of path to file
-nnoremap <Leader>cf :let @+ = expand("%")<CR>
+nnoremap <leader>cf :let @+ = expand("%")<CR>
 
 " http://vim.wikia.com/wiki/Indenting_source_code
 " http://stackoverflow.com/a/234578
@@ -72,7 +36,7 @@ noremap 2<Backspace> :set background=light<CR>
 highlight! link SignColumn LineNr
 
 " Cross file search
-nnoremap <Leader>* :Rg<Space><C-R><C-W>
+nnoremap <leader>* :Rg<Space><C-R><C-W>
 noremap ]q :cnext<CR>
 noremap [q :cprevious<CR>
 
@@ -203,7 +167,7 @@ nnoremap <leader>ts :w<CR>:TestSuite<CR>
 nnoremap <leader>tf :w<CR>:TestFile<CR>
 nnoremap <leader>tn :w<CR>:TestNearest<CR>
 nnoremap <leader>tv :w<CR>:TestVisit<CR>
-nnoremap <Leader>tl :w<CR>:call system("shtuff into " . shellescape(getcwd()) . " \x1BOA")<CR>
+nnoremap <leader>tl :w<CR>:call system("shtuff into " . shellescape(getcwd()) . " \x1BOA")<CR>
 """"""
 
 """""" ToggleTest between file and corresponding test file.

@@ -33,7 +33,6 @@
     ~/.config/fontconfig: homies/config/fontconfig
     ~/.config/git: homies/config/git
     ~/.config/mpd/mpd.conf: homies/config/mpd/mpd.conf
-    ~/.config/nvim: homies/config/nvim
     ~/.config/polybar: homies/config/polybar
     ~/.config/systemd: homies/config/systemd
     ~/.config/xmonad: homies/config/xmonad
@@ -47,8 +46,6 @@
     ~/.mplayer: homies/mplayer
     ~/.ssh/config: homies/ssh/config
     ~/.tmux.conf: homies/tmux.conf
-    ~/.vimrc: homies/vimrc
-    ~/.vim: homies/vim
     ~/.xinitrc: homies/xinitrc
     ~/.Xresources: homies/Xresources
 
@@ -68,7 +65,5 @@
 - shell:
     - command: test -d ~/.oh-my-zsh || git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
       description: Install oh-my-zsh
-    - command: vim +PlugInstall +qall
-      description: Install vim plugins
     - command: chmod -R u=rwX,og= ~/.ssh/ ~/.gnupg/
       description: Fix ssh and gnupg permissions
