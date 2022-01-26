@@ -15,4 +15,7 @@
     ### Git
     git = pkgs.git;
     github-cli = pkgs.github-cli;
+
+    ### AWS
+    awscli2 = pkgs.awscli2;
 }
