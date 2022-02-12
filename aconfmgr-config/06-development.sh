@@ -57,6 +57,7 @@ AddPackage traceroute # Tracks the route taken by packets over an IP network
 AddPackage whois # Intelligent WHOIS client
 AddPackage wireshark-qt # Network traffic and protocol analyzer/sniffer - Qt GUI
 AddPackage bind # Provides nslookup
+AddPackage sipcalc # an advanced console based ip subnet calculator.
 
 ### Shell
 AddPackage shellcheck # Shell script analysis tool
@@ -78,6 +79,11 @@ AddPackage jre-openjdk-headless # OpenJDK Java 17 headless runtime environment
 CreateLink /usr/lib/jvm/default java-17-openjdk
 CreateLink /usr/lib/jvm/default-runtime java-17-openjdk
 AddPackage maven # Java project management and project comprehension tool
+
+### Ruby
+AddPackage ruby # An object-oriented language for quick and easy programming
+AddPackage ruby-rdoc # Command-line documentation generator for Ruby projects
+AddPackage --foreign ruby-byebug # Ruby debugger
 
 ### Perl
 AddPackage perl # A highly capable, feature-rich programming language
