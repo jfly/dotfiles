@@ -35,7 +35,6 @@
     ~/.config/mpd/mpd.conf: homies/config/mpd/mpd.conf
     ~/.config/polybar: homies/config/polybar
     ~/.config/systemd: homies/config/systemd
-    ~/.config/xmonad: homies/config/xmonad
     ~/.direnvrc: homies/direnvrc
     ~/.dir_colors: homies/dir_colors
     ~/.docker/config.json: homies/docker/config.json

@@ -4,9 +4,3 @@
 [submodule "aconfmgr"]
 	path = aconfmgr-src
 	url = https://github.com/CyberShadow/aconfmgr
-[submodule "homies/config/xmonad/xmonad-contrib"]
-	path = homies/config/xmonad/xmonad-contrib
-	url = https://github.com/xmonad/xmonad-contrib
-[submodule "homies/config/xmonad/xmonad"]
-	path = homies/config/xmonad/xmonad
-	url = https://github.com/xmonad/xmonad

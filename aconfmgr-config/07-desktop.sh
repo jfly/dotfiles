@@ -33,13 +33,6 @@ AddPackage xclip # Command line interface to the X11 clipboard
 AddPackage gnome-keyring # Stores passwords and encryption keys
 AddPackage steam # Valve's digital software delivery system
 
-### xmonad
-# TODO: add back once xmonad 0.17 is provided by Arch
-# AddPackage xmonad # Lightweight X11 tiled window manager written in Haskell
-# AddPackage xmonad-contrib # Add-ons for xmonad
-AddPackage pkgconf # Package compiler and linker metadata toolkit
-AddPackage stack # The Haskell Tool Stack
-
 ### Run autoperipherals when hardware changes
 cat > "$(CreateFile /etc/udev/rules.d/10-autoperipherals.rules)" <<EOF
 SUBSYSTEM=="drm", ACTION=="change", RUN+="/usr/bin/systemctl start autoperipherals@jeremy.service"

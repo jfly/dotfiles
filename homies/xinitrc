@@ -56,5 +56,5 @@ fi
 
 # xmonad doesn't set a cursor.
 xsetroot -cursor_name left_ptr
-# https://xmonad.org/INSTALL.html#dont-recompile-on-every-startup
-exec $HOME/.cache/xmonad/xmonad-x86_64-linux
+
+exec xmonad

@@ -21,4 +21,7 @@
 
     ### shell
     shellcheck = pkgs.shellcheck;
+
+    ### xmonad
+    xmonad = pkgs.callPackage ./xmonad {};
 }
