@@ -63,3 +63,5 @@
 
 [rebase]
     instructionFormat = "%d %s"
+[submodule]
+    recurse = true
