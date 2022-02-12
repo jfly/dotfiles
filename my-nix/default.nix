@@ -18,4 +18,7 @@
 
     ### AWS
     awscli2 = pkgs.awscli2;
+
+    ### shell
+    shellcheck = pkgs.shellcheck;
 }

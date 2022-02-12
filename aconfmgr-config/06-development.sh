@@ -59,9 +59,6 @@ AddPackage wireshark-qt # Network traffic and protocol analyzer/sniffer - Qt GUI
 AddPackage bind # Provides nslookup
 AddPackage sipcalc # an advanced console based ip subnet calculator.
 
-### Shell
-AddPackage shellcheck # Shell script analysis tool
-
 ### Python
 AddPackage python # Next generation of the python high-level scripting language
 AddPackage python-pip # The PyPA recommended tool for installing Python packages
