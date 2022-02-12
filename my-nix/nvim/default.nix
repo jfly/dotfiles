@@ -24,7 +24,7 @@ pkgs.neovim.override {
                 cmp-buffer
                 nvim-cmp
                 # TODO: wait a while and if you actually miss these
-                # editorconfig-vim  # does everyone use this, or is all black/prettier autoformatting nowadays
+                # editorconfig-vim  # does everyone use this, or is all black/prettier autoformatting nowadays?
                 # neoterm
                 # tagbar
                 # codi-vim

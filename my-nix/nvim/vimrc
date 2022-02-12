@@ -68,7 +68,6 @@ set wildchar=<Tab> wildmenu wildmode=full
 set wildcharm=<C-Z>
 
 """""" filetypes {{{
-au BufRead,BufNewFile *.md set filetype=markdown
 au BufRead,BufNewFile Vagrantfile set filetype=ruby
 au BufRead,BufNewFile *.jy set filetype=python
 """""" }}}
@@ -414,4 +413,15 @@ inoremap <C-j> <Esc>:m .+1<CR>==gi
 inoremap <C-k> <Esc>:m .-2<CR>==gi
 vnoremap <C-j> :m '>+1<CR>gv=gv
 vnoremap <C-k> :m '<-2<CR>gv=gv
+"""""""
+
+""""""" easier notetaking
+let g:markdown_folding = 1  " https://bitcrowd.dev/folding-sections-of-markdown-in-vim
+function! NewNoteHeader()
+    execute "normal! o# " . strftime('%F %R %z') . ": "
+    startinsert!
+endfunction
+
+noremap <leader>nn :e ~/.dotfiles/notes/<C-R>=strftime('%F')<CR>-.md<left><left><left>
+autocmd FileType markdown noremap <leader>nh :call NewNoteHeader()<CR>
 """""""
