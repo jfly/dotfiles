@@ -1,8 +1,8 @@
 {
   nixos-master = import (builtins.fetchTarball {
     name = "nixos-master";
-    url = "https://github.com/NixOS/nixpkgs/archive/7682f18720f3cc0a0abfbb47e9e7612f83141f01.tar.gz";
+    url = "https://github.com/NixOS/nixpkgs/archive/1882c6b7368fd284ad01b0a5b5601ef136321292.tar.gz";
     # Hash obtained using `nix-prefetch-url --unpack <url>`
-    sha256 = "1qnrmsc9lik98zqhx7qxdxhmvbb8279x6win0mvmdmcmk9wbqznh";
+    sha256 = "0zg7ak2mcmwzi2kg29g4v9fvbvs0viykjsg2pwaphm1fi13s7s0i";
   });
 }
