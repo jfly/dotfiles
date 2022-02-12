@@ -154,13 +154,6 @@ if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/google-cloud-sdk/
 # The next line enables shell command completion for gcloud.
 if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-cloud-sdk/completion.zsh.inc"; fi
 
-# Experimenting with nix.
-# From https://nix.dev/tutorials/towards-reproducibility-pinning-nixpkgs
-#  > Channels are a way of distributing Nix software, but they are being phased
-#  > out. Even though they are still used by default, it is recommended to avoid
-#  > channels and <nixpkgs> by always setting NIX_PATH= to be empty.
-#  TODO: figure out how to avoid channels with home-manager: https://github.com/nix-community/home-manager#installation
-# export NIX_PATH=""
 # From https://nixos.wiki/wiki/Locales:
 #   > You may need to set the environmental variable LOCALE_ACHIVE to point to
 #   > your system's locale-achive.
