@@ -88,10 +88,6 @@ AddPackage perl-authen-sasl # Perl/CPAN Module Authen
 AddPackage perl-io-socket-ssl # Nearly transparent SSL encapsulation for IO
 AddPackage perl-net-dbus # Binding for DBus messaging protocol
 
-### Haskell
-IgnorePath '/usr/lib/ghc-*/package.conf.d/*.conf'
-IgnorePath '/usr/lib/ghc-*/package.conf.d/package.cache'
-
 ### Rust
 AddPackage rust-analyzer # Rust compiler front-end for IDEs
 AddPackage rustup # The Rust toolchain installer
