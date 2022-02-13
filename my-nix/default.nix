@@ -22,6 +22,7 @@
     ### shell
     shellcheck = pkgs.shellcheck;
 
-    ### xmonad
+    ### Desktop
     xmonad = pkgs.callPackage ./xmonad {};
+    volnoti = pkgs.callPackage ./volnoti.nix {};
 }
