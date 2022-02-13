@@ -54,8 +54,6 @@ AddPackage bind # Provides nslookup
 AddPackage sipcalc # an advanced console based ip subnet calculator.
 
 ### Python
-AddPackage python # Next generation of the python high-level scripting language
-AddPackage python-pip # The PyPA recommended tool for installing Python packages
 AddPackage socat # Multipurpose relay (useful with remote-pdb!)
 IgnorePath '*.pyc' # There's a surprising number of these files scattered around. I guess a lot of tools like to use Python somewhere internally.
 
@@ -82,7 +80,6 @@ AddPackage diffutils # Utility programs used for creating patch files
 AddPackage patchutils # A small collection of programs that operate on patch files
 AddPackage wkhtmltopdf # Command line tools to render HTML into PDF and various image formats
 AddPackage gobject-introspection # Introspection system for GObject-based libraries
-AddPackage python-sphinx # Python documentation generator
 
 ### Dependencies to install stuff from the AUR
 AddPackage gcc
