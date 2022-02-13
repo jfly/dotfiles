@@ -6,15 +6,10 @@ source ~/.commonrc/path.sh
 ### Set up asdf-vm
 ###
 if test -d $HOME/.asdf; then
-    # In order to bypass asdf shims. We *only* add the `ASDF_DIR/bin`
+    # In order to bypass asdf shims, we *only* add the `ASDF_DIR/bin`
     # directory to PATH, since we still want to use `asdf` but not its shims.
     export ASDF_DIR="$HOME/.asdf"
     export PATH="$PATH:$ASDF_DIR/bin"
-    # TODO: For some reason, this command is causing the following error when starting a new shell:
-    #  /home/jeremy/.asdf/completions/asdf.bash:70: command not found: complete
-    # This feels like a bash vs zsh thing, but if you run this command in a
-    # fully started zsh shell, it works fine.
-    # Long thread about this here: https://github.com/asdf-vm/asdf/issues/97
     source $HOME/.asdf/completions/asdf.bash
 
     export ASDF_PYTHON_PATCHES_DIRECTORY="$HOME/.dotfiles/asdf-python-patches"
