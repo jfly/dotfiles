@@ -25,4 +25,8 @@
     ### Desktop
     xmonad = pkgs.callPackage ./xmonad {};
     volnoti = pkgs.callPackage ./volnoti.nix {};
+
+    ### Development
+    mycli = pkgs.callPackage ./mycli {};
+    shtuff = pkgs.callPackage ./shtuff {};
 }

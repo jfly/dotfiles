@@ -23,7 +23,6 @@
     ~/.bashrc: homies/bashrc
     ~/.zshrc: homies/zshrc
     ~/.commonrc: homies/commonrc
-    ~/.myclirc: homies/myclirc
 
     ~/bin: homies/bin
     ~/.config/alacritty: homies/config/alacritty
