@@ -62,9 +62,7 @@ AddPackage gdb # The GNU Debugger
 AddPackage nasm # 80x86 assembler designed for portability and modularity
 AddPackage m4 # The GNU macro processor
 AddPackage mercurial # A scalable distributed SCM tool
-AddPackage meson # High productivity build system
 AddPackage imake # X.Org imake program and related utilities
-AddPackage --foreign cmake-format # Source code formatter for CMake listfiles
 AddPackage autoconf2.13 # A GNU tool for automatically configuring source code (Legacy 2.1x version)
 AddPackage binutils # A set of programs to assemble and manipulate binary and object files
 AddPackage bison # The GNU general-purpose parser generator
@@ -79,7 +77,6 @@ AddPackage diffstat # Display a histogram of diff changes
 AddPackage diffutils # Utility programs used for creating patch files
 AddPackage patchutils # A small collection of programs that operate on patch files
 AddPackage wkhtmltopdf # Command line tools to render HTML into PDF and various image formats
-AddPackage gobject-introspection # Introspection system for GObject-based libraries
 
 ### Dependencies to install stuff from the AUR
 AddPackage gcc

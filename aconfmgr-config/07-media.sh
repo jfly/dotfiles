@@ -1,19 +1,7 @@
-### Beets
-AddPackage beets # Flexible music library manager and tagger
-AddPackage python-pyacoustid # Bindings for Chromaprint acoustic fingerprinting and the Acoustid API
-AddPackage python-eyed3 # A Python module and program for processing information about mp3 files
-AddPackage --foreign mp3val # A tool for validating and repairing MPEG audio streams
-AddPackage abcde # Frontend command-line utility that grabs tracks off a CD, encodes them to ogg or mp3 format, and tags them, all in one go
-
 ### MPD
 AddPackage mpd # Flexible, powerful, server-side application for playing music
 # TODO: figure out why mpd is so messy
 IgnorePath '/var/lib/mpd/*'
-
-# I couldn't install this without manually removing the "gmock>=1.10" from
-# the PKGBUILD file.
-#  https://aur.archlinux.org/packages/ashuffle/#comment-815297
-AddPackage --foreign ashuffle # Automatic library-wide shuffle for mpd.
 
 AddPackage mpc # Minimalist command line interface to MPD
 AddPackage ncmpcpp # Almost exact clone of ncmpc with some new features

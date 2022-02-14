@@ -4,6 +4,17 @@ let
 in
 
 {
+    ### Media
+    #### Beets
+    beets = pkgs.beets;
+    abcde = pkgs.abcde;
+    mp3val = pkgs.mp3val;
+    # TODO: follow up after a while and see if we need these (plugins?) somehow.
+    # AddPackage python-pyacoustid # Bindings for Chromaprint acoustic fingerprinting and the Acoustid API
+    # AddPackage python-eyed3 # A Python module and program for processing information about mp3 files
+    #### MPD
+    ashuffle = pkgs.ashuffle;
+
     ### Screenshots
     flameshot = pkgs.callPackage ./flameshot {};
 
@@ -39,6 +50,6 @@ in
     strace = pkgs.strace;
 
     ### Homies
-    ## aliases::pdfcrop
+    #### aliases::pdfcrop
     pdftk = pkgs.pdftk;
 }
