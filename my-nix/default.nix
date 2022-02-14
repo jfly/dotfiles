@@ -37,4 +37,8 @@ in
     ### Debug utils
     ghidra = pkgs.ghidra-bin;
     strace = pkgs.strace;
+
+    ### Homies
+    ## aliases::pdfcrop
+    pdftk = pkgs.pdftk;
 }

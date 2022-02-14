@@ -47,9 +47,6 @@ AddPackage zenity # Display graphical dialog boxes from shell scripts
 AddPackage sox # The Swiss Army knife of sound processing tools. Provides `play`
 ## bin/tkdu.py
 AddPackage tk # A windowing toolkit for use with tcl
-## aliases::pdfcrop
-# AddPackage texlive-core
-AddPackage pdftk # Command-line tool for working with PDFs
 ## aliases::allprocs
 AddPackage sysdig # Open source system-level exploration and troubleshooting tool
 AddPackage sysdig-dkms # DKMS kernel module for sysdig
