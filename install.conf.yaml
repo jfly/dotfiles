@@ -33,7 +33,8 @@
     ~/.config/mpd/mpd.conf: homies/config/mpd/mpd.conf
     ~/.config/polybar: homies/config/polybar
     ~/.config/systemd: homies/config/systemd
-    ~/.direnvrc: homies/direnvrc
+    ~/.config/direnv/direnvrc: homies/config/direnv/direnvrc
+    ~/.config/direnv/direnv.toml: homies/config/direnv/direnv.toml
     ~/.dir_colors: homies/dir_colors
     ~/.docker/config.json: homies/docker/config.json
     ~/.gitconfig: homies/gitconfig

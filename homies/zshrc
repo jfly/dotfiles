@@ -133,26 +133,26 @@ zle     -N    fzf-commit-widget
 bindkey '\ec' fzf-commit-widget
 ###################
 
+###
+### Set up direnv
+###
+# From https://github.com/asdf-community/asdf-direnv#setup
+eval "$(asdf exec direnv hook zsh)"
+direnv() { asdf exec direnv "$@"; }
 
-# Activate direnv. See https://github.com/direnv/direnv#zsh
-if [ "$(hostname)" != "jpi" ]; then
-    # Hack to force direnv to reload. See
-    # https://github.com/direnv/direnv/blob/a9be1174171b5c0f5472370c41120f770fcff91d/config.go#L133.
-    # This is useful when manually resourcing my zshrc. When resourcing my
-    # zshrc, my PATH and prompt get clobbered, and it would be really nice for
-    # direnv to fix them up. However, direnv notices that the DIRENV_DIFF
-    # environment variable is still set, so it decides to do nothing.
-    unset DIRENV_DIFF
-    unset DIRENV_WATCHES
+# Make sure we never `pip install` things outside of a virtualenv.
+export PIP_REQUIRE_VIRTUALENV=true
 
-    eval "$(direnv hook zsh)"
-fi
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/google-cloud-sdk/path.zsh.inc"; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-cloud-sdk/completion.zsh.inc"; fi
+# Hack to force direnv to reload when manually re-sourcing zshrc inside of a
+# direnv managed environment.
+# Without this, environment variables (such as the `PATH` prompt) get clobbered
+# by re-sourcing the shellrc, and direnv notices that the DIRENV_DIFF
+# environment variable is still set, so it decides to do nothing.
+# (See
+# https://github.com/direnv/direnv/blob/a9be1174171b5c0f5472370c41120f770fcff91d/config.go#L133)
+unset DIRENV_DIFF
+unset DIRENV_WATCHES
+###################
 
 # From https://nixos.wiki/wiki/Locales:
 #   > You may need to set the environmental variable LOCALE_ACHIVE to point to
