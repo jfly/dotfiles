@@ -225,9 +225,6 @@ AddPackage wine-gecko # Wine's built-in replacement for Microsoft's Internet Exp
 AddPackage wine-mono # Wine's built-in replacement for Microsoft's .NET Framework
 AddPackage mtools # A collection of utilities to access MS-DOS disks
 
-### Ebooks
-AddPackage calibre # Ebook management application
-
 ### Redshift
 AddPackage redshift # Adjusts the color temperature of your screen according to your surroundings.
 IgnorePath '/var/lib/geoclue' # redshift depends on geoclue, which seems to be intent upon creating this folder.

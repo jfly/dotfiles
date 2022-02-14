@@ -1,10 +1,14 @@
-{ pkgs ? (import ./sources.nix).nixos-master {} }:
+let
+    pkgs = (import ./sources.nix).nixpkgs {};
+    nixgl = (import ./sources.nix).nixgl {};
+in
 
 {
     ### Screenshots
     flameshot = pkgs.callPackage ./flameshot {};
 
     ### Ebooks
+    calibre = pkgs.callPackage ./calibre.nix {};
     knock = import ./knock;
 
     ### Text editors
@@ -29,4 +33,8 @@
     ### Development
     mycli = pkgs.callPackage ./mycli {};
     shtuff = pkgs.callPackage ./shtuff {};
+
+    ### Debug utils
+    ghidra = pkgs.ghidra-bin;
+    strace = pkgs.strace;
 }
