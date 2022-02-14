@@ -2,7 +2,7 @@
 
 set -e
 
-dir_prefix=~/tmp/2021-11-15-pyhack
+dir_prefix=~/tmp/$(date -I)-pyhack
 suffix=1
 while true; do
     maybe_dir="$dir_prefix-$suffix"
