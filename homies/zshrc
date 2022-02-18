@@ -134,8 +134,18 @@ bindkey '\ec' fzf-commit-widget
 ###################
 
 ###
-### Set up direnv
+### Set up asdf-vm + direnv
 ###
+if test -d $HOME/.asdf; then
+    # In order to bypass asdf shims, we *only* add the `ASDF_DIR/bin`
+    # directory to PATH, since we still want to use `asdf` but not its shims.
+    export ASDF_DIR="$HOME/.asdf"
+    export PATH="$PATH:$ASDF_DIR/bin"
+    source $HOME/.asdf/completions/asdf.bash
+
+    export ASDF_PYTHON_PATCHES_DIRECTORY="$HOME/.dotfiles/asdf-python-patches"
+fi
+
 # From https://github.com/asdf-community/asdf-direnv#setup
 eval "$(asdf exec direnv hook zsh)"
 direnv() { asdf exec direnv "$@"; }
