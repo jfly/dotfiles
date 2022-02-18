@@ -129,6 +129,13 @@ let g:test#strategy = "fat_runner"
 " If a command looks like "nosetests ...", transform it to
 " "make singletest NOSEARGS='...'"
 function! HonorTransform(cmd) abort
+    " Check if we're in a repo that has a singletest target. If it does not,
+    " who knows what's going on. Give vim-test's unmodified command a chance.
+    let output = system("grep singletest: Makefile")
+    if v:shell_error != 0
+        return a:cmd
+    endif
+
     if a:cmd =~ '.py:'
         " We're probably running a single single test, and therefore we set
         " the amount of parallelism to 1, so pdb and other stuff works well.
