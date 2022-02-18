@@ -23,7 +23,6 @@ IgnorePath '/opt/containerd/*' # containerd likes to create this folder on start
 IgnorePath '/var/lib/containerd/*'
 
 ### Virtualization
-AddPackage vagrant # Build and distribute virtualized development environments
 # https://wiki.archlinux.org/title/VirtualBox#Install_the_core_packages says:
 # for the linux kernel, choose virtualbox-host-modules-arch
 AddPackage virtualbox-host-modules-arch
