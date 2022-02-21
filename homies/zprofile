@@ -1,0 +1,4 @@
+# Start with a fresh PATH.
+export PATH=""
+
+source ~/.commonrc/path.sh

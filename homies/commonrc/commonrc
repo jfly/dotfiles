@@ -1,22 +1,13 @@
 # vi: ft=sh
 
-source ~/.commonrc/path.sh
-
 ###
 ### Set up asdf-vm + direnv
 ###
-export ASDF_DIR="$HOME/.asdf"
-path_prepend "$ASDF_DIR/bin"
 # This needs to happen after we load oh-my-zsh
 source $HOME/.asdf/completions/asdf.bash
 # From https://github.com/asdf-community/asdf-direnv#setup
 eval "$(asdf exec direnv hook zsh)"
 direnv() { asdf exec direnv "$@"; }
-# Unset all DIRENV_* environment variables. This way, if we're opening a shell
-# inside of a direnv managed directory, direnv will decide it has work to do,
-# and set up our PATH and whatnot again.
-export DIRENV_RESTTING=1  # unset needs at least one parameter to not error out
-unset $(env | awk -F= '/^DIRENV_/{print $1}')
 
 # Make sure we never `pip install` things outside of a virtualenv.
 export PIP_REQUIRE_VIRTUALENV=true
