@@ -21,6 +21,7 @@
 
     ~/.bash_profile: homies/bash_profile
     ~/.bashrc: homies/bashrc
+    ~/.zprofile: homies/zprofile
     ~/.zshrc: homies/zshrc
     ~/.commonrc: homies/commonrc
 

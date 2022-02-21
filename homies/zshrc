@@ -1,6 +1,3 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-
 # Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
 
@@ -56,6 +53,8 @@ plugins=(git z)
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
+
+source ~/.commonrc/commonrc
 
 ###
 ### Set prompt (copied and modified from ~/.oh-my-zsh/themes/robbyrussell.zsh-theme)
@@ -117,8 +116,6 @@ bindkey "^W" backward-kill-dir
 ###
 export TIMEFMT=$'\nreal\t%E\nuser\t%U\nsys\t%S'
 
-source ~/.commonrc/commonrc
-
 ###
 ### Set up alt-c to pick a commit
 ###
@@ -131,37 +128,6 @@ fzf-commit-widget() {
 }
 zle     -N    fzf-commit-widget
 bindkey '\ec' fzf-commit-widget
-###################
-
-###
-### Set up asdf-vm + direnv
-###
-if test -d $HOME/.asdf; then
-    # In order to bypass asdf shims, we *only* add the `ASDF_DIR/bin`
-    # directory to PATH, since we still want to use `asdf` but not its shims.
-    export ASDF_DIR="$HOME/.asdf"
-    export PATH="$PATH:$ASDF_DIR/bin"
-    source $HOME/.asdf/completions/asdf.bash
-
-    export ASDF_PYTHON_PATCHES_DIRECTORY="$HOME/.dotfiles/asdf-python-patches"
-fi
-
-# From https://github.com/asdf-community/asdf-direnv#setup
-eval "$(asdf exec direnv hook zsh)"
-direnv() { asdf exec direnv "$@"; }
-
-# Make sure we never `pip install` things outside of a virtualenv.
-export PIP_REQUIRE_VIRTUALENV=true
-
-# Hack to force direnv to reload when manually re-sourcing zshrc inside of a
-# direnv managed environment.
-# Without this, environment variables (such as the `PATH` prompt) get clobbered
-# by re-sourcing the shellrc, and direnv notices that the DIRENV_DIFF
-# environment variable is still set, so it decides to do nothing.
-# (See
-# https://github.com/direnv/direnv/blob/a9be1174171b5c0f5472370c41120f770fcff91d/config.go#L133)
-unset DIRENV_DIFF
-unset DIRENV_WATCHES
 ###################
 
 # From https://nixos.wiki/wiki/Locales:

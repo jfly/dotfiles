@@ -1,8 +1,17 @@
+path_prepend() {
+    if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
+        PATH="$1${PATH:+":$PATH"}"
+    fi
+}
+
+# Reset the PATH.
+export PATH=""
+
 # This is where pacman installs things.
-export PATH="/usr/bin"
+path_prepend "/usr/bin"
 
 # nix-env installs binaries here.
-export PATH="$HOME/.nix-profile/bin:$PATH"
+path_prepend "$HOME/.nix-profile/bin"
 
 # Useful scripts managed in my dotfiles repo.
-export PATH="$HOME/bin:$PATH"
+path_prepend "$HOME/bin"

@@ -2,6 +2,31 @@
 
 source ~/.commonrc/path.sh
 
+###
+### Set up asdf-vm + direnv
+###
+export ASDF_DIR="$HOME/.asdf"
+path_prepend "$ASDF_DIR/bin"
+# This needs to happen after we load oh-my-zsh
+source $HOME/.asdf/completions/asdf.bash
+# From https://github.com/asdf-community/asdf-direnv#setup
+eval "$(asdf exec direnv hook zsh)"
+direnv() { asdf exec direnv "$@"; }
+# Unset all DIRENV_* environment variables. This way, if we're opening a shell
+# inside of a direnv managed directory, direnv will decide it has work to do,
+# and set up our PATH and whatnot again.
+export DIRENV_RESTTING=1  # unset needs at least one parameter to not error out
+unset $(env | awk -F= '/^DIRENV_/{print $1}')
+
+# Make sure we never `pip install` things outside of a virtualenv.
+export PIP_REQUIRE_VIRTUALENV=true
+
+export ASDF_PYTHON_PATCHES_DIRECTORY="$HOME/.dotfiles/asdf-python-patches"
+##################################
+
+###
+### Misc default programs
+###
 export VISUAL=vim
 export EDITOR=vim
 
@@ -10,19 +35,27 @@ if [ -n "$DISPLAY" ]; then
 else
     export BROWSER=elinks
 fi
+##################################
 
+###
+### Configure FZF
+###
 export FZF_DEFAULT_COMMAND='rg --files --hidden'
 export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
 ##################################
 
+###
 ### Workaround for that ridiculous Java bug on xmonad
-# https://wiki.archlinux.org/index.php/Java#Applications_not_resizing_with_WM.2C_menus_immediately_closing
+### https://wiki.archlinux.org/index.php/Java#Applications_not_resizing_with_WM.2C_menus_immediately_closing
+###
 export _JAVA_AWT_WM_NONREPARENTING=1
+##################################
 
 ###
 ### Configure less
 ###
 export LESS="--no-init --quit-if-one-screen --RAW-CONTROL-CHARS"
+##################################
 
 source ~/.commonrc/aliases
 
