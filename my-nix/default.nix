@@ -42,6 +42,8 @@ in
     volnoti = pkgs.callPackage ./volnoti.nix {};
 
     ### Development
+    xxd = pkgs.xxd;
+    rsync = pkgs.rsync;
     mycli = pkgs.callPackage ./mycli {};
     shtuff = pkgs.callPackage ./shtuff {};
 
