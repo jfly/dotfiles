@@ -1,2 +1,5 @@
 [whitelist]
-prefix = [ "/home/jeremy/src/github.com/joinhonor" ]
+prefix = [
+    "/home/jeremy/src/github.com/joinhonor",
+    "/home/jeremy/src/scratch",
+]

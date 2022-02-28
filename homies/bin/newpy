@@ -15,6 +15,8 @@ while true; do
 done
 
 mkdir "$dir"
-echo "use asdf python 3.8.10" > "$dir/.envrc"
-(cd "$dir" && direnv allow)
+asdf local python 3.10.2
+echo "use asdf
+layout python" > "$dir/.envrc"
+(cd "$dir" && asdf exec direnv allow)
 echo "$dir"
