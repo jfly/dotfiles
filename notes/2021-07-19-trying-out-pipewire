@@ -23,4 +23,4 @@ error: failed to prepare transaction (could not satisfy dependencies)
 
 $ sudo pacman -R pulseaudio-equalizer pulseaudio-jack pulseaudio-alsa pulseaudio-lirc pulseaudio-zeroconf pulseaudio pulseaudio-bluetooth paprefs gnome-bluetooth
 
-# TODO: verify that blueman still works after this
+# and it looks like blueman still works after this
