@@ -275,6 +275,14 @@ let g:ale_fixers = {
 \}
 " Automatically run ALEFix on save.
 let g:ale_fix_on_save = 1
+" Easily toggle autoformatting (ta). Yes, this steps into the <leader>t... shortcut
+" prefix that I use for vim-test. Hopefully this isn't too confusing.
+function! ToggleAutoFormatting()
+    let g:ale_fix_on_save = g:ale_fix_on_save ? 0 : 1
+    echo "Autoformatting is now " . (g:ale_fix_on_save ? "on" : "off")
+endfunction
+nnoremap <leader>ta :call ToggleAutoFormatting()<CR>
+" Haskell configuration.
 let g:ale_haskell_ghc_options = '-fno-code -v0 -dynamic'
 " I haven't fully investigated this, but without this setting, black fails to
 " import our generated thrift files.
@@ -326,6 +334,31 @@ if has('nvim')
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
+    -- null-ls is good for wrapping misc tools (such as shellcheck) up into
+    -- something LSP compatible.
+    local null_ls = require("null-ls")
+    local shfmt = null_ls.builtins.formatting.shfmt;
+    table.insert(shfmt._opts.args, "-s");  -- add the -s parameter to shfmt
+    local sources = {
+       null_ls.builtins.diagnostics.shellcheck,
+       shfmt,
+    }
+    null_ls.setup {
+      sources = sources,
+
+      -- auto format on save
+      on_attach = function(client)
+        if client.resolved_capabilities.document_formatting then
+          vim.cmd([[
+            augroup LspFormatting
+              autocmd! * <buffer>
+              autocmd BufWritePre <buffer> lua if vim.g.ale_fix_on_save == 1 then vim.lsp.buf.formatting_sync() end
+            augroup END
+          ]])
+        end
+      end,
+    }
+
     -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
     local servers = { 'pyright', 'rust_analyzer' }
     for _, lsp in ipairs(servers) do
@@ -373,7 +406,7 @@ if has('nvim')
       sources = {
         { name = 'nvim_lsp' },
       },
-  }
+    }
 EOF
 else
     """"""" Configure coc

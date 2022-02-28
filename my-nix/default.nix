@@ -36,6 +36,7 @@ in
 
     ### shell
     shellcheck = pkgs.shellcheck;
+    shfmt = pkgs.shfmt;
 
     ### Desktop
     xmonad = pkgs.callPackage ./xmonad {};
