@@ -136,3 +136,6 @@ bindkey '\ec' fzf-commit-widget
 export LOCALE_ARCHIVE=/usr/lib/locale/locale-archive
 # Basic idea copied from https://ianthehenry.com/posts/how-to-learn-nix/nix-zshell/
 export NIX_BUILD_SHELL=nix-zshell
+
+# I am a special snowflake
+# source $HOME/.h4.zshrc

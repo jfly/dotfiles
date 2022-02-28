@@ -4,22 +4,23 @@
 ### Setup prompt
 ###
 if tty -s; then
-  green=$(tput setaf 2)
-  reset=$(tput sgr0)
+    green=$(tput setaf 2)
+    bold=$(tput bold)
+    reset=$(tput sgr0)
 fi
 
 HOST=""
 if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
-  HOST=" @\h"
+    HOST=" @\h"
 fi
 
 MY_BODY="\[$green$bold\]\w\[$reset\]$HOST"
 
 # Check if we're running as root.
 if [[ $EUID -ne 0 ]]; then
-  END=">"
+    END=">"
 else
-  END="#"
+    END="#"
 fi
 
 export PS1="${MY_BODY}${END} "
@@ -38,10 +39,3 @@ eval $(dircolors ~/.dir_colors)
 # Lower probability of weird line wrapping issues
 # https://wiki.archlinux.org/index.php/bash#Line_wrap_on_window_resize
 shopt -s checkwinsize
-
-source ~/.commonrc/commonrc
-
-# Activate direnv. See https://github.com/direnv/direnv#bash
-if [ "$(hostname)" != "jpi" ]; then
-    eval "$(direnv hook bash)"
-fi
