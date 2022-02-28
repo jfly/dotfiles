@@ -1,43 +1,43 @@
 ### Desktop/gui
 AddPackage --foreign polybar-git # Status bar (need the -git version to get support for wm-restart=generic: https://github.com/polybar/polybar/pull/2404#issuecomment-864411636 and https://github.com/christophgysin/pasystray/issues/151)
-AddPackage dunst # Customizable and lightweight notification-daemon
-AddPackage xorg-server # Xorg X server
-AddPackage xorg-server-xvfb # Virtual framebuffer X server
-AddPackage xorg-xclock # X clock
-AddPackage xorg-xev # Print contents of X events
-AddPackage xorg-xinit # X.Org initialisation program
-AddPackage xorg-xinput # Small commandline tool to configure devices
-AddPackage xorg-xkill # Kill a client by its X resource
-AddPackage xorg-xlsatoms # List interned atoms defined on server
-AddPackage xorg-xmessage # Display a message or query in a window
-AddPackage xorg-xmodmap # Utility for modifying keymaps and button mappings
-AddPackage xorg-xprop # Property displayer for X
-AddPackage xorg-xrandr # Primitive command line interface to RandR extension
-AddPackage xorg-xrdb # X server resource database utility
-AddPackage xorg-xsetroot # Classic X utility to set your root window background to a given pattern or color
-AddPackage xprintidle # Print X idle time
-AddPackage xsel # XSel is a command-line program for getting and setting the contents of the X selection
-AddPackage xsettingsd # Provides settings to X11 applications via the XSETTINGS specification
-AddPackage evtest # Input device event monitor and query tool
-AddPackage arandr # Provide a simple visual front end for XRandR 1.2.
-AddPackage --foreign zoom # Video Conferencing and Web Conferencing Service
-AddPackage --foreign dmenu2 # Fork of dmenu with many useful patches applied and additional options like screen select, dim or opacity change
-AddPackage --foreign parsec-bin # Remotely connect to a gaming pc for a low latency remote computing experience
-AddPackage freerdp # Free implementation of the Remote Desktop Protocol (RDP)
-AddPackage eog # Eye of Gnome
-AddPackage feh # Fast and light imlib2-based image viewer
-AddPackage guvcview # Simple GTK+ interface for capturing and viewing video from v4l2 devices
-AddPackage numlockx # Turns on the numlock key in X11.
-AddPackage xdotool # Command-line X11 automation tool
-AddPackage xclip # Command line interface to the X11 clipboard
-AddPackage gnome-keyring # Stores passwords and encryption keys
-AddPackage steam # Valve's digital software delivery system
+AddPackage dunst                 # Customizable and lightweight notification-daemon
+AddPackage xorg-server           # Xorg X server
+AddPackage xorg-server-xvfb      # Virtual framebuffer X server
+AddPackage xorg-xclock           # X clock
+AddPackage xorg-xev              # Print contents of X events
+AddPackage xorg-xinit            # X.Org initialisation program
+AddPackage xorg-xinput           # Small commandline tool to configure devices
+AddPackage xorg-xkill            # Kill a client by its X resource
+AddPackage xorg-xlsatoms         # List interned atoms defined on server
+AddPackage xorg-xmessage         # Display a message or query in a window
+AddPackage xorg-xmodmap          # Utility for modifying keymaps and button mappings
+AddPackage xorg-xprop            # Property displayer for X
+AddPackage xorg-xrandr           # Primitive command line interface to RandR extension
+AddPackage xorg-xrdb             # X server resource database utility
+AddPackage xorg-xsetroot         # Classic X utility to set your root window background to a given pattern or color
+AddPackage xprintidle            # Print X idle time
+AddPackage xsel                  # XSel is a command-line program for getting and setting the contents of the X selection
+AddPackage xsettingsd            # Provides settings to X11 applications via the XSETTINGS specification
+AddPackage evtest                # Input device event monitor and query tool
+AddPackage arandr                # Provide a simple visual front end for XRandR 1.2.
+AddPackage --foreign zoom        # Video Conferencing and Web Conferencing Service
+AddPackage --foreign dmenu2      # Fork of dmenu with many useful patches applied and additional options like screen select, dim or opacity change
+AddPackage --foreign parsec-bin  # Remotely connect to a gaming pc for a low latency remote computing experience
+AddPackage freerdp               # Free implementation of the Remote Desktop Protocol (RDP)
+AddPackage eog                   # Eye of Gnome
+AddPackage feh                   # Fast and light imlib2-based image viewer
+AddPackage guvcview              # Simple GTK+ interface for capturing and viewing video from v4l2 devices
+AddPackage numlockx              # Turns on the numlock key in X11.
+AddPackage xdotool               # Command-line X11 automation tool
+AddPackage xclip                 # Command line interface to the X11 clipboard
+AddPackage gnome-keyring         # Stores passwords and encryption keys
+AddPackage steam                 # Valve's digital software delivery system
 
 ### Run autoperipherals when hardware changes
-cat > "$(CreateFile /etc/udev/rules.d/10-autoperipherals.rules)" <<EOF
+cat >"$(CreateFile /etc/udev/rules.d/10-autoperipherals.rules)" <<EOF
 SUBSYSTEM=="drm", ACTION=="change", RUN+="/usr/bin/systemctl start autoperipherals@jeremy.service"
 EOF
-cat > "$(CreateFile /etc/systemd/system/autoperipherals@.service)" <<EOF
+cat >"$(CreateFile /etc/systemd/system/autoperipherals@.service)" <<EOF
 [Unit]
 Description=Refresh autoperipherals for user %i
 
@@ -56,7 +56,7 @@ EOF
 AddPackage slock # A simple screen locker for X
 # Lock the screen on suspend. Trick copied from
 # https://wiki.archlinux.org/title/Slock#Lock_on_suspend.
-cat > "$(CreateFile /etc/systemd/system/slock@.service)" <<EOF
+cat >"$(CreateFile /etc/systemd/system/slock@.service)" <<EOF
 [Unit]
 Description=Lock X session using slock for user %i
 Before=sleep.target
@@ -74,7 +74,7 @@ CreateLink /etc/systemd/system/sleep.target.wants/slock@jeremy.service /etc/syst
 CreateLink /etc/systemd/system/slock@jeremy.service /etc/systemd/system/slock@.service
 
 ### Trackpoint
-cat > "$(CreateFile /etc/X11/xorg.conf.d/20-trackpoint.conf)" <<EOF
+cat >"$(CreateFile /etc/X11/xorg.conf.d/20-trackpoint.conf)" <<EOF
 Section "InputClass"
   Identifier "Trackpoint Acceleration"
   MatchDriver "libinput"
@@ -97,7 +97,7 @@ EndSection
 EOF
 
 ### Misc ignore
-IgnorePath '/usr/share/applications/mimeinfo.cache' # https://specifications.freedesktop.org/desktop-entry-spec/0.9.5/ar01s07.html
+IgnorePath '/usr/share/applications/mimeinfo.cache'       # https://specifications.freedesktop.org/desktop-entry-spec/0.9.5/ar01s07.html
 IgnorePath '/usr/local/share/applications/mimeinfo.cache' # https://specifications.freedesktop.org/desktop-entry-spec/0.9.5/ar01s07.html
 IgnorePath '/usr/share/mime/application/*'
 IgnorePath '/usr/share/mime/*'
@@ -108,8 +108,8 @@ IgnorePath '/etc/dconf/db/ibus'
 IgnorePath '/etc/dbus-1/system.d'
 
 ### Keyboard
-AddPackage interception-tools # A minimal composable infrastructure on top of libudev and libevdev
-AddPackage interception-caps2esc # Interception plugin that transforms the most useless key ever in the most useful one
+AddPackage interception-tools                # A minimal composable infrastructure on top of libudev and libevdev
+AddPackage interception-caps2esc             # Interception plugin that transforms the most useless key ever in the most useful one
 AddPackage --foreign interception-space2meta # space2meta: turn space into meta when chorded to another key (on release)
 # Hacky workaround for https://gitlab.com/interception/linux/tools/-/issues/50
 # On my system, systemd-udev-settle causes all sorts of noise trying to start
@@ -120,7 +120,7 @@ f="$(GetPackageOriginalFile interception-tools /usr/lib/systemd/system/udevmon.s
 sed -i 's/Wants=systemd-udev-settle.service/#Wants=systemd-udev-settle.service/' "$f"
 sed -i 's/After=systemd-udev-settle.service/#After=systemd-udev-settle.service/' "$f"
 # udevmon config from https://gitlab.com/interception/linux/plugins/space2meta
-cat > "$(CreateFile /etc/interception/udevmon.yaml)" <<EOF
+cat >"$(CreateFile /etc/interception/udevmon.yaml)" <<EOF
 - JOB: intercept -g \$DEVNODE | caps2esc -m 1 | space2meta | uinput -d \$DEVNODE
   DEVICE:
     EVENTS:
@@ -130,7 +130,7 @@ EOF
 CreateLink /etc/systemd/system/multi-user.target.wants/udevmon.service /usr/lib/systemd/system/udevmon.service
 
 ### Run fixinputs whenever devices are added
-cat > "$(CreateFile /etc/systemd/system/fixinputs@.path)" <<EOF
+cat >"$(CreateFile /etc/systemd/system/fixinputs@.path)" <<EOF
 # Inspired by http://jasonwryan.com/blog/2014/01/20/udev/
 # and http://www.ocsmag.com/2015/09/02/monitoring-file-access-for-dummies/
 [Unit]
@@ -142,7 +142,7 @@ PathChanged=/dev/input/
 [Install]
 WantedBy=multi-user.target
 EOF
-cat > "$(CreateFile /etc/systemd/system/fixinputs@.service)" <<EOF
+cat >"$(CreateFile /etc/systemd/system/fixinputs@.service)" <<EOF
 # Inspired by http://jasonwryan.com/blog/2014/01/20/udev/
 # and http://www.ocsmag.com/2015/09/02/monitoring-file-access-for-dummies/
 [Unit]
@@ -163,11 +163,11 @@ AddPackage xf86-video-intel # X.org Intel i810/i830/i915/945G/G965+ video driver
 # Needed for hardware acceleration on Parsec and Chrome. See
 # https://github.com/jfly/dotfiles/commit/eef1e079114aaee1fe0740151a5340e1574b4659
 # for details.
-AddPackage intel-gpu-tools # Tools for development and testing of the Intel DRM driver
+AddPackage intel-gpu-tools    # Tools for development and testing of the Intel DRM driver
 AddPackage libva-intel-driver # VA-API implementation for Intel G45 and HD Graphics family
-AddPackage libva-utils # Intel VA-API Media Applications and Scripts for libva
-AddPackage libvdpau-va-gl # VDPAU driver with OpenGL/VAAPI backend
-cat > "$(CreateFile /etc/X11/xorg.conf.d/20-intel.conf)" <<EOF
+AddPackage libva-utils        # Intel VA-API Media Applications and Scripts for libva
+AddPackage libvdpau-va-gl     # VDPAU driver with OpenGL/VAAPI backend
+cat >"$(CreateFile /etc/X11/xorg.conf.d/20-intel.conf)" <<EOF
 Section "Device"
     Identifier "Intel Graphics"
     Driver "intel"
@@ -176,14 +176,13 @@ EndSection
 EOF
 
 ### Movie players
-AddPackage kodi # A software media player and entertainment hub for digital media
-AddPackage mplayer # Media player for Linux
-AddPackage mpv # a free, open source, and cross-platform media player
-AddPackage vlc # Multi-platform MPEG, VCD/DVD, and DivX player
+AddPackage mplayer                            # Media player for Linux
+AddPackage mpv                                # a free, open source, and cross-platform media player
+AddPackage vlc                                # Multi-platform MPEG, VCD/DVD, and DivX player
 IgnorePath '/usr/lib/vlc/plugins/plugins.dat' # https://forums.debian.net/viewtopic.php?f=6&t=117859
 
 ### Terminal emulator
-AddPackage alacritty # A cross-platform, GPU-accelerated terminal emulator
+AddPackage alacritty          # A cross-platform, GPU-accelerated terminal emulator
 AddPackage --foreign xcwd-git # xcwd is a simple tool that prints the current working directory of the currently focused window.
 
 ### PDF
@@ -198,38 +197,38 @@ IgnorePath '/usr/share/glib-2.0/schemas/gschemas.compiled' # https://developer.g
 
 ### Web browser
 AddPackage chromium # A web browser built for speed, simplicity, and security
-AddPackage firefox # Standalone web browser from mozilla.org
-AddPackage elinks # An advanced and well-established feature-rich text mode web browser.
+AddPackage firefox  # Standalone web browser from mozilla.org
+AddPackage elinks   # An advanced and well-established feature-rich text mode web browser.
 
 ### Dropbox
-AddPackage gendesk # This is a makedepends of `dropbox`, but due to https://github.com/E5ten/pacaur/issues/14, `pacaur` needs it explicitly installed.
+AddPackage gendesk           # This is a makedepends of `dropbox`, but due to https://github.com/E5ten/pacaur/issues/14, `pacaur` needs it explicitly installed.
 AddPackage --foreign dropbox # A free service that lets you bring your photos, docs, and videos anywhere and share them easily.
 # When you have enough files, Dropbox asks for this.
-echo "fs.inotify.max_user_watches=524288" > "$(CreateFile /etc/sysctl.d/99-sysctl.conf)"
+echo "fs.inotify.max_user_watches=524288" >"$(CreateFile /etc/sysctl.d/99-sysctl.conf)"
 
 ### Fonts
-AddPackage xorg-xfd # Displays all the characters in a font using either the X11 core protocol or libXft2
-AddPackage ttf-opensans # Sans-serif typeface commissioned by Google
-AddPackage gnu-free-fonts # A free family of scalable outline fonts
-AddPackage noto-fonts-emoji # Google Noto emoji fonts
-AddPackage ttf-bitstream-vera # Bitstream Vera fonts.
-AddPackage ttf-liberation # Font family which aims at metric compatibility with Arial, Times New Roman, and Courier New
+AddPackage xorg-xfd                         # Displays all the characters in a font using either the X11 core protocol or libXft2
+AddPackage ttf-opensans                     # Sans-serif typeface commissioned by Google
+AddPackage gnu-free-fonts                   # A free family of scalable outline fonts
+AddPackage noto-fonts-emoji                 # Google Noto emoji fonts
+AddPackage ttf-bitstream-vera               # Bitstream Vera fonts.
+AddPackage ttf-liberation                   # Font family which aims at metric compatibility with Arial, Times New Roman, and Courier New
 AddPackage --foreign nerd-fonts-ubuntu-mono # Patched font UbuntuMono from the nerd-fonts library
 IgnorePath '/etc/fonts/conf.d/*'
 IgnorePath '/usr/share/fonts/*'
 
 ### Windows compatibility
-AddPackage dos2unix # Text file format converter
-AddPackage wine # A compatibility layer for running Windows programs
+AddPackage dos2unix   # Text file format converter
+AddPackage wine       # A compatibility layer for running Windows programs
 AddPackage wine-gecko # Wine's built-in replacement for Microsoft's Internet Explorer
-AddPackage wine-mono # Wine's built-in replacement for Microsoft's .NET Framework
-AddPackage mtools # A collection of utilities to access MS-DOS disks
+AddPackage wine-mono  # Wine's built-in replacement for Microsoft's .NET Framework
+AddPackage mtools     # A collection of utilities to access MS-DOS disks
 
 ### Redshift
-AddPackage redshift # Adjusts the color temperature of your screen according to your surroundings.
+AddPackage redshift           # Adjusts the color temperature of your screen according to your surroundings.
 IgnorePath '/var/lib/geoclue' # redshift depends on geoclue, which seems to be intent upon creating this folder.
 
 ### Screenshots
-AddPackage maim # Utility to take a screenshot using imlib2
+AddPackage maim      # Utility to take a screenshot using imlib2
 AddPackage screenkey # A screencast tool to display your keys inspired by Screenflick
-AddPackage byzanz # Record what's happening on your desktop
+AddPackage byzanz    # Record what's happening on your desktop
