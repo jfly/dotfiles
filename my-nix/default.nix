@@ -69,4 +69,7 @@ in
     ### Homies
     #### aliases::pdfcrop
     pdftk = pkgs.pdftk;
+
+    ### bin scripts
+    paste-list = (pkgs.callPackage ./paste-list {}).paste-list;
 }
