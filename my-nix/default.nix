@@ -41,6 +41,7 @@ in
     ### Desktop
     xmonad = pkgs.callPackage ./xmonad {};
     volnoti = pkgs.callPackage ./volnoti.nix {};
+    polybar = pkgs.callPackage ./polybar.nix {};
 
     ### Development
     xxd = pkgs.xxd;
