@@ -19,5 +19,4 @@ path_prepend "$HOME/bin"
 # asdf is installed here. Note: we're very intentionally *not* adding the asdf
 # shims directory. Instead, direnv will automatically put the correct versions
 # of tools in our PATH as needed.
-export ASDF_DIR="$HOME/.asdf"
-path_prepend "$ASDF_DIR/bin"
+path_prepend "$HOME/.asdf/bin"

@@ -2,11 +2,14 @@
 AddPackage pacman-contrib # Contributed scripts and tools for pacman systems
 
 IgnorePath '/etc/pacman.d/mirrorlist'
-IgnorePath '/var/lib/pacman/local/*' # package metadata
-IgnorePath '/var/lib/pacman/sync/*.db' # repos
+IgnorePath '/var/lib/pacman/local/*'       # package metadata
+IgnorePath '/var/lib/pacman/sync/*.db'     # repos
 IgnorePath '/var/lib/pacman/sync/*.db.sig' # repo sigs
-IgnorePath '/var/lib/pacman/sync/*.files' # for pacman -F
-IgnorePath '/etc/pacman.d/gnupg/*' # keyring
+IgnorePath '/var/lib/pacman/sync/*.files'  # for pacman -F
+IgnorePath '/etc/pacman.d/gnupg/*'         # keyring
+
+# tpm2-tss is a transitive depenednecy of pacman, and it does something with this folder.
+IgnorePath '/var/lib/tpm2-tss/system/keystore'
 
 pacman_conf="$(GetPackageOriginalFile pacman /etc/pacman.conf)"
 function IgnorePkg() {
@@ -15,7 +18,7 @@ function IgnorePkg() {
 }
 
 echo "[multilib]
-Include = /etc/pacman.d/mirrorlist" >> "$pacman_conf"
+Include = /etc/pacman.d/mirrorlist" >>"$pacman_conf"
 
 ### bootstrapping/aconfmgr
 AddPackage pacutils
@@ -34,7 +37,7 @@ CreateLink /etc/systemd/user/sockets.target.wants/gpg-agent.socket /usr/lib/syst
 
 ### Auto update pacman mirrorlist
 AddPackage reflector # A Python 3 module and script to retrieve and filter the latest Pacman mirror list.
-cat > "$(CreateFile /etc/pacman.d/hooks/mirrorupgrade.hook)" <<EOF
+cat >"$(CreateFile /etc/pacman.d/hooks/mirrorupgrade.hook)" <<EOF
 [Trigger]
 Operation = Upgrade
 Type = Package
