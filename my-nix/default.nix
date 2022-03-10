@@ -1,6 +1,6 @@
 let
     pkgs = (import ./sources.nix).nixpkgs {};
-    nixgl = (import ./sources.nix).nixgl {};
+    wrapNixGL = pkgs.callPackage ./wrap-nixgl.nix {};
 in
 
 {
@@ -19,7 +19,9 @@ in
     flameshot = pkgs.callPackage ./flameshot {};
 
     ### Ebooks
-    calibre = pkgs.callPackage ./calibre.nix {};
+    # calibre needs to be wrapped with nixGL to run on non-NixOS distributions.
+    # See https://github.com/NixOS/nixpkgs/issues/132045 for details.
+    calibre = wrapNixGL pkgs.calibre;
     knock = import ./knock;
 
     ### Text editors
@@ -42,6 +44,7 @@ in
     xmonad = pkgs.callPackage ./xmonad {};
     volnoti = pkgs.callPackage ./volnoti.nix {};
     polybar = pkgs.callPackage ./polybar.nix {};
+    kodi = wrapNixGL pkgs.kodi;
 
     ### Development
     xxd = pkgs.xxd;

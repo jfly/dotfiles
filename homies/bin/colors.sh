@@ -2,12 +2,14 @@
 # Copied from https://github.com/dshoreman/realworld-colourtest/blob/master/colours.sh
 
 main() {
+    all
     colours
     messages
     weechat
     zsh_prompt blue
     zsh_prompt green "git --no-pager diff"
     git_diff
+    cdk
 }
 
 dim=$(tput dim)
@@ -23,6 +25,7 @@ blue=$'\e[34m'
 cyan=$'\e[36m'
 yellow=$'\e[33m'
 magenta=$'\e[35m'
+Bblack=$'\e[90m'
 Byellow=$'\e[93m'
 Bmagenta=$'\e[95m'
 reset=$'\e[0m'
@@ -47,7 +50,8 @@ colours() {
 }
 
 colour_blocks() {
-    local padding=$1; shift
+    local padding=$1
+    shift
 
     for c in "$@"; do
         echo -ne "\e[${c}m    ${padding}${c}    ${reset} "
@@ -111,4 +115,19 @@ zsh_prompt() {
     echo -e "${bold}${green}\$${reset} ${2}"
 }
 
+cdk() {
+    echo -e " ${Bblack}this is bright black${reset}"
+}
+
+all() {
+    for x in {0..8}; do
+        for i in {30..37}; do
+            for a in {40..47}; do
+                echo -ne "\e[$x;$i;$a""m\\\e[$x;$i;$a""m\e[0;37;40m "
+            done
+            echo
+        done
+    done
+    echo ""
+}
 main

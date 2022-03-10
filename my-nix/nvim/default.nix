@@ -18,6 +18,7 @@ pkgs.neovim.override {
                 vim-polyglot
                 vim-test
                 traces-vim
+                vim-rsi # readline shortcuts in useful places
                 # TODO: wait a while and if you actually miss these
                 # neoterm
                 # tagbar
