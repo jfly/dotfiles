@@ -63,7 +63,7 @@
     ~/.lolcommits: ~/Dropbox/pics/lolcommits
 
 - shell:
-    - command: test -d ~/.oh-my-zsh || git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+    - command: test -d ~/.oh-my-zsh || git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh
       description: Install oh-my-zsh
     - command: chmod -R u=rwX,og= ~/.ssh/ ~/.gnupg/
       description: Fix ssh and gnupg permissions
