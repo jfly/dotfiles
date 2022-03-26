@@ -16,12 +16,17 @@ set expandtab
 syntax on
 syntax enable
 
+" Solarized colorscheme
 " Tweak because I (jfly) changed the solarized terminal pallete a bit, but
 " still want to use the default terminal background color...
-let g:solarized_termtrans=1
+" let g:solarized_termtrans=1
+" colorscheme solarized
+
+" Nord colorscheme
+let g:nord_italic = v:false
+colorscheme nord
 
 set background=dark
-silent colorscheme solarized
 " Shortcuts to change our colorscheme
 noremap 1<Backspace> :set background=dark<CR>
 noremap 2<Backspace> :set background=light<CR>

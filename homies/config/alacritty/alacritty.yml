@@ -563,18 +563,13 @@ live_config_reload: true
   #print_events: false
 
 schemes:
-    solarized_light: &light
-      # Default colors
+    solarized_light: &solarized_light
       primary:
         background: '#fdf6e3' # base3
         foreground: '#657b83' # base00
-
-      # Cursor colors
       cursor:
         text:   '#fdf6e3' # base3
         cursor: '#657b83' # base00
-
-      # Normal colors
       normal:
         black:   '#073642' # base02
         red:     '#dc322f' # red
@@ -584,8 +579,6 @@ schemes:
         magenta: '#d33682' # magenta
         cyan:    '#2aa198' # cyan
         white:   '#eee8d5' # base2
-
-      # Bright colors
       bright:
         black:   '#002b36' # base03
         red:     '#cb4b16' # orange
@@ -595,18 +588,14 @@ schemes:
         magenta: '#6c71c4' # violet
         cyan:    '#93a1a1' # base1
         white:   '#fdf6e3' # base3
-    solarized_dark: &dark
-      # Default colors
+
+    solarized_dark: &solarized_dark
       primary:
         background: '#002b36' # base03
         foreground: '#839496' # base0
-
-      # Cursor colors
       cursor:
         text:   '#002b36' # base03
         cursor: '#839496' # base0
-
-      # Normal colors
       normal:
         black:   '#073642' # base02
         red:     '#dc322f' # red
@@ -616,11 +605,8 @@ schemes:
         magenta: '#d33682' # magenta
         cyan:    '#2aa198' # cyan
         white:   '#eee8d5' # base2
-
-      # Bright colors
       bright:
-        #black:   '#002b36' # base03
-        black:   '#475b62'  # Solarized Dark - Patched. See https://github.com/mbadolato/iTerm2-Color-Schemes#solarized-dark---patched for details.
+        black:   '#002b36' # base03
         red:     '#cb4b16' # orange
         green:   '#586e75' # base01
         yellow:  '#657b83' # base00
@@ -629,5 +615,112 @@ schemes:
         cyan:    '#93a1a1' # base1
         white:   '#fdf6e3' # base3
 
+
+    tango_light: &tango_light
+      bright:
+        black: '#555753'
+        blue: '#729fcf'
+        cyan: '#34e2e2'
+        green: '#8ae234'
+        magenta: '#ad7fa8'
+        red: '#ef2929'
+        white: '#eeeeec'
+        yellow: '#fce94f'
+      cursor:
+        cursor: '#000000'
+        text: '#ffffff'
+      normal:
+        black: '#000000'
+        blue: '#3465a4'
+        cyan: '#06989a'
+        green: '#4e9a06'
+        magenta: '#75507b'
+        red: '#cc0000'
+        white: '#d3d7cf'
+        yellow: '#c4a000'
+      primary:
+        background: '#ffffff'
+        foreground: '#000000'
+      selection:
+        background: '#b5d5ff'
+        text: '#000000'
+    tango_dark: &tango_dark
+      bright:
+        black: '#555753'
+        blue: '#729fcf'
+        cyan: '#34e2e2'
+        green: '#8ae234'
+        magenta: '#ad7fa8'
+        red: '#ef2929'
+        white: '#eeeeec'
+        yellow: '#fce94f'
+      cursor:
+        cursor: '#ffffff'
+        text: '#000000'
+      normal:
+        black: '#000000'
+        blue: '#3465a4'
+        cyan: '#06989a'
+        green: '#4e9a06'
+        magenta: '#75507b'
+        red: '#cc0000'
+        white: '#d3d7cf'
+        yellow: '#c4a000'
+      primary:
+        background: '#000000'
+        foreground: '#ffffff'
+      selection:
+        background: '#b5d5ff'
+        text: '#000000'
+
+    nord: &nord
+      primary:
+        background: '#2e3440'
+        foreground: '#d8dee9'
+        dim_foreground: '#a5abb6'
+      cursor:
+        text: '#2e3440'
+        cursor: '#d8dee9'
+      vi_mode_cursor:
+        text: '#2e3440'
+        cursor: '#d8dee9'
+      selection:
+        text: CellForeground
+        background: '#4c566a'
+      search:
+        matches:
+          foreground: CellBackground
+          background: '#88c0d0'
+        bar:
+          background: '#434c5e'
+          foreground: '#d8dee9'
+      normal:
+        black: '#3b4252'
+        red: '#bf616a'
+        green: '#a3be8c'
+        yellow: '#ebcb8b'
+        blue: '#81a1c1'
+        magenta: '#b48ead'
+        cyan: '#88c0d0'
+        white: '#e5e9f0'
+      bright:
+        black: '#4c566a'
+        red: '#bf616a'
+        green: '#a3be8c'
+        yellow: '#ebcb8b'
+        blue: '#81a1c1'
+        magenta: '#b48ead'
+        cyan: '#8fbcbb'
+        white: '#eceff4'
+      dim:
+        black: '#373e4d'
+        red: '#94545d'
+        green: '#809575'
+        yellow: '#b29e75'
+        blue: '#68809a'
+        magenta: '#8c738c'
+        cyan: '#6d96a5'
+        white: '#aeb3bb'
+
 #<<< colors: *dark
-colors: *light
+colors: *nord

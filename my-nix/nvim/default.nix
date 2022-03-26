@@ -12,6 +12,7 @@ pkgs.neovim.override {
                 matchit-zip
                 tcomment_vim
                 vim-colors-solarized
+                nord-nvim
                 vim-airline-themes
                 vim-fugitive
                 vim-rhubarb
