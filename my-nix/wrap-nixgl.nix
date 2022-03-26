@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 let
-    nixgl = (import ./sources.nix).nixgl {};
+    nixgl = pkgs.callPackage (import ./sources.nix).nixgl {};
 in
 
 wrap-me: (
@@ -14,7 +14,7 @@ wrap-me: (
         f=$(basename $full_path)
         rm $out/bin/$f
         echo "#!${pkgs.runtimeShell}" > $out/bin/$f
-        echo "exec ${nixgl.auto.nixGLDefault}/bin/nixGL ${wrap-me}/bin/$f" >> $out/bin/$f
+        echo "exec ${nixgl.auto.nixGLDefault}/bin/nixGL ${wrap-me}/bin/$f" '"$@"' >> $out/bin/$f
         chmod +x $out/bin/$f
       done
     '';

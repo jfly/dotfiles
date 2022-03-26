@@ -44,7 +44,8 @@ in
     xmonad = pkgs.callPackage ./xmonad {};
     volnoti = pkgs.callPackage ./volnoti.nix {};
     polybar = pkgs.callPackage ./polybar.nix {};
-    kodi = wrapNixGL pkgs.kodi;
+    # kodi needs to be wrapped with nixGL to run on non-NixOS distributions.
+    kodi = wrapNixGL (pkgs.callPackage ./kodi {});
 
     ### Development
     xxd = pkgs.xxd;
