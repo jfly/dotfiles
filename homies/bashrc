@@ -4,23 +4,23 @@
 ### Setup prompt
 ###
 if tty -s; then
-    green=$(tput setaf 2)
-    bold=$(tput bold)
-    reset=$(tput sgr0)
+	green=$(tput setaf 2)
+	bold=$(tput bold)
+	reset=$(tput sgr0)
 fi
 
 HOST=""
 if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
-    HOST=" @\h"
+	HOST=" @\h"
 fi
 
 MY_BODY="\[$green$bold\]\w\[$reset\]$HOST"
 
 # Check if we're running as root.
 if [[ $EUID -ne 0 ]]; then
-    END=">"
+	END=">"
 else
-    END="#"
+	END="#"
 fi
 
 export PS1="${MY_BODY}${END} "
