@@ -85,28 +85,6 @@ let g:MergetoolSetLayoutCallback = function('s:on_mergetool_set_layout')
 nmap <leader>mt <plug>(MergetoolToggle)
 """""" }}}
 
-"""""" tcomment configuration {{{
-call tcomment#type#Define('bash', '#<<< %s')
-call tcomment#type#Define('config', '#<<< %s')
-call tcomment#type#Define('conf', '#<<< %s')
-call tcomment#type#Define('cpp', '//<<< %s')
-call tcomment#type#Define('dockerfile', '#<<< %s')
-call tcomment#type#Define('javascript', '//<<< %s')
-call tcomment#type#Define('jsx', '{/*<<< %s */}')
-call tcomment#type#Define('make', '#<<< %s')
-call tcomment#type#Define('nix', '#<<< %s')
-call tcomment#type#Define('python', '# <<< %s')
-call tcomment#type#Define('ruby', '#<<< %s')
-call tcomment#type#Define('scss', '//<<< %s')
-call tcomment#type#Define('sh', '#<<< %s')
-call tcomment#type#Define('toml', '#<<< %s')
-call tcomment#type#Define('typescriptreact', '//<<< %s')
-call tcomment#type#Define('typescript', '//<<< %s')
-call tcomment#type#Define('vim', '"<<< %s')
-call tcomment#type#Define('yaml', '#<<< %s')
-call tcomment#type#Define('zsh', '#<<< %s')
-"""""" }}}
-
 """""" Git stuff {{{
 noremap <leader>mf :GFiles?<CR>
 noremap <leader>gb :Git blame<CR>

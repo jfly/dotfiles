@@ -10,7 +10,37 @@ pkgs.neovim.override {
                 MatchTagAlways
                 vim-airline
                 matchit-zip
-                tcomment_vim
+                # Tweak tcomment so comments for (nearly) all languages get the
+                # conflict marker characters I'm so used to having.
+                (tcomment_vim.overrideAttrs (oldAttrs: {
+                    preInstall = ''
+                        # Some clever regexes to try to replace all the comment
+                        # strings in
+                        # https://github.com/tomtom/tcomment_vim/blob/master/autoload/tcomment/types/default.vim
+                        # This isn't perfect.
+                        f=autoload/tcomment/types/default.vim
+
+                        # Match simple lines like:
+                        #     call tcomment#type#Define('aap', '# %s')
+                        sed -i "s/\(Define('.*', *'\S\+\)\( %s.*\)/\1<<<\2/" $f
+
+                        # Match lines like:
+                        #     call tcomment#type#Define('cpp', tcomment#GetLineC('// %s'))
+                        sed -i "s/\(tcomment#GetLineC('\S\+\)\( %s\)/\1<<<\2/" $f
+
+                        # Match lines like:
+                        #     call tcomment#type#Define('clojure', {'commentstring': '; %s', 'count': 2})
+                        sed -i "s/\('commentstring': \+'\S\+\)\( %s\)/\1<<<\2/" $f
+
+                        # Add some missing definitions
+                        echo "call tcomment#type#Define('bash', '#<<< %s')" >> $f
+                        echo "call tcomment#type#Define('zsh', '#<<< %s')" >> $f
+                        echo "call tcomment#type#Define('dockerfile', '#<<< %s')" >> $f
+
+                        # Override the c definition
+                        echo "call tcomment#type#Define('c', tcomment#GetLineC('//<<< %s'))" >> $f
+                    '';
+                }))
                 vim-colors-solarized
                 nord-nvim
                 vim-airline-themes
