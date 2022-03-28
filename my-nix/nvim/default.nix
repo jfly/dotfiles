@@ -17,13 +17,13 @@ let
             f=colors/dim.vim
 
             # Tweak the gutter color so it stands out from the background.
-            echo 'highlight LineNr ctermbg=8' >> $f
-            echo 'highlight link SignColumn LineNr' >> $f
+            echo 'highlight! LineNr ctermbg=8' >> $f
+            echo 'highlight! link SignColumn LineNr' >> $f
 
             # Link diffRemoved and diffAdded to saner values
             # (this is basically copied from https://github.com/dracula/vim/issues/46)
-            echo 'highlight link diffRemoved DiffDelete' >> $f
-            echo 'highlight link diffAdded DiffAdd' >> $f
+            echo 'highlight! link diffRemoved DiffDelete' >> $f
+            echo 'highlight! link diffAdded DiffAdd' >> $f
         '';
     });
 in
