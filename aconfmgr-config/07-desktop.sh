@@ -39,6 +39,7 @@ EOF
 cat >"$(CreateFile /etc/systemd/system/autoperipherals@.service)" <<EOF
 [Unit]
 Description=Refresh autoperipherals for user %i
+After=graphical.target
 
 [Service]
 Type=simple
@@ -134,6 +135,7 @@ cat >"$(CreateFile /etc/systemd/system/fixinputs@.path)" <<EOF
 # and http://www.ocsmag.com/2015/09/02/monitoring-file-access-for-dummies/
 [Unit]
 Description=Triggers the service that sets up external keyboard
+After=graphical.target
 
 [Path]
 PathChanged=/dev/input/

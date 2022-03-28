@@ -2,6 +2,12 @@
 
 set -e
 
+# Check if xorg is running. If not, there's nothing to do! Exit cleanly.
+if ! xset q &>/dev/null; then
+    echo "No X server at \$DISPLAY [$DISPLAY]" >&2
+    exit 0
+fi
+
 # https://wiki.archlinux.org/index.php/Mouse_acceleration
 xset m 2.5 0
 
