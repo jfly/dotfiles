@@ -26,6 +26,7 @@
     ~/.commonrc: homies/commonrc
 
     ~/bin: homies/bin
+    ~/sd: homies/sd
     ~/.config/alacritty: homies/config/alacritty
     ~/.config/chromium-flags.conf: homies/config/chromium-flags.conf
     ~/.config/dunst: homies/config/dunst
