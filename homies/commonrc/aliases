@@ -1,4 +1,4 @@
-# vi: ft=sh
+# shellcheck shell=bash
 
 alias bs="mosh bs336 -- bash -cli bs"
 alias ls='ls --color=auto'
@@ -13,31 +13,25 @@ alias ssh="light_dark_ssh"
 # Very useful for finding short lived processes.
 alias allprocs='sudo sysdig -p"*%evt.time %proc.pid %proc.ppid %evt.dir %proc.exeline"     "( evt.dir=< and evt.type=execve ) or evt.type=procexit"'
 
-# Rails Reset Test DB
-alias rrtdb="bin/rails db:environment:set RAILS_ENV=test && bin/rake db:reset RACK_ENV=test"
-
-# WCA specific stuff
-alias wcacheckmem="ssh wca 'date && ps -eo rss,comm,pid,args | grep -i unicorn | grep -v grep'"
-alias wcadeploy="ssh -A cubing@worldcubeassociation.org worldcubeassociation.org/scripts/deploy.sh pull_latest rebuild_regs rebuild_rails"
-
 # Home network stuff
-alias orc_dns_clear="ssh -l admin 192.168.1.1 killall -s HUP dnsmasq"
+alias strider_dns_clear="ssh -l admin strider killall -s HUP dnsmasq"
 
 function with_commit {
     (
         set -e
-        _og_ref=$(git symbolic-ref HEAD 2> /dev/null) || _og_ref=$(git rev-parse --short HEAD 2> /dev/null)
+        _og_ref=$(git symbolic-ref HEAD 2>/dev/null) || _og_ref=$(git rev-parse --short HEAD 2>/dev/null)
         _og_ref=${_og_ref#refs/heads/}
 
-        _commit=$1; shift
-        git checkout -b temp $_commit
+        _commit=$1
+        shift
+        git checkout -b temp "$_commit"
         function _cleanup {
-            git checkout $_og_ref
+            git checkout "$_og_ref"
             git branch -d temp
         }
         trap _cleanup EXIT
 
-        $@
+        "$@"
     )
 }
 
@@ -46,9 +40,10 @@ function with_time {
         set -e
 
         # Something of the format "2020-05-23 23:26:00"
-        _time_str=$1; shift
+        _time_str=$1
+        shift
 
-        if ! [[ "$_time_str" =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2}\ [0-9]{2}:[0-9]{2}:[0-9]{2}$ ]]; then
+        if ! [[ $_time_str =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2}\ [0-9]{2}:[0-9]{2}:[0-9]{2}$ ]]; then
             echo 'Time string must be of the format:'
             echo '    YYYY-MM-DD HH:MM:SS'
             echo ''
@@ -59,7 +54,6 @@ function with_time {
             exit 1
         fi
 
-
         function _cleanup {
             sudo timedatectl set-ntp 1
         }
@@ -68,12 +62,12 @@ function with_time {
         sudo timedatectl set-ntp 0
         sudo timedatectl set-time "$_time_str"
 
-        $@
+        "$@"
     )
 }
 
 function pick_commit {
-    glola --color=always | fzf --ansi --no-sort --reverse --multi | while read item; do
+    glola --color=always | fzf --ansi --no-sort --reverse --multi | while read -r item; do
         echo -n "${item}" | sed 's/^[ |/\\*]*//' | awk '{printf $1" "}'
     done
 
@@ -81,21 +75,10 @@ function pick_commit {
 }
 
 # Honor specific stuff
-function h4post {
-    rbt post --markdown --open $@ HEAD
-    # rbt-log-post --open --parent=HEAD~1 $@ HEAD || true
-}
-function h4repost {
-    if [ "$#" -ne 1 ]; then
-        echo "Please specify a review request id"
-    else
-        h4post --review-request-id $1
-    fi
-}
 function mcli {
     __database=${1:=$DEFAULT_MYSQL_DATABASE}
     shift
-    mycli --user $MYSQL_USER --host $MYSQL_HOST --port $MYSQL_PORT $__database "$@"
+    mycli --user "$MYSQL_USER" --host "$MYSQL_HOST" --port "$MYSQL_PORT" "$__database" "$@"
 }
 function truncate_all_tables {
     query_string="SET FOREIGN_KEY_CHECKS = 0;"
@@ -114,11 +97,12 @@ alias h4salt="ssh bastion ssh saltmaster sudo journalctl --follow --lines=10000 
 alias pdfcrop="pdfcrop --xetex"
 
 function open {
-    if [ -e "$1" ]; then
+    url="$1"
+    if [ -e "$url" ]; then
         DROPBOX_DIR=$(readlink -f ~/Dropbox)
-        if [[ "$1" = "$DROPBOX_DIR"* ]]; then
+        if [[ $url == "$DROPBOX_DIR"* ]]; then
             path_to_file=$(relpath "$1" "$DROPBOX_DIR")
-            1="https://www.dropbox.com/home/$path_to_file"
+            url="https://www.dropbox.com/home/$path_to_file"
         fi
     fi
     xdg-open "$1"
@@ -126,7 +110,7 @@ function open {
 alias o=open
 
 # https://stackoverflow.com/a/7305217/1739415
-relpath(){ python -c "import os.path; print(os.path.relpath('$1','${2:-$PWD}'))" ; }
+relpath() { python -c "import os.path; print(os.path.relpath('$1','${2:-$PWD}'))"; }
 
 function de {
     CONTAINER=$1
@@ -135,8 +119,8 @@ function de {
     if [ "$#" -gt 0 ]; then
         CMD="$CMD -c '$*'"
     fi
-    echo $CMD
-    eval $CMD
+    echo "$CMD"
+    eval "$CMD"
 }
 
 function dr {
@@ -146,8 +130,8 @@ function dr {
     if [ "$#" -gt 0 ]; then
         CMD="$CMD -c '$*'"
     fi
-    echo $CMD
-    eval $CMD
+    echo "$CMD"
+    eval "$CMD"
 }
 
 # Copied from https://gist.github.com/jfly/7b94cba17c04d344d62a7bea916bb55a
@@ -156,15 +140,15 @@ function start_screen {
         echo "Usage: $0 [NAME] [title1] [cmd1] [title2] [cmd2] ..."
     }
     if test $# -eq 0; then
-        print_usage > /dev/stderr
+        print_usage >/dev/stderr
         return
     fi
     NAME=$1
     shift
-    if test $(( $# % 2 )) -ne 0; then
-        echo "You must specify an equal number of titles and commands." > /dev/stderr
-        echo "" > /dev/stderr
-        print_usage > /dev/stderr
+    if test $(($# % 2)) -ne 0; then
+        echo "You must specify an equal number of titles and commands." >/dev/stderr
+        echo "" >/dev/stderr
+        print_usage >/dev/stderr
         return
     fi
 
@@ -176,7 +160,7 @@ function start_screen {
         CMD="$1"$'\n'
         shift
         screen -S "$NAME" -X title "$TITLE" # set title of window
-        screen -S "$NAME" -X stuff "$CMD" # run command in window
+        screen -S "$NAME" -X stuff "$CMD"   # run command in window
         if test $# -gt 0; then
             screen -S "$NAME" -X screen # add new window
         fi
@@ -189,15 +173,15 @@ function start_tmux {
         echo "Usage: $0 [NAME] [title1] [cmd1] [title2] [cmd2] ..."
     }
     if test $# -eq 0; then
-        print_usage > /dev/stderr
+        print_usage >/dev/stderr
         return
     fi
     NAME=$1
     shift
-    if test $(( $# % 2 )) -ne 0; then
-        echo "You must specify an equal number of titles and commands." > /dev/stderr
-        echo "" > /dev/stderr
-        print_usage > /dev/stderr
+    if test $(($# % 2)) -ne 0; then
+        echo "You must specify an equal number of titles and commands." >/dev/stderr
+        echo "" >/dev/stderr
+        print_usage >/dev/stderr
         return
     fi
 
@@ -209,7 +193,7 @@ function start_tmux {
         CMD="$1"$'\n'
         shift
         tmux rename-window -t "$NAME" "$TITLE" # set title of window
-        tmux send-keys -t "$NAME" "$CMD" # run command in window
+        tmux send-keys -t "$NAME" "$CMD"       # run command in window
         if test $# -gt 0; then
             tmux new-window -t "$NAME"
         fi
@@ -217,22 +201,23 @@ function start_tmux {
 }
 
 function cgl {
-    hub browse -u -- commit/$1 | clipit
+    hub browse -u -- "commit/$1" | clipit
 }
 
 function clcl {
-    cgl `git rev-parse HEAD`
+    cgl "$(git rev-parse HEAD)"
 }
 
 function gnb {
     if [ -z "$1" ]; then
-        echo "Please specify a branch name to create." >> /dev/stderr
+        echo "Please specify a branch name to create." >>/dev/stderr
     else
+        local stashed
         stashed=$(git stash)
 
         git fetch upstream
-        git checkout --no-track -b $1 upstream/master
-        git push -u origin $1
+        git checkout --no-track -b "$1" upstream/master
+        git push -u origin "$1"
 
         if [ "$stashed" != "No local changes to save" ]; then
             git stash apply
@@ -243,41 +228,24 @@ function gnb {
 
 function remote_to_gh_url {
     # Convert git@github.com:jfly/tnoodle.git to jfly/tnoodle
-    1=${1#git@github.com:}
-    1=${1%.git}
+    local url
+    url=${1#git@github.com:}
+    url=${1%.git}
 
     # Convert https://github.com/thewca/tnoodle.git to thewca/tnoodle
-    1=${1#https://github.com/}
+    url=${1#https://github.com/}
 
-    echo $1
+    echo "$url"
 }
 
 function gnpr {
     git push
-    upstream=$(remote_to_gh_url $(git remote get-url upstream))
-    origin=$(remote_to_gh_url $(git remote get-url origin))
+    upstream=$(remote_to_gh_url "$(git remote get-url upstream)")
+    origin=$(remote_to_gh_url "$(git remote get-url origin)")
     origin_repo=${origin%/*}
     current_branch=$(git rev-parse --abbrev-ref HEAD)
     o "https://github.com/${upstream}/compare/master...${origin_repo}:${current_branch}?expand=1"
 }
-
-# Copied from https://github.com/metakirby5/codi.vim#shell-wrapper
-# Codi
-# Usage: codi [filetype] [filename]
-codi() {
-  local syntax="${1:-python}"
-  shift
-  vim -c \
-    "let g:startify_disable_at_vimenter = 1 |\
-    set bt=nofile ls=0 noru nonu nornu |\
-    hi ColorColumn ctermbg=NONE |\
-    hi VertSplit ctermbg=NONE |\
-    hi NonText ctermfg=0 |\
-    Codi $syntax" "$@"
-}
-
-# At the bottom because it screws up syntax highlighting =(
-alias wcacheckgbot="ssh wca 'bash -c \"tail -f /var/log/nginx/access.log | grep /search.*Googlebot\"'"
 
 alias cdk='./cdk'
 
