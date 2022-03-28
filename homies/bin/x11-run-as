@@ -4,7 +4,7 @@ script="$0"
 user="$1"
 shift
 if [ "$(whoami)" != "$user" ]; then
-  exec su "$user" "$script" "$user" "$@"
+    exec su "$user" "$script" "$user" "$@"
 fi
 
 # TODO - The following might be able to clean this up/eliminate the need for this script entirely.
@@ -20,4 +20,4 @@ export XDG_RUNTIME_DIR=/run/user/1000
 
 source ~/.commonrc/path.sh
 
-$@
+"$@"
