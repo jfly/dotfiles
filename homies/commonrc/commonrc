@@ -4,7 +4,7 @@
 ### Set up asdf-vm + direnv
 ###
 # This needs to happen after we load oh-my-zsh
-source $HOME/.asdf/completions/asdf.bash
+source "$HOME/.asdf/completions/asdf.bash"
 # From https://github.com/asdf-community/asdf-direnv#setup
 eval "$(asdf exec direnv hook zsh)"
 direnv() { asdf exec direnv "$@"; }
