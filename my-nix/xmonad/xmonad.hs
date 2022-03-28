@@ -165,10 +165,12 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = Data.Map.fromList $
         | (i, k) <- zip myWorkspaces myWorkspaceKeys
         , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]]
 
+isNotInfixOf a b = not (a `isInfixOf` b)
+
 main = do
     xmonad $ docks $ ewmh desktopConfig {
         manageHook = manageDocks <+> manageSpawn <+> windowPlacement <+> manageHook desktopConfig,
-        handleEventHook = handleEventHook def <+> Hacks.windowedFullscreenFixEventHook <+> swallowEventHook (className =? "Alacritty") (return True),
+        handleEventHook = handleEventHook def <+> Hacks.windowedFullscreenFixEventHook <+> swallowEventHook (className =? "Alacritty" <&&> fmap ( "xmonad-no-swallow" `isNotInfixOf`) title) (return True),
         layoutHook = myLayout,
         modMask = myModMask,
         XMonad.terminal = myTerminal,
