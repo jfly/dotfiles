@@ -1,53 +1,78 @@
-# Path to your oh-my-zsh installation.
-export ZSH=~/.oh-my-zsh
-
-# Set name of the theme to load. Optionally, if you set this to "random"
-# it'll load a random theme each time that oh-my-zsh is loaded.
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-# ZSH_THEME="robbyrussell"
+###
+### Powerlevel10k
+###
 ZSH_THEME="powerlevel10k/powerlevel10k"
-
-if [ "$ZSH_THEME" = "powerlevel10k/powerlevel10k" ]; then
-  ### Powerlevel10k
-  # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-  # Initialization code that may require console input (password prompts, [y/n]
-  # confirmations, etc.) must go above this block; everything else may go below.
-  if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-    source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-  fi
-  # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-  [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+##################################
 
+###
+### Load oh-my-zsh
+###
+export ZSH=~/.oh-my-zsh
 plugins=(git)
 plugins+=(z)
 plugins+=(sd)
-
 source $ZSH/oh-my-zsh.sh
-
-# User configuration
-
-source ~/.commonrc/commonrc
+##################################
 
 ###
-### Set prompt (copied and modified from ~/.oh-my-zsh/themes/robbyrussell.zsh-theme)
+### Load aliases
 ###
-local host=""
-if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
-  host=" @%M"
+source ~/.commonrc/aliases
+##################################
+
+###
+### Configure less
+###
+export LESS="--no-init --quit-if-one-screen --RAW-CONTROL-CHARS"
+##################################
+
+###
+### Misc default programs
+###
+export VISUAL=vim
+export EDITOR=vim
+
+if [ -n "$DISPLAY" ]; then
+    export BROWSER=chromium
+else
+    export BROWSER=elinks
 fi
-local ret_status="%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )"
-export PROMPT='${ret_status}${host} %{$fg[cyan]%}%~%{$reset_color%} $(git_prompt_info)'
-#####################
+##################################
+
+###
+### Set up asdf-vm + direnv
+###
+# This needs to happen after we load oh-my-zsh
+source "$HOME/.asdf/completions/asdf.bash"
+# From https://github.com/asdf-community/asdf-direnv#setup
+eval "$(asdf exec direnv hook zsh)"
+direnv() { asdf exec direnv "$@"; }
+
+## Python stuff
+# Make sure we never `pip install` things outside of a virtualenv.
+export PIP_REQUIRE_VIRTUALENV=true
+export ASDF_PYTHON_PATCHES_DIRECTORY="$HOME/.dotfiles/asdf-python-patches"
+##################################
 
 ###
 ### Set up FZF
 ###
+export FZF_DEFAULT_COMMAND='rg --files --hidden'
+export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
 source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
+##################################
 
 ###
-### Don't add comments starting with space to the history.
+### Don't add commands to the history if they start with a space.
 ###
 setopt HIST_IGNORE_SPACE
 
@@ -56,7 +81,6 @@ setopt HIST_IGNORE_SPACE
 ### Copied from: https://stackoverflow.com/a/10860628/1739415
 ### Also see https://stackoverflow.com/a/3483679/1739415
 ###
-
 # Bind ctrl-u to cut to beginning of line.
 bindkey "^U" backward-kill-line
 
@@ -80,14 +104,14 @@ backward-kill-dir() {
 }
 zle -N backward-kill-dir
 bindkey "^W" backward-kill-dir
-
-#####################
+##################################
 
 ###
 ### Fix output of time to look more like bash.
 ### See https://superuser.com/a/71890.
 ###
 export TIMEFMT=$'\nreal\t%E\nuser\t%U\nsys\t%S'
+##################################
 
 ###
 ### Set up alt-c to pick a commit
@@ -101,9 +125,11 @@ fzf-commit-widget() {
 }
 zle     -N    fzf-commit-widget
 bindkey '\ec' fzf-commit-widget
-###################
+##################################
 
-# Experimenting with nix.
+###
+### Nix
+###
 # From https://nix.dev/tutorials/towards-reproducibility-pinning-nixpkgs
 #  > Channels are a way of distributing Nix software, but they are being phased
 #  > out. Even though they are still used by default, it is recommended to avoid
@@ -115,6 +141,7 @@ bindkey '\ec' fzf-commit-widget
 export LOCALE_ARCHIVE=/usr/lib/locale/locale-archive
 # Basic idea copied from https://ianthehenry.com/posts/how-to-learn-nix/nix-zshell/
 export NIX_BUILD_SHELL=nix-zshell
+##################################
 
 # I am a special snowflake
 # source $HOME/.h4.zshrc
