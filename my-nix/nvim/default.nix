@@ -1,5 +1,26 @@
 { pkgs }:
 
+let
+    # TODO: upstream this to nixpkgs?
+    vim-dim = (pkgs.vimUtils.buildVimPluginFrom2Nix {
+        pname = "vim-dim";
+        version = "1.1.0";
+        src = pkgs.fetchFromGitHub {
+            owner = "jeffkreeftmeijer";
+            repo = "vim-dim";
+            rev = "b1332575624e5a212ca702a89f1c78acd88beb22";
+            sha256 = "lyTZUgqUEEJRrzGo1FD8/t8KBioPrtB3MmGvPeEVI/g=";
+        };
+        meta.homepage = "https://github.com/jeffkreeftmeijer/vim-dim/";
+    }).overrideAttrs (oldAttrs: {
+        preInstall = ''
+            # Tweak the gutter color so it stands out from the background.
+            echo 'highlight! LineNr ctermbg=8
+            highlight! link SignColumn LineNr' >> colors/dim.vim
+        '';
+    });
+in
+
 pkgs.neovim.override {
     vimAlias = true;
     viAlias = true;
@@ -8,7 +29,6 @@ pkgs.neovim.override {
             start = [
                 fzf-vim
                 MatchTagAlways
-                vim-airline
                 matchit-zip
                 # Tweak tcomment so comments for (nearly) all languages get the
                 # conflict marker characters I'm so used to having.
@@ -41,19 +61,18 @@ pkgs.neovim.override {
                         echo "call tcomment#type#Define('c', tcomment#GetLineC('//<<< %s'))" >> $f
                     '';
                 }))
-                vim-colors-solarized
-                nord-nvim
-                vim-airline-themes
+
+                # Syntax highlighting + colors
+                vim-dim
+                vim-polyglot
+
+                lightline-vim
+                lightline-bufferline
                 vim-fugitive
                 vim-rhubarb
-                vim-polyglot
                 vim-test
                 traces-vim
                 vim-rsi # readline shortcuts in useful places
-                # TODO: wait a while and if you actually miss these
-                # neoterm
-                # tagbar
-                # codi-vim
                 vim-mergetool
                 (pkgs.vimUtils.buildVimPlugin {
                     pname = "honorjs-test-runner";

@@ -16,25 +16,18 @@ set expandtab
 syntax on
 syntax enable
 
-" Solarized colorscheme
-" Tweak because I (jfly) changed the solarized terminal pallete a bit, but
-" still want to use the default terminal background color...
-" let g:solarized_termtrans=1
-" colorscheme solarized
-
-" Nord colorscheme
-let g:nord_italic = v:false
-colorscheme nord
-
-set background=dark
-" Shortcuts to change our colorscheme
-noremap 1<Backspace> :set background=dark<CR>
-noremap 2<Backspace> :set background=light<CR>
-
-" vim-gutter tweak
-" Copied from
-" https://github.com/FatBoyXPC/dotfiles/commit/53815a4009884dcf04b3f009de9d1bf458bed32f
-highlight! link SignColumn LineNr
+" Always use light "dim" colorscheme. We have to explicitly set
+" background=light here because vim is smart enough to detect the *actual*
+" configured colors and set this automatically. See
+" https://github.com/neovim/neovim/pull/9509. Unfortunately, it's not smart enough to
+" re-detect this if you change your terminal's colorscheme after starting vim,
+" and I don't even want to think about what it would take to get that to work
+" over ssh...
+" Instead, we use the `dim` colorscheme, which is designed to leave all the
+" careful color choosing up to our terminal emulator itself. See
+" https://jeffkreeftmeijer.com/vim-16-color/ for details.
+set background=light
+colorscheme dim
 
 " Cross file search
 nnoremap <leader>* :Rg<Space><C-R><C-W>
@@ -226,11 +219,21 @@ endfunction
 nnoremap <leader>tt :call ToggleTest(expand('%'))<CR>
 """"""
 
-"""""" airline configuration
-" Display all buffers when there's only one tab open
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#fnamemod = ':t'
-let g:airline_powerline_fonts = 1
+"""""" lightline configuration
+" From https://github.com/itchyny/lightline.vim#introduction
+set noshowmode
+let g:lightline = {'colorscheme': '16color'}
+let g:lightline.tabline = {
+            \ 'left': [ [ 'buffers' ] ],
+            \ 'right': [ [ 'close'] ] }
+let g:lightline.component_expand = { 'buffers': 'lightline#bufferline#buffers' }
+let g:lightline.component_type = { 'buffers': 'tabsel' }
+let g:lightline.separator = { 'left': '', 'right': '' }
+let g:lightline.subseparator = {'left': '', 'right': '' }
+" Only show the buffers if there's more than 1 open.
+" From https://github.com/mengelbrecht/lightline-bufferline/issues/99
+set showtabline=2
+let g:lightline#bufferline#min_buffer_count = 2
 """"""
 
 "" Turn off folding
@@ -283,10 +286,21 @@ autocmd FileType python nnoremap <leader>l oif __import__('os').environ.get('JFL
 """""""
 
 if has('nvim')
+    map ]s :lua vim.diagnostic.goto_next()<cr>
+    map [s :lua vim.diagnostic.goto_prev()<cr>
+
     " Configuration modified from
     " https://github.com/neovim/nvim-lspconfig/wiki/Autocompletion and
     " https://github.com/hrsh7th/nvim-cmp/#recommended-configuration
     lua << EOF
+
+    -- Copied from https://github.com/neovim/nvim-lspconfig/wiki/UI-customization#change-diagnostic-symbols-in-the-sign-column-gutter
+    local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+    for type, icon in pairs(signs) do
+      local hl = "DiagnosticSign" .. type
+      vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+    end
+
     local nvim_lsp = require('lspconfig')
 
     -- Use an on_attach function to only map the following keys
