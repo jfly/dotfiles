@@ -1,11 +1,6 @@
 # shellcheck shell=bash
 
-alias bs="mosh bs336 -- bash -cli bs"
-alias ls='ls --color=auto'
 alias be="bundle exec"
-
-# From http://vim.wikia.com/wiki/Ignore_white_space_in_vimdiff.
-alias vimdiffw="vimdiff -c 'set diffopt+=iwhite'"
 
 alias ssh="light_dark_ssh"
 
