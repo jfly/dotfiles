@@ -43,6 +43,7 @@
     ~/.local/share/icons/jfly-icons: homies/.local/share/icons/jfly-icons
     ~/.jupyter/nbconfig: homies/jupyter/nbconfig
     ~/.mplayer: homies/mplayer
+    ~/.p10k.zsh: homies/p10k.zsh
     ~/.ssh/config: homies/ssh/config
     ~/.ssh/config.d: homies/ssh/config.d
     ~/.tmux.conf: homies/tmux.conf
@@ -65,5 +66,7 @@
 - shell:
     - command: test -d ~/.oh-my-zsh || git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh
       description: Install oh-my-zsh
+    - command: test -d ~/.oh-my-zsh/custom/themes/powerlevel10k || git clone https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/custom/themes/powerlevel10k
+      description: Install powerlevel10k
     - command: chmod -R u=rwX,og= ~/.ssh/ ~/.gnupg/
       description: Fix ssh and gnupg permissions
