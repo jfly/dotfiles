@@ -6,11 +6,11 @@
 
 let shtuff = with python3.pkgs; buildPythonApplication rec {
   pname = "shtuff";
-  version = "0.3.1";
+  version = "0.3.2";
 
   src = fetchPypi {
     inherit pname version;
-    sha256 = "sha256-99TyWqTOu9vxKaJUFFTr+dyHDbo+wDrGuQsGuujmwHA=";
+    sha256 = "sha256-hp4Ue3WzvOol/+ZU9vYhpMUY68TTl8ZMVbtcH8JjcGM=";
   };
 
   propagatedBuildInputs = [
