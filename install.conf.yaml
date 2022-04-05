@@ -37,6 +37,7 @@
     ~/.config/systemd: homies/config/systemd
     ~/.config/direnv/direnvrc: homies/config/direnv/direnvrc
     ~/.config/direnv/direnv.toml: homies/config/direnv/direnv.toml
+    ~/.config/direnv/lib: homies/config/direnv/lib
     ~/.docker/config.json: homies/docker/config.json
     ~/.gitconfig: homies/gitconfig
     ~/.gitignore_global: homies/gitignore_global

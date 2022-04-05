@@ -14,3 +14,6 @@ source /usr/share/fzf/completion.bash
 # Lower probability of weird line wrapping issues
 # https://wiki.archlinux.org/index.php/bash#Line_wrap_on_window_resize
 shopt -s checkwinsize
+
+# Set up asdf-direnv.
+source "${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/bashrc"
