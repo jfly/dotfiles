@@ -9,10 +9,6 @@ volnoti -t 1
 # Enable numlock on boot (thanks James!)
 numlockx on
 
-# Gross hack to disable audio powersave, which causes awful noise
-# (https://bbs.archlinux.org/viewtopic.php?pid=1554497#p1554497).
-sudo rmmod -f snd_hda_intel && sudo modprobe snd_hda_intel power_save=0
-
 if [ -x "$(which pasystray 2>/dev/null)" ]; then
     pasystray &
 fi
