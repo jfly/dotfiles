@@ -46,12 +46,14 @@ in
     polybar = pkgs.callPackage ./polybar.nix {};
     # kodi needs to be wrapped with nixGL to run on non-NixOS distributions.
     kodi = wrapNixGL (pkgs.callPackage ./kodi {});
+    with-alacritty = wrapNixGL (pkgs.callPackage ./with-alacritty {});
 
     ### Development
     xxd = pkgs.xxd;
     rsync = pkgs.rsync;
     mycli = pkgs.callPackage ./mycli {};
     shtuff = pkgs.callPackage ./shtuff {};
+    yq = pkgs.yq;
 
     ### Virtualization
     vagrant = pkgs.vagrant.override {

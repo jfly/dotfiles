@@ -1,72 +1,79 @@
 #!/usr/bin/env bash
 
-function set_termite_colorscheme_file {
-  colorscheme_file=$1
-  ~/.config/termite/config.template.sh "$colorscheme_file"
-}
+set -euo pipefail
 
-function reload_termite_config() {
-  # Termite reloads its config on SIGUSR1.
-  # https://github.com/thestinger/termite/blob/3bc2a43bef9b0842cb242dd19853d0344c8a2766/termite.cc#L1715
+cd "$(dirname "$0")"
 
-  # First search for an ancestor termite process.
-  TERMITE_PID=$(pstree -spl $$ | grep -Eo 'termite\([0-9]+\)' | grep -o '[0-9]*' | tail -1)
-  if [ -z "$TERMITE_PID" ]; then
-    # If there isn't an ancestor termite process, then look at the currently focused window,
-    # but make sure it's a termite process and not some poor other process that we're going to
-    # accidentally kill.
-    TERMITE_PID=$(xdotool getwindowpid $(xdotool getwindowfocus))
-    exe_name=$(basename $(readlink /proc/${TERMITE_PID}/exe))
-    if [ "$exe_name" != "termite" ]; then
-      echo "The currently focused window is: '${exe_name}', but I expected 'termite'"
-      exit 1
+function get_terminal_pid() {
+    local terminal_pid
+
+    # First search for an ancestor terminal process.
+    terminal_pid=$(pstree -spl $$ | grep -Eo 'alacritty\([0-9]+\)' | grep -o '[0-9]*' | tail -1)
+
+    # If there isn't an ancestor terminal process, then look at the currently
+    # focused window, but make sure it's a terminal process and not some poor
+    # other process.
+    if [ -z "$terminal_pid" ]; then
+        terminal_pid=$(xdotool getwindowpid "$(xdotool getwindowfocus)")
+        exe_name=$(basename "$(readlink "/proc/${terminal_pid}/exe")")
+        if [ "$exe_name" != "alacritty" ]; then
+            echo "The currently focused window is: '${exe_name}', but I expected 'alacritty'"
+            exit 1
+        fi
     fi
-  fi
-  kill -s USR1 $TERMITE_PID
+
+    echo "$terminal_pid"
 }
 
-function dark() {
-  set_termite_colorscheme_file "solarized-dark"
-  reload_termite_config
+function get_json_colorscheme() {
+    local colorscheme=$1
+    yq <"colorschemes/$colorscheme.yaml"
 }
 
-function light() {
-  set_termite_colorscheme_file "solarized-light"
-  reload_termite_config
-  set_termite_colorscheme_file "solarized-dark"
+function get_available_colorschemes() {
+    for f in colorschemes/*.yaml; do
+        f="$(basename "$f")"
+        echo "${f%.yaml}"
+    done
 }
+colorschemes="$(get_available_colorschemes)"
 
-allowed_commands="dark light"
 # From http://stackoverflow.com/a/8064551
 listcontains() {
-  for word in $1; do
-    [[ $word = $2 ]] && return 0
-  done
-  return 1
+    for word in $1; do
+        [[ $word == "$2" ]] && return 0
+    done
+    return 1
 }
 
 # Validate command line arguments
 print_usage_and_exit() {
-  echo -n "Usage: $0 "
-  for command in $allowed_commands; do
-    echo -n "[$command] "
-  done
-  echo
-  exit
+    echo "Usage: $0 [current|global] [colorscheme]"
+    echo ""
+    echo "Where colorscheme is one of:"
+    echo "$colorschemes"
+    exit 1
 }
-if [ $# -lt 1 ]; then
-  print_usage_and_exit
-fi
-for command in "$@"; do
-  if ! listcontains "$allowed_commands" $command; then
-    echo "Unrecognized command: $command"
+if [ $# -ne 2 ]; then
     print_usage_and_exit
-  fi
-done
+fi
 
-# Comands have been validated, so execute them!
-# Show commands before running them.
-set -e
-for command in "$@"; do
-  $command
-done
+location=$1
+shift
+
+colorscheme=$1
+shift
+if ! listcontains "$colorschemes" "$colorscheme"; then
+    echo "Unrecognized colorscheme: $colorscheme"
+    print_usage_and_exit
+fi
+
+if [ "$location" = "current" ]; then
+    location=$(get_terminal_pid)
+elif [ "$location" = "global" ]; then
+    location="global"
+else
+    echo "Unrecognized location: $location"
+fi
+
+with-alacritty set "$location" "{\"colors\": $(get_json_colorscheme "$colorscheme")}"

@@ -1,11 +1,13 @@
 #!/usr/bin/env bash
 
-colorscheme light &> /dev/null
+set -euo pipefail
+
+colorscheme current light
 function finish {
-    colorscheme dark &> /dev/null
+    colorscheme current dark
 }
 trap finish EXIT
 
-ssh $@
+ssh "$@"
 exit_code=$?
 exit $exit_code

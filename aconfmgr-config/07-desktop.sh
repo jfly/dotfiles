@@ -183,7 +183,6 @@ AddPackage vlc                                # Multi-platform MPEG, VCD/DVD, an
 IgnorePath '/usr/lib/vlc/plugins/plugins.dat' # https://forums.debian.net/viewtopic.php?f=6&t=117859
 
 ### Terminal emulator
-AddPackage alacritty          # A cross-platform, GPU-accelerated terminal emulator
 AddPackage --foreign xcwd-git # xcwd is a simple tool that prints the current working directory of the currently focused window.
 
 ### PDF

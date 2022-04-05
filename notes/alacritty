@@ -1,7 +1,7 @@
 TODO:
     - shift + click to select multiple lines. sort of related: https://github.com/alacritty/alacritty/issues/4237
     - configuration reloading to change from dark to light (via keyboard and when ssh-ing?). urg, you can turn off reloading entirely, or turn it on for *everything*: https://github.com/alacritty/alacritty/issues/472
-    - dpi changes: https://github.com/alacritty/alacritty/issues/4797 which is blocked by https://github.com/rust-windowing/winit/issues/1228
+    - dpi changes: https://github.com/alacritty/alacritty/issues/2886 which is blocked by https://github.com/rust-windowing/winit/issues/1228
     - copy paste while searching: https://github.com/alacritty/alacritty/issues/4176
 
 2022-03-27

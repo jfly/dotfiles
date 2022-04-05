@@ -134,8 +134,8 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = Data.Map.fromList $
     , ((0, xF86XK_MonBrightnessUp), spawn $ changeBrightness "5%+")
     , ((0, xF86XK_HomePage), spawn $ changeBrightness "5%-")
     , ((0, xF86XK_Search), spawn $ changeBrightness "5%+")
-    , ((shiftMask, xK_F5), spawn "colorscheme dark")
-    , ((shiftMask, xK_F6), spawn "colorscheme light")
+    , ((shiftMask, xK_F5), spawn "colorscheme current dark")
+    , ((shiftMask, xK_F6), spawn "colorscheme current light")
     -- Create our own play/pause and prev/next buttons.
     , ((modMask, xK_s), spawn "xdotool key --clearmodifiers XF86AudioPlay")
     , ((modMask, xK_d), spawn "xdotool key --clearmodifiers XF86AudioNext")

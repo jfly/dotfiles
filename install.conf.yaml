@@ -27,7 +27,7 @@
 
     ~/bin: homies/bin
     ~/sd: homies/sd
-    ~/.config/alacritty: homies/config/alacritty
+    ~/.config/with-alacritty: homies/config/with-alacritty
     ~/.config/chromium-flags.conf: homies/config/chromium-flags.conf
     ~/.config/dunst: homies/config/dunst
     ~/.config/fontconfig: homies/config/fontconfig
