@@ -7,19 +7,12 @@ function terminalOn() {
     WORKSPACE=$2
 
     alacritty --class "send to $WORKSPACE" -e "shtuff" new "$CMD" &
-    sleep 0.1 # slow down spawning termites so things don't behave intermittently
+    sleep 0.1 # slow down spawning terminals so windows get positioned (hopefully) deterministically
 }
-
-sudo systemctl start docker
-CUSTOM_MYSQL_DIR=/tmp/mysql-5_7-conf
-mkdir -p "$CUSTOM_MYSQL_DIR"
-echo "[mysqld]
-sql_mode=TRADITIONAL" > $CUSTOM_MYSQL_DIR/sql_mode.cnf
-docker start mysql-5_7 || docker run --name mysql-5_7 -v $CUSTOM_MYSQL_DIR:/etc/mysql/conf.d -e MYSQL_ALLOW_EMPTY_PASSWORD=yes -d --publish=3357:3306 mysql:5.7
 
 cd ~/src/github.com/joinhonor/external-api
 terminalOn "make run" "be"
-terminalOn "shtuff-as-pwd" "be"
+terminalOn $'docker compose up -d database\nshtuff-as-pwd' "be"
 terminalOn "./pythonenv vim" "be"
 
 cd ~/src/github.com/joinhonor/external-web
