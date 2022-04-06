@@ -66,6 +66,9 @@ pkgs.neovim.override {
 
                         # Override the c definition
                         echo "call tcomment#type#Define('c', tcomment#GetLineC('//<<< %s'))" >> $f
+
+                        # Override the Python definition to make black happy
+                        echo "call tcomment#type#Define('python', '# <<< %s')" >> $f
                     '';
                 }))
 
