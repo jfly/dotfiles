@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-colorscheme current light
+colorscheme current base16-cupcake
 function finish {
     colorscheme current dark
 }

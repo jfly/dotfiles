@@ -1,12 +1,14 @@
 #!/usr/bin/env bash
 
 set -euo pipefail
+shopt -s globstar # enable ** glob expansion
 
 cd "$(dirname "$0")"
 
 function get_terminal_pid() {
     local terminal_pid
 
+    terminal_pid=""
     # First search for an ancestor terminal process.
     terminal_pid=$(pstree -spl $$ | grep -Eo 'alacritty\([0-9]+\)' | grep -o '[0-9]*' | tail -1)
 
@@ -27,16 +29,17 @@ function get_terminal_pid() {
 
 function get_json_colorscheme() {
     local colorscheme=$1
-    yq <"colorschemes/$colorscheme.yaml"
+    local file
+    file=$(ls ~/.dotfiles/colorschemes/**/"$colorscheme.yml" 2>/dev/null)
+    yq .colors "$file"
 }
 
 function get_available_colorschemes() {
-    for f in colorschemes/*.yaml; do
+    for f in ~/.dotfiles/colorschemes/**/*.yml; do
         f="$(basename "$f")"
-        echo "${f%.yaml}"
+        echo "${f%.yml}"
     done
 }
-colorschemes="$(get_available_colorschemes)"
 
 # From http://stackoverflow.com/a/8064551
 listcontains() {
@@ -48,25 +51,42 @@ listcontains() {
 
 # Validate command line arguments
 print_usage_and_exit() {
-    echo "Usage: $0 [current|global] [colorscheme]"
+    local name
+    name=$(basename "$0")
+    echo "## Usage"
     echo ""
-    echo "Where colorscheme is one of:"
-    echo "$colorschemes"
+    echo "    $name [current|global] [colorscheme]"
+    echo "    $name list"
+    echo ""
+    echo "## Examples"
+    echo ""
+    echo "### Set the colorscheme for the current terminal"
+    echo ""
+    echo "    $name current light"
+    echo ""
+    echo "### Get a list of available colorschemes"
+    echo ""
+    echo "    $name list"
     exit 1
 }
-if [ $# -ne 2 ]; then
+if [ $# -eq 0 ]; then
     print_usage_and_exit
 fi
 
 location=$1
 shift
 
-colorscheme=$1
-shift
-if ! listcontains "$colorschemes" "$colorscheme"; then
-    echo "Unrecognized colorscheme: $colorscheme"
+if listcontains "list ls" "$location"; then
+    get_available_colorschemes
+    exit 0
+fi
+
+if [ $# -eq 0 ]; then
     print_usage_and_exit
 fi
+
+colorscheme=$1
+shift
 
 if [ "$location" = "current" ]; then
     location=$(get_terminal_pid)
