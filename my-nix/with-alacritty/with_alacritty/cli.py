@@ -31,22 +31,27 @@ def main():
     parser_set = subparsers.add_parser(
         "set",
         help="set config values",
-        description="Set settings for given terminal, or all terminals. Unlike update, this clobbers the existing config rather than merges with it.",
+        description="Set settings for given terminal, or all terminals.",
     )
     parser_set.add_argument("which", help=which_help)
+    parser_set.add_argument(
+        "json_path",
+        help="JSON path to update, such as 'font.size'. Use '.' to clobber the whole config.",
+    )
     parser_set.add_argument("value", help="JSON object to clobber existing config with")
     parser_set.set_defaults(func=do_set, allow_unknown_args=False)
 
-    parser_update = subparsers.add_parser(
-        "update",
-        help="update config values",
-        description="Update settings for given terminal, or all terminals. Unlike set, this merges with the existing config.",
+    parser_clear = subparsers.add_parser(
+        "clear",
+        help="clear config values",
+        description="Clear a particular config setting for the given terminal, or all terminals.",
     )
-    parser_update.add_argument("which", help=which_help)
-    parser_update.add_argument(
-        "value", help="JSON object to merge with the existing config"
+    parser_clear.add_argument("which", help=which_help)
+    parser_clear.add_argument(
+        "json_path",
+        help="JSON path to clear, such as 'font.size'.",
     )
-    parser_update.set_defaults(func=do_update, allow_unknown_args=False)
+    parser_clear.set_defaults(func=do_clear, allow_unknown_args=False)
 
     parser_whoami = subparsers.add_parser(
         "whoami",
@@ -94,16 +99,15 @@ def do_get(args: argparse.Namespace, _rest: list[str]):
     print()
 
 
-def do_update(args: argparse.Namespace, _rest: list[str]):
-    which = parse_which(args.which)
-    new_settings = json.loads(args.value)
-    core.update(which, new_settings, merge_with_existing=True)
-
-
 def do_set(args: argparse.Namespace, _rest: list[str]):
     which = parse_which(args.which)
-    new_settings = json.loads(args.value)
-    core.update(which, new_settings, merge_with_existing=False)
+    value = json.loads(args.value)
+    core.update(which, args.json_path, value)
+
+
+def do_clear(args: argparse.Namespace, _rest: list[str]):
+    which = parse_which(args.which)
+    core.clear(which, args.json_path)
 
 
 def do_whoami(_args: argparse.Namespace, _rest: list[str]):

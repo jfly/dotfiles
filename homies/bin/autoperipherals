@@ -81,7 +81,7 @@ function main() {
     # monitor.
     local font_size
     font_size=$(echo "rate=(11 - 8) / (133.0 - 96.0 ); 8 + ($XFT_DPI / 1024.0 - 96) * rate" | bc -l)
-    with-alacritty update global '{"font": {"size": '"$font_size"'}}'
+    with-alacritty set global font.size "$font_size"
 
     # notify-send blocks until something receives the message. When booting,
     # we have not started dunst yet, so we need to run notify-send in the background.

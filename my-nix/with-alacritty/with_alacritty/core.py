@@ -172,7 +172,16 @@ class _Scope:
         with self._path.open("r") as f:
             return json.load(f)
 
-    def open(self, *args, **kwargs):
+    def write(self, value):
+        # Write the updated settings to the conf file.
+        with self._open("w") as f:
+            json.dump(value, f)
+
+        # Now regenerate all the affected configs.
+        for pid in self.get_affected_pids():
+            _generate_merged_config(pid)
+
+    def _open(self, *args, **kwargs):
         assert not self._readonly
         return self._path.open(*args, **kwargs)
 
@@ -210,6 +219,35 @@ def _generate_merged_config(pid: int):
     return merged_conf_path
 
 
+_DEL_VALUE = object()
+
+
+def _update_json(current_json: dict[str, Any], json_path: str, new_value: Any):
+    if "." == json_path:
+        return {} if new_value is _DEL_VALUE else new_value
+
+    # Make a copy of the incoming json, if possible. It's possible the incoming
+    # json is not actually a dict, in which case we discard whatever value was
+    # there and start with a fresh dictionary.
+    if isinstance(current_json, dict):
+        current_json = dict(current_json)
+    else:
+        current_json = {}
+
+    if "." in json_path:
+        key, remaining_path = json_path.split(".", maxsplit=1)
+        current_json[key] = _update_json(
+            current_json.get(key, {}), remaining_path, new_value
+        )
+    else:
+        if new_value is _DEL_VALUE:
+            del current_json[json_path]
+        else:
+            current_json[json_path] = new_value
+
+    return current_json
+
+
 def get(which: Which) -> dict[str, Any]:
     scope = _Scope(which)
     if not scope.path.exists():
@@ -219,20 +257,22 @@ def get(which: Which) -> dict[str, Any]:
     return scope.read()
 
 
-def update(which: Which, new_settings: dict[str, Any], merge_with_existing: bool):
+def update(which: Which, json_path: str, new_value: Any):
     scope = _Scope(which)
+    current_settings = scope.read()
 
-    if merge_with_existing:
-        current_settings = scope.read()
-        new_settings = merge(current_settings, new_settings)  # type: ignore
+    new_settings = _update_json(current_settings, json_path, new_value)
 
-    # Write the updated settings to the conf file.
-    with scope.open("w") as f:
-        json.dump(new_settings, f)
+    scope.write(new_settings)
 
-    # Now regenerate all the affected configs.
-    for pid in scope.get_affected_pids():
-        _generate_merged_config(pid)
+
+def clear(which: Which, json_path: str):
+    scope = _Scope(which)
+    current_settings = scope.read()
+
+    new_settings = _update_json(current_settings, json_path, _DEL_VALUE)
+
+    scope.write(new_settings)
 
 
 def start_new_terminal(args: list[str]):

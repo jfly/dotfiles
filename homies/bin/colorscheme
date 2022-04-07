@@ -5,7 +5,7 @@ shopt -s globstar # enable ** glob expansion
 
 cd "$(dirname "$0")"
 
-function get_terminal_pid() {
+function _get_terminal_pid() {
     local terminal_pid
 
     terminal_pid=""
@@ -27,35 +27,30 @@ function get_terminal_pid() {
     echo "$terminal_pid"
 }
 
-function get_json_colorscheme() {
+function _get_location() {
+    local location=$1
+    if [ "$location" = "current" ]; then
+        _get_terminal_pid
+    else
+        echo "$location"
+    fi
+}
+
+function _get_json_colorscheme() {
     local colorscheme=$1
     local file
     file=$(ls ~/.dotfiles/colorschemes/**/"$colorscheme.yml" 2>/dev/null)
     yq .colors "$file"
 }
 
-function get_available_colorschemes() {
-    for f in ~/.dotfiles/colorschemes/**/*.yml; do
-        f="$(basename "$f")"
-        echo "${f%.yml}"
-    done
-}
-
-# From http://stackoverflow.com/a/8064551
-listcontains() {
-    for word in $1; do
-        [[ $word == "$2" ]] && return 0
-    done
-    return 1
-}
-
 # Validate command line arguments
-print_usage_and_exit() {
+function _print_usage_and_exit() {
     local name
     name=$(basename "$0")
     echo "## Usage"
     echo ""
-    echo "    $name [current|global] [colorscheme]"
+    echo "    $name set [current|global|PID] [colorscheme]"
+    echo "    $name clear [current|global|PID]"
     echo "    $name list"
     echo ""
     echo "## Examples"
@@ -64,36 +59,55 @@ print_usage_and_exit() {
     echo ""
     echo "    $name current light"
     echo ""
+    echo "### Reset the colorscheme for the current terminal to the global default"
+    echo ""
+    echo "    $name clear-current"
+    echo ""
     echo "### Get a list of available colorschemes"
     echo ""
     echo "    $name list"
     exit 1
 }
+
+function _list() {
+    for f in ~/.dotfiles/colorschemes/**/*.yml; do
+        f="$(basename "$f")"
+        echo "${f%.yml}"
+    done
+}
+
+function _set() {
+    if [ $# -ne 2 ]; then
+        _print_usage_and_exit
+    fi
+
+    local location=$1
+    local colorscheme=$2
+
+    with-alacritty set "$(_get_location "$location")" colors "$(_get_json_colorscheme "$colorscheme")"
+}
+
+function _clear() {
+    if [ $# -ne 1 ]; then
+        _print_usage_and_exit
+    fi
+
+    local location=$1
+
+    with-alacritty clear "$(_get_location "$location")" colors
+}
+
 if [ $# -eq 0 ]; then
-    print_usage_and_exit
+    _print_usage_and_exit
 fi
 
-location=$1
+subcommand_pretty=$1
+subcommand=_"$subcommand_pretty"
 shift
 
-if listcontains "list ls" "$location"; then
-    get_available_colorschemes
-    exit 0
-fi
-
-if [ $# -eq 0 ]; then
-    print_usage_and_exit
-fi
-
-colorscheme=$1
-shift
-
-if [ "$location" = "current" ]; then
-    location=$(get_terminal_pid)
-elif [ "$location" = "global" ]; then
-    location="global"
+if [[ $(type -t "$subcommand") == function ]]; then
+    $subcommand "$@"
 else
-    echo "Unrecognized location: $location"
+    echo "Unrecognized subcommand: $subcommand_pretty"
+    exit 1
 fi
-
-with-alacritty set "$location" "{\"colors\": $(get_json_colorscheme "$colorscheme")}"

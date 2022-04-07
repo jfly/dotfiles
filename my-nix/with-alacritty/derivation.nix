@@ -3,6 +3,9 @@ with python3Packages; buildPythonApplication {
   pname = "with-alacritty";
   version = "1.0";
 
+  checkInputs = [ pytestCheckHook ];
+  pytestFlagsArray = [ "--ignore=result" ];
+
   propagatedBuildInputs = [
       mergedeep
       psutil
@@ -11,6 +14,7 @@ with python3Packages; buildPythonApplication {
 
   nativeBuildInputs = [
       black
+      pytest
   ];
 
   src = ./.;

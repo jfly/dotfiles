@@ -2,9 +2,9 @@
 
 set -euo pipefail
 
-colorscheme current base16-cupcake
+colorscheme set current base16-cupcake
 function finish {
-    colorscheme current dark
+    colorscheme clear current
 }
 trap finish EXIT
 
