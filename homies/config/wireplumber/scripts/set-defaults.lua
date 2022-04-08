@@ -14,6 +14,8 @@ linkables_om = ObjectManager {
 }
 
 function setDefaults ()
+  description_priority = { "wireless headphones", "desk speakers", "desk mic", "laptop speakers", "laptop mic" }
+
   linkable_by_description = {}
   for si in linkables_om:iterate() do
     local si_props = si.properties
@@ -24,7 +26,6 @@ function setDefaults ()
   end
 
   local si
-  description_priority = { "wireless headphones", "laptop audio" }
   for i, description in pairs(description_priority) do
       si = linkable_by_description[description]
       if si then
