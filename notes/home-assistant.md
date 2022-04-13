@@ -1,8 +1,8 @@
-change password
+## change password
 
-ssh clark
-de home-assistant
-hass --script auth --config /config change_password USERNAME PASSWORD
+    ssh clark
+    docker exec -it home-assistant bash
+    hass --script auth --config /config change_password USERNAME PASSWORD
 
 ----------------------------------
 https://www.home-assistant.io/docs/configuration/secrets/
