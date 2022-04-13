@@ -35,6 +35,16 @@ export LESS="--no-init --quit-if-one-screen --RAW-CONTROL-CHARS"
 ##################################
 
 ###
+### HACK ALERT: unset some problematic environment variables inherited from
+### with-alacritty
+###
+##################################
+unset LD_LIBRARY_PATH
+unset LC_CTYPE
+unset LIBGL_DRIVERS_PATH
+unset LIBVA_DRIVERS_PATH
+
+###
 ### Misc default programs
 ###
 export VISUAL=vim
