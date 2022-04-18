@@ -64,6 +64,7 @@ set wildcharm=<C-Z>
 """""" filetypes {{{
 au BufRead,BufNewFile Vagrantfile set filetype=ruby
 au BufRead,BufNewFile *.jy set filetype=python
+au BufRead,BufNewFile *.yaml.aged set filetype=yaml
 """""" }}}
 
 """""" mergetool configuration {{{
