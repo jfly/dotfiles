@@ -3,7 +3,7 @@
 # This was largely copied from nixos/modules/services/x11/window-managers/xmonad.nix
 let
     haskellPkgs = pkgs.haskellPackages;
-    xmonadAndPackages = [haskellPkgs.xmonad_0_17_0 haskellPkgs.xmonad-contrib_0_17_0];
+    xmonadAndPackages = [haskellPkgs.xmonad haskellPkgs.xmonad-contrib];
     xmonadEnv = haskellPkgs.ghcWithPackages (p: xmonadAndPackages);
     configured = pkgs.writers.writeHaskellBin "xmonad" {
         libraries = xmonadAndPackages;

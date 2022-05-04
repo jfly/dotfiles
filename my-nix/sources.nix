@@ -1,9 +1,9 @@
 {
   nixpkgs = import (builtins.fetchTarball {
     name = "nixpkgs-unstable";
-    url = "https://github.com/NixOS/nixpkgs/archive/1d08ea2bd83abef174fb43cbfb8a856b8ef2ce26.tar.gz";
+    url = "https://github.com/NixOS/nixpkgs/archive/abfd31179174133ab8131139d650297bf4da63b7.tar.gz";
     # Hash obtained using `nix-prefetch-url --unpack <url>`
-    sha256 = "1q8p2bz7i620ilnmnnyj9hgx71rd2j6sjza0s0w1wibzr9bx0z05";
+    sha256 = "1jmkz6l7sj876wzyn5niyfaxshbmw9fp3g8r41k1wbjvmm5xrnsn";
   });
   nixgl = import (builtins.fetchTarball {
     name = "nixGL";
