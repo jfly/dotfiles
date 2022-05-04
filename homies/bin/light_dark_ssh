@@ -9,5 +9,3 @@ function finish {
 trap finish EXIT
 
 ssh "$@"
-exit_code=$?
-exit $exit_code
