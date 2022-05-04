@@ -9,24 +9,6 @@ HostName ssh.ocf.berkeley.edu
 User jfly
 ###
 
-### WCA stuff
-Host wca
-HostName worldcubeassociation.org
-User cubing
-
-Host wca-cubecomps
-HostName 52.43.124.237
-User ubuntu
-
-Host wca-forum
-HostName ec2-34-220-151-207.us-west-2.compute.amazonaws.com
-User ubuntu
-
-Host staging.wca
-HostName staging.worldcubeassociation.org
-User cubing
-###
-
 ### Snowdon stuff
 # Asus router @ Snowdon
 Host strider
@@ -39,6 +21,7 @@ User root
 ForwardAgent yes
 
 Host dallben
+ProxyJump clark
 User dallben
 
 Host fflewddur
