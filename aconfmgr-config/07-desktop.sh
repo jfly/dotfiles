@@ -1,36 +1,39 @@
 ### Desktop/gui
-AddPackage dunst                # Customizable and lightweight notification-daemon
-AddPackage xorg-server          # Xorg X server
-AddPackage xorg-server-xvfb     # Virtual framebuffer X server
-AddPackage xorg-xclock          # X clock
-AddPackage xorg-xev             # Print contents of X events
-AddPackage xorg-xinit           # X.Org initialisation program
-AddPackage xorg-xinput          # Small commandline tool to configure devices
-AddPackage xorg-xkill           # Kill a client by its X resource
-AddPackage xorg-xlsatoms        # List interned atoms defined on server
-AddPackage xorg-xmessage        # Display a message or query in a window
-AddPackage xorg-xmodmap         # Utility for modifying keymaps and button mappings
-AddPackage xorg-xprop           # Property displayer for X
-AddPackage xorg-xrandr          # Primitive command line interface to RandR extension
-AddPackage xorg-xrdb            # X server resource database utility
-AddPackage xorg-xsetroot        # Classic X utility to set your root window background to a given pattern or color
-AddPackage xprintidle           # Print X idle time
-AddPackage xsel                 # XSel is a command-line program for getting and setting the contents of the X selection
-AddPackage xsettingsd           # Provides settings to X11 applications via the XSETTINGS specification
-AddPackage evtest               # Input device event monitor and query tool
-AddPackage arandr               # Provide a simple visual front end for XRandR 1.2.
-AddPackage --foreign zoom       # Video Conferencing and Web Conferencing Service
-AddPackage --foreign dmenu2     # Fork of dmenu with many useful patches applied and additional options like screen select, dim or opacity change
-AddPackage --foreign parsec-bin # Remotely connect to a gaming pc for a low latency remote computing experience
-AddPackage freerdp              # Free implementation of the Remote Desktop Protocol (RDP)
-AddPackage eog                  # Eye of Gnome
-AddPackage feh                  # Fast and light imlib2-based image viewer
-AddPackage guvcview             # Simple GTK+ interface for capturing and viewing video from v4l2 devices
-AddPackage numlockx             # Turns on the numlock key in X11.
-AddPackage xdotool              # Command-line X11 automation tool
-AddPackage xclip                # Command line interface to the X11 clipboard
-AddPackage gnome-keyring        # Stores passwords and encryption keys
-AddPackage steam                # Valve's digital software delivery system
+AddPackage dunst                      # Customizable and lightweight notification-daemon
+AddPackage xorg-server                # Xorg X server
+AddPackage xorg-server-xvfb           # Virtual framebuffer X server
+AddPackage xorg-xclock                # X clock
+AddPackage xorg-xev                   # Print contents of X events
+AddPackage xorg-xinit                 # X.Org initialisation program
+AddPackage xorg-xinput                # Small commandline tool to configure devices
+AddPackage xorg-xkill                 # Kill a client by its X resource
+AddPackage xorg-xlsatoms              # List interned atoms defined on server
+AddPackage xorg-xmessage              # Display a message or query in a window
+AddPackage xorg-xmodmap               # Utility for modifying keymaps and button mappings
+AddPackage xorg-xprop                 # Property displayer for X
+AddPackage xorg-xrandr                # Primitive command line interface to RandR extension
+AddPackage xorg-xrdb                  # X server resource database utility
+AddPackage xorg-xsetroot              # Classic X utility to set your root window background to a given pattern or color
+AddPackage xprintidle                 # Print X idle time
+AddPackage xsel                       # XSel is a command-line program for getting and setting the contents of the X selection
+AddPackage xsettingsd                 # Provides settings to X11 applications via the XSETTINGS specification
+AddPackage evtest                     # Input device event monitor and query tool
+AddPackage arandr                     # Provide a simple visual front end for XRandR 1.2.
+AddPackage --foreign zoom             # Video Conferencing and Web Conferencing Service
+AddPackage --foreign dmenu2           # Fork of dmenu with many useful patches applied and additional options like screen select, dim or opacity change
+AddPackage --foreign parsec-bin       # Remotely connect to a gaming pc for a low latency remote computing experience
+AddPackage freerdp                    # Free implementation of the Remote Desktop Protocol (RDP)
+AddPackage eog                        # Eye of Gnome
+AddPackage feh                        # Fast and light imlib2-based image viewer
+AddPackage guvcview                   # Simple GTK+ interface for capturing and viewing video from v4l2 devices
+AddPackage numlockx                   # Turns on the numlock key in X11.
+AddPackage xdotool                    # Command-line X11 automation tool
+AddPackage xclip                      # Command line interface to the X11 clipboard
+AddPackage steam                      # Valve's digital software delivery system
+AddPackage --foreign google-earth-pro # 3D interface to explore the globe, terrain, streets, buildings and other planets (Pro version)
+
+AddPackage gnome-keyring # Stores passwords and encryption keys
+CreateLink /etc/systemd/user/sockets.target.wants/gnome-keyring-daemon.socket /usr/lib/systemd/user/gnome-keyring-daemon.socket
 
 ### Run autoperipherals when hardware changes
 cat >"$(CreateFile /etc/udev/rules.d/10-autoperipherals.rules)" <<EOF
@@ -181,6 +184,10 @@ AddPackage mplayer                            # Media player for Linux
 AddPackage mpv                                # a free, open source, and cross-platform media player
 AddPackage vlc                                # Multi-platform MPEG, VCD/DVD, and DivX player
 IgnorePath '/usr/lib/vlc/plugins/plugins.dat' # https://forums.debian.net/viewtopic.php?f=6&t=117859
+AddPackage mencoder                           # Free command line video decoding, encoding and filtering tool
+AddPackage subdl                              # A command-line tool for downloading subtitles from opensubtitles.org
+AddPackage youtube-dl                         # A command-line program to download videos from YouTube.com and a few more sites
+AddPackage yt-dlp                             # A youtube-dl fork with additional features and fixes
 
 ### Terminal emulator
 AddPackage --foreign xcwd-git # xcwd is a simple tool that prints the current working directory of the currently focused window.
