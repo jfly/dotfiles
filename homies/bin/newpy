@@ -10,13 +10,14 @@ while true; do
         dir="$maybe_dir"
         break
     fi
-    echo "Looks like $maybe_dir exists. Continuing search..." > /dev/stderr
+    echo "Looks like $maybe_dir exists. Continuing search..." >/dev/stderr
     suffix=$((suffix + 1))
 done
 
 mkdir "$dir"
+cd "$dir"
 asdf local python 3.10.2
 echo "use asdf
-layout python" > "$dir/.envrc"
-(cd "$dir" && asdf exec direnv allow)
+layout python" >".envrc"
+direnv allow
 echo "$dir"
