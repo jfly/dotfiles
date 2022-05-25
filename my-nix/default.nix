@@ -55,20 +55,6 @@ in
     shtuff = pkgs.callPackage ./shtuff {};
     yq = pkgs.yq;
 
-    ### Virtualization
-    vagrant = pkgs.vagrant.override {
-        # Turn off libvirt. I don't need it, and if it's present, it causes
-        # vagrant to crash with the following:
-        #
-        #  > Vagrant failed to initialize at a very early stage:
-        #  >
-        #  > The plugins failed to load properly. The error message given is
-        #  > shown below.
-        #  >
-        #  > cannot load such file -- vagrant/libvirt
-        withLibvirt=false;
-    };
-
     ### Debug utils
     strace = pkgs.strace;
 
