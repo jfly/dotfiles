@@ -257,6 +257,7 @@ let g:ale_fixers = {
 \   'css': ['prettier'],
 \   'python': ['black', 'isort'],
 \   'rust': ['rustfmt'],
+\   'nix': ['nixpkgs-fmt'],
 \}
 " Automatically run ALEFix on save.
 let g:ale_fix_on_save = 1
