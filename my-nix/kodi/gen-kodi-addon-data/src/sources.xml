@@ -23,12 +23,12 @@
         <default pathversion="1"></default>
         <source>
             <name>shows</name>
-            <path pathversion="1">/mnt/media/shows</path>
+            <path pathversion="1">/home/jeremy/media/shows</path>
             <allowsharing>true</allowsharing>
         </source>
         <source>
             <name>movies</name>
-            <path pathversion="1">/mnt/media/movies</path>
+            <path pathversion="1">/home/jeremy/media/movies</path>
             <allowsharing>true</allowsharing>
         </source>
     </video>
