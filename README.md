@@ -1,3 +1,5 @@
+Moved to https://github.com/jfly/snow/tree/main/dotfiles
+
 # jfly/dotfiles
 I'm using the excellent [dotbot](https://github.com/anishathalye/dotbot).
 
